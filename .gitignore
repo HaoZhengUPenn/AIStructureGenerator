@@ -17,4 +17,3 @@ checkpoints/GH_1/latest_net_D.pth
 checkpoints/GH_1/latest_net_G.pth
 checkpoints/GH_2/latest_net_D.pth
 checkpoints/GH_2/latest_net_G.pth
-AIStructureGenerator_compare.3dm
