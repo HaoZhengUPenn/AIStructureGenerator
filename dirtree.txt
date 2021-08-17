@@ -1,0 +1,392 @@
+卷 System 的文件夹 PATH 列表
+卷序列号为 969B-FB71
+C:\AISTRUCTUREGENERATOR
+│  .gitignore
+│  AIStructureGenerator.3dm
+│  AIStructureGenerator.gh
+│  AIStructureGenerator.yaml
+│  AIStructureGenerator_Case1.3dm
+│  AIStructureGenerator_Case1_optimized.3dm
+│  encode_features.py
+│  get_skeleton.py
+│  LICENSE
+│  PolyFramework.zip
+│  precompute_feature_maps.py
+│  README.md
+│  requirements.txt
+│  run_engine.py
+│  test.py
+│  
+├─AIStructureGenerator_置入的文件
+│      bd315c6034a85edf0b5edd1c48540923dd54753a.jpg
+│      result.jpg
+│      
+├─ANN
+│  │  main.py
+│  │  pre.csv
+│  │  results.csv
+│  │  
+│  ├─AmazonWaterLily
+│  │      model999.ckpt.data-00000-of-00001
+│  │      model999.ckpt.index
+│  │      model999.ckpt.meta
+│  │      
+│  ├─DamselflyWings
+│  │      model999.ckpt.data-00000-of-00001
+│  │      model999.ckpt.index
+│  │      model999.ckpt.meta
+│  │      
+│  ├─DragonflyWings
+│  │      model999.ckpt.data-00000-of-00001
+│  │      model999.ckpt.index
+│  │      model999.ckpt.meta
+│  │      
+│  └─GrasshopperWings
+│          model999.ckpt.data-00000-of-00001
+│          model999.ckpt.index
+│          model999.ckpt.meta
+│          
+├─ANN2
+│  │  data.csv
+│  │  results.csv
+│  │  SA.py
+│  │  train.py
+│  │  
+│  ├─logs
+│  │      events.out.tfevents.1629118194.DESKTOP-J9S181Q
+│  │      
+│  └─model
+│          checkpoint
+│          model199.ckpt.data-00000-of-00001
+│          model199.ckpt.index
+│          model199.ckpt.meta
+│          model299.ckpt.data-00000-of-00001
+│          model299.ckpt.index
+│          model299.ckpt.meta
+│          model399.ckpt.data-00000-of-00001
+│          model399.ckpt.index
+│          model399.ckpt.meta
+│          model499.ckpt.data-00000-of-00001
+│          model499.ckpt.index
+│          model499.ckpt.meta
+│          model599.ckpt.data-00000-of-00001
+│          model599.ckpt.index
+│          model599.ckpt.meta
+│          model699.ckpt.data-00000-of-00001
+│          model699.ckpt.index
+│          model699.ckpt.meta
+│          model799.ckpt.data-00000-of-00001
+│          model799.ckpt.index
+│          model799.ckpt.meta
+│          model899.ckpt.data-00000-of-00001
+│          model899.ckpt.index
+│          model899.ckpt.meta
+│          model99.ckpt.data-00000-of-00001
+│          model99.ckpt.index
+│          model99.ckpt.meta
+│          model999.ckpt.data-00000-of-00001
+│          model999.ckpt.index
+│          model999.ckpt.meta
+│          
+├─checkpoints
+│  ├─AWL_1
+│  │      latest_net_D.pth
+│  │      latest_net_G.pth
+│  │      loss_log.txt
+│  │      
+│  ├─AWL_2
+│  │      latest_net_D.pth
+│  │      latest_net_G.pth
+│  │      loss_log.txt
+│  │      
+│  ├─Damselfly_1
+│  │      latest_net_D.pth
+│  │      latest_net_G.pth
+│  │      loss_log.txt
+│  │      
+│  ├─Damselfly_2
+│  │      latest_net_D.pth
+│  │      latest_net_G.pth
+│  │      loss_log.txt
+│  │      
+│  ├─fcb_to_fc
+│  │      latest_net_D.pth
+│  │      latest_net_G.pth
+│  │      loss_log.txt
+│  │      
+│  ├─fc_to_fcg
+│  │      latest_net_D.pth
+│  │      latest_net_G.pth
+│  │      loss_log.txt
+│  │      
+│  ├─fmb_to_fcb
+│  │      latest_net_D.pth
+│  │      latest_net_G.pth
+│  │      loss_log.txt
+│  │      
+│  ├─GH_1
+│  │      latest_net_D.pth
+│  │      latest_net_G.pth
+│  │      loss_log.txt
+│  │      
+│  └─GH_2
+│          latest_net_D.pth
+│          latest_net_G.pth
+│          loss_log.txt
+│          
+├─data
+│  │  aligned_dataset.py
+│  │  aligned_dataset.pyc
+│  │  base_dataset.py
+│  │  base_dataset.pyc
+│  │  base_data_loader.py
+│  │  base_data_loader.pyc
+│  │  custom_dataset_data_loader.py
+│  │  custom_dataset_data_loader.pyc
+│  │  data_loader.py
+│  │  data_loader.pyc
+│  │  image_folder.py
+│  │  image_folder.pyc
+│  │  __init__.py
+│  │  __init__.pyc
+│  │  
+│  └─__pycache__
+│          aligned_dataset.cpython-35.pyc
+│          aligned_dataset.cpython-36.pyc
+│          aligned_dataset.cpython-38.pyc
+│          base_dataset.cpython-35.pyc
+│          base_dataset.cpython-36.pyc
+│          base_dataset.cpython-38.pyc
+│          base_data_loader.cpython-35.pyc
+│          base_data_loader.cpython-36.pyc
+│          base_data_loader.cpython-38.pyc
+│          custom_dataset_data_loader.cpython-35.pyc
+│          custom_dataset_data_loader.cpython-36.pyc
+│          custom_dataset_data_loader.cpython-38.pyc
+│          data_loader.cpython-35.pyc
+│          data_loader.cpython-36.pyc
+│          data_loader.cpython-38.pyc
+│          image_folder.cpython-35.pyc
+│          image_folder.cpython-36.pyc
+│          image_folder.cpython-38.pyc
+│          __init__.cpython-35.pyc
+│          __init__.cpython-36.pyc
+│          __init__.cpython-38.pyc
+│          
+├─datasets
+│  │  test.jpg
+│  │  
+│  ├─AWL_1
+│  │  └─test_A
+│  │          test.jpg
+│  │          
+│  ├─AWL_2
+│  │  └─test_A
+│  │          test.jpg
+│  │          
+│  ├─Damselfly_1
+│  │  └─test_A
+│  │          test.jpg
+│  │          
+│  ├─Damselfly_2
+│  │  └─test_A
+│  │          test.jpg
+│  │          
+│  ├─fcb_to_fc
+│  │  └─test_A
+│  │          test.jpg
+│  │          
+│  ├─fc_to_fcg
+│  │  └─test_A
+│  │          test.jpg
+│  │          
+│  ├─fmb_to_fcb
+│  │  └─test_A
+│  │          test.jpg
+│  │          
+│  ├─GH_1
+│  │  └─test_A
+│  │          test.jpg
+│  │          
+│  └─GH_2
+│      └─test_A
+│              test.jpg
+│              
+├─models
+│  │  base_model.py
+│  │  base_model.pyc
+│  │  models.py
+│  │  models.pyc
+│  │  networks.py
+│  │  networks.pyc
+│  │  pix2pixHD_model.py
+│  │  pix2pixHD_model.pyc
+│  │  ui_model.py
+│  │  __init__.py
+│  │  __init__.pyc
+│  │  
+│  └─__pycache__
+│          base_model.cpython-35.pyc
+│          base_model.cpython-36.pyc
+│          base_model.cpython-38.pyc
+│          models.cpython-35.pyc
+│          models.cpython-36.pyc
+│          models.cpython-38.pyc
+│          networks.cpython-35.pyc
+│          networks.cpython-36.pyc
+│          networks.cpython-38.pyc
+│          pix2pixHD_model.cpython-35.pyc
+│          pix2pixHD_model.cpython-36.pyc
+│          pix2pixHD_model.cpython-38.pyc
+│          __init__.cpython-35.pyc
+│          __init__.cpython-36.pyc
+│          __init__.cpython-38.pyc
+│          
+├─options
+│  │  base_options.py
+│  │  base_options.pyc
+│  │  test_options.py
+│  │  test_options.pyc
+│  │  train_options.py
+│  │  train_options.pyc
+│  │  __init__.py
+│  │  __init__.pyc
+│  │  
+│  └─__pycache__
+│          base_options.cpython-35.pyc
+│          base_options.cpython-36.pyc
+│          base_options.cpython-37.pyc
+│          base_options.cpython-38.pyc
+│          test_options.cpython-35.pyc
+│          test_options.cpython-36.pyc
+│          test_options.cpython-38.pyc
+│          train_options.cpython-35.pyc
+│          train_options.cpython-37.pyc
+│          __init__.cpython-35.pyc
+│          __init__.cpython-36.pyc
+│          __init__.cpython-37.pyc
+│          __init__.cpython-38.pyc
+│          
+├─results
+│  │  result.csv
+│  │  result.jpg
+│  │  result_bou.jpg
+│  │  
+│  ├─AWL_1
+│  │  └─test_latest
+│  │      │  index.html
+│  │      │  
+│  │      └─images
+│  │              test_input_label.jpg
+│  │              test_synthesized_image.jpg
+│  │              
+│  ├─AWL_2
+│  │  └─test_latest
+│  │      │  index.html
+│  │      │  
+│  │      └─images
+│  │              test_input_label.jpg
+│  │              test_synthesized_image.jpg
+│  │              
+│  ├─Damselfly_1
+│  │  └─test_latest
+│  │      │  index.html
+│  │      │  
+│  │      └─images
+│  │              test_input_label.jpg
+│  │              test_synthesized_image.jpg
+│  │              
+│  ├─Damselfly_2
+│  │  └─test_latest
+│  │      │  index.html
+│  │      │  
+│  │      └─images
+│  │              test_input_label.jpg
+│  │              test_synthesized_image.jpg
+│  │              
+│  ├─fcb_to_fc
+│  │  └─test_latest
+│  │      │  index.html
+│  │      │  
+│  │      └─images
+│  │              test_input_label.jpg
+│  │              test_synthesized_image.jpg
+│  │              
+│  ├─fc_to_fcg
+│  │  └─test_latest
+│  │      │  index.html
+│  │      │  
+│  │      └─images
+│  │              test_input_label.jpg
+│  │              test_synthesized_image.jpg
+│  │              
+│  ├─fmb_to_fcb
+│  │  └─test_latest
+│  │      │  index.html
+│  │      │  
+│  │      └─images
+│  │              test_input_label.jpg
+│  │              test_synthesized_image.jpg
+│  │              
+│  ├─GH_1
+│  │  └─test_latest
+│  │      │  index.html
+│  │      │  
+│  │      └─images
+│  │              test_input_label.jpg
+│  │              test_synthesized_image.jpg
+│  │              
+│  └─GH_2
+│      └─test_latest
+│          │  index.html
+│          │  
+│          └─images
+│                  test_input_label.jpg
+│                  test_synthesized_image.jpg
+│                  
+├─scripts
+│      test_1024p.sh
+│      test_1024p_feat.sh
+│      test_512p.sh
+│      test_512p_feat.sh
+│      train_1024p_12G.sh
+│      train_1024p_24G.sh
+│      train_1024p_feat_12G.sh
+│      train_1024p_feat_24G.sh
+│      train_512p.sh
+│      train_512p_feat.sh
+│      train_512p_fp16.sh
+│      train_512p_fp16_multigpu.sh
+│      train_512p_multigpu.sh
+│      
+└─util
+    │  html.py
+    │  html.pyc
+    │  image_pool.py
+    │  image_pool.pyc
+    │  util.py
+    │  util.pyc
+    │  visualizer.py
+    │  visualizer.pyc
+    │  __init__.py
+    │  __init__.pyc
+    │  
+    └─__pycache__
+            html.cpython-35.pyc
+            html.cpython-36.pyc
+            html.cpython-38.pyc
+            image_pool.cpython-35.pyc
+            image_pool.cpython-36.pyc
+            image_pool.cpython-38.pyc
+            util.cpython-35.pyc
+            util.cpython-36.pyc
+            util.cpython-37.pyc
+            util.cpython-38.pyc
+            visualizer.cpython-35.pyc
+            visualizer.cpython-36.pyc
+            visualizer.cpython-38.pyc
+            __init__.cpython-35.pyc
+            __init__.cpython-36.pyc
+            __init__.cpython-37.pyc
+            __init__.cpython-38.pyc
+            
