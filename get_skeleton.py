@@ -95,3 +95,61 @@ for (s, e) in graph.edges():
 with open('.\\results\\result.csv', 'w') as f:
     writer = csv.writer(f, lineterminator='\n')
     writer.writerows(output)
+
+
+
+
+
+
+
+from skimage import data, segmentation, color
+from skimage.future import graph
+from matplotlib import pyplot as plt
+import skimage.io
+from skimage.color import rgb2gray
+import sknw
+from skimage.feature import canny
+from skimage.morphology import skeletonize
+import numpy as np
+import csv
+from skimage.segmentation import watershed, expand_labels
+
+img = data.coffee()
+
+#print(img)
+
+img = skimage.io.imread('.\\results\\result_mp.jpg')
+
+#print(img)
+
+labels1 = segmentation.slic(img, compactness=100, n_segments=400,
+                            start_label=1)
+out1 = color.label2rgb(labels1, img, kind='avg', bg_label=0)
+
+g = graph.rag_mean_color(img, labels1, mode='similarity')
+labels2 = graph.cut_normalized(labels1, g)
+
+expanded = expand_labels(labels2, distance=10)
+
+out2 = color.label2rgb(expanded, img, kind='avg', bg_label=0)
+
+out1 = out1/255
+out2 = out2/255
+
+edges = canny(rgb2gray(out2))
+
+edges = np.logical_not(edges)
+
+ske = skeletonize(~edges).astype(np.uint16)
+
+graph = sknw.build_sknw(ske)
+
+graph = join_nodes(graph)
+
+output = []
+for (s, e) in graph.edges():
+    ps = graph[s][e]['pts']
+    output.append(ps)
+with open('.\\results\\result_mp.csv', 'w') as f:
+    writer = csv.writer(f, lineterminator='\n')
+    writer.writerows(output)
