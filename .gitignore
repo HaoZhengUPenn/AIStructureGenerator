@@ -17,3 +17,5 @@ checkpoints/GH_1/latest_net_D.pth
 checkpoints/GH_1/latest_net_G.pth
 checkpoints/GH_2/latest_net_D.pth
 checkpoints/GH_2/latest_net_G.pth
+checkpoints/fcb_to_fc2/latest_net_D.pth
+checkpoints/fcb_to_fc2/latest_net_G.pth
