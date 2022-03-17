@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DWF-GH</title>
+
+    <!-- 引入标准bootstrap文件和jQuery文件 -->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- 引入自定义的css和js -->
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+    <div id="container" style="width:500px; height:auto; float:left; display:inline">
+	    <canvas id="canvas" width="500" height="500" style="border: 3px solid black"></canvas>
+    </div>
+	<div id="container" style="width:500px; height:auto; float:right; display:inline">
+	    <div class="form-group" id="l"></div>
+		    <div class="col-sm-4"></div>
+			    <span class="input-group-addon" style="font-size:20px">Reduce Rate (0~1)</span>
+			    <input type="text" class="form-control" name="reduce_rate" id="reduce_rate" style="width:400px; height:30px;">
+		    	<span class="input-group-addon" style="font-size:20px">Tolerance of Edge Length (0~1)</span>
+			    <input type="text" class="form-control" name="tolerance_of_edge_length" id="tolerance_of_edge_length" style="width:400px; height:30px;">
+				<span class="input-group-addon" style="font-size:20px">Length Constraint Maltiplier (0~2)</span>
+			    <input type="text" class="form-control" name="length_constraint_maltiplier" id="length_constraint_maltiplier" style="width:400px; height:30px;">
+				<span class="input-group-addon" style="font-size:20px">Boundary Constraint Magnitude (0~10)</span>
+			    <input type="text" class="form-control" name="boundary_constraint_magnitude" id="boundary_constraint_magnitude" style="width:400px; height:30px;">
+				<span class="input-group-addon" style="font-size:20px">Perp Steps (0~30000)</span>
+			    <input type="text" class="form-control" name="perp_steps" id="perp_steps" style="width:400px; height:30px;">
+				<span class="input-group-addon" style="font-size:20px">Minumum Radius (0~100)</span>
+			    <input type="text" class="form-control" name="minumum_radius" id="minumum_radius" style="width:400px; height:30px;">
+				<span class="input-group-addon" style="font-size:20px">Maximum Radius (0~100)</span>
+			    <input type="text" class="form-control" name="maximum_radius" id="maximum_radius" style="width:400px; height:30px;">
+
+        <form class="form-horizontal" role="form">
+            <div id="btn">
+                <div class="col-sm-3"></div>
+                <div class="input-group">
+                    <span class="input-group-btn">
+                        <button id="btn_submit" type="button" class="btn btn-default">
+                            <span class="glyphicon glyphicon-asterisk"></span>
+                            Generate!
+                        </button>
+                    </span>
+                </div>
+            </div>
+            <div id="list">
+                <!-- js动态新增 -->
+            </div>
+        </form>
+    </div>
+	
+	<div style="background-color: white; width: 100%; height: 420pt;"></div>
+	
+	<script src="js/main.js"></script>
+
+	<body onload="draw();"></body>
+	<script src="lib/three.js"></script>
+	<script src="lib/js/loaders/STLLoader.js"></script>
+	<script src="lib/js/controls/OrbitControls.js"></script>
+	<script src="lib/js/libs/stats.min.js"></script>
+	<script src="lib/js/libs/dat.gui.min.js"></script>
+	<script>
+		var renderer;
+		function initRender() {
+			renderer = new THREE.WebGLRenderer({antialias:true});
+			renderer.setSize(1100, 500);
+			//告诉渲染器需要阴影效果
+			renderer.setClearColor(0xE3E3E3);
+			document.body.appendChild(renderer.domElement);
+		}
+
+		var camera;
+		function initCamera() {
+			camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 1000);
+			camera.position.set(0, 80, 100);
+			camera.lookAt(new THREE.Vector3(0,0,0));
+		}
+
+		var scene;
+		function initScene() {
+			scene = new THREE.Scene();
+		}
+
+		//初始化dat.GUI简化试验流程
+		var gui;
+		function initGui() {
+			//声明一个保存需求修改的相关数据的对象
+			gui = {
+			};
+			var datGui = new dat.GUI();
+			//将设置属性添加到gui当中，gui.add(对象，属性，最小值，最大值）
+		}
+
+		var light;
+		function initLight() {
+			scene.add(new THREE.AmbientLight(0x444444));
+
+			light = new THREE.PointLight(0xffffff);
+			light.position.set(0,50,50);
+
+			//告诉平行光需要开启阴影投射
+			light.castShadow = true;
+
+			scene.add(light);
+		}
+
+		function initModel() {
+
+			//辅助工具
+			var helper = new THREE.AxesHelper(50);
+			scene.add(helper);
+
+			var loader = new THREE.STLLoader();
+			loader.load("AIStructureGenerator_User_EFC_APW_Web_output.stl", function (geometry) {
+				//创建纹理
+				var mat = new THREE.MeshLambertMaterial({color: 0x0079ED});
+				var mesh = new THREE.Mesh(geometry, mat);
+				mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+				mesh.scale.set(0.07, 0.07, 0.07); //缩放
+				geometry.center(); //居中显示
+				scene.add(mesh);
+			});
+		}
+
+		//初始化性能插件
+		var stats;
+		function initStats() {
+			stats = new Stats();
+			//document.body.appendChild(stats.dom);
+		}
+
+		//用户交互插件 鼠标左键按住旋转，右键按住平移，滚轮缩放
+		var controls;
+		function initControls() {
+
+			controls = new THREE.OrbitControls( camera, renderer.domElement );
+
+			// 如果使用animate方法时，将此函数删除
+			//controls.addEventListener( 'change', render );
+			// 使动画循环使用时阻尼或自转 意思是否有惯性
+			controls.enableDamping = false;
+			//动态阻尼系数 就是鼠标拖拽旋转灵敏度
+			controls.dampingFactor = 0.1;
+			//是否可以缩放
+			controls.enableZoom = true;
+			//是否自动旋转
+			controls.autoRotate = false;
+			controls.autoRotateSpeed = 0.5;
+			//设置相机距离原点的最远距离
+			controls.minDistance  = 1;
+			//设置相机距离原点的最远距离
+			controls.maxDistance  = 200;
+			//是否开启右键拖拽
+			controls.enablePan = true;
+		}
+
+		function render() {
+
+			renderer.render( scene, camera );
+		}
+
+		//窗口变动触发的函数
+		function onWindowResize() {
+
+			camera.aspect = window.innerWidth / window.innerHeight;
+			camera.updateProjectionMatrix();
+			render();
+			renderer.setSize( window.innerWidth, window.innerHeight );
+
+		}
+
+		function animate() {
+			//更新控制器
+			render();
+
+			//更新性能插件
+			stats.update();
+
+			controls.update();
+
+			requestAnimationFrame(animate);
+		}
+
+		function draw() {
+			initGui();
+			initRender();
+			initScene();
+			initCamera();
+			initLight();
+			initModel();
+			initControls();
+			initStats();
+
+			animate();
+			window.onresize = onWindowResize;
+		}
+	</script>
+</body>
+</html>
