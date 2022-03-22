@@ -1,0 +1,13 @@
+django==3.1.5
+djangorestframework==3.12.2
+django-allauth==0.44.0
+django-cors-headers==3.7.0
+django-rest-auth==0.9.5
+django-filter==2.4.0
+coreapi==2.3.3
+numpy==1.19.5
+pymysql==1.0.2
+joblib==1.0.0
+pandas==1.1.5
+sklearn
+pillow==8.2.0

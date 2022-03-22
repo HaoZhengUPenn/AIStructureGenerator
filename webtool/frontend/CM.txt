@@ -1,0 +1,2 @@
+上级目录workspace.code-workspace打开vscode
+右下角Go Live

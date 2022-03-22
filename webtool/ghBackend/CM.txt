@@ -1,0 +1,3 @@
+cd C:\AIStructureGenerator\webtool\ghBackend
+conda activate pyweb
+python manage.py runserver 0.0.0.0:8888 --settings=ghBackend.settings.local

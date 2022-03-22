@@ -1,0 +1,2 @@
+cd C:\AIStructureGenerator\webtool\frpc
+frpc.exe -c frpc.ini
