@@ -42,8 +42,7 @@
 			axios({
 				// headers:{'Cache-Control':'no-cache'},
 				method: 'post',
-				//url: 'http://127.0.0.1:8888/ghHere/ep/predict/?delay=900&interval=15',
-				url: 'http://128.91.16.228:8888/ghHere/ep/predict/?delay=900&interval=1',
+				url: 'http://127.0.0.1:8888/ghHere/ep/predict/?delay=900&interval=15',
 				data: value_inputs
 			}).then(function (response){
 				console.log(response.data);
@@ -55,11 +54,7 @@
 			
 			// location.reload();
 			console.log(value_inputs);
-			
-			setTimeout(function(){
-				console.log("1 second to wait the server to remove the previous stl file");
-				location.reload() //refresh the web page
-			},2000);
+
 		}
 	</script>
 </head>
@@ -153,7 +148,7 @@
             <div id="btn">
                 <div class="col-sm-3"></div>
                 <div class="input-group">
-					<span class="input-group-addon" style="font-size:15px; white-space:nowrap;">Click "Generate!" bottom to proceed. Refresh the web page to check the result (in 5 minutes).</span>
+					<span class="input-group-addon" style="font-size:15px; white-space:nowrap;">Click "Generate!" bottom to proceed. Check the result below in 5 minutes. (Do NOT refresh!)</span>
 					<span class="input-group-btn">
 
                         <!-- <button id="btn_submit" type="button" class="btn btn-default" onclick="getInputs()"> -->
@@ -168,7 +163,7 @@
                         </button>
 						<script type='text/javascript'>
 							function download_stl() {
-								window.open('../ghBackend/media/Default/output.stl')
+								window. open('../ghBackend/media/Default/output.stl')
 							}
 						</script>
 

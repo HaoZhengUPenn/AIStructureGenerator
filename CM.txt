@@ -1,0 +1,8 @@
+pip install sknw
+pip install dominate
+pip install tensorflow
+pip3 install torch torchvision torchaudio
+
+CPU版本变化：
+pix2pixHD_model.py中所有.cuda()去掉
+GH中指令最后改为 --gpu_ids -1

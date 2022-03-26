@@ -1,6 +1,7 @@
 anaconda:
 conda create -n pyweb python=3.8
 conda activate pyweb
+cd C:\AIStructureGenerator\webtool
 pip install -r requirements.txt
 
 MySQL command line:

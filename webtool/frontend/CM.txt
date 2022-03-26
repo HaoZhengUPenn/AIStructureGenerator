@@ -1,2 +1,7 @@
 上级目录workspace.code-workspace打开vscode
 右下角Go Live
+
+IIS根目录放至webtool
+然后访问：http://localhost/frontend/DFW-GH.html
+
+PSL固定IP为128.91.16.228
