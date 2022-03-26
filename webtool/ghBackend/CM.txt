@@ -1,3 +1,7 @@
-cd C:\AIStructureGenerator\webtool\ghBackend
 conda activate pyweb
+cd C:\AIStructureGenerator\webtool\ghBackend
+
+python manage.py makemigrations --settings=ghBackend.settings.local
+python manage.py migrate --settings=ghBackend.settings.local
+
 python manage.py runserver 0.0.0.0:8888 --settings=ghBackend.settings.local

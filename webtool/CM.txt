@@ -1,0 +1,10 @@
+anaconda:
+conda create -n pyweb python=3.8
+conda activate pyweb
+pip install -r requirements.txt
+
+MySQL command line:
+create database gh_test;
+create user 'tester'@'%' identified by '363837';
+grant all privileges on gh_test.* to 'tester'@'%';
+

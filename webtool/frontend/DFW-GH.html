@@ -63,35 +63,175 @@
     <div id="container" style="width:500px; height:auto; float:left; display:inline">
 	    <canvas id="canvas" width="500" height="500" style="border: 3px solid black"></canvas>
     </div>
-	<div id="container" style="width:500px; height:auto; float:right; display:inline">
+	<div id="container" style="width:510px; height:500px; float:left; display:inline; padding-left:20px;">
 	    <div class="form-group" id="l"></div>
 		    <div class="col-sm-4"></div>
-			    <span class="input-group-addon" style="font-size:20px">Reduce Rate (0~1)</span>
-			    <input type="text" class="form-control" name="reduce_rate" id="reduce_rate" style="width:400px; height:30px;">
-		    	<span class="input-group-addon" style="font-size:20px">Tolerance of Edge Length (0~1)</span>
-			    <input type="text" class="form-control" name="tolerance_of_edge_length" id="tolerance_of_edge_length" style="width:400px; height:30px;">
-				<span class="input-group-addon" style="font-size:20px">Length Constraint Maltiplier (0~2)</span>
-			    <input type="text" class="form-control" name="length_constraint_maltiplier" id="length_constraint_maltiplier" style="width:400px; height:30px;">
-				<span class="input-group-addon" style="font-size:20px">Boundary Constraint Magnitude (0~10)</span>
-			    <input type="text" class="form-control" name="boundary_constraint_magnitude" id="boundary_constraint_magnitude" style="width:400px; height:30px;">
-				<span class="input-group-addon" style="font-size:20px">Perp Steps (0~30000)</span>
-			    <input type="text" class="form-control" name="perp_steps" id="perp_steps" style="width:400px; height:30px;">
-				<span class="input-group-addon" style="font-size:20px">Minumum Radius (0~100)</span>
-			    <input type="text" class="form-control" name="minumum_radius" id="minumum_radius" style="width:400px; height:30px;">
-				<span class="input-group-addon" style="font-size:20px">Maximum Radius (0~100)</span>
-			    <input type="text" class="form-control" name="maximum_radius" id="maximum_radius" style="width:400px; height:30px;">
+			    
+			    <span class="input-group-addon" style="font-size:20px; white-space:nowrap;">Reduce Rate (0~1)</span>
+				<input type="range" min="0" max="1" step="0.01" name="reduce_rate" id="reduce_rate" style="width:400px; height:20px;" oninput="change_reduce_rate()" onchange="change_reduce_rate()"/>
+			    <span id="value_reduce_rate" style="font-size:20px">0</span>
+				<script type='text/javascript'>
+					function change_reduce_rate() {
+					    var value_reduce_rate = document.getElementById('reduce_rate').value;
+						document.getElementById('value_reduce_rate').innerHTML = value_reduce_rate;
+					}
+				</script>
+				<!-- <input type="text" class="form-control" name="reduce_rate" id="reduce_rate" style="width:400px; height:30px;"> -->
+		    	
+				<span class="input-group-addon" style="font-size:20px; white-space:nowrap;">Tolerance of Edge Length (0~1)</span>
+				<input type="range" min="0" max="1" step="0.01" name="tolerance_of_edge_length" id="tolerance_of_edge_length" style="width:400px; height:20px;" oninput="change_tolerance_of_edge_length()" onchange="change_tolerance_of_edge_length()"/>
+			    <span id="value_tolerance_of_edge_length" style="font-size:20px">0</span>
+				<script type='text/javascript'>
+					function change_tolerance_of_edge_length() {
+					    var value_tolerance_of_edge_length = document.getElementById('tolerance_of_edge_length').value;
+						document.getElementById('value_tolerance_of_edge_length').innerHTML = value_tolerance_of_edge_length;
+					}
+				</script>
+			    <!-- <input type="text" class="form-control" name="tolerance_of_edge_length" id="tolerance_of_edge_length" style="width:400px; height:30px;"> -->
+				
+				<span class="input-group-addon" style="font-size:20px; white-space:nowrap;">Length Constraint Maltiplier (0~2)</span>
+				<input type="range" min="0" max="2" step="0.01" name="length_constraint_maltiplier" id="length_constraint_maltiplier" style="width:400px; height:20px;" oninput="change_length_constraint_maltiplier()" onchange="change_length_constraint_maltiplier()"/>
+			    <span id="value_length_constraint_maltiplier" style="font-size:20px">0</span>
+				<script type='text/javascript'>
+					function change_length_constraint_maltiplier() {
+					    var value_length_constraint_maltiplier = document.getElementById('length_constraint_maltiplier').value;
+						document.getElementById('value_length_constraint_maltiplier').innerHTML = value_length_constraint_maltiplier;
+					}
+				</script>
+			    <!-- <input type="text" class="form-control" name="length_constraint_maltiplier" id="length_constraint_maltiplier" style="width:400px; height:30px;"> -->
+
+				<span class="input-group-addon" style="font-size:20px; white-space:nowrap;">Boundary Constraint Magnitude (0~10)</span>
+				<input type="range" min="0" max="10" step="0.01" name="boundary_constraint_magnitude" id="boundary_constraint_magnitude" style="width:400px; height:20px;" oninput="change_boundary_constraint_magnitude()" onchange="change_boundary_constraint_magnitude()"/>
+			    <span id="value_boundary_constraint_magnitude" style="font-size:20px">0</span>
+				<script type='text/javascript'>
+					function change_boundary_constraint_magnitude() {
+					    var value_boundary_constraint_magnitude = document.getElementById('boundary_constraint_magnitude').value;
+						document.getElementById('value_boundary_constraint_magnitude').innerHTML = value_boundary_constraint_magnitude;
+					}
+				</script>
+			    <!-- <input type="text" class="form-control" name="boundary_constraint_magnitude" id="boundary_constraint_magnitude" style="width:400px; height:30px;"> -->
+
+				<span class="input-group-addon" style="font-size:20px; white-space:nowrap;">Perp Steps (0~30000)</span>
+				<input type="range" min="0" max="30000" step="1" name="perp_steps" id="perp_steps" style="width:400px; height:20px;" oninput="change_perp_steps()" onchange="change_perp_steps()"/>
+			    <span id="value_perp_steps" style="font-size:20px">0</span>
+				<script type='text/javascript'>
+					function change_perp_steps() {
+					    var value_perp_steps = document.getElementById('perp_steps').value;
+						document.getElementById('value_perp_steps').innerHTML = value_perp_steps;
+					}
+				</script>
+			    <!-- <input type="text" class="form-control" name="perp_steps" id="perp_steps" style="width:400px; height:30px;"> -->
+
+				<span class="input-group-addon" style="font-size:20px; white-space:nowrap;">Minumum Radius (0~100)</span>
+				<input type="range" min="0" max="100" step="0.01" name="minumum_radius" id="minumum_radius" style="width:400px; height:20px;" oninput="change_minumum_radius()" onchange="change_minumum_radius()"/>
+			    <span id="value_minumum_radius" style="font-size:20px">0</span>
+				<script type='text/javascript'>
+					function change_minumum_radius() {
+					    var value_minumum_radius = document.getElementById('minumum_radius').value;
+						document.getElementById('value_minumum_radius').innerHTML = value_minumum_radius;
+					}
+				</script>
+			    <!-- <input type="text" class="form-control" name="minumum_radius" id="minumum_radius" style="width:400px; height:30px;"> -->
+
+				<span class="input-group-addon" style="font-size:20px; white-space:nowrap;">Maximum Radius (0~100)</span>
+				<input type="range" min="0" max="100" step="0.01" name="maximum_radius" id="maximum_radius" style="width:400px; height:20px;" oninput="change_maximum_radius()" onchange="change_maximum_radius()"/>
+			    <span id="value_maximum_radius" style="font-size:20px">0</span>
+				<script type='text/javascript'>
+					function change_maximum_radius() {
+					    var value_maximum_radius = document.getElementById('maximum_radius').value;
+						document.getElementById('value_maximum_radius').innerHTML = value_maximum_radius;
+					}
+				</script>
+			    <!-- <input type="text" class="form-control" name="maximum_radius" id="maximum_radius" style="width:400px; height:30px;"> -->
 
         <form class="form-horizontal" role="form">
             <div id="btn">
                 <div class="col-sm-3"></div>
                 <div class="input-group">
-					<span class="input-group-addon" style="font-size:15px">Click "Generate!" bottom to proceed. Check the result below in 5 minutes.</span>
-                    <span class="input-group-btn">
+					<span class="input-group-addon" style="font-size:15px; white-space:nowrap;">Click "Generate!" bottom to proceed. Check the result below in 5 minutes. (Do NOT refresh!)</span>
+					<span class="input-group-btn">
+
                         <!-- <button id="btn_submit" type="button" class="btn btn-default" onclick="getInputs()"> -->
 						<button id="btn_submit" type="button" class="btn btn-default" onclick="getInputs()">
                             <span class="glyphicon glyphicon-asterisk"></span>
                             Generate!
                         </button>
+
+						<button id="btn_setdefault" type="button" class="btn btn-default" onclick="download_stl()">
+                            <span class="glyphicon glyphicon-asterisk"></span>
+                            Download STL Model
+                        </button>
+						<script type='text/javascript'>
+							function download_stl() {
+								window. open('../ghBackend/media/Default/output.stl')
+							}
+						</script>
+
+						<button id="btn_setdefault" type="button" class="btn btn-default" onclick="set_default()">
+                            <span class="glyphicon glyphicon-asterisk"></span>
+                            Get Default Settings
+                        </button>
+						<script type='text/javascript'>
+							function set_default() {
+								document.getElementById("reduce_rate").value = 0.5;
+								document.getElementById('value_reduce_rate').innerHTML = 0.5;
+								document.getElementById("tolerance_of_edge_length").value = 0.3;
+								document.getElementById('value_tolerance_of_edge_length').innerHTML = 0.3;
+								document.getElementById("length_constraint_maltiplier").value = 0.5;
+								document.getElementById('value_length_constraint_maltiplier').innerHTML = 0.5;
+								document.getElementById("boundary_constraint_magnitude").value = 5;
+								document.getElementById('value_boundary_constraint_magnitude').innerHTML = 5;
+								document.getElementById("perp_steps").value = 10000;
+								document.getElementById('value_perp_steps').innerHTML = 10000;
+								document.getElementById("minumum_radius").value = 1;
+								document.getElementById('value_minumum_radius').innerHTML = 1;
+								document.getElementById("maximum_radius").value = 10;
+								document.getElementById('value_maximum_radius').innerHTML = 10;
+								circles[0].x=50;
+								circles[0].y=50;
+								points[0].x=50;
+								points[0].y=50;
+								circles[1].x=450;
+								circles[1].y=250;
+								points[1].x=450;
+								points[1].y=250;
+								circles[2].x=450;
+								circles[2].y=350;
+								points[2].x=450;
+								points[2].y=350;
+								circles[3].x=200;
+								circles[3].y=225;
+								points[3].x=200;
+								points[3].y=225;
+								circles[4].x=50;
+								circles[4].y=200;
+								points[4].x=50;
+								points[4].y=200;
+								const canvas = document.getElementById('canvas');
+								const context = canvas.getContext('2d');
+								context.clearRect(0,0,canvas.width,canvas.height);
+								for(var i=0; i<circles.length; i++) {
+									var circle = circles[i];
+									context.globalAlpha = 0.85;
+									context.beginPath();
+									context.arc(circle.x, circle.y, circle.radius, 0, Math.PI*2);
+									context.fillStyle = circle.color;
+									context.strokeStyle = "black";
+									context.fill();
+									context.stroke();
+								}
+								context.beginPath();
+								context.moveTo(points[0].x,points[0].y);
+								for (var i = 0; i < points.length; i++) {
+									context.lineTo(points[i].x, points[i].y);
+								}
+								context.lineTo(points[0].x,points[0].y);
+								context.fillStyle="rgb(128,128,128)";
+								context.fill();
+								context.strokeStyle="#black";
+								context.stroke();
+							}
+						</script>
                     </span>
                 </div>
             </div>
@@ -101,7 +241,7 @@
         </form>
     </div>
 	
-	<div style="background-color: white; width: 100%; height: 420pt;"></div>
+	<div style="background-color: white; width: 100%; height: 400pt;"></div>
 	
 	<script>
 
@@ -131,12 +271,19 @@
 				// document.getElementById("minumum_radius").defaultValue = "1";
 				// document.getElementById("maximum_radius").defaultValue = "10";
 				document.getElementById("reduce_rate").defaultValue = arr[1];
+				document.getElementById('value_reduce_rate').innerHTML = arr[1];
 				document.getElementById("tolerance_of_edge_length").defaultValue = arr[2];
+				document.getElementById('value_tolerance_of_edge_length').innerHTML = arr[2];
 				document.getElementById("length_constraint_maltiplier").defaultValue = arr[3];
+				document.getElementById('value_length_constraint_maltiplier').innerHTML = arr[3];
 				document.getElementById("boundary_constraint_magnitude").defaultValue = arr[4];
+				document.getElementById('value_boundary_constraint_magnitude').innerHTML = arr[4];
 				document.getElementById("perp_steps").defaultValue = arr[5];
+				document.getElementById('value_perp_steps').innerHTML = arr[5];
 				document.getElementById("minumum_radius").defaultValue = arr[6];
+				document.getElementById('value_minumum_radius').innerHTML = arr[6];
 				document.getElementById("maximum_radius").defaultValue = arr[7];
+				document.getElementById('value_maximum_radius').innerHTML = arr[7];
 				arr0 = arr[0].split(', ');
 				arr0[0] = arr0[0].split('[')[1];
 				arr0[arr0.length-1] = arr0[arr0.length-1].split(']')[0];
@@ -224,7 +371,7 @@
 				for (var i = 0; i < points.length; i++) {
 				context.lineTo(points[i].x, points[i].y);
 				}
-				context.lineTo(points[4].x, points[0].y);
+				context.lineTo(points[0].x, points[0].y);
 				context.fillStyle="rgb(128,128,128)";
 				context.fill();
 				context.strokeStyle="black";
@@ -234,7 +381,7 @@
 				var clickX = e.pageX - canvas.offsetLeft;
 				var clickY = e.pageY - canvas.offsetTop;
 				//判断当前点击点是否在已经绘制的圆圈上，如果是执行相关操作，并return，不进入画线的代码
-				for(var i=1; i<circles.length; i++) {
+				for(var i=0; i<circles.length; i++) {
 					var circle = circles[i];
 					//使用勾股定理计算这个点与圆心之间的距离
 					var distanceFromCenter = Math.sqrt(Math.pow(circle.x - clickX, 2) + Math.pow(circle.y - clickY, 2));
@@ -312,7 +459,7 @@
 		var renderer;
 		function initRender() {
 			renderer = new THREE.WebGLRenderer({antialias:true});
-			renderer.setSize(1100, 500);
+			renderer.setSize(1000, 350);
 			//告诉渲染器需要阴影效果
 			renderer.setClearColor(0xE3E3E3);
 			document.body.appendChild(renderer.domElement);
@@ -320,7 +467,7 @@
 
 		var camera;
 		function initCamera() {
-			camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 1000);
+			camera = new THREE.PerspectiveCamera(45, 1000/350, 0.1, 1000);
 			camera.position.set(0, 80, 100);
 			camera.lookAt(new THREE.Vector3(0,0,0));
 		}
@@ -412,10 +559,10 @@
 		//窗口变动触发的函数
 		function onWindowResize() {
 
-			camera.aspect = window.innerWidth / window.innerHeight;
+			camera.aspect = 1000 / 350;
 			camera.updateProjectionMatrix();
 			render();
-			renderer.setSize( window.innerWidth, window.innerHeight );
+			renderer.setSize( 1000, 350 );
 
 		}
 
