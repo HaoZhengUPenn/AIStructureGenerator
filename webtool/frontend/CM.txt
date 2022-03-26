@@ -5,3 +5,4 @@ IIS根目录放至webtool
 然后访问：http://localhost/frontend/DFW-GH.html
 
 PSL固定IP为128.91.16.228
+http://128.91.16.228/frontend/DFW-GH.html
