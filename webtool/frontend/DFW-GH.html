@@ -59,7 +59,7 @@
 			setTimeout(function(){
 				console.log("1 second to wait the server to remove the previous stl file");
 				location.reload(true) //refresh the web page
-			},2000);
+			},3000);
 		}
 	</script>
 </head>
@@ -153,13 +153,18 @@
             <div id="btn">
                 <div class="col-sm-3"></div>
                 <div class="input-group">
-					<span class="input-group-addon" style="font-size:15px; white-space:nowrap;">Click "Generate!" bottom to proceed. Refresh the web page to check the result (in 5 minutes).</span>
+					<span class="input-group-addon" style="font-size:15px; white-space:nowrap;">Click "Submit" bottom to proceed. Refresh the web page to check the result (in 5 minutes).</span>
 					<span class="input-group-btn">
 
                         <!-- <button id="btn_submit" type="button" class="btn btn-default" onclick="getInputs()"> -->
 						<button id="btn_submit" type="button" class="btn btn-default" onclick="getInputs()">
                             <span class="glyphicon glyphicon-asterisk"></span>
-                            Generate!
+                            Submit
+                        </button>
+						
+						<button id="btn_refresh" type="button" class="btn btn-default" onclick="location.reload(true)">
+                            <span class="glyphicon glyphicon-asterisk"></span>
+                            Refresh
                         </button>
 
 						<button id="btn_setdefault" type="button" class="btn btn-default" onclick="download_stl()">
@@ -174,7 +179,7 @@
 
 						<button id="btn_setdefault" type="button" class="btn btn-default" onclick="set_default()">
                             <span class="glyphicon glyphicon-asterisk"></span>
-                            Get Default Settings
+                            Default Settings
                         </button>
 						<script type='text/javascript'>
 							function set_default() {
@@ -447,12 +452,15 @@
 				};
 			}
 		}
-		textfile.open("GET", '/ghBackend/media/Default/input.txt', true);
+		var ran = Math.round(Math.random()*100000000).toString();
+		textfile.open("GET", '../ghBackend/media/Default/input.txt'+'?'+ran, true);
 		textfile.send();
 
 	</script>
 
-	<body onload="draw();"></body>
+	<body onload="draw();">
+	<img id="loading" src="loading.gif" width="287" height="141" style="position:absolute; top:680px; left:600px; display:block;">
+	</body>
 	<script src="lib/three.js"></script>
 	<script src="lib/js/loaders/STLLoader.js"></script>
 	<script src="lib/js/controls/OrbitControls.js"></script>
@@ -514,6 +522,8 @@
 			var loader = new THREE.STLLoader();
 			// loader.load("AIStructureGenerator_User_EFC_APW_Web_output.stl", function (geometry) {
 			loader.load('../ghBackend/media/Default/output.stl', function (geometry) {
+				var oldnode = document.getElementById("loading");
+				oldnode.parentNode.removeChild(oldnode);
 				//创建纹理
 				var mat = new THREE.MeshLambertMaterial({color: 0x0079ED});
 				var mesh = new THREE.Mesh(geometry, mat);
