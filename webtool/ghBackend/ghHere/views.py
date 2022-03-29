@@ -62,7 +62,7 @@ class PredictView(views.APIView):
 
         prediction['status'] = 'uncompleted'
         try:
-            os.remove(r'media/Default/output.stl')
+            os.remove(r'media/Default/output.csv')
         except:
             pass
         for i in range(0, int(delay/interval)+1):
@@ -73,11 +73,11 @@ class PredictView(views.APIView):
                 #stl
                 fn_stl = []
                 for fn in fn_all:
-                    if fn.endswith(".stl"):
+                    if fn.endswith(".csv"):
                         fn_stl.append(fn)
                 fn_stl.sort(key=lambda fn:os.path.getmtime(r'media/Default/'+fn))
                 print(fn_stl[-1])
-                shutil.copyfile(r'media/Default/'+ fn_stl[-1], r'media/Default/output.stl')#show
+                shutil.copyfile(r'media/Default/'+ fn_stl[-1], r'media/Default/output.csv')#show
                 shutil.move(r'media/Default/'+ fn_stl[-1], r'media/'+code+r'/'+ fn_stl[-1])#bake
                 gh_request.gh_num = fn_stl[-1].split('.')[0]
                 gh_request.stl_result = code+r'/'+ fn_stl[-1]

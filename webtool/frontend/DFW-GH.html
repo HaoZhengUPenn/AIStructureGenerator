@@ -9,6 +9,12 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+	<script src="lib/three.js"></script>
+	<script src="lib/js/loaders/STLLoader.js"></script>
+	<script src="lib/js/controls/OrbitControls.js"></script>
+	<script src="lib/js/libs/stats.min.js"></script>
+	<script src="lib/js/libs/dat.gui.min.js"></script>
+	<script src="js/FileSaver.js"></script>
 
     <!-- 引入自定义的css和js -->
     <link rel="stylesheet" type="text/css" href="css/main.css">
@@ -57,7 +63,7 @@
 			console.log(value_inputs);
 			
 			setTimeout(function(){
-				console.log("1 second to wait the server to remove the previous stl file");
+				console.log("3 second to wait the server to remove the previous stl file");
 				location.reload(true) //refresh the web page
 			},3000);
 		}
@@ -68,11 +74,333 @@
     <div id="container" style="width:500px; height:auto; float:left; display:inline">
 	    <canvas id="canvas" width="500" height="500" style="border: 3px solid black"></canvas>
     </div>
-	<div id="container" style="width:510px; height:500px; float:left; display:inline; padding-left:20px;">
+	<div id="container-item" style="position:absolute; top:30px; left:325px; width: 400px; display:block;">
+	    <ul class="tabs" data-tab>
+			<button id="btn_set_3poi" type="button" class="btn btn-default" onclick="set_3poi()" style="float:right;">
+				<span class="glyphicon glyphicon-asterisk"></span>
+				3 points
+			</button>
+			<script type='text/javascript'>
+				function set_3poi() {
+					function Point(x, y) {
+						this.x = x;
+						this.y = y;
+						}
+						//圆圈对象
+					function Circle(x, y) {
+						this.x = x;
+						this.y = y;
+						this.radius = 10;
+						this.color = "blue";
+						//拖拽点的标记
+						this.isSelected = false;
+						}
+					points = [];
+					circles = [];
+					var point=new Point(50,50);
+					points.push(point);
+					var circle=new Circle(50,50);
+					circles.push(circle);
+					var point=new Point(450,350);
+					points.push(point);
+					var circle=new Circle(450,350);
+					circles.push(circle);
+					var point=new Point(50,350);
+					points.push(point);
+					var circle=new Circle(50,350);
+					circles.push(circle);
+					const canvas = document.getElementById('canvas');
+					const context = canvas.getContext('2d');
+					context.clearRect(0,0,canvas.width,canvas.height);
+					for(var i=0; i<circles.length; i++) {
+						var circle = circles[i];
+						context.globalAlpha = 0.85;
+						context.beginPath();
+						context.arc(circle.x, circle.y, circle.radius, 0, Math.PI*2);
+						context.fillStyle = circle.color;
+						context.strokeStyle = "black";
+						context.fill();
+						context.stroke();
+					}
+					context.beginPath();
+					context.lineWidth = 4;
+					context.moveTo(points[0].x,points[0].y);
+					for (var i = 0; i < points.length; i++) {
+					context.lineTo(points[i].x, points[i].y);
+					}
+					context.lineTo(points[0].x, points[0].y);
+					context.closePath();
+					context.fillStyle="rgb(128,128,128)";
+					context.fill();
+					context.strokeStyle="black";
+					context.stroke();
+					for (var i = 0; i < 10; i++) {
+						context.beginPath();
+						context.lineWidth = 2;
+						var xx = points[0].x + (points[points.length-1].x-points[0].x)*i/9;
+						var yy = points[0].y + (points[points.length-1].y-points[0].y)*i/9;
+						context.moveTo(xx,yy);
+						context.lineTo(xx-15, yy+5);
+						context.closePath();
+						context.fillStyle="rgb(128,128,128)";
+						context.fill();
+						context.strokeStyle="black";
+						context.stroke();
+					}
+				}
+			</script>
+		    <button id="btn_set_4poi" type="button" class="btn btn-default" onclick="set_4poi()" style="float:right;">
+				<span class="glyphicon glyphicon-asterisk"></span>
+				4 points
+			</button>
+			<script type='text/javascript'>
+				function set_4poi() {
+					function Point(x, y) {
+						this.x = x;
+						this.y = y;
+						}
+						//圆圈对象
+					function Circle(x, y) {
+						this.x = x;
+						this.y = y;
+						this.radius = 10;
+						this.color = "blue";
+						//拖拽点的标记
+						this.isSelected = false;
+						}
+					points = [];
+					circles = [];
+					var point=new Point(50,50);
+					points.push(point);
+					var circle=new Circle(50,50);
+					circles.push(circle);
+					var point=new Point(450,250);
+					points.push(point);
+					var circle=new Circle(450,250);
+					circles.push(circle);
+					var point=new Point(450,350);
+					points.push(point);
+					var circle=new Circle(450,350);
+					circles.push(circle);
+					var point=new Point(50,200);
+					points.push(point);
+					var circle=new Circle(50,200);
+					circles.push(circle);
+					const canvas = document.getElementById('canvas');
+					const context = canvas.getContext('2d');
+					context.clearRect(0,0,canvas.width,canvas.height);
+					for(var i=0; i<circles.length; i++) {
+						var circle = circles[i];
+						context.globalAlpha = 0.85;
+						context.beginPath();
+						context.arc(circle.x, circle.y, circle.radius, 0, Math.PI*2);
+						context.fillStyle = circle.color;
+						context.strokeStyle = "black";
+						context.fill();
+						context.stroke();
+					}
+					context.beginPath();
+					context.lineWidth = 4;
+					context.moveTo(points[0].x,points[0].y);
+					for (var i = 0; i < points.length; i++) {
+					context.lineTo(points[i].x, points[i].y);
+					}
+					context.lineTo(points[0].x, points[0].y);
+					context.closePath();
+					context.fillStyle="rgb(128,128,128)";
+					context.fill();
+					context.strokeStyle="black";
+					context.stroke();
+					for (var i = 0; i < 10; i++) {
+						context.beginPath();
+						context.lineWidth = 2;
+						var xx = points[0].x + (points[points.length-1].x-points[0].x)*i/9;
+						var yy = points[0].y + (points[points.length-1].y-points[0].y)*i/9;
+						context.moveTo(xx,yy);
+						context.lineTo(xx-15, yy+5);
+						context.closePath();
+						context.fillStyle="rgb(128,128,128)";
+						context.fill();
+						context.strokeStyle="black";
+						context.stroke();
+					}
+				}
+			</script>
+			<button id="btn_set_5poi" type="button" class="btn btn-default" onclick="set_5poi()" style="float:right;">
+				<span class="glyphicon glyphicon-asterisk"></span>
+				5 points
+			</button>
+			<script type='text/javascript'>
+				function set_5poi() {
+					function Point(x, y) {
+						this.x = x;
+						this.y = y;
+						}
+						//圆圈对象
+					function Circle(x, y) {
+						this.x = x;
+						this.y = y;
+						this.radius = 10;
+						this.color = "blue";
+						//拖拽点的标记
+						this.isSelected = false;
+						}
+					points = [];
+					circles = [];
+					var point=new Point(50,50);
+					points.push(point);
+					var circle=new Circle(50,50);
+					circles.push(circle);
+					var point=new Point(450,250);
+					points.push(point);
+					var circle=new Circle(450,250);
+					circles.push(circle);
+					var point=new Point(450,350);
+					points.push(point);
+					var circle=new Circle(450,350);
+					circles.push(circle);
+					var point=new Point(200,225);
+					points.push(point);
+					var circle=new Circle(200,225);
+					circles.push(circle);
+					var point=new Point(50,200);
+					points.push(point);
+					var circle=new Circle(50,200);
+					circles.push(circle);
+					const canvas = document.getElementById('canvas');
+					const context = canvas.getContext('2d');
+					context.clearRect(0,0,canvas.width,canvas.height);
+					for(var i=0; i<circles.length; i++) {
+						var circle = circles[i];
+						context.globalAlpha = 0.85;
+						context.beginPath();
+						context.arc(circle.x, circle.y, circle.radius, 0, Math.PI*2);
+						context.fillStyle = circle.color;
+						context.strokeStyle = "black";
+						context.fill();
+						context.stroke();
+					}
+					context.beginPath();
+					context.lineWidth = 4;
+					context.moveTo(points[0].x,points[0].y);
+					for (var i = 0; i < points.length; i++) {
+					context.lineTo(points[i].x, points[i].y);
+					}
+					context.lineTo(points[0].x, points[0].y);
+					context.closePath();
+					context.fillStyle="rgb(128,128,128)";
+					context.fill();
+					context.strokeStyle="black";
+					context.stroke();
+					for (var i = 0; i < 10; i++) {
+						context.beginPath();
+						context.lineWidth = 2;
+						var xx = points[0].x + (points[points.length-1].x-points[0].x)*i/9;
+						var yy = points[0].y + (points[points.length-1].y-points[0].y)*i/9;
+						context.moveTo(xx,yy);
+						context.lineTo(xx-15, yy+5);
+						context.closePath();
+						context.fillStyle="rgb(128,128,128)";
+						context.fill();
+						context.strokeStyle="black";
+						context.stroke();
+					}
+				}
+			</script>
+			<button id="btn_set_6poi" type="button" class="btn btn-default" onclick="set_6poi()" style="float:right;">
+				<span class="glyphicon glyphicon-asterisk"></span>
+				6 points
+			</button>
+			<script type='text/javascript'>
+				function set_6poi() {
+					function Point(x, y) {
+						this.x = x;
+						this.y = y;
+						}
+						//圆圈对象
+					function Circle(x, y) {
+						this.x = x;
+						this.y = y;
+						this.radius = 10;
+						this.color = "blue";
+						//拖拽点的标记
+						this.isSelected = false;
+						}
+					points = [];
+					circles = [];
+					var point=new Point(50,50);
+					points.push(point);
+					var circle=new Circle(50,50);
+					circles.push(circle);
+					var point=new Point(200,100);
+					points.push(point);
+					var circle=new Circle(200,100);
+					circles.push(circle);
+					var point=new Point(450,250);
+					points.push(point);
+					var circle=new Circle(450,250);
+					circles.push(circle);
+					var point=new Point(450,350);
+					points.push(point);
+					var circle=new Circle(450,350);
+					circles.push(circle);
+					var point=new Point(200,225);
+					points.push(point);
+					var circle=new Circle(200,225);
+					circles.push(circle);
+					var point=new Point(50,200);
+					points.push(point);
+					var circle=new Circle(50,200);
+					circles.push(circle);
+					const canvas = document.getElementById('canvas');
+					const context = canvas.getContext('2d');
+					context.clearRect(0,0,canvas.width,canvas.height);
+					for(var i=0; i<circles.length; i++) {
+						var circle = circles[i];
+						context.globalAlpha = 0.85;
+						context.beginPath();
+						context.arc(circle.x, circle.y, circle.radius, 0, Math.PI*2);
+						context.fillStyle = circle.color;
+						context.strokeStyle = "black";
+						context.fill();
+						context.stroke();
+					}
+					context.beginPath();
+					context.lineWidth = 4;
+					context.moveTo(points[0].x,points[0].y);
+					for (var i = 0; i < points.length; i++) {
+					context.lineTo(points[i].x, points[i].y);
+					}
+					context.lineTo(points[0].x, points[0].y);
+					context.closePath();
+					context.fillStyle="rgb(128,128,128)";
+					context.fill();
+					context.strokeStyle="black";
+					context.stroke();
+					for (var i = 0; i < 10; i++) {
+						context.beginPath();
+						context.lineWidth = 2;
+						var xx = points[0].x + (points[points.length-1].x-points[0].x)*i/9;
+						var yy = points[0].y + (points[points.length-1].y-points[0].y)*i/9;
+						context.moveTo(xx,yy);
+						context.lineTo(xx-15, yy+5);
+						context.closePath();
+						context.fillStyle="rgb(128,128,128)";
+						context.fill();
+						context.strokeStyle="black";
+						context.stroke();
+					}
+				}
+			</script>
+			<span class="dragged" style="float:right;">Drag to adjust the points.</span>
+		</ul>
+    </div>
+	<div id="container" style="width:530px; height:500px; float:left; display:inline; padding-left:20px;">
+	
 	    <div class="form-group" id="l"></div>
 		    <div class="col-sm-4"></div>
 			    
-			    <span class="input-group-addon" style="font-size:20px; white-space:nowrap;">Reduce Rate (0~1)</span>
+			    <span class="input-group-addon" style="font-size:20px; white-space:nowrap;"><abbr title="The density of structural members.">Density</abbr> (0~1)</span>
 				<input type="range" min="0" max="1" step="0.01" name="reduce_rate" id="reduce_rate" style="width:400px; height:20px;" oninput="change_reduce_rate()" onchange="change_reduce_rate()"/>
 			    <span id="value_reduce_rate" style="font-size:20px">0</span>
 				<script type='text/javascript'>
@@ -83,7 +411,7 @@
 				</script>
 				<!-- <input type="text" class="form-control" name="reduce_rate" id="reduce_rate" style="width:400px; height:30px;"> -->
 		    	
-				<span class="input-group-addon" style="font-size:20px; white-space:nowrap;">Tolerance of Edge Length (0~1)</span>
+				<span class="input-group-addon" style="font-size:20px; white-space:nowrap;"><abbr title="It defines the tolerance (in percentage) of the edge length constraints. Increasing it would give more freedom to the perping process.">Tolerance of Edge Length</abbr> (0~1)</span>
 				<input type="range" min="0" max="1" step="0.01" name="tolerance_of_edge_length" id="tolerance_of_edge_length" style="width:400px; height:20px;" oninput="change_tolerance_of_edge_length()" onchange="change_tolerance_of_edge_length()"/>
 			    <span id="value_tolerance_of_edge_length" style="font-size:20px">0</span>
 				<script type='text/javascript'>
@@ -94,7 +422,7 @@
 				</script>
 			    <!-- <input type="text" class="form-control" name="tolerance_of_edge_length" id="tolerance_of_edge_length" style="width:400px; height:30px;"> -->
 				
-				<span class="input-group-addon" style="font-size:20px; white-space:nowrap;">Length Constraint Multiplier (0~2)</span>
+				<span class="input-group-addon" style="font-size:20px; white-space:nowrap;"><abbr title="Increasing it would cause more rectangular cells than circular cells.">Length Constraint Multiplier</abbr> (0~2)</span>
 				<input type="range" min="0" max="2" step="0.01" name="length_constraint_maltiplier" id="length_constraint_maltiplier" style="width:400px; height:20px;" oninput="change_length_constraint_maltiplier()" onchange="change_length_constraint_maltiplier()"/>
 			    <span id="value_length_constraint_maltiplier" style="font-size:20px">0</span>
 				<script type='text/javascript'>
@@ -105,7 +433,7 @@
 				</script>
 			    <!-- <input type="text" class="form-control" name="length_constraint_maltiplier" id="length_constraint_maltiplier" style="width:400px; height:30px;"> -->
 
-				<span class="input-group-addon" style="font-size:20px; white-space:nowrap;">Boundary Constraint Magnitude (0~10)</span>
+				<span class="input-group-addon" style="font-size:20px; white-space:nowrap;"><abbr title="Increasing it would make the structure attaching closer to the boundary.">Boundary Constraint Magnitude</abbr> (0~10)</span>
 				<input type="range" min="0" max="10" step="0.01" name="boundary_constraint_magnitude" id="boundary_constraint_magnitude" style="width:400px; height:20px;" oninput="change_boundary_constraint_magnitude()" onchange="change_boundary_constraint_magnitude()"/>
 			    <span id="value_boundary_constraint_magnitude" style="font-size:20px">0</span>
 				<script type='text/javascript'>
@@ -116,7 +444,7 @@
 				</script>
 			    <!-- <input type="text" class="form-control" name="boundary_constraint_magnitude" id="boundary_constraint_magnitude" style="width:400px; height:30px;"> -->
 
-				<span class="input-group-addon" style="font-size:20px; white-space:nowrap;">Perp Steps (0~30000)</span>
+				<span class="input-group-addon" style="font-size:20px; white-space:nowrap;"><abbr title="Increasing it would generate more accurate structure but with longer time.">Perp Steps</abbr> (0~30000)</span>
 				<input type="range" min="0" max="30000" step="1" name="perp_steps" id="perp_steps" style="width:400px; height:20px;" oninput="change_perp_steps()" onchange="change_perp_steps()"/>
 			    <span id="value_perp_steps" style="font-size:20px">0</span>
 				<script type='text/javascript'>
@@ -127,59 +455,192 @@
 				</script>
 			    <!-- <input type="text" class="form-control" name="perp_steps" id="perp_steps" style="width:400px; height:30px;"> -->
 
-				<span class="input-group-addon" style="font-size:20px; white-space:nowrap;">Minimum Radius (0~100)</span>
-				<input type="range" min="0" max="100" step="0.01" name="minumum_radius" id="minumum_radius" style="width:400px; height:20px;" oninput="change_minumum_radius()" onchange="change_minumum_radius()"/>
-			    <span id="value_minumum_radius" style="font-size:20px">0</span>
-				<script type='text/javascript'>
-					function change_minumum_radius() {
-					    var value_minumum_radius = document.getElementById('minumum_radius').value;
-						document.getElementById('value_minumum_radius').innerHTML = value_minumum_radius;
-					}
-				</script>
-			    <!-- <input type="text" class="form-control" name="minumum_radius" id="minumum_radius" style="width:400px; height:30px;"> -->
-
-				<span class="input-group-addon" style="font-size:20px; white-space:nowrap;">Maximum Radius (0~100)</span>
-				<input type="range" min="0" max="100" step="0.01" name="maximum_radius" id="maximum_radius" style="width:400px; height:20px;" oninput="change_maximum_radius()" onchange="change_maximum_radius()"/>
-			    <span id="value_maximum_radius" style="font-size:20px">0</span>
-				<script type='text/javascript'>
-					function change_maximum_radius() {
-					    var value_maximum_radius = document.getElementById('maximum_radius').value;
-						document.getElementById('value_maximum_radius').innerHTML = value_maximum_radius;
-					}
-				</script>
-			    <!-- <input type="text" class="form-control" name="maximum_radius" id="maximum_radius" style="width:400px; height:30px;"> -->
-
         <form class="form-horizontal" role="form">
             <div id="btn">
                 <div class="col-sm-3"></div>
                 <div class="input-group">
-					<span class="input-group-addon" style="font-size:15px; white-space:nowrap;">Click "Submit" bottom to proceed. Refresh the web page to check the result (in 5 minutes).</span>
+					<span class="input-group-addon" style="font-size:15px; white-space:nowrap;">Click "Submit" bottom to proceed. Web page will automatically refresh to check the result.</span>
 					<span class="input-group-btn">
+					
+					    <select>
+						    <option value ="volvo">Dragonfly Wing Model</option>
+						</select>
 
                         <!-- <button id="btn_submit" type="button" class="btn btn-default" onclick="getInputs()"> -->
 						<button id="btn_submit" type="button" class="btn btn-default" onclick="getInputs()">
                             <span class="glyphicon glyphicon-asterisk"></span>
                             Submit
                         </button>
-						
-						<button id="btn_refresh" type="button" class="btn btn-default" onclick="location.reload(true)">
-                            <span class="glyphicon glyphicon-asterisk"></span>
-                            Refresh
-                        </button>
 
 						<button id="btn_setdefault" type="button" class="btn btn-default" onclick="download_stl()">
                             <span class="glyphicon glyphicon-asterisk"></span>
-                            Download STL Model
+                            Export STL Model
                         </button>
 						<script type='text/javascript'>
+						
+							THREE.STLExporter = function () {};
+
+							THREE.STLExporter.prototype = {
+
+								constructor: THREE.STLExporter,
+
+								parse: ( function () {
+
+									var vector = new THREE.Vector3();
+									var normalMatrixWorld = new THREE.Matrix3();
+
+									return function ( scene ) {
+
+										var output = '';
+
+										output += 'solid exported\n';
+
+										scene.traverse( function ( object ) {
+											if ( object instanceof THREE.Mesh ) {
+
+												// if object is hidden - exit
+												if(object.visible == false) return; 
+
+												var geometry = object.geometry;
+												var matrixWorld = object.matrixWorld;
+												var mesh = object;
+
+												if(geometry instanceof THREE.BufferGeometry)
+													geometry = new THREE.Geometry().fromBufferGeometry(geometry)
+
+												if ( geometry instanceof THREE.Geometry) {
+
+													var vertices = geometry.vertices;
+													var faces = geometry.faces;
+													
+													normalMatrixWorld.getNormalMatrix( matrixWorld );
+
+													if(typeof faces != 'undefined'){
+														for ( var i = 0, l = faces.length; i < l; i ++ ) {
+															var face = faces[ i ];
+
+															vector.copy( face.normal ).applyMatrix3( normalMatrixWorld ).normalize();
+
+															output += '\tfacet normal ' + vector.x + ' ' + vector.y + ' ' + vector.z + '\n';
+															output += '\t\touter loop\n';
+
+															var indices = [ face.a, face.b, face.c ];
+
+															for ( var j = 0; j < 3; j ++ ) {
+																var vertexIndex = indices[ j ];
+																if (typeof geometry.skinIndices !== 'undefined' && geometry.skinIndices.length == 0) {
+																	vector.copy( vertices[ vertexIndex ] ).applyMatrix4( matrixWorld );
+																	output += '\t\t\tvertex ' + vector.x + ' ' + vector.y + ' ' + vector.z + '\n';
+																} else {
+																	vector.copy( vertices[ vertexIndex ] ); //.applyMatrix4( matrixWorld );
+																	
+																	// see https://github.com/mrdoob/three.js/issues/3187
+																	var boneIndices = [
+																		geometry.skinIndices[vertexIndex].x,
+																		geometry.skinIndices[vertexIndex].y,
+																		geometry.skinIndices[vertexIndex].z,
+																		geometry.skinIndices[vertexIndex].w
+																	];
+																	
+																	var weights = [
+																		geometry.skinWeights[vertexIndex].x,
+																		geometry.skinWeights[vertexIndex].y,
+																		geometry.skinWeights[vertexIndex].z,
+																		geometry.skinWeights[vertexIndex].w
+																	];
+																	
+																	var inverses = [
+																		skeleton.boneInverses[ boneIndices[0] ],
+																		skeleton.boneInverses[ boneIndices[1] ],
+																		skeleton.boneInverses[ boneIndices[2] ],
+																		skeleton.boneInverses[ boneIndices[3] ]
+																	];
+
+																	var skinMatrices = [
+																		skeleton.bones[ boneIndices[0] ].matrixWorld,
+																		skeleton.bones[ boneIndices[1] ].matrixWorld,
+																		skeleton.bones[ boneIndices[2] ].matrixWorld,
+																		skeleton.bones[ boneIndices[3] ].matrixWorld
+																	];
+
+																	//this checks to see if the mesh has any morphTargets - jc
+																	if (geometry.morphTargets !== 'undefined') {										
+																		var morphMatricesX = [];
+																		var morphMatricesY = [];
+																		var morphMatricesZ = [];
+																		var morphMatricesInfluence = [];
+
+																		for (var mt = 0; mt < geometry.morphTargets.length; mt++) {
+																			//collect the needed vertex info - jc
+																			morphMatricesX[mt] = geometry.morphTargets[mt].vertices[vertexIndex].x;
+																			morphMatricesY[mt] = geometry.morphTargets[mt].vertices[vertexIndex].y;
+																			morphMatricesZ[mt] = geometry.morphTargets[mt].vertices[vertexIndex].z;
+																			morphMatricesInfluence[mt] = morphTargetInfluences[mt];
+																		}
+																	}
+																	
+																	var finalVector = new THREE.Vector4();
+
+																	if (mesh.geometry.morphTargets !== 'undefined') {
+
+																		var morphVector = new THREE.Vector4(vector.x, vector.y, vector.z);
+
+																		for (var mt = 0; mt < geometry.morphTargets.length; mt++) {
+																			//not pretty, but it gets the job done - jc
+																			morphVector.lerp(new THREE.Vector4(morphMatricesX[mt], morphMatricesY[mt], morphMatricesZ[mt], 1), morphMatricesInfluence[mt]);
+																		}
+
+																	}
+
+																	for (var k = 0; k < 4; k++) {
+
+																		var tempVector = new THREE.Vector4(vector.x, vector.y, vector.z);
+																		tempVector.multiplyScalar(weights[k]);
+																		//the inverse takes the vector into local bone space
+																		tempVector.applyMatrix4(inverses[k])
+																		//which is then transformed to the appropriate world space
+																		.applyMatrix4(skinMatrices[k]);
+																		finalVector.add(tempVector);
+
+																	}
+
+																	output += '\t\t\tvertex ' + finalVector.x + ' ' + finalVector.y + ' ' + finalVector.z + '\n';
+																}
+															}
+															output += '\t\tendloop\n';
+															output += '\tendfacet\n';
+														}
+													}
+												}
+											}
+
+										} );
+
+										output += 'endsolid exported\n';
+
+										return output;
+									};
+								}() )
+							};
+
 							function download_stl() {
-								window.open('../ghBackend/media/Default/output.stl')
+							    var exporter = new THREE.STLExporter();
+								var stlString = exporter.parse(scene);
+								console.log(stlString);
+								var blob = new Blob( [stlString], { type : 'text/plain' } ); // Generate Blob from the string
+								var link = document.createElement('a');
+								link.style.display = 'none';
+								document.body.appendChild(link);
+								link.href = URL.createObjectURL(blob);
+								link.download = 'Scene.stl';
+								link.click();
+								//window.open('../ghBackend/media/Default/output.stl')
 							}
 						</script>
 
 						<button id="btn_setdefault" type="button" class="btn btn-default" onclick="set_default()">
                             <span class="glyphicon glyphicon-asterisk"></span>
-                            Default Settings
+                            Default
                         </button>
 						<script type='text/javascript'>
 							function set_default() {
@@ -197,26 +658,41 @@
 								document.getElementById('value_minumum_radius').innerHTML = 1;
 								document.getElementById("maximum_radius").value = 10;
 								document.getElementById('value_maximum_radius').innerHTML = 10;
-								circles[0].x=50;
-								circles[0].y=50;
-								points[0].x=50;
-								points[0].y=50;
-								circles[1].x=450;
-								circles[1].y=250;
-								points[1].x=450;
-								points[1].y=250;
-								circles[2].x=450;
-								circles[2].y=350;
-								points[2].x=450;
-								points[2].y=350;
-								circles[3].x=200;
-								circles[3].y=225;
-								points[3].x=200;
-								points[3].y=225;
-								circles[4].x=50;
-								circles[4].y=200;
-								points[4].x=50;
-								points[4].y=200;
+								function Point(x, y) {
+									this.x = x;
+									this.y = y;
+									}
+									//圆圈对象
+								function Circle(x, y) {
+									this.x = x;
+									this.y = y;
+									this.radius = 10;
+									this.color = "blue";
+									//拖拽点的标记
+									this.isSelected = false;
+									}
+								points = [];
+								circles = [];
+								var point=new Point(50,50);
+								points.push(point);
+								var circle=new Circle(50,50);
+								circles.push(circle);
+								var point=new Point(450,250);
+								points.push(point);
+								var circle=new Circle(450,250);
+								circles.push(circle);
+								var point=new Point(450,350);
+								points.push(point);
+								var circle=new Circle(450,350);
+								circles.push(circle);
+								var point=new Point(200,225);
+								points.push(point);
+								var circle=new Circle(200,225);
+								circles.push(circle);
+								var point=new Point(50,200);
+								points.push(point);
+								var circle=new Circle(50,200);
+								circles.push(circle);
 								const canvas = document.getElementById('canvas');
 								const context = canvas.getContext('2d');
 								context.clearRect(0,0,canvas.width,canvas.height);
@@ -231,15 +707,31 @@
 									context.stroke();
 								}
 								context.beginPath();
+								context.lineWidth = 4;
 								context.moveTo(points[0].x,points[0].y);
 								for (var i = 0; i < points.length; i++) {
-									context.lineTo(points[i].x, points[i].y);
+								context.lineTo(points[i].x, points[i].y);
 								}
-								context.lineTo(points[0].x,points[0].y);
+								context.lineTo(points[0].x, points[0].y);
+								context.closePath();
 								context.fillStyle="rgb(128,128,128)";
 								context.fill();
-								context.strokeStyle="#black";
+								context.strokeStyle="black";
 								context.stroke();
+								for (var i = 0; i < 10; i++) {
+									context.beginPath();
+									context.lineWidth = 2;
+									var xx = points[0].x + (points[points.length-1].x-points[0].x)*i/9;
+									var yy = points[0].y + (points[points.length-1].y-points[0].y)*i/9;
+									context.moveTo(xx,yy);
+									context.lineTo(xx-15, yy+5);
+									context.closePath();
+									context.fillStyle="rgb(128,128,128)";
+									context.fill();
+									context.strokeStyle="black";
+									context.stroke();
+								}
+								draw_update()
 							}
 						</script>
                     </span>
@@ -249,30 +741,68 @@
                 <!-- js动态新增 -->
             </div>
         </form>
+		
+		
+		 <div class="form-group" id="l"></div>
+		    <div class="col-sm-4"></div>
+			   
+				<span class="input-group-addon" style="font-size:20px; white-space:nowrap;">Minimum Radius (0~100)</span>
+				<input type="range" min="0" max="100" step="0.01" name="minumum_radius" id="minumum_radius" style="width:400px; height:20px;" oninput="input_minumum_radius()" onchange="change_minumum_radius()"/>
+			    <span id="value_minumum_radius" style="font-size:20px">0</span>
+				<script type='text/javascript'>
+					function change_minumum_radius() {
+					    var value_minumum_radius = document.getElementById('minumum_radius').value;
+						document.getElementById('value_minumum_radius').innerHTML = value_minumum_radius;
+					}
+					function input_minumum_radius() {
+					    var value_minumum_radius = document.getElementById('minumum_radius').value;
+						document.getElementById('value_minumum_radius').innerHTML = value_minumum_radius;
+						draw_update();
+					}
+				</script>
+			    <!-- <input type="text" class="form-control" name="minumum_radius" id="minumum_radius" style="width:400px; height:30px;"> -->
+
+				<span class="input-group-addon" style="font-size:20px; white-space:nowrap;">Maximum Radius (0~100)</span>
+				<input type="range" min="0" max="100" step="0.01" name="maximum_radius" id="maximum_radius" style="width:400px; height:20px;" oninput="input_maximum_radius()" onchange="change_maximum_radius()"/>
+			    <span id="value_maximum_radius" style="font-size:20px">0</span>
+				<script type='text/javascript'>
+					function change_maximum_radius() {
+					    var value_maximum_radius = document.getElementById('maximum_radius').value;
+						document.getElementById('value_maximum_radius').innerHTML = value_maximum_radius;
+					}
+					function input_maximum_radius() {
+					    var value_maximum_radius = document.getElementById('maximum_radius').value;
+						document.getElementById('value_maximum_radius').innerHTML = value_maximum_radius;
+						draw_update();
+					}
+				</script>
+			    <!-- <input type="text" class="form-control" name="maximum_radius" id="maximum_radius" style="width:400px; height:30px;"> -->
+
     </div>
 	
 	<div style="background-color: white; width: 100%; height: 400pt;"></div>
 	
 	<script>
 
-		var content;
-		var textfile;
-		let arr;
-		let arr0;
+		var content_input;
+		var textfile_input;
+		let arr_input;
+		let arr0_input;
 		//线段的点的集合
 		var points=[];
 		//可拖动圆圈的点的集合
 		var circles=[];
 		if (window.XMLHttpRequest)
 		{ 
-			textfile = new XMLHttpRequest(); 
+			textfile_input = new XMLHttpRequest(); 
 		}
-		textfile.onreadystatechange = function ()
+		textfile_input.onreadystatechange = function ()
 		{   
-			if (textfile.readyState == 4 && textfile.status == 200)
+		
+			if (textfile_input.readyState == 4 && textfile_input.status == 200)
 			{ 
-				content = textfile.responseText;
-				arr = content.split('\r\n');
+				content_input = textfile_input.responseText;
+				arr_input = content_input.split('\r\n');
 				// document.getElementById("reduce_rate").defaultValue = "0.5";
 				// document.getElementById("tolerance_of_edge_length").defaultValue = "0.3";
 				// document.getElementById("length_constraint_maltiplier").defaultValue = "0.5";
@@ -280,24 +810,24 @@
 				// document.getElementById("perp_steps").defaultValue = "10000";
 				// document.getElementById("minumum_radius").defaultValue = "1";
 				// document.getElementById("maximum_radius").defaultValue = "10";
-				document.getElementById("reduce_rate").defaultValue = arr[1];
-				document.getElementById('value_reduce_rate').innerHTML = arr[1];
-				document.getElementById("tolerance_of_edge_length").defaultValue = arr[2];
-				document.getElementById('value_tolerance_of_edge_length').innerHTML = arr[2];
-				document.getElementById("length_constraint_maltiplier").defaultValue = arr[3];
-				document.getElementById('value_length_constraint_maltiplier').innerHTML = arr[3];
-				document.getElementById("boundary_constraint_magnitude").defaultValue = arr[4];
-				document.getElementById('value_boundary_constraint_magnitude').innerHTML = arr[4];
-				document.getElementById("perp_steps").defaultValue = arr[5];
-				document.getElementById('value_perp_steps').innerHTML = arr[5];
-				document.getElementById("minumum_radius").defaultValue = arr[6];
-				document.getElementById('value_minumum_radius').innerHTML = arr[6];
-				document.getElementById("maximum_radius").defaultValue = arr[7];
-				document.getElementById('value_maximum_radius').innerHTML = arr[7];
-				arr0 = arr[0].split(', ');
-				arr0[0] = arr0[0].split('[')[1];
-				arr0[arr0.length-1] = arr0[arr0.length-1].split(']')[0];
-				console.log(arr0);
+				document.getElementById("reduce_rate").defaultValue = arr_input[1];
+				document.getElementById('value_reduce_rate').innerHTML = arr_input[1];
+				document.getElementById("tolerance_of_edge_length").defaultValue = arr_input[2];
+				document.getElementById('value_tolerance_of_edge_length').innerHTML = arr_input[2];
+				document.getElementById("length_constraint_maltiplier").defaultValue = arr_input[3];
+				document.getElementById('value_length_constraint_maltiplier').innerHTML = arr_input[3];
+				document.getElementById("boundary_constraint_magnitude").defaultValue = arr_input[4];
+				document.getElementById('value_boundary_constraint_magnitude').innerHTML = arr_input[4];
+				document.getElementById("perp_steps").defaultValue = arr_input[5];
+				document.getElementById('value_perp_steps').innerHTML = arr_input[5];
+				document.getElementById("minumum_radius").defaultValue = arr_input[6];
+				document.getElementById('value_minumum_radius').innerHTML = arr_input[6];
+				document.getElementById("maximum_radius").defaultValue = arr_input[7];
+				document.getElementById('value_maximum_radius').innerHTML = arr_input[7];
+				arr0_input = arr_input[0].split(', ');
+				arr0_input[0] = arr0_input[0].split('[')[1];
+				arr0_input[arr0_input.length-1] = arr0_input[arr0_input.length-1].split(']')[0];
+				console.log(arr0_input);
 				//每一个点的对象
 				// var point=new Point(50,50);
 				// points.push(point);
@@ -319,26 +849,12 @@
 				// circles.push(circle);
 				// var circle=new Circle(50,200);
 				// circles.push(circle);
-				var point=new Point(arr0[0]-0,500-arr0[1]);
-				points.push(point);
-				var point=new Point(arr0[2]-0,500-arr0[3]);
-				points.push(point);
-				var point=new Point(arr0[4]-0,500-arr0[5]);
-				points.push(point);
-				var point=new Point(arr0[6]-0,500-arr0[7]);
-				points.push(point);
-				var point=new Point(arr0[8]-0,500-arr0[9]);
-				points.push(point);
-				var circle=new Circle(arr0[0]-0,500-arr0[1]);
-				circles.push(circle);
-				var circle=new Circle(arr0[2]-0,500-arr0[3]);
-				circles.push(circle);
-				var circle=new Circle(arr0[4]-0,500-arr0[5]);
-				circles.push(circle);
-				var circle=new Circle(arr0[6]-0,500-arr0[7]);
-				circles.push(circle);
-				var circle=new Circle(arr0[8]-0,500-arr0[9]);
-				circles.push(circle);
+				for (var i = 0; i < arr0_input.length/2; i++) {
+					var point=new Point(arr0_input[i*2]-0,500-arr0_input[i*2+1]);
+					points.push(point);
+					var circle=new Circle(arr0_input[i*2]-0,500-arr0_input[i*2+1]);
+					circles.push(circle);
+				}
 
 				const canvas = document.getElementById('canvas');
 				const context = canvas.getContext('2d');
@@ -374,18 +890,32 @@
 				context.stroke();
 				}
 				// 画线
+				//从起始点开始绘制
 				context.beginPath();
 				context.lineWidth = 4;
-				//从起始点开始绘制
 				context.moveTo(points[0].x,points[0].y);
 				for (var i = 0; i < points.length; i++) {
 				context.lineTo(points[i].x, points[i].y);
 				}
 				context.lineTo(points[0].x, points[0].y);
+				context.closePath();
 				context.fillStyle="rgb(128,128,128)";
 				context.fill();
 				context.strokeStyle="black";
 				context.stroke();
+				for (var i = 0; i < 10; i++) {
+					context.beginPath();
+					context.lineWidth = 2;
+					var xx = points[0].x + (points[points.length-1].x-points[0].x)*i/9;
+					var yy = points[0].y + (points[points.length-1].y-points[0].y)*i/9;
+					context.moveTo(xx,yy);
+					context.lineTo(xx-15, yy+5);
+					context.closePath();
+					context.fillStyle="rgb(128,128,128)";
+					context.fill();
+					context.strokeStyle="black";
+					context.stroke();
+				}
 
 				canvas.onmousedown=function(e){
 				var clickX = e.pageX - canvas.offsetLeft;
@@ -431,15 +961,30 @@
 						context.stroke();
 					}
 					context.beginPath();
+					context.lineWidth = 4;
 					context.moveTo(points[0].x,points[0].y);
 					for (var i = 0; i < points.length; i++) {
-						context.lineTo(points[i].x, points[i].y);
+					context.lineTo(points[i].x, points[i].y);
 					}
-					context.lineTo(points[0].x,points[0].y);
+					context.lineTo(points[0].x, points[0].y);
+					context.closePath();
 					context.fillStyle="rgb(128,128,128)";
 					context.fill();
-					context.strokeStyle="#black";
+					context.strokeStyle="black";
 					context.stroke();
+					for (var i = 0; i < 10; i++) {
+						context.beginPath();
+						context.lineWidth = 2;
+						var xx = points[0].x + (points[points.length-1].x-points[0].x)*i/9;
+						var yy = points[0].y + (points[points.length-1].y-points[0].y)*i/9;
+						context.moveTo(xx,yy);
+						context.lineTo(xx-15, yy+5);
+						context.closePath();
+						context.fillStyle="rgb(128,128,128)";
+						context.fill();
+						context.strokeStyle="black";
+						context.stroke();
+					}
 				}
 				};
 
@@ -453,22 +998,18 @@
 			}
 		}
 		var ran = Math.round(Math.random()*100000000).toString();
-		textfile.open("GET", '../ghBackend/media/Default/input.txt'+'?'+ran, true);
-		textfile.send();
+		textfile_input.open("GET", '../ghBackend/media/Default/input.txt'+'?'+ran, true);
+		textfile_input.send();
 
 	</script>
 
-	<body onload="draw();">
+	<body id="threejscanvas">
 	<img id="loading" src="loading.gif" width="287" height="141" style="position:absolute; top:680px; left:600px; display:block;">
 	</body>
-	<script src="lib/three.js"></script>
-	<script src="lib/js/loaders/STLLoader.js"></script>
-	<script src="lib/js/controls/OrbitControls.js"></script>
-	<script src="lib/js/libs/stats.min.js"></script>
-	<script src="lib/js/libs/dat.gui.min.js"></script>
 
 	<script>
-		// var fp = 'Default/output.stl';
+	
+	
 		var renderer;
 		function initRender() {
 			renderer = new THREE.WebGLRenderer({antialias:true});
@@ -490,21 +1031,10 @@
 			scene = new THREE.Scene();
 		}
 
-		//初始化dat.GUI简化试验流程
-		var gui;
-		function initGui() {
-			//声明一个保存需求修改的相关数据的对象
-			gui = {
-			};
-			var datGui = new dat.GUI();
-			//将设置属性添加到gui当中，gui.add(对象，属性，最小值，最大值）
-		}
-
-		var light;
 		function initLight() {
 			scene.add(new THREE.AmbientLight(0x444444));
 
-			light = new THREE.PointLight(0xffffff);
+			var light = new THREE.PointLight(0xffffff);
 			light.position.set(0,50,50);
 
 			//告诉平行光需要开启阴影投射
@@ -512,29 +1042,9 @@
 
 			scene.add(light);
 		}
-
-		function initModel() {
-
-			//辅助工具
-			var helper = new THREE.AxesHelper(50);
-			scene.add(helper);
-
-			var loader = new THREE.STLLoader();
-			// loader.load("AIStructureGenerator_User_EFC_APW_Web_output.stl", function (geometry) {
-			loader.load('../ghBackend/media/Default/output.stl', function (geometry) {
-				var oldnode = document.getElementById("loading");
-				oldnode.parentNode.removeChild(oldnode);
-				//创建纹理
-				var mat = new THREE.MeshLambertMaterial({color: 0x0079ED});
-				var mesh = new THREE.Mesh(geometry, mat);
-				mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
-				mesh.scale.set(0.07, 0.07, 0.07); //缩放
-				geometry.center(); //居中显示
-				scene.add(mesh);
-			});
-		}
-
+			
 		//初始化性能插件
+			
 		var stats;
 		function initStats() {
 			stats = new Stats();
@@ -567,8 +1077,12 @@
 		}
 
 		function render() {
+			
+			//console.log(scene)
+			//console.log(camera)
 
-			renderer.render( scene, camera );
+			renderer.render( scene, camera );		
+			
 		}
 
 		//窗口变动触发的函数
@@ -582,6 +1096,7 @@
 		}
 
 		function animate() {
+		
 			//更新控制器
 			render();
 
@@ -589,22 +1104,222 @@
 			stats.update();
 
 			controls.update();
-
+			
 			requestAnimationFrame(animate);
+			
 		}
+		
+		initRender();
+		initScene();
+		initCamera();
+		initControls();
+		initStats();
+		
+		initLight();
 
-		function draw() {
-			initGui();
-			initRender();
-			initScene();
-			initCamera();
+		//辅助工具
+		var helper = new THREE.AxesHelper(20);
+		helper.position.x = -100;
+		helper.position.z = -100;
+		scene.add(helper);
+		
+		var group = new THREE.Group();
+		
+		var content;
+		var textfile;
+		
+		if (window.XMLHttpRequest)
+			{ 
+				textfile = new XMLHttpRequest(); 
+			}
+		
+		var ran = Math.round(Math.random()*100000000).toString();
+		textfile.open("GET", '../ghBackend/media/Default/output.csv'+'?'+ran, true);
+		textfile.send()
+		console.log(textfile)
+		
+		setTimeout(function(){
+			if (textfile.readyState != 4 || textfile.status != 200)
+				{
+					console.log("10 second to auto fresh the web page");
+					location.reload(true) //refresh the web page
+				}
+			},10000);
+		
+		textfile.onreadystatechange = function ()
+		{   
+
+			if (textfile.readyState == 4 && textfile.status == 200)
+			{ 
+
+				let arr;
+				let arr0;
+				var geometry = []
+				var radius
+				var minrad = document.getElementById('minumum_radius').value;
+				var maxrad = document.getElementById('maximum_radius').value;
+				//var minrad = guiControl.Minimum_Radius;
+				//var maxrad = guiControl.Maximum_Radius;
+				var mat = new THREE.MeshLambertMaterial({color: 0x0079ED});
+				
+				console.log("draw",minrad,maxrad);
+				
+				content = textfile.responseText;
+				arr = content.split('\r\n');
+				for (var i = 0; i < arr.length; i++) {
+					arr0 = arr[i].split(',');
+					if (isNaN(arr0[4])==false) {
+						//console.log(arr0);
+						
+						var p1 = new THREE.Vector3(arr0[0]-0, arr0[1]-0);
+						var p2 = new THREE.Vector3(arr0[2]-0, arr0[3]-0);
+						let line = new THREE.LineCurve3(p1,p2);
+						var CurvePath = new THREE.CurvePath();
+						CurvePath.curves.push(line);
+						radius = arr0[4]*(maxrad-minrad)+minrad*1.0;
+						var geometry_temp = new THREE.TubeGeometry(CurvePath, 8, radius, 8, false);
+						var mesh = new THREE.Mesh(geometry_temp, mat);
+						mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+						mesh.scale.set(0.07, 0.07, 0.07); //缩放
+						group.add(mesh);
+						geometry.push(geometry_temp);
+						
+						var geometry_temp = new THREE.SphereGeometry(radius, 8, 8);
+						var mesh = new THREE.Mesh(geometry_temp, mat);
+						mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+						mesh.scale.set(0.07, 0.07, 0.07); //缩放
+						mesh.position.x = arr0[0]*0.07
+						mesh.position.y = 0
+						mesh.position.z = -arr0[1]*0.07
+						group.add(mesh);
+						geometry.push(geometry_temp);
+						
+						var geometry_temp = new THREE.SphereGeometry(radius, 8, 8);
+						var mesh = new THREE.Mesh(geometry_temp, mat);
+						mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+						mesh.scale.set(0.07, 0.07, 0.07); //缩放
+						mesh.position.x = arr0[2]*0.07
+						mesh.position.y = 0
+						mesh.position.z = -arr0[3]*0.07
+						group.add(mesh);
+						geometry.push(geometry_temp);
+					}
+				}
+				scene.add(group);
+				//var loader = new THREE.STLLoader();
+				//loader.load('../ghBackend/media/Default/output.stl', function (geometry) {
+				//	//创建纹理
+				//	var mat = new THREE.MeshLambertMaterial({color: 0x0079ED});
+				//	var mesh = new THREE.Mesh(geometry, mat);
+				//	mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+				//	mesh.scale.set(0.07, 0.07, 0.07); //缩放
+				//	geometry.center(); //居中显示
+				//	scene.add(mesh);
+				//});
+				
+				var box3 = new THREE.Box3()
+				// 计算层级模型group的包围盒
+				// 模型group是加载一个三维模型返回的对象，包含多个网格模型
+				box3.expandByObject(group)
+				// 计算一个层级模型对应包围盒的几何体中心在世界坐标中的位置
+				var center = new THREE.Vector3()
+				box3.getCenter(center)
+				// console.log('查看几何体中心坐标', center);
+				// 重新设置模型的位置，使之居中。
+				group.position.x = group.position.x - center.x
+				group.position.y = group.position.y - center.y
+				group.position.z = group.position.z - center.z
+
+				animate();
+				window.onresize = onWindowResize;
+				
+				var oldnode = document.getElementById("loading");
+				oldnode.parentNode.removeChild(oldnode);
+				
+			}
+		}
+		
+	    function draw_update() {
+
+			while(scene.children.length > 0){ 
+				scene.remove(scene.children[0]); 
+			}
+			
 			initLight();
-			initModel();
-			initControls();
-			initStats();
-
-			animate();
-			window.onresize = onWindowResize;
+			
+			//辅助工具
+			var helper = new THREE.AxesHelper(20);
+			helper.position.x = -100;
+			helper.position.z = -100;
+			scene.add(helper);
+			
+			geometry = []
+			group = new THREE.Group();
+			minrad = document.getElementById('minumum_radius').value;
+			maxrad = document.getElementById('maximum_radius').value;
+			mat = new THREE.MeshLambertMaterial({color: 0x0079ED});
+			
+			console.log("update",minrad,maxrad);
+			console.log(scene);
+			console.log(group);
+			
+			content = textfile.responseText;
+			arr = content.split('\r\n');
+			for (var i = 0; i < arr.length; i++) {
+				arr0 = arr[i].split(',');
+				if (isNaN(arr0[4])==false) {
+					//console.log(arr0);
+					
+					var p1 = new THREE.Vector3(arr0[0]-0, arr0[1]-0);
+					var p2 = new THREE.Vector3(arr0[2]-0, arr0[3]-0);
+					let line = new THREE.LineCurve3(p1,p2);
+					//console.log(arr0);
+					var CurvePath = new THREE.CurvePath();
+					CurvePath.curves.push(line);
+					radius = arr0[4]*(maxrad-minrad)+minrad*1.0;
+					var geometry_temp = new THREE.TubeGeometry(CurvePath, 8, radius, 8, false);
+					var mesh = new THREE.Mesh(geometry_temp, mat);
+					mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+					mesh.scale.set(0.07, 0.07, 0.07); //缩放
+					group.add(mesh);
+					geometry.push(geometry_temp);
+					
+					var geometry_temp = new THREE.SphereGeometry(radius, 8, 8);
+					var mesh = new THREE.Mesh(geometry_temp, mat);
+					mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+					mesh.scale.set(0.07, 0.07, 0.07); //缩放
+					mesh.position.x = arr0[0]*0.07
+					mesh.position.y = 0
+					mesh.position.z = -arr0[1]*0.07
+					group.add(mesh);
+					geometry.push(geometry_temp);
+					
+					var geometry_temp = new THREE.SphereGeometry(radius, 8, 8);
+					var mesh = new THREE.Mesh(geometry_temp, mat);
+					mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+					mesh.scale.set(0.07, 0.07, 0.07); //缩放
+					mesh.position.x = arr0[2]*0.07
+					mesh.position.y = 0
+					mesh.position.z = -arr0[3]*0.07
+					group.add(mesh);
+					geometry.push(geometry_temp);
+				}
+			}
+			scene.add(group);
+			
+			var box3 = new THREE.Box3()
+			// 计算层级模型group的包围盒
+			// 模型group是加载一个三维模型返回的对象，包含多个网格模型
+			box3.expandByObject(group)
+			// 计算一个层级模型对应包围盒的几何体中心在世界坐标中的位置
+			var center = new THREE.Vector3()
+			box3.getCenter(center)
+			// console.log('查看几何体中心坐标', center);
+			// 重新设置模型的位置，使之居中。
+			group.position.x = group.position.x - center.x
+			group.position.y = group.position.y - center.y
+			group.position.z = group.position.z - center.z
+			
 		}
 	</script>
 </body>
