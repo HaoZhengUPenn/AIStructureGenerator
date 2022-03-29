@@ -426,7 +426,8 @@
 	    <div class="form-group" id="l"></div>
 		    <div class="col-sm-4"></div>
 			    
-			    <span class="input-group-addon" style="font-size:20px; white-space:nowrap;"><abbr title="The density of structural members.">Density</abbr> (0~1)</span>
+			    <span class="input-group-addon" style="font-size:20px; white-space:nowrap;">
+				<abbr title="Density defines the density of the structural members. By increasing it, more members will be generated with a longer time cost.">Density</abbr> (0~1)</span>
 				<input type="range" min="0" max="1" step="0.01" name="reduce_rate" id="reduce_rate" style="width:400px; height:20px;" oninput="change_reduce_rate()" onchange="change_reduce_rate()"/>
 			    <span id="value_reduce_rate" style="font-size:20px">0</span>
 				<script type='text/javascript'>
@@ -437,7 +438,8 @@
 				</script>
 				<!-- <input type="text" class="form-control" name="reduce_rate" id="reduce_rate" style="width:400px; height:30px;"> -->
 		    	
-				<span class="input-group-addon" style="font-size:20px; white-space:nowrap;"><abbr title="It defines the tolerance (in percentage) of the edge length constraints. Increasing it would give more freedom to the perping process.">Tolerance of Edge Length</abbr> (0~1)</span>
+				<span class="input-group-addon" style="font-size:20px; white-space:nowrap;">
+				<abbr title="Tolerance of Edge Length defines the upper and lower bounds of the length constraint for each edge. Increasing it will give more freedom to the geometric generation process in graphic statics.">Tolerance of Edge Length</abbr> (0~1)</span>
 				<input type="range" min="0" max="1" step="0.01" name="tolerance_of_edge_length" id="tolerance_of_edge_length" style="width:400px; height:20px;" oninput="change_tolerance_of_edge_length()" onchange="change_tolerance_of_edge_length()"/>
 			    <span id="value_tolerance_of_edge_length" style="font-size:20px">0</span>
 				<script type='text/javascript'>
@@ -448,7 +450,8 @@
 				</script>
 			    <!-- <input type="text" class="form-control" name="tolerance_of_edge_length" id="tolerance_of_edge_length" style="width:400px; height:30px;"> -->
 				
-				<span class="input-group-addon" style="font-size:20px; white-space:nowrap;"><abbr title="Increasing it would cause more rectangular cells than circular cells.">Length Constraint Multiplier</abbr> (0~2)</span>
+				<span class="input-group-addon" style="font-size:20px; white-space:nowrap;">
+				<abbr title="Length Constraint Multiplier defines the relaxation of the edge length constraints. Increasing it will cause more rectangular cells than circular cells.">Length Constraint Multiplier</abbr> (0~2)</span>
 				<input type="range" min="0" max="2" step="0.01" name="length_constraint_maltiplier" id="length_constraint_maltiplier" style="width:400px; height:20px;" oninput="change_length_constraint_maltiplier()" onchange="change_length_constraint_maltiplier()"/>
 			    <span id="value_length_constraint_maltiplier" style="font-size:20px">0</span>
 				<script type='text/javascript'>
@@ -459,7 +462,8 @@
 				</script>
 			    <!-- <input type="text" class="form-control" name="length_constraint_maltiplier" id="length_constraint_maltiplier" style="width:400px; height:30px;"> -->
 
-				<span class="input-group-addon" style="font-size:20px; white-space:nowrap;"><abbr title="Increasing it would make the structure attaching closer to the boundary.">Boundary Constraint Magnitude</abbr> (0~10)</span>
+				<span class="input-group-addon" style="font-size:20px; white-space:nowrap;">
+				<abbr title="Boundary Constraint Magnitude to define the magnitude of the boundary constraint to the form. Increasing it will make the structure attach closer to the boundary.">Boundary Constraint Magnitude</abbr> (0~10)</span>
 				<input type="range" min="0" max="10" step="0.01" name="boundary_constraint_magnitude" id="boundary_constraint_magnitude" style="width:400px; height:20px;" oninput="change_boundary_constraint_magnitude()" onchange="change_boundary_constraint_magnitude()"/>
 			    <span id="value_boundary_constraint_magnitude" style="font-size:20px">0</span>
 				<script type='text/javascript'>
@@ -470,7 +474,8 @@
 				</script>
 			    <!-- <input type="text" class="form-control" name="boundary_constraint_magnitude" id="boundary_constraint_magnitude" style="width:400px; height:30px;"> -->
 
-				<span class="input-group-addon" style="font-size:20px; white-space:nowrap;"><abbr title="Increasing it would generate more accurate structure but with longer time.">Perp Steps</abbr> (0~30000)</span>
+				<span class="input-group-addon" style="font-size:20px; white-space:nowrap;">
+				<abbr title="Perp Steps defines the number of iterations in the geometric generation process in graphic statics. Increasing it will generate a more accurate structure but with a longer time.">Perp Steps</abbr> (0~30000)</span>
 				<input type="range" min="0" max="30000" step="1" name="perp_steps" id="perp_steps" style="width:400px; height:20px;" oninput="change_perp_steps()" onchange="change_perp_steps()"/>
 			    <span id="value_perp_steps" style="font-size:20px">0</span>
 				<script type='text/javascript'>
