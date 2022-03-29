@@ -30,6 +30,16 @@ from .models import GHRequest
 class PredictView(views.APIView):
     def post(self, request, endpoint_name, format=None):
         prediction = {}
+        prediction['status'] = 'uncompleted'
+        
+        with open(r'media/Default/done.txt', "r") as f:
+            data = f.readlines()
+            if int(data[0].strip('\n'))==0:
+                return Response(prediction)
+        
+        with open(r'media/Default/done.txt', 'w') as f:
+            f.write('0'+'\n')
+        
         delay = int(self.request.query_params.get("delay", 60*15))
         interval = int(self.request.query_params.get("interval", 15))
         try:
@@ -60,7 +70,6 @@ class PredictView(views.APIView):
                 f.write(str(param)+'\n')
         print('Recorded!!!')
 
-        prediction['status'] = 'uncompleted'
         try:
             os.remove(r'media/Default/output.csv')
         except:

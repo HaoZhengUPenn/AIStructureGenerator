@@ -23,49 +23,75 @@
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<script language="javascript">
 		function getInputs(){
+		
+		    var content_done;
+			var textfile_done;
 			
-			var pointdata = [];
-			for (var i = 0; i < points.length; i++) {
-				pointdata.push(points[i].x, 500-points[i].y);
+			if (window.XMLHttpRequest)
+			{ 
+				textfile_done = new XMLHttpRequest(); 
 			}
-			var reduce_rate=document.getElementById("reduce_rate").value;
-			var tolerance_of_edge_length=document.getElementById("tolerance_of_edge_length").value;
-			var length_constraint_maltiplier=document.getElementById("length_constraint_maltiplier").value;
-			var boundary_constraint_magnitude=document.getElementById("boundary_constraint_magnitude").value;
-			var perp_steps=document.getElementById("perp_steps").value;
-			var minumum_radius=document.getElementById("minumum_radius").value;
-			var maximum_radius=document.getElementById("maximum_radius").value;
-			value_inputs = {
-				"canvas_points": pointdata,
-				"reduce_rate": reduce_rate,
-				"tolerance_of_edge_length": tolerance_of_edge_length,
-				"length_constraint_maltiplier": length_constraint_maltiplier,
-				"boundary_constraint_magnitude": boundary_constraint_magnitude,
-				"perp_steps": perp_steps,
-				"minumum_radius": minumum_radius,
-				"maximum_radius": maximum_radius
-			};
-			axios({
-				// headers:{'Cache-Control':'no-cache'},
-				method: 'post',
-				//url: 'http://127.0.0.1:8888/ghHere/ep/predict/?delay=900&interval=15',
-				url: 'http://128.91.16.228:8888/ghHere/ep/predict/?delay=900&interval=1',
-				data: value_inputs
-			}).then(function (response){
-				console.log(response.data);
-				// let fp = response.data.fp
-			}).catch(function(err){
-				console.log(err)
-			});
-			// alert(value_inputs);
+			textfile_done.onreadystatechange = function ()
+			{   
 			
-			// location.reload();
-			console.log(value_inputs);
+				if (textfile_done.readyState == 4 && textfile_done.status == 200)
+				{ 
+					content_done = textfile_done.responseText;
+					arr_done = content_done.split('\r\n');
+					//console.log(arr_done);
+					if (arr_done[0]=="1"){
+						var pointdata = [];
+						for (var i = 0; i < points.length; i++) {
+							pointdata.push(points[i].x, 500-points[i].y);
+						}
+						var reduce_rate=document.getElementById("reduce_rate").value;
+						var tolerance_of_edge_length=document.getElementById("tolerance_of_edge_length").value;
+						var length_constraint_maltiplier=document.getElementById("length_constraint_maltiplier").value;
+						var boundary_constraint_magnitude=document.getElementById("boundary_constraint_magnitude").value;
+						var perp_steps=document.getElementById("perp_steps").value;
+						var minumum_radius=document.getElementById("minumum_radius").value;
+						var maximum_radius=document.getElementById("maximum_radius").value;
+						value_inputs = {
+							"canvas_points": pointdata,
+							"reduce_rate": reduce_rate,
+							"tolerance_of_edge_length": tolerance_of_edge_length,
+							"length_constraint_maltiplier": length_constraint_maltiplier,
+							"boundary_constraint_magnitude": boundary_constraint_magnitude,
+							"perp_steps": perp_steps,
+							"minumum_radius": minumum_radius,
+							"maximum_radius": maximum_radius
+						};
+						axios({
+							// headers:{'Cache-Control':'no-cache'},
+							method: 'post',
+							//url: 'http://127.0.0.1:8888/ghHere/ep/predict/?delay=900&interval=15',
+							url: 'http://128.91.16.228:8888/ghHere/ep/predict/?delay=900&interval=1',
+							data: value_inputs
+						}).then(function (response){
+							console.log(response.data);
+							// let fp = response.data.fp
+						}).catch(function(err){
+							console.log(err)
+						});
+						// alert(value_inputs);
+						
+						// location.reload();
+						console.log(value_inputs);
+						
+						setTimeout(function(){
+							console.log("3 second to wait the server to remove the previous stl file");
+							location.reload(true) //refresh the web page
+						},3000);
+					} else { 
+					    window.alert("Ops! The server is responding to other requests. Please try again later.");
+					}
+				}
+			}
 			
-			setTimeout(function(){
-				console.log("3 second to wait the server to remove the previous stl file");
-				location.reload(true) //refresh the web page
-			},3000);
+			var ran = Math.round(Math.random()*100000000).toString();
+			textfile_done.open("GET", '../ghBackend/media/Default/done.txt'+'?'+ran, true);
+			textfile_done.send();
+			
 		}
 	</script>
 </head>
