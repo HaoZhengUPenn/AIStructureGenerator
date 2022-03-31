@@ -1039,7 +1039,19 @@
 	</body>
 
 	<script>
-	
+	    
+		let c1 = [90,135,175];
+		let c2 = [55,110,155];
+		let c3 = [5,65,110];
+		let c4 = [15,50,80];
+		
+		function getColorCode(r,g,b){
+			var c="#";
+			c+=r.toString(16).length==1?"0"+r.toString(16):r.toString(16);
+			c+=g.toString(16).length==1?"0"+g.toString(16):g.toString(16);
+			c+=b.toString(16).length==1?"0"+b.toString(16):b.toString(16);
+			return c;
+		}
 	
 		var renderer;
 		function initRender() {
@@ -1191,7 +1203,7 @@
 				var maxrad = document.getElementById('maximum_radius').value;
 				//var minrad = guiControl.Minimum_Radius;
 				//var maxrad = guiControl.Maximum_Radius;
-				var mat = new THREE.MeshLambertMaterial({color: 0x0079ED});
+				var mat = new THREE.MeshLambertMaterial({color: 0x000000});
 				
 				console.log("draw",minrad,maxrad);
 				
@@ -1208,15 +1220,36 @@
 						var CurvePath = new THREE.CurvePath();
 						CurvePath.curves.push(line);
 						radius = arr0[4]*(maxrad-minrad)+minrad*1.0;
+						
+						if (arr0[4]-0<0.333) {
+						    var num1 = Math.round((c2[0]-c1[0])*(arr0[4]-0)/0.333+c1[0]);
+							var num2 = Math.round((c2[1]-c1[1])*(arr0[4]-0)/0.333+c1[1]);
+							var num3 = Math.round((c2[2]-c1[2])*(arr0[4]-0)/0.333+c1[2]);
+							var colorstr = getColorCode(num1,num2,num3);
+							var colormat = new THREE.MeshLambertMaterial({color: colorstr});
+						} else if (arr0[4]-0<0.666) {
+						    var num1 = Math.round((c3[0]-c2[0])*(arr0[4]-0.333)/0.333+c2[0]);
+							var num2 = Math.round((c3[1]-c2[1])*(arr0[4]-0.333)/0.333+c2[1]);
+							var num3 = Math.round((c3[2]-c2[2])*(arr0[4]-0.333)/0.333+c2[2]);
+							var colorstr = getColorCode(num1,num2,num3);
+							var colormat = new THREE.MeshLambertMaterial({color: colorstr});
+						} else {
+						    var num1 = Math.round((c4[0]-c3[0])*(arr0[4]-0.666)/0.333+c3[0]);
+							var num2 = Math.round((c4[1]-c3[1])*(arr0[4]-0.666)/0.333+c3[1]);
+							var num3 = Math.round((c4[2]-c3[2])*(arr0[4]-0.666)/0.333+c3[2]);
+							var colorstr = getColorCode(num1,num2,num3);
+							var colormat = new THREE.MeshLambertMaterial({color: colorstr});
+						};
+						
 						var geometry_temp = new THREE.TubeGeometry(CurvePath, 8, radius, 8, false);
-						var mesh = new THREE.Mesh(geometry_temp, mat);
+						var mesh = new THREE.Mesh(geometry_temp, colormat);
 						mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
 						mesh.scale.set(0.07, 0.07, 0.07); //缩放
 						group.add(mesh);
 						geometry.push(geometry_temp);
 						
 						var geometry_temp = new THREE.SphereGeometry(radius, 8, 8);
-						var mesh = new THREE.Mesh(geometry_temp, mat);
+						var mesh = new THREE.Mesh(geometry_temp, colormat);
 						mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
 						mesh.scale.set(0.07, 0.07, 0.07); //缩放
 						mesh.position.x = arr0[0]*0.07
@@ -1226,7 +1259,7 @@
 						geometry.push(geometry_temp);
 						
 						var geometry_temp = new THREE.SphereGeometry(radius, 8, 8);
-						var mesh = new THREE.Mesh(geometry_temp, mat);
+						var mesh = new THREE.Mesh(geometry_temp, colormat);
 						mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
 						mesh.scale.set(0.07, 0.07, 0.07); //缩放
 						mesh.position.x = arr0[2]*0.07
@@ -1288,7 +1321,7 @@
 			group = new THREE.Group();
 			minrad = document.getElementById('minumum_radius').value;
 			maxrad = document.getElementById('maximum_radius').value;
-			mat = new THREE.MeshLambertMaterial({color: 0x0079ED});
+			mat = new THREE.MeshLambertMaterial({color: 0x000000});
 			
 			console.log("update",minrad,maxrad);
 			console.log(scene);
@@ -1308,15 +1341,36 @@
 					var CurvePath = new THREE.CurvePath();
 					CurvePath.curves.push(line);
 					radius = arr0[4]*(maxrad-minrad)+minrad*1.0;
+					
+					if (arr0[4]-0<0.333) {
+						    var num1 = Math.round((c2[0]-c1[0])*(arr0[4]-0)/0.333+c1[0]);
+							var num2 = Math.round((c2[1]-c1[1])*(arr0[4]-0)/0.333+c1[1]);
+							var num3 = Math.round((c2[2]-c1[2])*(arr0[4]-0)/0.333+c1[2]);
+							var colorstr = getColorCode(num1,num2,num3);
+							var colormat = new THREE.MeshLambertMaterial({color: colorstr});
+						} else if (arr0[4]-0<0.666) {
+						    var num1 = Math.round((c3[0]-c2[0])*(arr0[4]-0.333)/0.333+c2[0]);
+							var num2 = Math.round((c3[1]-c2[1])*(arr0[4]-0.333)/0.333+c2[1]);
+							var num3 = Math.round((c3[2]-c2[2])*(arr0[4]-0.333)/0.333+c2[2]);
+							var colorstr = getColorCode(num1,num2,num3);
+							var colormat = new THREE.MeshLambertMaterial({color: colorstr});
+						} else {
+						    var num1 = Math.round((c4[0]-c3[0])*(arr0[4]-0.666)/0.333+c3[0]);
+							var num2 = Math.round((c4[1]-c3[1])*(arr0[4]-0.666)/0.333+c3[1]);
+							var num3 = Math.round((c4[2]-c3[2])*(arr0[4]-0.666)/0.333+c3[2]);
+							var colorstr = getColorCode(num1,num2,num3);
+							var colormat = new THREE.MeshLambertMaterial({color: colorstr});
+						};
+					
 					var geometry_temp = new THREE.TubeGeometry(CurvePath, 8, radius, 8, false);
-					var mesh = new THREE.Mesh(geometry_temp, mat);
+					var mesh = new THREE.Mesh(geometry_temp, colormat);
 					mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
 					mesh.scale.set(0.07, 0.07, 0.07); //缩放
 					group.add(mesh);
 					geometry.push(geometry_temp);
 					
 					var geometry_temp = new THREE.SphereGeometry(radius, 8, 8);
-					var mesh = new THREE.Mesh(geometry_temp, mat);
+					var mesh = new THREE.Mesh(geometry_temp, colormat);
 					mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
 					mesh.scale.set(0.07, 0.07, 0.07); //缩放
 					mesh.position.x = arr0[0]*0.07
@@ -1326,7 +1380,7 @@
 					geometry.push(geometry_temp);
 					
 					var geometry_temp = new THREE.SphereGeometry(radius, 8, 8);
-					var mesh = new THREE.Mesh(geometry_temp, mat);
+					var mesh = new THREE.Mesh(geometry_temp, colormat);
 					mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
 					mesh.scale.set(0.07, 0.07, 0.07); //缩放
 					mesh.position.x = arr0[2]*0.07
