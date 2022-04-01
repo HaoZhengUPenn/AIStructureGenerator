@@ -21,4 +21,3 @@ checkpoints/fcb_to_fc2/latest_net_D.pth
 checkpoints/fcb_to_fc2/latest_net_G.pth
 checkpoints/fcb_to_fc2_1to7/latest_net_D.pth
 checkpoints/fcb_to_fc2_1to7/latest_net_G.pth
-Case/
