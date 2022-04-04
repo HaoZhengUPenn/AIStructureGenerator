@@ -890,6 +890,8 @@
 					Upload Data File
 				</button>
 				<script type='text/javascript'>
+				    var localfileonload = false;
+					
 				    function upload_csv() {
 						var input = document.createElement("input");
 						input.type="file";
@@ -903,6 +905,9 @@
 					}
 					
 					function handleFileSelect(evt) {
+					
+					    localfileonload = true;
+						
 						var files = evt.target.files; // FileList object
 						for (var i = 0, f; f = files[i]; i++) {
 							var reader = new FileReader();
@@ -1271,6 +1276,9 @@
 									context.strokeStyle="black";
 									context.stroke();
 								}
+								
+								animate();
+								window.onresize = onWindowResize;
 								
 								var oldnode = document.getElementById("loading");
 								if (oldnode!=null) {
@@ -1676,12 +1684,13 @@
 		textfile.send();
 		
 		setTimeout(function(){
-			if (textfile.readyState != 4 || textfile.status != 200)
-				{
+			if (textfile.readyState != 4 || textfile.status != 200) {
+			    if (localfileonload==false){ 
 					console.log("10 second to auto fresh the web page");
 					location.reload(true) //refresh the web page
 				}
-			},10000);
+			}
+		},10000);
 		
 		textfile.onreadystatechange = function ()
 		{   
