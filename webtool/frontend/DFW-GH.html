@@ -851,6 +851,12 @@
 
 					function download_stl() {
 						var exporter = new THREE.STLExporter();
+						
+						if (display_mode==1) {
+						    var temp_child = scene.children[scene.children.length-1];
+						    scene.remove(scene.children[scene.children.length-1])
+						}
+						
 						var stlString = exporter.parse(scene);
 						console.log(stlString);
 						var blob = new Blob( [stlString], { type : 'text/plain' } ); // Generate Blob from the string
@@ -860,6 +866,11 @@
 						link.href = URL.createObjectURL(blob);
 						link.download = 'output.stl';
 						link.click();
+						
+						if (display_mode==1) {
+							scene.add(temp_child); 
+						}
+						
 						//window.open('../ghBackend/media/Default/output.stl')
 					}
 				</script>
@@ -1186,6 +1197,8 @@
 								group.position.y = group.position.y - center.y
 								group.position.z = group.position.z - center.z
 								
+								scene.add(group);
+								
 								var plane = new THREE.PlaneGeometry(10000,10000)
 								var colormat = new THREE.MeshStandardMaterial({color: "0xFCFCFC"});
 								var mesh = new THREE.Mesh(plane, colormat);
@@ -1194,10 +1207,8 @@
 								
 								mesh.receiveShadow = true;
 								if (display_mode==1) {
-									group.add(mesh);
-								}
-								
-								scene.add(group);
+									scene.add(mesh);
+								}		
 								
 								pnum = pnum + pstep;
 								pstep = 6;
@@ -1925,6 +1936,8 @@
 				group.position.y = group.position.y - center.y
 				group.position.z = group.position.z - center.z
 				
+				scene.add(group);
+				
 				var plane = new THREE.PlaneGeometry(10000,10000)
 				var colormat = new THREE.MeshStandardMaterial({color: "0xFCFCFC"});
 				var mesh = new THREE.Mesh(plane, colormat);
@@ -1933,10 +1946,8 @@
 				
 				mesh.receiveShadow = true;
 				if (display_mode==1) {
-				    group.add(mesh);
+				    scene.add(mesh);
 				}
-				
-				scene.add(group);
 
 				animate();
 				window.onresize = onWindowResize;
@@ -2144,6 +2155,8 @@
 			group.position.y = group.position.y - center.y
 			group.position.z = group.position.z - center.z
 			
+			scene.add(group);
+			
 			var plane = new THREE.PlaneGeometry(10000,10000)
 			var material = new THREE.MeshPhongMaterial({
 				color: 0xFCFCFC,
@@ -2155,10 +2168,8 @@
 			mesh.receiveShadow = true;
 			
 			if (display_mode==1) {
-				group.add(mesh);
+				scene.add(mesh);
 			}
-
-			scene.add(group);
 			
 		}
 	</script>
