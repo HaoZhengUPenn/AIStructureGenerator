@@ -103,10 +103,10 @@
 	<div id="container" style="position:absolute; top:130px; left:40px; width:260px; height:260px; float:left; display:block;">
 	    <canvas id="canvas" width="250" height="250" style="border: 3px solid black"></canvas>
     </div>
-	<div id="container-item" style="position:absolute; top:60px; left:0px; width: 350px; display:block;">
+	<div id="container-item" style="position:absolute; top:60px; left:0px; width: 340px; display:block;">
 	    <ul class="tabs" data-tab>
-			<button id="btn_set_3poi" type="button" class="btn btn-default" onclick="set_3poi()" style="float:left;">
-				<span class="glyphicon glyphicon-asterisk" style="font-size:12px">3 points</span>
+			<button id="btn_set_3poi" type="button" class="btn btn-default" onclick="set_3poi()" style="float:left; font-size:10px;">
+				<span class="glyphicon glyphicon-asterisk" style="font-size:10px">3 points</span>
 			</button>
 			<script type='text/javascript'>
 				function set_3poi() {
@@ -177,8 +177,8 @@
 					}
 				}
 			</script>
-		    <button id="btn_set_4poi" type="button" class="btn btn-default" onclick="set_4poi()" style="float:left;">
-				<span class="glyphicon glyphicon-asterisk" style="font-size:12px">4 points</span>
+		    <button id="btn_set_4poi" type="button" class="btn btn-default" onclick="set_4poi()" style="float:left; font-size:10px;">
+				<span class="glyphicon glyphicon-asterisk" style="font-size:10px">4 points</span>
 			</button>
 			<script type='text/javascript'>
 				function set_4poi() {
@@ -253,8 +253,8 @@
 					}
 				}
 			</script>
-			<button id="btn_set_5poi" type="button" class="btn btn-default" onclick="set_5poi()" style="float:left;">
-				<span class="glyphicon glyphicon-asterisk" style="font-size:12px">5 points</span>
+			<button id="btn_set_5poi" type="button" class="btn btn-default" onclick="set_5poi()" style="float:left; font-size:10px;">
+				<span class="glyphicon glyphicon-asterisk" style="font-size:10px">5 points</span>
 			</button>
 			<script type='text/javascript'>
 				function set_5poi() {
@@ -333,8 +333,8 @@
 					}
 				}
 			</script>
-			<button id="btn_set_6poi" type="button" class="btn btn-default" onclick="set_6poi()" style="float:left;">
-				<span class="glyphicon glyphicon-asterisk" style="font-size:12px">6 points</span>
+			<button id="btn_set_6poi" type="button" class="btn btn-default" onclick="set_6poi()" style="float:left; font-size:10px;">
+				<span class="glyphicon glyphicon-asterisk" style="font-size:10px">6 points</span>
 			</button>
 			<script type='text/javascript'>
 				function set_6poi() {
@@ -417,17 +417,23 @@
 					}
 				}
 			</script>
+			
+			<div style="background-color: transparent; width: 100%; height: 30pt;"></div>
+			
 			<span class="dragged" style="float:left; font-size:15px;">Drag to adjust the points.</span>
 		</ul>
     </div>
-	<div id="container" style="position:absolute; top:380px; left:20px; width:288px; height:500px; float:left; display:inline; padding-left:20px;">
+	<div id="container" style="position:absolute; top:380px; left:20px; width:300px; height:500px; float:left; display:inline; padding-left:20px;">
 	
 	    <div class="form-group" id="l"></div>
-		    <div class="col-sm-4"></div>
-			    
-			    <span class="input-group-addon" style="font-size:15px; white-space:nowrap;">
-				<abbr title="Density defines the density of the structural members. By increasing it, more members will be generated with a longer time cost.">Density</abbr></span>
-				<input type="range" min="0" max="1" step="0.01" name="reduce_rate" id="reduce_rate" style="width:180px; height:10px;" oninput="change_reduce_rate()" onchange="change_reduce_rate()"/>
+		    <div class="col-sm-3"></div>
+			
+			    <span class="input-group-addon" style="font-size:15px; white-space:nowrap;">Subdivision Density
+				<abbr title="Subdivision Density defines the density of the structural members. By increasing it, more members will be generated with a longer time cost.">(what's this?)</abbr></span>
+				
+				<div style="background-color: transparent; width: 100%; height: 0pt;"></div>
+				
+				<input type="range" min="0" max="1" step="0.01" name="reduce_rate" id="reduce_rate" style="width:240px; height:10px;" oninput="change_reduce_rate()" onchange="change_reduce_rate()"/>
 			    <span id="value_reduce_rate" style="font-size:15px">0</span>
 				<script type='text/javascript'>
 					function change_reduce_rate() {
@@ -436,10 +442,16 @@
 					}
 				</script>
 				<!-- <input type="text" class="form-control" name="reduce_rate" id="reduce_rate" style="width:400px; height:30px;"> -->
-		    	
-				<span class="input-group-addon" style="font-size:15px; white-space:nowrap;">
-				<abbr title="Tolerance of Edge Length defines the upper and lower bounds of the length constraint for each edge. Increasing it will give more freedom to the geometric generation process in graphic statics.">ToEL</abbr></span>
-				<input type="range" min="0" max="1" step="0.01" name="tolerance_of_edge_length" id="tolerance_of_edge_length" style="width:200px; height:10px;" oninput="change_tolerance_of_edge_length()" onchange="change_tolerance_of_edge_length()"/>
+		
+		<div class="form-group" id="l"></div>
+		    <div class="col-sm-3"></div>
+                <div class="col-sm-3"></div>
+				<span class="input-group-addon" style="font-size:15px; white-space:nowrap;">Tolerance of Edge Length
+				<abbr title="Tolerance of Edge Length defines the upper and lower bounds of the length constraint for each edge. Increasing it will give more freedom to the geometric generation process in graphic statics.">(what's this?)</abbr></span>
+				
+				<div style="background-color: transparent; width: 100%; height: 0pt;"></div>
+				
+				<input type="range" min="0" max="1" step="0.01" name="tolerance_of_edge_length" id="tolerance_of_edge_length" style="width:240px; height:10px;" oninput="change_tolerance_of_edge_length()" onchange="change_tolerance_of_edge_length()"/>
 			    <span id="value_tolerance_of_edge_length" style="font-size:15px">0</span>
 				<script type='text/javascript'>
 					function change_tolerance_of_edge_length() {
@@ -448,11 +460,13 @@
 					}
 				</script>
 			    <!-- <input type="text" class="form-control" name="tolerance_of_edge_length" id="tolerance_of_edge_length" style="width:400px; height:30px;"> -->
-				
-				<span class="input-group-addon" style="font-size:15px; white-space:nowrap;">
-				<abbr title="Length Constraint Multiplier defines the relaxation of the edge length constraints. Increasing it will cause more rectangular cells than circular cells.">LCM</abbr></span>
-				<input type="range" min="0" max="2" step="0.01" name="length_constraint_maltiplier" id="length_constraint_maltiplier" style="width:200px; height:10px;" oninput="change_length_constraint_maltiplier()" onchange="change_length_constraint_maltiplier()"/>
-			    <span id="value_length_constraint_maltiplier" style="font-size:15px">0</span>
+		
+		<div class="form-group" id="l"></div>
+		    <div class="col-sm-3"></div>
+				<span id="length_constraint_maltiplier_spa" class="input-group-addon" style="font-size:15px; white-space:nowrap; display:none;">
+				<abbr id="length_constraint_maltiplier_abb" title="Length Constraint Multiplier defines the relaxation of the edge length constraints. Increasing it will cause more rectangular cells than circular cells." style="display:none">LCM</abbr></span>
+				<input type="range" min="0" max="2" step="0.01" name="length_constraint_maltiplier" id="length_constraint_maltiplier" style="width:200px; height:10px; display:none;" oninput="change_length_constraint_maltiplier()" onchange="change_length_constraint_maltiplier()"/>
+			    <span id="value_length_constraint_maltiplier" style="font-size:15px; display:none">0</span>
 				<script type='text/javascript'>
 					function change_length_constraint_maltiplier() {
 					    var value_length_constraint_maltiplier = document.getElementById('length_constraint_maltiplier').value;
@@ -460,11 +474,13 @@
 					}
 				</script>
 			    <!-- <input type="text" class="form-control" name="length_constraint_maltiplier" id="length_constraint_maltiplier" style="width:400px; height:30px;"> -->
-
-				<span class="input-group-addon" style="font-size:15px; white-space:nowrap;">
-				<abbr title="Boundary Constraint Magnitude to define the magnitude of the boundary constraint to the form. Increasing it will make the structure attach closer to the boundary.">BCM</abbr></span>
-				<input type="range" min="0" max="10" step="0.01" name="boundary_constraint_magnitude" id="boundary_constraint_magnitude" style="width:200px; height:10px;" oninput="change_boundary_constraint_magnitude()" onchange="change_boundary_constraint_magnitude()"/>
-			    <span id="value_boundary_constraint_magnitude" style="font-size:15px">0</span>
+        
+				<div style="background-color: transparent; width: 100%; height: 0pt;"></div>
+		
+				<span id="boundary_constraint_magnitude_spa" class="input-group-addon" style="font-size:15px; white-space:nowrap; display:none;">
+				<abbr id="boundary_constraint_magnitude_abb" title="Boundary Constraint Magnitude to define the magnitude of the boundary constraint to the form. Increasing it will make the structure attach closer to the boundary." style="display:none;">BCM</abbr></span>
+				<input type="range" min="0" max="10" step="0.01" name="boundary_constraint_magnitude" id="boundary_constraint_magnitude" style="width:200px; height:10px; display:none;" oninput="change_boundary_constraint_magnitude()" onchange="change_boundary_constraint_magnitude()"/>
+			    <span id="value_boundary_constraint_magnitude" style="font-size:15px; display:none;">0</span>
 				<script type='text/javascript'>
 					function change_boundary_constraint_magnitude() {
 					    var value_boundary_constraint_magnitude = document.getElementById('boundary_constraint_magnitude').value;
@@ -472,11 +488,13 @@
 					}
 				</script>
 			    <!-- <input type="text" class="form-control" name="boundary_constraint_magnitude" id="boundary_constraint_magnitude" style="width:400px; height:30px;"> -->
-
-				<span class="input-group-addon" style="font-size:15px; white-space:nowrap;">
-				<abbr title="Perp Steps defines the number of iterations in the geometric generation process in graphic statics. Increasing it will generate a more accurate structure but with a longer time.">PS</abbr></span>
-				<input type="range" min="0" max="30000" step="1" name="perp_steps" id="perp_steps" style="width:200px; height:10px;" oninput="change_perp_steps()" onchange="change_perp_steps()"/>
-			    <span id="value_perp_steps" style="font-size:15px">0</span>
+        
+				<div style="background-color: transparent; width: 100%; height: 0pt;"></div>
+		
+				<span id="perp_steps_spa" class="input-group-addon" style="font-size:15px; white-space:nowrap; display:none;">
+				<abbr id="perp_steps_abb" title="Perp Steps defines the number of iterations in the geometric generation process in graphic statics. Increasing it will generate a more accurate structure but with a longer time." style="display:none;">PS</abbr></span>
+				<input type="range" min="0" max="30000" step="1" name="perp_steps" id="perp_steps" style="width:200px; height:10px; display:none;" oninput="change_perp_steps()" onchange="change_perp_steps()"/>
+			    <span id="value_perp_steps" style="font-size:15px; display:none;">0</span>
 				<script type='text/javascript'>
 					function change_perp_steps() {
 					    var value_perp_steps = document.getElementById('perp_steps').value;
@@ -484,7 +502,7 @@
 					}
 				</script>
 			    <!-- <input type="text" class="form-control" name="perp_steps" id="perp_steps" style="width:400px; height:30px;"> -->
-
+				
         <form class="form-horizontal" role="form">
             <div id="btn">
                 <div class="col-sm-3"></div>
@@ -492,9 +510,52 @@
 				
 					<span class="input-group-btn">
 					
-					    <select>
+					    <select id="model_select" style="display:none;">
 						    <option value ="volvo">Dragonfly Wing Model</option>
 						</select>
+						
+						<div style="background-color: transparent; width: 100%; height: 10pt;"></div>
+						
+						<button id="btn_showadv" type="button" class="btn btn-default" onclick="showadv()">
+							<span class="glyphicon glyphicon-asterisk"></span>
+							Show Advanced Options
+						</button>
+						<script type='text/javascript'>
+							function showadv() {
+								var obj = document.getElementById("value_perp_steps");
+								obj.style.display = "inline";
+								var obj = document.getElementById("perp_steps");
+								obj.style.display = "inline";
+								var obj = document.getElementById("perp_steps_abb");
+								obj.style.display = "inline";
+								var obj = document.getElementById("perp_steps_spa");
+								obj.style.display = "inline";
+								
+								var obj = document.getElementById("value_boundary_constraint_magnitude");
+								obj.style.display = "inline";
+								var obj = document.getElementById("boundary_constraint_magnitude");
+								obj.style.display = "inline";
+								var obj = document.getElementById("boundary_constraint_magnitude_abb");
+								obj.style.display = "inline";
+								var obj = document.getElementById("boundary_constraint_magnitude_spa");
+								obj.style.display = "inline";
+								
+								var obj = document.getElementById("value_length_constraint_maltiplier");
+								obj.style.display = "inline";
+								var obj = document.getElementById("length_constraint_maltiplier");
+								obj.style.display = "inline";
+								var obj = document.getElementById("length_constraint_maltiplier_abb");
+								obj.style.display = "inline";
+								var obj = document.getElementById("length_constraint_maltiplier_spa");
+								obj.style.display = "inline";
+								
+								var obj = document.getElementById("model_select");
+								obj.style.display = "inline";
+								
+								var obj = document.getElementById("btn_showadv");
+								obj.style.display = "none";
+							}
+						</script>
 						
 						<div style="background-color: transparent; width: 100%; height: 10pt;"></div>
                         <!-- <span class="input-group-addon" style="font-size:15px; white-space:nowrap;">Click "Submit" bottom to proceed.</span> -->
@@ -611,8 +672,9 @@
 	
 	<div class="form-group" id="2"></div>
 		<div class="col-sm-4"></div>
-			<div id="container-item" style="position:absolute; top:190px; right:10px; width: 300px; float: right; display:block;">
+			<div id="container-item" style="position:absolute; top:185px; right:10px; width: 300px; float: right; display:block;">
 				<ul class="tabs" data-tab>
+				    <span class="dragged" style="float:right;">Change display mode.</span>
 					<button id="btn_set_mink" type="button" class="btn btn-default" onclick="set_mink()" style="float:right;">
 						<span class="glyphicon glyphicon-asterisk"></span>
 						minkowski sum
@@ -633,18 +695,38 @@
 							draw_update();
 						}
 					</script>
-					<span class="dragged" style="float:right;">Change display mode.</span>
 				</ul>
 			</div>
 	
-	<div id="container" style="position:absolute; top:240px; right:0px; width:288px; height:500px; float:left; display:inline; padding-left:20px;">
+	<div id="container" style="position:absolute; top:240px; right:10px; width:300px; height:500px; float:left; display:inline; padding-left:20px;">
 		<div class="form-group" id="l"></div>
 		    <div class="col-sm-4"></div>
+			
+			    <div style="background-color: transparent; width: 100%; height: 10pt;"></div>
+				
+				<select id="external_select" onchange="show_or_hode_external_forces(this)" style="float:right;">
+					<option value ="a">Show External Forces</option>
+					<option value ="b">Hide External Forces</option>
+					<script type='text/javascript'>
+						function show_or_hode_external_forces(obj) {
+							//代表的是选中项的index索引
+							var index = obj.selectedIndex;
+							//代表的是选中项的的值
+							var val = obj.options[index].value;
+							//代表的是选中项的text
+							var txt = obj.options[index].text;
+							external_force_mode = 1 - index;
+							draw_update();
+						}
+					</script>
+				</select>
+				
+				<div style="background-color: transparent; width: 100%; height: 25pt;"></div>
 
-				<span class="input-group-addon" style="font-size:15px; white-space:nowrap;">
-			    <abbr title="Minimum Radius defines the size of the smallest pipes in the normal display mode.">MinR</abbr></span>
-				<input type="range" min="0" max="100" step="0.01" name="minumum_radius" id="minumum_radius" style="width:180px; height:10px;" oninput="input_minumum_radius()" onchange="change_minumum_radius()"/>
-			    <span id="value_minumum_radius" style="font-size:15px">0</span>
+				<span class="input-group-addon" style="font-size:15px; white-space:nowrap; float:right;">Minimum Radius&nbsp
+			    <abbr style="float:right;" title="Minimum Radius defines the size of the smallest pipes in the normal display mode.">(what's this?)</abbr></span>				
+				<input type="range" min="0" max="10" step="0.01" name="minumum_radius" id="minumum_radius" style="width:240px; height:23px; float:right;" oninput="input_minumum_radius()" onchange="change_minumum_radius()"/>
+				<span id="value_minumum_radius" style="font-size:15px; float:right;">0</span>
 				<script type='text/javascript'>
 					function change_minumum_radius() {
 					    var value_minumum_radius = document.getElementById('minumum_radius').value;
@@ -658,10 +740,12 @@
 				</script>
 			    <!-- <input type="text" class="form-control" name="minumum_radius" id="minumum_radius" style="width:400px; height:30px;"> -->
 
-				<span class="input-group-addon" style="font-size:15px; white-space:nowrap;">
-			    <abbr title="Maximum Radius defines the size of the largest pipes in the normal display mode.">MaxR</abbr></span>
-				<input type="range" min="0" max="100" step="0.01" name="maximum_radius" id="maximum_radius" style="width:180px; height:10px;" oninput="input_maximum_radius()" onchange="change_maximum_radius()"/>
-			    <span id="value_maximum_radius" style="font-size:15px">0</span>
+				<div style="background-color: transparent; width: 100%; height: 20pt;"></div>
+
+				<span class="input-group-addon" style="font-size:15px; white-space:nowrap; float:right;">Maximum Radius&nbsp
+			    <abbr style="float:right;" title="Maximum Radius defines the size of the largest pipes in the normal display mode.">(what's this?)</abbr></span>
+				<input type="range" min="0" max="100" step="0.01" name="maximum_radius" id="maximum_radius" style="width:240px; height:23px; float:right;" oninput="input_maximum_radius()" onchange="change_maximum_radius()"/>
+			    <span id="value_maximum_radius" style="font-size:15px; float:right;">0</span>
 				<script type='text/javascript'>
 					function change_maximum_radius() {
 					    var value_maximum_radius = document.getElementById('maximum_radius').value;
@@ -675,10 +759,12 @@
 				</script>
 			    <!-- <input type="text" class="form-control" name="maximum_radius" id="maximum_radius" style="width:400px; height:30px;"> -->
 
-				<span class="input-group-addon" style="font-size:15px; white-space:nowrap;">
-			    <abbr title="Minkowski Sum Indicator defines the form-to-force status in the minkowski sum display mode.">MSI</abbr></span>
-				<input type="range" min="0.01" max="0.99" step="0.01" name="minkowski_sum_indicator" id="minkowski_sum_indicator" style="width:180px; height:10px;" oninput="input_minkowski_sum_indicator()" onchange="change_minkowski_sum_indicator()"/>
-			    <span id="value_minkowski_sum_indicator" style="font-size:15px">0</span>
+				<div style="background-color: transparent; width: 100%; height: 20pt;"></div>
+
+				<span class="input-group-addon" style="font-size:15px; white-space:nowrap; float:right;">Minkowski Sum Indicator&nbsp
+			    <abbr style="float:right;" title="Minkowski Sum Indicator defines the form-to-force status in the minkowski sum display mode.">(what's this?)</abbr></span>
+				<input type="range" min="0.01" max="0.99" step="0.01" name="minkowski_sum_indicator" id="minkowski_sum_indicator" style="width:240px; height:23px; float:right;" oninput="input_minkowski_sum_indicator()" onchange="change_minkowski_sum_indicator()"/>
+			    <span id="value_minkowski_sum_indicator" style="font-size:15px; float:right;">0</span>
 				<script type='text/javascript'>
 					function change_minkowski_sum_indicator() {
 					    var value_minkowski_sum_indicator = document.getElementById('minkowski_sum_indicator').value;
@@ -690,12 +776,13 @@
 						draw_update();
 					}
 				</script>
+				
     </div>
 	
-	<div id="container-item" style="position:absolute; top:340px; right:10px; width: 350px; display:block;">
+	<div id="container-item" style="position:absolute; top:470px; right:10px; width: 350px; display:block;">
 	    <span class="glyphicon glyphicon-asterisk" style="font-size:20px; float:right;">File Manager</span>
 	</div>
-	<div id="container" style="position:absolute; top:360px; right:10px; width:288px; height:500px; float:right; display:inline; padding-left:20px;">
+	<div id="container" style="position:absolute; top:490px; right:10px; width:288px; height:500px; float:right; display:inline; padding-left:20px;">
 		<div class="form-group" id="l"></div>
 		    <div class="col-sm-4"></div>
 				<button id="btn_setdefault" type="button" class="btn btn-default" style="float:right;" onclick="download_stl()">
@@ -851,12 +938,14 @@
 
 					function download_stl() {
 						var exporter = new THREE.STLExporter();
-						
 						if (display_mode==1) {
-						    var temp_child = scene.children[scene.children.length-1];
-						    scene.remove(scene.children[scene.children.length-1])
+						    var temp_child_1 = scene.children[scene.children.length-1];
+						    scene.remove(scene.children[scene.children.length-1]);
+							var temp_child_2 = scene.children[scene.children.length-1];
+						    scene.remove(scene.children[scene.children.length-1]);
+							var temp_child_3 = scene.children[scene.children.length-1];
+						    scene.remove(scene.children[scene.children.length-1]);
 						}
-						
 						var stlString = exporter.parse(scene);
 						console.log(stlString);
 						var blob = new Blob( [stlString], { type : 'text/plain' } ); // Generate Blob from the string
@@ -866,17 +955,17 @@
 						link.href = URL.createObjectURL(blob);
 						link.download = 'output.stl';
 						link.click();
-						
 						if (display_mode==1) {
-							scene.add(temp_child); 
+							scene.add(temp_child_3);
+							scene.add(temp_child_2);
+							scene.add(temp_child_1); 
 						}
-						
 						//window.open('../ghBackend/media/Default/output.stl')
 					}
 				</script>
 	</div>			
 				
-	<div id="container" style="position:absolute; top:410px; right:10px; width:288px; height:500px; float:right; display:inline; padding-left:20px;">
+	<div id="container" style="position:absolute; top:540px; right:10px; width:288px; height:500px; float:right; display:inline; padding-left:20px;">
 		<div class="form-group" id="l"></div>
 		    <div class="col-sm-4"></div>
 				<button id="btn_setdefault" type="button" class="btn btn-default" style="float:right;" onclick="download_csv()">
@@ -893,7 +982,7 @@
 				</script>
 	</div>
 	
-	<div id="container" style="position:absolute; top:460px; right:10px; width:288px; height:500px; float:right; display:inline; padding-left:20px;">
+	<div id="container" style="position:absolute; top:590px; right:10px; width:288px; height:500px; float:right; display:inline; padding-left:20px;">
 		<div class="form-group" id="upload1"></div>
 		    <div class="col-sm-4"></div>
 				<button id="btn_setdefault" type="button" class="btn btn-default" style="float:right;" onclick="upload_csv()">
@@ -928,25 +1017,16 @@
 								//console.log(reader);
 								//console.log(reader.result);
 								
-								let form_pois = [];
-								let form_pois_neib_pois = [];
-								let form_pois_neib_edges = [];
-								let form_pois_edges = [];
-								let force_edges = [];
-								let force_edges_magnitude = [];
+								form_pois = [];
+								form_pois_neib_pois = [];
+								form_pois_neib_edges = [];
+								form_pois_edges = [];
+								force_edges = [];
+								force_edges_magnitude = [];
 								
-								let arr;
-								let arr_all;
-								let arr0;
-								var geometry = [];
-								var radius;
-								var pnum;
-								var pstep;
-								var minrad = document.getElementById('minumum_radius').value;
-								var maxrad = document.getElementById('maximum_radius').value;
-								//var minrad = guiControl.Minimum_Radius;
-								//var maxrad = guiControl.Maximum_Radius;
-								var mat = new THREE.MeshLambertMaterial({color: 0x000000});
+								geometry = [];
+								minrad = document.getElementById('minumum_radius').value;
+								maxrad = document.getElementById('maximum_radius').value;
 								
 								while(scene.children.length > 0){ 
 									scene.remove(scene.children[0]); 
@@ -974,10 +1054,12 @@
 								
 								deleteGroup(group);
 								deleteGroup(group_mink);
+								deleteGroup(group_arrow);
 								
 								geometry = [];
-								var group = new THREE.Group();
-								var group_mink = new THREE.Group();
+								group = new THREE.Group();
+								group_mink = new THREE.Group();
+								group_arrow = new THREE.Group();
 								minrad = document.getElementById('minumum_radius').value;
 								maxrad = document.getElementById('maximum_radius').value;
 								mink = document.getElementById("minkowski_sum_indicator").value;
@@ -999,57 +1081,70 @@
 											let line = new THREE.LineCurve3(p1,p2);
 											var CurvePath = new THREE.CurvePath();
 											CurvePath.curves.push(line);
-											radius = arr0[4]*(maxrad-minrad)+minrad*1.0;
 											
-											if (arr0[4]-0<0.333) {
-												var num1 = Math.round((c2[0]-c1[0])*(arr0[4]-0)/0.333+c1[0]);
-												var num2 = Math.round((c2[1]-c1[1])*(arr0[4]-0)/0.333+c1[1]);
-												var num3 = Math.round((c2[2]-c1[2])*(arr0[4]-0)/0.333+c1[2]);
-												var colorstr = getColorCode(num1,num2,num3);
-												var colormat = new THREE.MeshStandardMaterial({color: colorstr});
-											} else if (arr0[4]-0<0.666) {
-												var num1 = Math.round((c3[0]-c2[0])*(arr0[4]-0.333)/0.333+c2[0]);
-												var num2 = Math.round((c3[1]-c2[1])*(arr0[4]-0.333)/0.333+c2[1]);
-												var num3 = Math.round((c3[2]-c2[2])*(arr0[4]-0.333)/0.333+c2[2]);
-												var colorstr = getColorCode(num1,num2,num3);
-												var colormat = new THREE.MeshStandardMaterial({color: colorstr});
+											if (arr0[4]-0==-1) {
+												var dir = new THREE.Vector3(((arr0[2]-0)-(arr0[0]-0))*0.07, 0, -((arr0[3]-0)-(arr0[1]-0))*0.07);
+												var origin = new THREE.Vector3((arr0[0]-0)*0.07, 0, -(arr0[1]-0)*0.07);
+												var length = 6;
+												var colorstr = getColorCode(0,100,0);
+												var arrowHelper = new THREE.ArrowHelper(dir, origin, length, colorstr, 1.0, 1.0);
+												if (external_force_mode==1) {
+													group_arrow.add(arrowHelper);
+													geometry.push(arrowHelper);
+												}
 											} else {
-												var num1 = Math.round((c4[0]-c3[0])*(arr0[4]-0.666)/0.333+c3[0]);
-												var num2 = Math.round((c4[1]-c3[1])*(arr0[4]-0.666)/0.333+c3[1]);
-												var num3 = Math.round((c4[2]-c3[2])*(arr0[4]-0.666)/0.333+c3[2]);
-												var colorstr = getColorCode(num1,num2,num3);
-												var colormat = new THREE.MeshStandardMaterial({color: colorstr});
-											};
+												radius = arr0[4]*(maxrad-minrad)+minrad*1.0;
+												
+												if (arr0[4]-0<0.333) {
+													var num1 = Math.round((c2[0]-c1[0])*(arr0[4]-0)/0.333+c1[0]);
+													var num2 = Math.round((c2[1]-c1[1])*(arr0[4]-0)/0.333+c1[1]);
+													var num3 = Math.round((c2[2]-c1[2])*(arr0[4]-0)/0.333+c1[2]);
+													var colorstr = getColorCode(num1,num2,num3);
+													var colormat = new THREE.MeshStandardMaterial({color: colorstr});
+												} else if (arr0[4]-0<0.666) {
+													var num1 = Math.round((c3[0]-c2[0])*(arr0[4]-0.333)/0.333+c2[0]);
+													var num2 = Math.round((c3[1]-c2[1])*(arr0[4]-0.333)/0.333+c2[1]);
+													var num3 = Math.round((c3[2]-c2[2])*(arr0[4]-0.333)/0.333+c2[2]);
+													var colorstr = getColorCode(num1,num2,num3);
+													var colormat = new THREE.MeshStandardMaterial({color: colorstr});
+												} else {
+													var num1 = Math.round((c4[0]-c3[0])*(arr0[4]-0.666)/0.333+c3[0]);
+													var num2 = Math.round((c4[1]-c3[1])*(arr0[4]-0.666)/0.333+c3[1]);
+													var num3 = Math.round((c4[2]-c3[2])*(arr0[4]-0.666)/0.333+c3[2]);
+													var colorstr = getColorCode(num1,num2,num3);
+													var colormat = new THREE.MeshStandardMaterial({color: colorstr});
+												};
 
-											var geometry_temp = new THREE.TubeGeometry(CurvePath, 8, radius, 8, false);
-											var mesh = new THREE.Mesh(geometry_temp, colormat);
-											mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
-											mesh.scale.set(0.07, 0.07, 0.07); //缩放
-											mesh.castShadow = true;
-											group.add(mesh);
-											geometry.push(geometry_temp);
-											
-											var geometry_temp = new THREE.SphereGeometry(radius, 8, 8);
-											var mesh = new THREE.Mesh(geometry_temp, colormat);
-											mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
-											mesh.scale.set(0.07, 0.07, 0.07); //缩放
-											mesh.position.x = arr0[0]*0.07;
-											mesh.position.y = 0;
-											mesh.position.z = -arr0[1]*0.07;
-											mesh.castShadow = true;
-											group.add(mesh);
-											geometry.push(geometry_temp);
-											
-											var geometry_temp = new THREE.SphereGeometry(radius, 8, 8);
-											var mesh = new THREE.Mesh(geometry_temp, colormat);
-											mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
-											mesh.scale.set(0.07, 0.07, 0.07); //缩放
-											mesh.position.x = arr0[2]*0.07;
-											mesh.position.y = 0;
-											mesh.position.z = -arr0[3]*0.07;
-											mesh.castShadow = true;
-											group.add(mesh);
-											geometry.push(geometry_temp);
+												var geometry_temp = new THREE.TubeGeometry(CurvePath, 8, radius, 8, false);
+												var mesh = new THREE.Mesh(geometry_temp, colormat);
+												mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+												mesh.scale.set(0.07, 0.07, 0.07); //缩放
+												mesh.castShadow = true;
+												group.add(mesh);
+												geometry.push(geometry_temp);
+												
+												var geometry_temp = new THREE.SphereGeometry(radius, 8, 8);
+												var mesh = new THREE.Mesh(geometry_temp, colormat);
+												mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+												mesh.scale.set(0.07, 0.07, 0.07); //缩放
+												mesh.position.x = arr0[0]*0.07;
+												mesh.position.y = 0;
+												mesh.position.z = -arr0[1]*0.07;
+												mesh.castShadow = true;
+												group.add(mesh);
+												geometry.push(geometry_temp);
+												
+												var geometry_temp = new THREE.SphereGeometry(radius, 8, 8);
+												var mesh = new THREE.Mesh(geometry_temp, colormat);
+												mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+												mesh.scale.set(0.07, 0.07, 0.07); //缩放
+												mesh.position.x = arr0[2]*0.07;
+												mesh.position.y = 0;
+												mesh.position.z = -arr0[3]*0.07;
+												mesh.castShadow = true;
+												group.add(mesh);
+												geometry.push(geometry_temp);
+											}
 										}
 									}
 									//var loader = new THREE.STLLoader();
@@ -1062,6 +1157,31 @@
 									//	geometry.center(); //居中显示
 									//	scene.add(mesh);
 									//});
+									var box3 = new THREE.Box3();
+									// 计算层级模型group的包围盒
+									// 模型group是加载一个三维模型返回的对象，包含多个网格模型
+									box3.expandByObject(group);
+									// 计算一个层级模型对应包围盒的几何体中心在世界坐标中的位置
+									var center = new THREE.Vector3();
+									box3.getCenter(center);
+									// console.log('查看几何体中心坐标', center);
+									// 重新设置模型的位置，使之居中。
+									group.position.x = group.position.x - center.x;
+									group.position.y = group.position.y - center.y;
+									group.position.z = group.position.z - center.z;
+									group_arrow.position.x = group_arrow.position.x - center.x;
+									group_arrow.position.y = group_arrow.position.y - center.y;
+									group_arrow.position.z = group_arrow.position.z - center.z;
+									scene.add(group);
+									scene.add(group_arrow);
+									
+									var plane = new THREE.PlaneGeometry(10000,10000);
+									var colormat = new THREE.MeshStandardMaterial({color: "0xFCFCFC"});
+									var mesh = new THREE.Mesh(plane, colormat);
+									mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+									mesh.position.y = -30;
+									mesh.receiveShadow = true;
+									scene.add(mesh);
 								}
 								
 								pnum = parseInt(arr_all[0])+1;
@@ -1126,7 +1246,7 @@
 										for (var j = 0; j < form_pois_neib_pois[i].length; j++) {
 										
 											var rad_temp = force_edges_magnitude[form_pois_edges[i][j]];
-											if (rad_temp-0==0) {
+											if (rad_temp-0==-1) {
 												var colorstr = getColorCode(0,100,0);
 												var colormat = new THREE.MeshStandardMaterial({color: colorstr});
 											}else if (rad_temp-0<0.333) {
@@ -1161,54 +1281,50 @@
 											var face = new THREE.Face3( 0, 1, 2, normal); //创建三角面
 											geo.faces.push(face); //三角面添加到几何体
 											//var face = new THREE.Face3( 2, 3, 1, normal); //创建三角面
-											geo.faces.push( face ); //三角面添加到几何体
 											var mesh = new THREE.Mesh(geo,colormat);//网格模型对象
 											mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
 											mesh.scale.set(0.07, 0.07, 0.07); //缩放
 											mesh.castShadow = true;
-											group_mink.add(mesh);
+											if (rad_temp-0==-1) {
+												if (external_force_mode==1) {
+													group_mink.add(mesh);
+												}
+											} else {
+												group_mink.add(mesh);
+											}
 											var geo = new THREE.Geometry(); //声明一个空几何体对象
 											geo.vertices.push(p3,p4,p1); //顶点坐标添加到geometry对象
 											var normal = new THREE.Vector3( 0, 0, 1 ); //三角面法向量
 											var face = new THREE.Face3( 0, 1, 2, normal); //创建三角面
 											geo.faces.push(face); //三角面添加到几何体
 											//var face = new THREE.Face3( 2, 3, 1, normal); //创建三角面
-											geo.faces.push( face ); //三角面添加到几何体
 											var mesh = new THREE.Mesh(geo,colormat);//网格模型对象
 											mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
 											mesh.scale.set(0.07, 0.07, 0.07); //缩放
 											mesh.castShadow = true;
-											group_mink.add(mesh);
+											if (rad_temp-0==-1) {
+												if (external_force_mode==1) {
+													group_mink.add(mesh);
+												}
+											} else {
+												group_mink.add(mesh);
+											}
 										}
 									}
-									group = group_mink;
+									var box3 = new THREE.Box3();
+									// 计算层级模型group的包围盒
+									// 模型group是加载一个三维模型返回的对象，包含多个网格模型
+									box3.expandByObject(group_mink);
+									// 计算一个层级模型对应包围盒的几何体中心在世界坐标中的位置
+									var center = new THREE.Vector3();
+									box3.getCenter(center);
+									// console.log('查看几何体中心坐标', center);
+									// 重新设置模型的位置，使之居中。
+									group_mink.position.x = group_mink.position.x - center.x;
+									group_mink.position.y = group_mink.position.y - center.y;
+									group_mink.position.z = group_mink.position.z - center.z;
+									scene.add(group_mink);
 								}
-								
-								var box3 = new THREE.Box3()
-								// 计算层级模型group的包围盒
-								// 模型group是加载一个三维模型返回的对象，包含多个网格模型
-								box3.expandByObject(group)
-								// 计算一个层级模型对应包围盒的几何体中心在世界坐标中的位置
-								var center = new THREE.Vector3()
-								box3.getCenter(center)
-								// console.log('查看几何体中心坐标', center);
-								// 重新设置模型的位置，使之居中。
-								group.position.x = group.position.x - center.x
-								group.position.y = group.position.y - center.y
-								group.position.z = group.position.z - center.z
-								
-								scene.add(group);
-								
-								var plane = new THREE.PlaneGeometry(10000,10000)
-								var colormat = new THREE.MeshStandardMaterial({color: "0xFCFCFC"});
-								var mesh = new THREE.Mesh(plane, colormat);
-								mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
-								mesh.position.y = -30;
-								
-								mesh.receiveShadow = true;
-								if (display_mode==1) {
-									scene.add(mesh);
-								}		
 								
 								pnum = pnum + pstep;
 								pstep = 6;
@@ -1221,7 +1337,6 @@
 								document.getElementById("length_constraint_maltiplier").defaultValue = arr_input[3];
 								document.getElementById('value_length_constraint_maltiplier').innerHTML = arr_input[3];
 								document.getElementById("boundary_constraint_magnitude").defaultValue = arr_input[4];
-								document.getElementById('minkowski_sum_indicator').defaultValue = 0.5;
 								document.getElementById('value_boundary_constraint_magnitude').innerHTML = arr_input[4];
 								document.getElementById("perp_steps").defaultValue = arr_input[5];
 								document.getElementById('value_perp_steps').innerHTML = arr_input[5];
@@ -1247,6 +1362,32 @@
 									points.push(point);
 									var circle=new Circle((arr0_input[i*2]-0)/2,(500-arr0_input[i*2+1])/2);
 									circles.push(circle);
+								}
+								
+								wall_info = [];
+								wall_info.push((arr0_input[0]-0)/500*3000*0.07);
+								wall_info.push((arr0_input[1]-0)/500*3000*0.07);
+								wall_info.push((arr0_input[arr0_input.length-2]-0)/500*3000*0.07);
+								wall_info.push((arr0_input[arr0_input.length-1]-0)/500*3000*0.07);
+								
+								if (display_mode==1) {
+								    var vec = new THREE.Vector3(wall_info[3]-wall_info[1], -(wall_info[2]-wall_info[0]));
+									vec = vec.normalize();
+									var baseShape = new THREE.Shape();
+									baseShape.moveTo(wall_info[0], wall_info[1]);
+									baseShape.lineTo(wall_info[2], wall_info[3]);
+									baseShape.lineTo(wall_info[2]+vec.x*3, wall_info[3]+vec.y*3);
+									baseShape.lineTo(wall_info[0]+vec.x*3, wall_info[1]+vec.y*3);
+									baseShape.lineTo(wall_info[0], wall_info[1]);
+									var extrudedGeometry = new THREE.ExtrudeGeometry(baseShape, {amount: 20, bevelEnabled: false});
+									var tmaterial = new THREE.MeshStandardMaterial({color:0xffffff,transparent:true,opacity:0.8});
+									//tmaterial.opacity = 0.1;
+									var extrudedMesh = new THREE.Mesh(extrudedGeometry, tmaterial);
+									extrudedMesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+									extrudedMesh.position.x = extrudedMesh.position.x - center.x;
+									extrudedMesh.position.y = extrudedMesh.position.y - center.y -10;
+									extrudedMesh.position.z = extrudedMesh.position.z - center.z;
+									scene.add(extrudedMesh);
 								}
 
 								const canvas = document.getElementById('canvas');
@@ -1307,6 +1448,8 @@
 	<img id="PSL" src="PSL.png" width="150" height="105" style="position:absolute; top:20px; right:10px; display:block;">
 	
 	<script>
+	
+	    let wall_info;
 
 		var content_input;
 		var textfile_input;
@@ -1341,15 +1484,15 @@
 				document.getElementById("length_constraint_maltiplier").defaultValue = arr_input[3];
 				document.getElementById('value_length_constraint_maltiplier').innerHTML = arr_input[3];
 				document.getElementById("boundary_constraint_magnitude").defaultValue = arr_input[4];
-				document.getElementById('minkowski_sum_indicator').defaultValue = 0.5;
 				document.getElementById('value_boundary_constraint_magnitude').innerHTML = arr_input[4];
 				document.getElementById("perp_steps").defaultValue = arr_input[5];
 				document.getElementById('value_perp_steps').innerHTML = arr_input[5];
-				document.getElementById("minumum_radius").defaultValue = arr_input[6];
-				document.getElementById('value_minumum_radius').innerHTML = arr_input[6];
-				document.getElementById("maximum_radius").defaultValue = arr_input[7];
-				document.getElementById('value_maximum_radius').innerHTML = arr_input[7];
+				document.getElementById("minumum_radius").defaultValue = 2;
+				document.getElementById('value_minumum_radius').innerHTML = 2;
+				document.getElementById("maximum_radius").defaultValue = 20;
+				document.getElementById('value_maximum_radius').innerHTML = 20;
 				document.getElementById('value_minkowski_sum_indicator').innerHTML = 0.5;
+				document.getElementById('minkowski_sum_indicator').defaultValue = 0.5;
 				arr0_input = arr_input[0].split(', ');
 				arr0_input[0] = arr0_input[0].split('[')[1];
 				arr0_input[arr0_input.length-1] = arr0_input[arr0_input.length-1].split(']')[0];
@@ -1381,6 +1524,12 @@
 					var circle=new Circle((arr0_input[i*2]-0)/2,(500-arr0_input[i*2+1])/2);
 					circles.push(circle);
 				}
+				
+				wall_info = [];
+				wall_info.push((arr0_input[0]-0)/500*3000*0.07);
+				wall_info.push((arr0_input[1]-0)/500*3000*0.07);
+				wall_info.push((arr0_input[arr0_input.length-2]-0)/500*3000*0.07);
+				wall_info.push((arr0_input[arr0_input.length-1]-0)/500*3000*0.07);
 
 				const canvas = document.getElementById('canvas');
 				const context = canvas.getContext('2d');
@@ -1535,6 +1684,7 @@
 		var mink = document.getElementById("minkowski_sum_indicator").value;
 		
 		var display_mode = 1;
+		var external_force_mode = 1;
 		
 		let c1 = [90,135,175];
 		let c2 = [55,110,155];
@@ -1547,6 +1697,17 @@
 		let form_pois_edges = [];
 		let force_edges = [];
 		let force_edges_magnitude = [];
+		
+		let arr;
+		let arr_all;
+		let arr0;
+		var geometry = [];
+		var radius;
+		var pnum;
+		var pstep;
+		var minrad;
+		var maxrad;
+		var mat = new THREE.MeshLambertMaterial({color: 0x000000});
 		
 		function getColorCode(r,g,b){
 			var c="#";
@@ -1594,6 +1755,7 @@
 			light.castShadow = true;
 
 			scene.add(light);
+			
 		}
 			
 		//初始化性能插件
@@ -1680,7 +1842,7 @@
 		
 		var group = new THREE.Group();
 		var group_mink = new THREE.Group();
-		
+		var group_arrow = new THREE.Group();
 		
 		var content;
 		var textfile;
@@ -1709,19 +1871,8 @@
 			if (textfile.readyState == 4 && textfile.status == 200)
 			{ 
 
-				let arr;
-				let arr_all;
-				let arr0;
-				var geometry = [];
-				var radius;
-				var pnum;
-				var pstep;
-				var minrad = document.getElementById('minumum_radius').value;
-				var maxrad = document.getElementById('maximum_radius').value;
-				//var minrad = guiControl.Minimum_Radius;
-				//var maxrad = guiControl.Maximum_Radius;
-				var mat = new THREE.MeshLambertMaterial({color: 0x000000});
-				
+				minrad = document.getElementById('minumum_radius').value;
+				maxrad = document.getElementById('maximum_radius').value;
 				console.log("draw",minrad,maxrad);
 				
 				content = textfile.responseText;
@@ -1738,57 +1889,70 @@
 							let line = new THREE.LineCurve3(p1,p2);
 							var CurvePath = new THREE.CurvePath();
 							CurvePath.curves.push(line);
-							radius = arr0[4]*(maxrad-minrad)+minrad*1.0;
 							
-							if (arr0[4]-0<0.333) {
-								var num1 = Math.round((c2[0]-c1[0])*(arr0[4]-0)/0.333+c1[0]);
-								var num2 = Math.round((c2[1]-c1[1])*(arr0[4]-0)/0.333+c1[1]);
-								var num3 = Math.round((c2[2]-c1[2])*(arr0[4]-0)/0.333+c1[2]);
-								var colorstr = getColorCode(num1,num2,num3);
-								var colormat = new THREE.MeshStandardMaterial({color: colorstr});
-							} else if (arr0[4]-0<0.666) {
-								var num1 = Math.round((c3[0]-c2[0])*(arr0[4]-0.333)/0.333+c2[0]);
-								var num2 = Math.round((c3[1]-c2[1])*(arr0[4]-0.333)/0.333+c2[1]);
-								var num3 = Math.round((c3[2]-c2[2])*(arr0[4]-0.333)/0.333+c2[2]);
-								var colorstr = getColorCode(num1,num2,num3);
-								var colormat = new THREE.MeshStandardMaterial({color: colorstr});
+							if (arr0[4]-0==-1) {
+								var dir = new THREE.Vector3(((arr0[2]-0)-(arr0[0]-0))*0.07, 0, -((arr0[3]-0)-(arr0[1]-0))*0.07);
+								var origin = new THREE.Vector3((arr0[0]-0)*0.07, 0, -(arr0[1]-0)*0.07);
+								var length = 6;
+								var colorstr = getColorCode(0,100,0);
+								var arrowHelper = new THREE.ArrowHelper(dir, origin, length, colorstr, 1.0, 1.0);
+								if (external_force_mode==1) {
+									group_arrow.add(arrowHelper);
+									geometry.push(arrowHelper);
+								}
 							} else {
-								var num1 = Math.round((c4[0]-c3[0])*(arr0[4]-0.666)/0.333+c3[0]);
-								var num2 = Math.round((c4[1]-c3[1])*(arr0[4]-0.666)/0.333+c3[1]);
-								var num3 = Math.round((c4[2]-c3[2])*(arr0[4]-0.666)/0.333+c3[2]);
-								var colorstr = getColorCode(num1,num2,num3);
-								var colormat = new THREE.MeshStandardMaterial({color: colorstr});
-							};
+								radius = arr0[4]*(maxrad-minrad)+minrad*1.0;
+								
+								if (arr0[4]-0<0.333) {
+									var num1 = Math.round((c2[0]-c1[0])*(arr0[4]-0)/0.333+c1[0]);
+									var num2 = Math.round((c2[1]-c1[1])*(arr0[4]-0)/0.333+c1[1]);
+									var num3 = Math.round((c2[2]-c1[2])*(arr0[4]-0)/0.333+c1[2]);
+									var colorstr = getColorCode(num1,num2,num3);
+									var colormat = new THREE.MeshStandardMaterial({color: colorstr});
+								} else if (arr0[4]-0<0.666) {
+									var num1 = Math.round((c3[0]-c2[0])*(arr0[4]-0.333)/0.333+c2[0]);
+									var num2 = Math.round((c3[1]-c2[1])*(arr0[4]-0.333)/0.333+c2[1]);
+									var num3 = Math.round((c3[2]-c2[2])*(arr0[4]-0.333)/0.333+c2[2]);
+									var colorstr = getColorCode(num1,num2,num3);
+									var colormat = new THREE.MeshStandardMaterial({color: colorstr});
+								} else {
+									var num1 = Math.round((c4[0]-c3[0])*(arr0[4]-0.666)/0.333+c3[0]);
+									var num2 = Math.round((c4[1]-c3[1])*(arr0[4]-0.666)/0.333+c3[1]);
+									var num3 = Math.round((c4[2]-c3[2])*(arr0[4]-0.666)/0.333+c3[2]);
+									var colorstr = getColorCode(num1,num2,num3);
+									var colormat = new THREE.MeshStandardMaterial({color: colorstr});
+								};
 
-							var geometry_temp = new THREE.TubeGeometry(CurvePath, 8, radius, 8, false);
-							var mesh = new THREE.Mesh(geometry_temp, colormat);
-							mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
-							mesh.scale.set(0.07, 0.07, 0.07); //缩放
-							mesh.castShadow = true;
-							group.add(mesh);
-							geometry.push(geometry_temp);
-							
-							var geometry_temp = new THREE.SphereGeometry(radius, 8, 8);
-							var mesh = new THREE.Mesh(geometry_temp, colormat);
-							mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
-							mesh.scale.set(0.07, 0.07, 0.07); //缩放
-							mesh.position.x = arr0[0]*0.07;
-							mesh.position.y = 0;
-							mesh.position.z = -arr0[1]*0.07;
-							mesh.castShadow = true;
-							group.add(mesh);
-							geometry.push(geometry_temp);
-							
-							var geometry_temp = new THREE.SphereGeometry(radius, 8, 8);
-							var mesh = new THREE.Mesh(geometry_temp, colormat);
-							mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
-							mesh.scale.set(0.07, 0.07, 0.07); //缩放
-							mesh.position.x = arr0[2]*0.07;
-							mesh.position.y = 0;
-							mesh.position.z = -arr0[3]*0.07;
-							mesh.castShadow = true;
-							group.add(mesh);
-							geometry.push(geometry_temp);
+								var geometry_temp = new THREE.TubeGeometry(CurvePath, 8, radius, 8, false);
+								var mesh = new THREE.Mesh(geometry_temp, colormat);
+								mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+								mesh.scale.set(0.07, 0.07, 0.07); //缩放
+								mesh.castShadow = true;
+								group.add(mesh);
+								geometry.push(geometry_temp);
+								
+								var geometry_temp = new THREE.SphereGeometry(radius, 8, 8);
+								var mesh = new THREE.Mesh(geometry_temp, colormat);
+								mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+								mesh.scale.set(0.07, 0.07, 0.07); //缩放
+								mesh.position.x = arr0[0]*0.07;
+								mesh.position.y = 0;
+								mesh.position.z = -arr0[1]*0.07;
+								mesh.castShadow = true;
+								group.add(mesh);
+								geometry.push(geometry_temp);
+								
+								var geometry_temp = new THREE.SphereGeometry(radius, 8, 8);
+								var mesh = new THREE.Mesh(geometry_temp, colormat);
+								mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+								mesh.scale.set(0.07, 0.07, 0.07); //缩放
+								mesh.position.x = arr0[2]*0.07;
+								mesh.position.y = 0;
+								mesh.position.z = -arr0[3]*0.07;
+								mesh.castShadow = true;
+								group.add(mesh);
+								geometry.push(geometry_temp);
+							}
 						}
 					}
 					//var loader = new THREE.STLLoader();
@@ -1801,6 +1965,31 @@
 					//	geometry.center(); //居中显示
 					//	scene.add(mesh);
 					//});
+					var box3 = new THREE.Box3();
+					// 计算层级模型group的包围盒
+					// 模型group是加载一个三维模型返回的对象，包含多个网格模型
+					box3.expandByObject(group);
+					// 计算一个层级模型对应包围盒的几何体中心在世界坐标中的位置
+					var center = new THREE.Vector3();
+					box3.getCenter(center);
+					// console.log('查看几何体中心坐标', center);
+					// 重新设置模型的位置，使之居中。
+					group.position.x = group.position.x - center.x;
+					group.position.y = group.position.y - center.y;
+					group.position.z = group.position.z - center.z;
+					group_arrow.position.x = group_arrow.position.x - center.x;
+					group_arrow.position.y = group_arrow.position.y - center.y;
+					group_arrow.position.z = group_arrow.position.z - center.z;
+					scene.add(group);
+					scene.add(group_arrow);
+					
+					var plane = new THREE.PlaneGeometry(10000,10000);
+					var colormat = new THREE.MeshStandardMaterial({color: "0xFCFCFC"});
+					var mesh = new THREE.Mesh(plane, colormat);
+					mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+					mesh.position.y = -30;
+					mesh.receiveShadow = true;
+					scene.add(mesh);		
 				}
 				
 				pnum = parseInt(arr_all[0])+1;
@@ -1865,7 +2054,7 @@
 						for (var j = 0; j < form_pois_neib_pois[i].length; j++) {
 						
 							var rad_temp = force_edges_magnitude[form_pois_edges[i][j]];
-							if (rad_temp-0==0) {
+							if (rad_temp-0==-1) {
 							    var colorstr = getColorCode(0,100,0);
 								var colormat = new THREE.MeshStandardMaterial({color: colorstr});
 							}else if (rad_temp-0<0.333) {
@@ -1900,55 +2089,71 @@
 							var face = new THREE.Face3( 0, 1, 2, normal); //创建三角面
 							geo.faces.push(face); //三角面添加到几何体
 							//var face = new THREE.Face3( 2, 3, 1, normal); //创建三角面
-							geo.faces.push( face ); //三角面添加到几何体
 							var mesh = new THREE.Mesh(geo,colormat);//网格模型对象
 							mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
 							mesh.scale.set(0.07, 0.07, 0.07); //缩放
 							mesh.castShadow = true;
-							group_mink.add(mesh);
+							if (rad_temp-0==-1) {
+								if (external_force_mode==1) {
+									group_mink.add(mesh);
+								}
+							} else {
+								group_mink.add(mesh);
+							}
 							var geo = new THREE.Geometry(); //声明一个空几何体对象
 							geo.vertices.push(p3,p4,p1); //顶点坐标添加到geometry对象
 							var normal = new THREE.Vector3( 0, 0, 1 ); //三角面法向量
 							var face = new THREE.Face3( 0, 1, 2, normal); //创建三角面
 							geo.faces.push(face); //三角面添加到几何体
 							//var face = new THREE.Face3( 2, 3, 1, normal); //创建三角面
-							geo.faces.push( face ); //三角面添加到几何体
 							var mesh = new THREE.Mesh(geo,colormat);//网格模型对象
 							mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
 							mesh.scale.set(0.07, 0.07, 0.07); //缩放
 							mesh.castShadow = true;
-							group_mink.add(mesh);
+							if (rad_temp-0==-1) {
+								if (external_force_mode==1) {
+									group_mink.add(mesh);
+								}
+							} else {
+								group_mink.add(mesh);
+							}
 						}
 					}
-					group = group_mink;
+					var box3 = new THREE.Box3();
+					// 计算层级模型group的包围盒
+					// 模型group是加载一个三维模型返回的对象，包含多个网格模型
+					box3.expandByObject(group_mink);
+					// 计算一个层级模型对应包围盒的几何体中心在世界坐标中的位置
+					var center = new THREE.Vector3();
+					box3.getCenter(center);
+					// console.log('查看几何体中心坐标', center);
+					// 重新设置模型的位置，使之居中。
+					group_mink.position.x = group_mink.position.x - center.x;
+					group_mink.position.y = group_mink.position.y - center.y;
+					group_mink.position.z = group_mink.position.z - center.z;
+					scene.add(group_mink);
 				}
 				
-				var box3 = new THREE.Box3()
-				// 计算层级模型group的包围盒
-				// 模型group是加载一个三维模型返回的对象，包含多个网格模型
-				box3.expandByObject(group)
-				// 计算一个层级模型对应包围盒的几何体中心在世界坐标中的位置
-				var center = new THREE.Vector3()
-				box3.getCenter(center)
-				// console.log('查看几何体中心坐标', center);
-				// 重新设置模型的位置，使之居中。
-				group.position.x = group.position.x - center.x
-				group.position.y = group.position.y - center.y
-				group.position.z = group.position.z - center.z
-				
-				scene.add(group);
-				
-				var plane = new THREE.PlaneGeometry(10000,10000)
-				var colormat = new THREE.MeshStandardMaterial({color: "0xFCFCFC"});
-				var mesh = new THREE.Mesh(plane, colormat);
-				mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
-				mesh.position.y = -30;
-				
-				mesh.receiveShadow = true;
 				if (display_mode==1) {
-				    scene.add(mesh);
+					var vec = new THREE.Vector3(wall_info[3]-wall_info[1], -(wall_info[2]-wall_info[0]));
+					vec = vec.normalize();
+					var baseShape = new THREE.Shape();
+					baseShape.moveTo(wall_info[0], wall_info[1]);
+					baseShape.lineTo(wall_info[2], wall_info[3]);
+					baseShape.lineTo(wall_info[2]+vec.x*3, wall_info[3]+vec.y*3);
+					baseShape.lineTo(wall_info[0]+vec.x*3, wall_info[1]+vec.y*3);
+					baseShape.lineTo(wall_info[0], wall_info[1]);
+					var extrudedGeometry = new THREE.ExtrudeGeometry(baseShape, {amount: 20, bevelEnabled: false});
+					var tmaterial = new THREE.MeshStandardMaterial({color:0xffffff,transparent:true,opacity:0.8});
+					//tmaterial.opacity = 0.1;
+					var extrudedMesh = new THREE.Mesh(extrudedGeometry, tmaterial);
+					extrudedMesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+					extrudedMesh.position.x = extrudedMesh.position.x - center.x;
+					extrudedMesh.position.y = extrudedMesh.position.y - center.y -10;
+					extrudedMesh.position.z = extrudedMesh.position.z - center.z;
+					scene.add(extrudedMesh);
 				}
-
+				
 				animate();
 				window.onresize = onWindowResize;
 				
@@ -1986,10 +2191,12 @@
 			
 			deleteGroup(group);
 			deleteGroup(group_mink);
+			deleteGroup(group_arrow);
 			
 			geometry = [];
-			var group = new THREE.Group();
-			var group_mink = new THREE.Group();
+			group = new THREE.Group();
+			group_mink = new THREE.Group();
+			group_arrow = new THREE.Group();
 			minrad = document.getElementById('minumum_radius').value;
 			maxrad = document.getElementById('maximum_radius').value;
 			mink = document.getElementById("minkowski_sum_indicator").value;
@@ -2011,62 +2218,105 @@
 						//console.log(arr0);
 						var CurvePath = new THREE.CurvePath();
 						CurvePath.curves.push(line);
-						radius = arr0[4]*(maxrad-minrad)+minrad*1.0;
 						
-						if (arr0[4]-0<0.333) {
-							var num1 = Math.round((c2[0]-c1[0])*(arr0[4]-0)/0.333+c1[0]);
-							var num2 = Math.round((c2[1]-c1[1])*(arr0[4]-0)/0.333+c1[1]);
-							var num3 = Math.round((c2[2]-c1[2])*(arr0[4]-0)/0.333+c1[2]);
-							var colorstr = getColorCode(num1,num2,num3);
-							var colormat = new THREE.MeshStandardMaterial({color: colorstr});
-						} else if (arr0[4]-0<0.666) {
-							var num1 = Math.round((c3[0]-c2[0])*(arr0[4]-0.333)/0.333+c2[0]);
-							var num2 = Math.round((c3[1]-c2[1])*(arr0[4]-0.333)/0.333+c2[1]);
-							var num3 = Math.round((c3[2]-c2[2])*(arr0[4]-0.333)/0.333+c2[2]);
-							var colorstr = getColorCode(num1,num2,num3);
-							var colormat = new THREE.MeshStandardMaterial({color: colorstr});
+						if (arr0[4]-0==-1) {
+							var dir = new THREE.Vector3(((arr0[2]-0)-(arr0[0]-0))*0.07, 0, -((arr0[3]-0)-(arr0[1]-0))*0.07);
+							var origin = new THREE.Vector3((arr0[0]-0)*0.07, 0, -(arr0[1]-0)*0.07);
+							var length = 6;
+							var colorstr = getColorCode(0,100,0);
+							var arrowHelper = new THREE.ArrowHelper(dir, origin, length, colorstr, 1.0, 1.0);
+							if (external_force_mode==1) {
+								group_arrow.add(arrowHelper);
+								geometry.push(arrowHelper);
+							}
 						} else {
-							var num1 = Math.round((c4[0]-c3[0])*(arr0[4]-0.666)/0.333+c3[0]);
-							var num2 = Math.round((c4[1]-c3[1])*(arr0[4]-0.666)/0.333+c3[1]);
-							var num3 = Math.round((c4[2]-c3[2])*(arr0[4]-0.666)/0.333+c3[2]);
-							var colorstr = getColorCode(num1,num2,num3);
-							var colormat = new THREE.MeshStandardMaterial({color: colorstr});
-						};
-						
-						var geometry_temp = new THREE.TubeGeometry(CurvePath, 8, radius, 8, false);
-						var mesh = new THREE.Mesh(geometry_temp, colormat);
-						mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
-						mesh.scale.set(0.07, 0.07, 0.07); //缩放
-						mesh.castShadow = true;
-						group.add(mesh);
-						geometry.push(geometry_temp);
-						
-						var geometry_temp = new THREE.SphereGeometry(radius, 8, 8);
-						var mesh = new THREE.Mesh(geometry_temp, colormat);
-						mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
-						mesh.scale.set(0.07, 0.07, 0.07); //缩放
-						mesh.position.x = arr0[0]*0.07;
-						mesh.position.y = 0;
-						mesh.position.z = -arr0[1]*0.07;
-						mesh.castShadow = true;
-						group.add(mesh);
-						geometry.push(geometry_temp);
-						
-						var geometry_temp = new THREE.SphereGeometry(radius, 8, 8);
-						var mesh = new THREE.Mesh(geometry_temp, colormat);
-						mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
-						mesh.scale.set(0.07, 0.07, 0.07); //缩放
-						mesh.position.x = arr0[2]*0.07;
-						mesh.position.y = 0;
-						mesh.position.z = -arr0[3]*0.07;
-						mesh.castShadow = true;
-						group.add(mesh);
-						geometry.push(geometry_temp);
+							radius = arr0[4]*(maxrad-minrad)+minrad*1.0;
+							
+							if (arr0[4]-0<0.333) {
+								var num1 = Math.round((c2[0]-c1[0])*(arr0[4]-0)/0.333+c1[0]);
+								var num2 = Math.round((c2[1]-c1[1])*(arr0[4]-0)/0.333+c1[1]);
+								var num3 = Math.round((c2[2]-c1[2])*(arr0[4]-0)/0.333+c1[2]);
+								var colorstr = getColorCode(num1,num2,num3);
+								var colormat = new THREE.MeshStandardMaterial({color: colorstr});
+							} else if (arr0[4]-0<0.666) {
+								var num1 = Math.round((c3[0]-c2[0])*(arr0[4]-0.333)/0.333+c2[0]);
+								var num2 = Math.round((c3[1]-c2[1])*(arr0[4]-0.333)/0.333+c2[1]);
+								var num3 = Math.round((c3[2]-c2[2])*(arr0[4]-0.333)/0.333+c2[2]);
+								var colorstr = getColorCode(num1,num2,num3);
+								var colormat = new THREE.MeshStandardMaterial({color: colorstr});
+							} else {
+								var num1 = Math.round((c4[0]-c3[0])*(arr0[4]-0.666)/0.333+c3[0]);
+								var num2 = Math.round((c4[1]-c3[1])*(arr0[4]-0.666)/0.333+c3[1]);
+								var num3 = Math.round((c4[2]-c3[2])*(arr0[4]-0.666)/0.333+c3[2]);
+								var colorstr = getColorCode(num1,num2,num3);
+								var colormat = new THREE.MeshStandardMaterial({color: colorstr});
+							};
+							
+							var geometry_temp = new THREE.TubeGeometry(CurvePath, 8, radius, 8, false);
+							var mesh = new THREE.Mesh(geometry_temp, colormat);
+							mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+							mesh.scale.set(0.07, 0.07, 0.07); //缩放
+							mesh.castShadow = true;
+							group.add(mesh);
+							geometry.push(geometry_temp);
+							
+							var geometry_temp = new THREE.SphereGeometry(radius, 8, 8);
+							var mesh = new THREE.Mesh(geometry_temp, colormat);
+							mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+							mesh.scale.set(0.07, 0.07, 0.07); //缩放
+							mesh.position.x = arr0[0]*0.07;
+							mesh.position.y = 0;
+							mesh.position.z = -arr0[1]*0.07;
+							mesh.castShadow = true;
+							group.add(mesh);
+							geometry.push(geometry_temp);
+							
+							var geometry_temp = new THREE.SphereGeometry(radius, 8, 8);
+							var mesh = new THREE.Mesh(geometry_temp, colormat);
+							mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+							mesh.scale.set(0.07, 0.07, 0.07); //缩放
+							mesh.position.x = arr0[2]*0.07;
+							mesh.position.y = 0;
+							mesh.position.z = -arr0[3]*0.07;
+							mesh.castShadow = true;
+							group.add(mesh);
+							geometry.push(geometry_temp);
+						}
 					}
 				}
+				
+				var box3 = new THREE.Box3();
+				// 计算层级模型group的包围盒
+				// 模型group是加载一个三维模型返回的对象，包含多个网格模型
+				box3.expandByObject(group);
+				// 计算一个层级模型对应包围盒的几何体中心在世界坐标中的位置
+				var center = new THREE.Vector3();
+				box3.getCenter(center);
+				// console.log('查看几何体中心坐标', center);
+				// 重新设置模型的位置，使之居中。
+				group.position.x = group.position.x - center.x;
+				group.position.y = group.position.y - center.y;
+				group.position.z = group.position.z - center.z;
+				group_arrow.position.x = group_arrow.position.x - center.x;
+				group_arrow.position.y = group_arrow.position.y - center.y;
+				group_arrow.position.z = group_arrow.position.z - center.z;
+				scene.add(group);
+				scene.add(group_arrow);
+				
+				var plane = new THREE.PlaneGeometry(10000,10000);
+				var material = new THREE.MeshPhongMaterial({
+					color: 0xFCFCFC,
+					// 矩形平面网格模型默认单面显示，可以设置side属性值为THREE.DoubleSide双面显示
+				});
+				var mesh = new THREE.Mesh(plane, material);
+				mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+				mesh.position.y = -30;
+				mesh.receiveShadow = true;
+				scene.add(mesh);
 			}
 			
 			if (display_mode==2) {
+			
 				let form_pois_edges_geos = [];
 				for (var i = 0; i < form_pois_edges.length; i++) {
 					arr0 = [];
@@ -2084,7 +2334,7 @@
 					for (var j = 0; j < form_pois_neib_pois[i].length; j++) {
 					
 						var rad_temp = force_edges_magnitude[form_pois_edges[i][j]];
-						if (rad_temp-0==0) {
+						if (rad_temp-0==-1) {
 							var colorstr = getColorCode(0,100,0);
 							var colormat = new THREE.MeshStandardMaterial({color: colorstr});
 						}else if (rad_temp-0<0.333) {
@@ -2119,58 +2369,72 @@
 						var face = new THREE.Face3( 0, 1, 2, normal); //创建三角面
 						geo.faces.push(face); //三角面添加到几何体
 						//var face = new THREE.Face3( 2, 3, 1, normal); //创建三角面
-						geo.faces.push( face ); //三角面添加到几何体
 						var mesh = new THREE.Mesh(geo,colormat);//网格模型对象
 						mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
 						mesh.scale.set(0.07, 0.07, 0.07); //缩放
 						mesh.castShadow = true;
-						group_mink.add(mesh);
+						if (rad_temp-0==-1) {
+							if (external_force_mode==1) {
+								group_mink.add(mesh);
+							}
+						} else {
+						    group_mink.add(mesh);
+						}
 						var geo = new THREE.Geometry(); //声明一个空几何体对象
 						geo.vertices.push(p3,p4,p1); //顶点坐标添加到geometry对象
 						var normal = new THREE.Vector3( 0, 0, 1 ); //三角面法向量
 						var face = new THREE.Face3( 0, 1, 2, normal); //创建三角面
 						geo.faces.push(face); //三角面添加到几何体
 						//var face = new THREE.Face3( 2, 3, 1, normal); //创建三角面
-						geo.faces.push( face ); //三角面添加到几何体
 						var mesh = new THREE.Mesh(geo,colormat);//网格模型对象
 						mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
 						mesh.scale.set(0.07, 0.07, 0.07); //缩放
 						mesh.castShadow = true;
-						group_mink.add(mesh);
+						if (rad_temp-0==-1) {
+							if (external_force_mode==1) {
+								group_mink.add(mesh);
+							}
+						} else {
+						    group_mink.add(mesh);
+						}
 					}
 				}
-				group = group_mink;
+				
+				var box3 = new THREE.Box3();
+				// 计算层级模型group的包围盒
+				// 模型group是加载一个三维模型返回的对象，包含多个网格模型
+				box3.expandByObject(group_mink);
+				// 计算一个层级模型对应包围盒的几何体中心在世界坐标中的位置
+				var center = new THREE.Vector3();
+				box3.getCenter(center);
+				// console.log('查看几何体中心坐标', center);
+				// 重新设置模型的位置，使之居中。
+				group_mink.position.x = group_mink.position.x - center.x;
+				group_mink.position.y = group_mink.position.y - center.y;
+				group_mink.position.z = group_mink.position.z - center.z;
+				scene.add(group_mink);
+				
 			}
-			
-			var box3 = new THREE.Box3()
-			// 计算层级模型group的包围盒
-			// 模型group是加载一个三维模型返回的对象，包含多个网格模型
-			box3.expandByObject(group)
-			// 计算一个层级模型对应包围盒的几何体中心在世界坐标中的位置
-			var center = new THREE.Vector3()
-			box3.getCenter(center)
-			// console.log('查看几何体中心坐标', center);
-			// 重新设置模型的位置，使之居中。
-			group.position.x = group.position.x - center.x
-			group.position.y = group.position.y - center.y
-			group.position.z = group.position.z - center.z
-			
-			scene.add(group);
-			
-			var plane = new THREE.PlaneGeometry(10000,10000)
-			var material = new THREE.MeshPhongMaterial({
-				color: 0xFCFCFC,
-				// 矩形平面网格模型默认单面显示，可以设置side属性值为THREE.DoubleSide双面显示
-			});
-			var mesh = new THREE.Mesh(plane, material);
-			mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
-			mesh.position.y = -30;
-			mesh.receiveShadow = true;
 			
 			if (display_mode==1) {
-				scene.add(mesh);
+				var vec = new THREE.Vector3(wall_info[3]-wall_info[1], -(wall_info[2]-wall_info[0]));
+				vec = vec.normalize();
+				var baseShape = new THREE.Shape();
+				baseShape.moveTo(wall_info[0], wall_info[1]);
+				baseShape.lineTo(wall_info[2], wall_info[3]);
+				baseShape.lineTo(wall_info[2]+vec.x*3, wall_info[3]+vec.y*3);
+				baseShape.lineTo(wall_info[0]+vec.x*3, wall_info[1]+vec.y*3);
+				baseShape.lineTo(wall_info[0], wall_info[1]);
+				var extrudedGeometry = new THREE.ExtrudeGeometry(baseShape, {amount: 20, bevelEnabled: false});
+				var tmaterial = new THREE.MeshStandardMaterial({color:0xffffff,transparent:true,opacity:0.8});
+				//tmaterial.opacity = 0.1;
+				var extrudedMesh = new THREE.Mesh(extrudedGeometry, tmaterial);
+				extrudedMesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+				extrudedMesh.position.x = extrudedMesh.position.x - center.x;
+				extrudedMesh.position.y = extrudedMesh.position.y - center.y -10;
+				extrudedMesh.position.z = extrudedMesh.position.z - center.z;
+				scene.add(extrudedMesh);
 			}
-			
 		}
 	</script>
 </body>
