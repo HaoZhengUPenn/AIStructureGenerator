@@ -97,20 +97,16 @@
 </head>
 
 <body>
-    
-	<div id="gcpb" style="background-color: #000000; opacity: 0.1; position:absolute; top:17px; left:30px; width: 275px; height: 650px;"></div>
-	<div id="gcpb2" style="background-color: #000000; opacity: 0.2; position:absolute; top:21px; left:30px; width: 275px; height: 32px;"></div>
-	
 	<div id="container-item" style="position:absolute; top:20px; left:40px; width: 350px; display:block;">
 	    <span class="glyphicon glyphicon-asterisk" style="font-size:20px">Geometric Control Panel</span>
 	</div>
-	<div id="container" style="position:absolute; top:100px; left:40px; width:260px; height:260px; float:left; display:block;">
+	<div id="container" style="position:absolute; top:130px; left:40px; width:260px; height:260px; float:left; display:block;">
 	    <canvas id="canvas" width="250" height="250" style="border: 3px solid black"></canvas>
     </div>
-	<div id="container-item" style="position:absolute; top:70px; left:0px; width: 340px; height:30px; display:block;">
+	<div id="container-item" style="position:absolute; top:60px; left:0px; width: 340px; display:block;">
 	    <ul class="tabs" data-tab>
-			<button id="btn_set_3poi" type="button" class="btn btn-default" onclick="set_3poi()" style="float:left; font-size:8px; width:64px; height: 30px;">
-				<span class="glyphicon glyphicon-asterisk" style="font-size:8px">3 points</span>
+			<button id="btn_set_3poi" type="button" class="btn btn-default" onclick="set_3poi()" style="float:left; font-size:10px;">
+				<span class="glyphicon glyphicon-asterisk" style="font-size:10px">3 points</span>
 			</button>
 			<script type='text/javascript'>
 				function set_3poi() {
@@ -122,7 +118,7 @@
 					function Circle(x, y) {
 						this.x = x;
 						this.y = y;
-						this.radius = 7;
+						this.radius = 5;
 						this.color = "blue";
 						//拖拽点的标记
 						this.isSelected = false;
@@ -144,6 +140,16 @@
 					const canvas = document.getElementById('canvas');
 					const context = canvas.getContext('2d');
 					context.clearRect(0,0,canvas.width,canvas.height);
+					for(var i=0; i<circles.length; i++) {
+						var circle = circles[i];
+						context.globalAlpha = 0.85;
+						context.beginPath();
+						context.arc(circle.x, circle.y, circle.radius, 0, Math.PI*2);
+						context.fillStyle = circle.color;
+						context.strokeStyle = "black";
+						context.fill();
+						context.stroke();
+					}
 					context.beginPath();
 					context.lineWidth = 2;
 					context.moveTo(points[0].x,points[0].y);
@@ -169,21 +175,10 @@
 						context.strokeStyle="black";
 						context.stroke();
 					}
-					context.lineWidth = 3;
-					for(var i=0; i<circles.length; i++) {
-						var circle = circles[i];
-						context.globalAlpha = 0.85;
-						context.beginPath();
-						context.arc(circle.x, circle.y, circle.radius, 0, Math.PI*2);
-						context.fillStyle = "black";
-						context.strokeStyle = "white";
-						context.fill();
-						context.stroke();
-					}
 				}
 			</script>
-		    <button id="btn_set_4poi" type="button" class="btn btn-default" onclick="set_4poi()" style="float:left; font-size:8px; width:64px; height: 30px;">
-				<span class="glyphicon glyphicon-asterisk" style="font-size:8px">4 points</span>
+		    <button id="btn_set_4poi" type="button" class="btn btn-default" onclick="set_4poi()" style="float:left; font-size:10px;">
+				<span class="glyphicon glyphicon-asterisk" style="font-size:10px">4 points</span>
 			</button>
 			<script type='text/javascript'>
 				function set_4poi() {
@@ -195,7 +190,7 @@
 					function Circle(x, y) {
 						this.x = x;
 						this.y = y;
-						this.radius = 7;
+						this.radius = 5;
 						this.color = "blue";
 						//拖拽点的标记
 						this.isSelected = false;
@@ -221,6 +216,16 @@
 					const canvas = document.getElementById('canvas');
 					const context = canvas.getContext('2d');
 					context.clearRect(0,0,canvas.width,canvas.height);
+					for(var i=0; i<circles.length; i++) {
+						var circle = circles[i];
+						context.globalAlpha = 0.85;
+						context.beginPath();
+						context.arc(circle.x, circle.y, circle.radius, 0, Math.PI*2);
+						context.fillStyle = circle.color;
+						context.strokeStyle = "black";
+						context.fill();
+						context.stroke();
+					}
 					context.beginPath();
 					context.lineWidth = 2;
 					context.moveTo(points[0].x,points[0].y);
@@ -246,21 +251,10 @@
 						context.strokeStyle="black";
 						context.stroke();
 					}
-					context.lineWidth = 3;
-					for(var i=0; i<circles.length; i++) {
-						var circle = circles[i];
-						context.globalAlpha = 0.85;
-						context.beginPath();
-						context.arc(circle.x, circle.y, circle.radius, 0, Math.PI*2);
-						context.fillStyle = "black";
-						context.strokeStyle = "white";
-						context.fill();
-						context.stroke();
-					}
 				}
 			</script>
-			<button id="btn_set_5poi" type="button" class="btn btn-default" onclick="set_5poi()" style="float:left; font-size:8px; width:64px; height: 30px;">
-				<span class="glyphicon glyphicon-asterisk" style="font-size:8px">5 points</span>
+			<button id="btn_set_5poi" type="button" class="btn btn-default" onclick="set_5poi()" style="float:left; font-size:10px;">
+				<span class="glyphicon glyphicon-asterisk" style="font-size:10px">5 points</span>
 			</button>
 			<script type='text/javascript'>
 				function set_5poi() {
@@ -272,7 +266,7 @@
 					function Circle(x, y) {
 						this.x = x;
 						this.y = y;
-						this.radius = 7;
+						this.radius = 5;
 						this.color = "blue";
 						//拖拽点的标记
 						this.isSelected = false;
@@ -302,6 +296,16 @@
 					const canvas = document.getElementById('canvas');
 					const context = canvas.getContext('2d');
 					context.clearRect(0,0,canvas.width,canvas.height);
+					for(var i=0; i<circles.length; i++) {
+						var circle = circles[i];
+						context.globalAlpha = 0.85;
+						context.beginPath();
+						context.arc(circle.x, circle.y, circle.radius, 0, Math.PI*2);
+						context.fillStyle = circle.color;
+						context.strokeStyle = "black";
+						context.fill();
+						context.stroke();
+					}
 					context.beginPath();
 					context.lineWidth = 2;
 					context.moveTo(points[0].x,points[0].y);
@@ -327,21 +331,10 @@
 						context.strokeStyle="black";
 						context.stroke();
 					}
-					context.lineWidth = 3;
-					for(var i=0; i<circles.length; i++) {
-						var circle = circles[i];
-						context.globalAlpha = 0.85;
-						context.beginPath();
-						context.arc(circle.x, circle.y, circle.radius, 0, Math.PI*2);
-						context.fillStyle = "black";
-						context.strokeStyle = "white";
-						context.fill();
-						context.stroke();
-					}
 				}
 			</script>
-			<button id="btn_set_6poi" type="button" class="btn btn-default" onclick="set_6poi()" style="float:left; font-size:8px; width:64px; height: 30px;">
-				<span class="glyphicon glyphicon-asterisk" style="font-size:8px">6 points</span>
+			<button id="btn_set_6poi" type="button" class="btn btn-default" onclick="set_6poi()" style="float:left; font-size:10px;">
+				<span class="glyphicon glyphicon-asterisk" style="font-size:10px">6 points</span>
 			</button>
 			<script type='text/javascript'>
 				function set_6poi() {
@@ -353,7 +346,7 @@
 					function Circle(x, y) {
 						this.x = x;
 						this.y = y;
-						this.radius = 7;
+						this.radius = 5;
 						this.color = "blue";
 						//拖拽点的标记
 						this.isSelected = false;
@@ -387,6 +380,16 @@
 					const canvas = document.getElementById('canvas');
 					const context = canvas.getContext('2d');
 					context.clearRect(0,0,canvas.width,canvas.height);
+					for(var i=0; i<circles.length; i++) {
+						var circle = circles[i];
+						context.globalAlpha = 0.85;
+						context.beginPath();
+						context.arc(circle.x, circle.y, circle.radius, 0, Math.PI*2);
+						context.fillStyle = circle.color;
+						context.strokeStyle = "black";
+						context.fill();
+						context.stroke();
+					}
 					context.beginPath();
 					context.lineWidth = 2;
 					context.moveTo(points[0].x,points[0].y);
@@ -412,53 +415,48 @@
 						context.strokeStyle="black";
 						context.stroke();
 					}
-					context.lineWidth = 3;
-					for(var i=0; i<circles.length; i++) {
-						var circle = circles[i];
-						context.globalAlpha = 0.85;
-						context.beginPath();
-						context.arc(circle.x, circle.y, circle.radius, 0, Math.PI*2);
-						context.fillStyle = "black";
-						context.strokeStyle = "white";
-						context.fill();
-						context.stroke();
-					}
 				}
 			</script>
-
+			
+			<div style="background-color: transparent; width: 100%; height: 30pt;"></div>
+			
+			<span class="dragged" style="float:left; font-size:15px;">Drag to adjust the points.</span>
 		</ul>
     </div>
-	<div id="container" style="position:absolute; top:370px; left:20px; width:300px; height:500px; float:left; display:inline; padding-left:20px;">
+	<div id="container" style="position:absolute; top:380px; left:20px; width:300px; height:500px; float:left; display:inline; padding-left:20px;">
 	
 	    <div class="form-group" id="l"></div>
 		    <div class="col-sm-3"></div>
 			
 			    <span class="input-group-addon" style="font-size:15px; white-space:nowrap;">Subdivision Density
-				<abbr title="Subdivision Density defines the density of the structural members. By increasing it, more members will be generated with a longer time cost.">*</abbr></span>
+				<abbr title="Subdivision Density defines the density of the structural members. By increasing it, more members will be generated with a longer time cost.">(what's this?)</abbr></span>
 				
 				<div style="background-color: transparent; width: 100%; height: 0pt;"></div>
 				
-				<input type="range" min="0" max="1" step="0.01" name="reduce_rate" id="reduce_rate" style="width:222px; height:10px;" oninput="change_reduce_rate()" onchange="change_reduce_rate()"/>
+				<input type="range" min="0" max="1" step="0.01" name="reduce_rate" id="reduce_rate" style="width:240px; height:10px;" oninput="change_reduce_rate()" onchange="change_reduce_rate()"/>
 			    <span id="value_reduce_rate" style="font-size:15px">0</span>
 				<script type='text/javascript'>
 					function change_reduce_rate() {
 					    var value_reduce_rate = document.getElementById('reduce_rate').value;
-						document.getElementById('value_reduce_rate').innerHTML = (parseInt(value_reduce_rate*100)/100).toFixed(2);
+						document.getElementById('value_reduce_rate').innerHTML = value_reduce_rate;
 					}
 				</script>
 				<!-- <input type="text" class="form-control" name="reduce_rate" id="reduce_rate" style="width:400px; height:30px;"> -->
-
+		
+		<div class="form-group" id="l"></div>
+		    <div class="col-sm-3"></div>
+                <div class="col-sm-3"></div>
 				<span class="input-group-addon" style="font-size:15px; white-space:nowrap;">Tolerance of Edge Length
-				<abbr title="Tolerance of Edge Length defines the upper and lower bounds of the length constraint for each edge. Increasing it will give more freedom to the geometric generation process in graphic statics.">*</abbr></span>
+				<abbr title="Tolerance of Edge Length defines the upper and lower bounds of the length constraint for each edge. Increasing it will give more freedom to the geometric generation process in graphic statics.">(what's this?)</abbr></span>
 				
 				<div style="background-color: transparent; width: 100%; height: 0pt;"></div>
 				
-				<input type="range" min="0" max="1" step="0.01" name="tolerance_of_edge_length" id="tolerance_of_edge_length" style="width:222px; height:10px;" oninput="change_tolerance_of_edge_length()" onchange="change_tolerance_of_edge_length()"/>
+				<input type="range" min="0" max="1" step="0.01" name="tolerance_of_edge_length" id="tolerance_of_edge_length" style="width:240px; height:10px;" oninput="change_tolerance_of_edge_length()" onchange="change_tolerance_of_edge_length()"/>
 			    <span id="value_tolerance_of_edge_length" style="font-size:15px">0</span>
 				<script type='text/javascript'>
 					function change_tolerance_of_edge_length() {
 					    var value_tolerance_of_edge_length = document.getElementById('tolerance_of_edge_length').value;
-						document.getElementById('value_tolerance_of_edge_length').innerHTML = (parseInt(value_tolerance_of_edge_length*100)/100).toFixed(2);
+						document.getElementById('value_tolerance_of_edge_length').innerHTML = value_tolerance_of_edge_length;
 					}
 				</script>
 			    <!-- <input type="text" class="form-control" name="tolerance_of_edge_length" id="tolerance_of_edge_length" style="width:400px; height:30px;"> -->
@@ -467,12 +465,12 @@
 		    <div class="col-sm-3"></div>
 				<span id="length_constraint_maltiplier_spa" class="input-group-addon" style="font-size:15px; white-space:nowrap; display:none;">
 				<abbr id="length_constraint_maltiplier_abb" title="Length Constraint Multiplier defines the relaxation of the edge length constraints. Increasing it will cause more rectangular cells than circular cells." style="display:none">LCM</abbr></span>
-				<input type="range" min="0" max="2" step="0.01" name="length_constraint_maltiplier" id="length_constraint_maltiplier" style="width:188px; height:10px; display:none;" oninput="change_length_constraint_maltiplier()" onchange="change_length_constraint_maltiplier()"/>
+				<input type="range" min="0" max="2" step="0.01" name="length_constraint_maltiplier" id="length_constraint_maltiplier" style="width:200px; height:10px; display:none;" oninput="change_length_constraint_maltiplier()" onchange="change_length_constraint_maltiplier()"/>
 			    <span id="value_length_constraint_maltiplier" style="font-size:15px; display:none">0</span>
 				<script type='text/javascript'>
 					function change_length_constraint_maltiplier() {
 					    var value_length_constraint_maltiplier = document.getElementById('length_constraint_maltiplier').value;
-						document.getElementById('value_length_constraint_maltiplier').innerHTML = (parseInt(value_length_constraint_maltiplier*100)/100).toFixed(2);
+						document.getElementById('value_length_constraint_maltiplier').innerHTML = value_length_constraint_maltiplier;
 					}
 				</script>
 			    <!-- <input type="text" class="form-control" name="length_constraint_maltiplier" id="length_constraint_maltiplier" style="width:400px; height:30px;"> -->
@@ -481,12 +479,12 @@
 		
 				<span id="boundary_constraint_magnitude_spa" class="input-group-addon" style="font-size:15px; white-space:nowrap; display:none;">
 				<abbr id="boundary_constraint_magnitude_abb" title="Boundary Constraint Magnitude to define the magnitude of the boundary constraint to the form. Increasing it will make the structure attach closer to the boundary." style="display:none;">BCM</abbr></span>
-				<input type="range" min="0" max="9.99" step="0.01" name="boundary_constraint_magnitude" id="boundary_constraint_magnitude" style="width:185px; height:10px; display:none;" oninput="change_boundary_constraint_magnitude()" onchange="change_boundary_constraint_magnitude()"/>
+				<input type="range" min="0" max="10" step="0.01" name="boundary_constraint_magnitude" id="boundary_constraint_magnitude" style="width:200px; height:10px; display:none;" oninput="change_boundary_constraint_magnitude()" onchange="change_boundary_constraint_magnitude()"/>
 			    <span id="value_boundary_constraint_magnitude" style="font-size:15px; display:none;">0</span>
 				<script type='text/javascript'>
 					function change_boundary_constraint_magnitude() {
 					    var value_boundary_constraint_magnitude = document.getElementById('boundary_constraint_magnitude').value;
-						document.getElementById('value_boundary_constraint_magnitude').innerHTML = (parseInt(value_boundary_constraint_magnitude*100)/100).toFixed(2);
+						document.getElementById('value_boundary_constraint_magnitude').innerHTML = value_boundary_constraint_magnitude;
 					}
 				</script>
 			    <!-- <input type="text" class="form-control" name="boundary_constraint_magnitude" id="boundary_constraint_magnitude" style="width:400px; height:30px;"> -->
@@ -495,7 +493,7 @@
 		
 				<span id="perp_steps_spa" class="input-group-addon" style="font-size:15px; white-space:nowrap; display:none;">
 				<abbr id="perp_steps_abb" title="Perp Steps defines the number of iterations in the geometric generation process in graphic statics. Increasing it will generate a more accurate structure but with a longer time." style="display:none;">PS</abbr></span>
-				<input type="range" min="0" max="30000" step="1" name="perp_steps" id="perp_steps" style="width:188px; height:10px; display:none;" oninput="change_perp_steps()" onchange="change_perp_steps()"/>
+				<input type="range" min="0" max="30000" step="1" name="perp_steps" id="perp_steps" style="width:200px; height:10px; display:none;" oninput="change_perp_steps()" onchange="change_perp_steps()"/>
 			    <span id="value_perp_steps" style="font-size:15px; display:none;">0</span>
 				<script type='text/javascript'>
 					function change_perp_steps() {
@@ -556,9 +554,6 @@
 								
 								var obj = document.getElementById("btn_showadv");
 								obj.style.display = "none";
-								
-								//var obj = document.getElementById("gcpb");
-								//obj.style.height = "650px"
 							}
 						</script>
 						
@@ -578,13 +573,13 @@
 						<script type='text/javascript'>
 							function set_default() {
 								document.getElementById("reduce_rate").value = 0.5;
-								document.getElementById('value_reduce_rate').innerHTML = (0.5).toFixed(2);
+								document.getElementById('value_reduce_rate').innerHTML = 0.5;
 								document.getElementById("tolerance_of_edge_length").value = 0.3;
-								document.getElementById('value_tolerance_of_edge_length').innerHTML = (0.3).toFixed(2);
+								document.getElementById('value_tolerance_of_edge_length').innerHTML = 0.3;
 								document.getElementById("length_constraint_maltiplier").value = 0.5;
-								document.getElementById('value_length_constraint_maltiplier').innerHTML = (0.5).toFixed(2);
+								document.getElementById('value_length_constraint_maltiplier').innerHTML = 0.5;
 								document.getElementById("boundary_constraint_magnitude").value = 5;
-								document.getElementById('value_boundary_constraint_magnitude').innerHTML = (5).toFixed(2);
+								document.getElementById('value_boundary_constraint_magnitude').innerHTML = 5;
 								document.getElementById("perp_steps").value = 10000;
 								document.getElementById('value_perp_steps').innerHTML = 10000;
 								function Point(x, y) {
@@ -595,7 +590,7 @@
 								function Circle(x, y) {
 									this.x = x;
 									this.y = y;
-									this.radius = 7;
+									this.radius = 5;
 									this.color = "blue";
 									//拖拽点的标记
 									this.isSelected = false;
@@ -625,6 +620,16 @@
 								const canvas = document.getElementById('canvas');
 								const context = canvas.getContext('2d');
 								context.clearRect(0,0,canvas.width,canvas.height);
+								for(var i=0; i<circles.length; i++) {
+									var circle = circles[i];
+									context.globalAlpha = 0.85;
+									context.beginPath();
+									context.arc(circle.x, circle.y, circle.radius, 0, Math.PI*2);
+									context.fillStyle = circle.color;
+									context.strokeStyle = "black";
+									context.fill();
+									context.stroke();
+								}
 								context.beginPath();
 								context.lineWidth = 2;
 								context.moveTo(points[0].x,points[0].y);
@@ -650,17 +655,6 @@
 									context.strokeStyle="black";
 									context.stroke();
 								}
-								context.lineWidth = 3;
-								for(var i=0; i<circles.length; i++) {
-									var circle = circles[i];
-									context.globalAlpha = 0.85;
-									context.beginPath();
-									context.arc(circle.x, circle.y, circle.radius, 0, Math.PI*2);
-									context.fillStyle = "black";
-									context.strokeStyle = "white";
-									context.fill();
-									context.stroke();
-								}
 							}
 						</script>
                     </span>
@@ -672,20 +666,15 @@
         </form>
     </div>
 	
-	<div id="dcpb" style="background-color: #000000; opacity: 0.1; position:absolute; top:145px; right:5px; width: 285px; height: 305px;"></div>
-	<div id="dcpb2" style="background-color: #000000; opacity: 0.2; position:absolute; top:151px; right:5px; width: 285px; height: 32px;"></div>
-	
 	<div id="container-item" style="position:absolute; top:150px; right:10px; width: 350px; display:block;">
 	    <span class="glyphicon glyphicon-asterisk" style="font-size:20px; float:right;">Display Control Panel</span>
 	</div>
 	
 	<div class="form-group" id="2"></div>
 		<div class="col-sm-4"></div>
-			<div id="container-item" style="position:absolute; top:190px; right:10px; width: 300px; float: right; display:block;">
+			<div id="container-item" style="position:absolute; top:185px; right:10px; width: 300px; float: right; display:block;">
 				<ul class="tabs" data-tab>
-				
-				    <div style="background-color: transparent; width: 100%; height: 10pt;"></div>
-				
+				    <span class="dragged" style="float:right;">Change display mode.</span>
 					<button id="btn_set_mink" type="button" class="btn btn-default" onclick="set_mink()" style="float:right;">
 						<span class="glyphicon glyphicon-asterisk"></span>
 						minkowski sum
@@ -735,17 +724,17 @@
 				<div style="background-color: transparent; width: 100%; height: 25pt;"></div>
 
 				<span class="input-group-addon" style="font-size:15px; white-space:nowrap; float:right;">Minimum Radius&nbsp
-			    <abbr style="float:right;" title="Minimum Radius defines the size of the smallest pipes in the normal display mode.">*</abbr></span>				
-				<input type="range" min="0" max="9.99" step="0.01" name="minumum_radius" id="minumum_radius" style="width:240px; height:23px; float:right;" oninput="input_minumum_radius()" onchange="change_minumum_radius()"/>
+			    <abbr style="float:right;" title="Minimum Radius defines the size of the smallest pipes in the normal display mode.">(what's this?)</abbr></span>				
+				<input type="range" min="0" max="10" step="0.01" name="minumum_radius" id="minumum_radius" style="width:240px; height:23px; float:right;" oninput="input_minumum_radius()" onchange="change_minumum_radius()"/>
 				<span id="value_minumum_radius" style="font-size:15px; float:right;">0</span>
 				<script type='text/javascript'>
 					function change_minumum_radius() {
 					    var value_minumum_radius = document.getElementById('minumum_radius').value;
-						document.getElementById('value_minumum_radius').innerHTML = (parseInt(value_minumum_radius*100)/100).toFixed(2);
+						document.getElementById('value_minumum_radius').innerHTML = value_minumum_radius;
 					}
 					function input_minumum_radius() {
 					    var value_minumum_radius = document.getElementById('minumum_radius').value;
-						document.getElementById('value_minumum_radius').innerHTML = (parseInt(value_minumum_radius*100)/100).toFixed(2);
+						document.getElementById('value_minumum_radius').innerHTML = value_minumum_radius;
 						draw_update();
 					}
 				</script>
@@ -754,17 +743,17 @@
 				<div style="background-color: transparent; width: 100%; height: 20pt;"></div>
 
 				<span class="input-group-addon" style="font-size:15px; white-space:nowrap; float:right;">Maximum Radius&nbsp
-			    <abbr style="float:right;" title="Maximum Radius defines the size of the largest pipes in the normal display mode.">*</abbr></span>
-				<input type="range" min="0" max="99.9" step="0.1" name="maximum_radius" id="maximum_radius" style="width:240px; height:23px; float:right;" oninput="input_maximum_radius()" onchange="change_maximum_radius()"/>
+			    <abbr style="float:right;" title="Maximum Radius defines the size of the largest pipes in the normal display mode.">(what's this?)</abbr></span>
+				<input type="range" min="0" max="100" step="0.01" name="maximum_radius" id="maximum_radius" style="width:240px; height:23px; float:right;" oninput="input_maximum_radius()" onchange="change_maximum_radius()"/>
 			    <span id="value_maximum_radius" style="font-size:15px; float:right;">0</span>
 				<script type='text/javascript'>
 					function change_maximum_radius() {
 					    var value_maximum_radius = document.getElementById('maximum_radius').value;
-						document.getElementById('value_maximum_radius').innerHTML = (parseInt(value_maximum_radius*10)/10).toFixed(1);
+						document.getElementById('value_maximum_radius').innerHTML = value_maximum_radius;
 					}
 					function input_maximum_radius() {
 					    var value_maximum_radius = document.getElementById('maximum_radius').value;
-						document.getElementById('value_maximum_radius').innerHTML = (parseInt(value_maximum_radius*10)/10).toFixed(1);
+						document.getElementById('value_maximum_radius').innerHTML = value_maximum_radius;
 						draw_update();
 					}
 				</script>
@@ -773,25 +762,22 @@
 				<div style="background-color: transparent; width: 100%; height: 20pt;"></div>
 
 				<span class="input-group-addon" style="font-size:15px; white-space:nowrap; float:right;">Minkowski Sum Indicator&nbsp
-			    <abbr style="float:right;" title="Minkowski Sum Indicator defines the form-to-force status in the minkowski sum display mode.">*</abbr></span>
+			    <abbr style="float:right;" title="Minkowski Sum Indicator defines the form-to-force status in the minkowski sum display mode.">(what's this?)</abbr></span>
 				<input type="range" min="0.01" max="0.99" step="0.01" name="minkowski_sum_indicator" id="minkowski_sum_indicator" style="width:240px; height:23px; float:right;" oninput="input_minkowski_sum_indicator()" onchange="change_minkowski_sum_indicator()"/>
 			    <span id="value_minkowski_sum_indicator" style="font-size:15px; float:right;">0</span>
 				<script type='text/javascript'>
 					function change_minkowski_sum_indicator() {
 					    var value_minkowski_sum_indicator = document.getElementById('minkowski_sum_indicator').value;
-						document.getElementById('minkowski_sum_indicator').innerHTML = (parseInt(value_minkowski_sum_indicator*100)/100).toFixed(2);
+						document.getElementById('minkowski_sum_indicator').innerHTML = value_minkowski_sum_indicator;
 					}
 					function input_minkowski_sum_indicator() {
 					    var value_minkowski_sum_indicator = document.getElementById('minkowski_sum_indicator').value;
-						document.getElementById('value_minkowski_sum_indicator').innerHTML = (parseInt(value_minkowski_sum_indicator*100)/100).toFixed(2);
+						document.getElementById('value_minkowski_sum_indicator').innerHTML = value_minkowski_sum_indicator;
 						draw_update();
 					}
 				</script>
 				
     </div>
-	
-	<div id="fmb" style="background-color: #000000; opacity: 0.1; position:absolute; top:465px; right:5px; width: 285px; height: 200px;"></div>
-	<div id="fmb2" style="background-color: #000000; opacity: 0.2; position:absolute; top:471px; right:5px; width: 285px; height: 32px;"></div>
 	
 	<div id="container-item" style="position:absolute; top:470px; right:10px; width: 350px; display:block;">
 	    <span class="glyphicon glyphicon-asterisk" style="font-size:20px; float:right;">File Manager</span>
@@ -799,7 +785,6 @@
 	<div id="container" style="position:absolute; top:490px; right:10px; width:288px; height:500px; float:right; display:inline; padding-left:20px;">
 		<div class="form-group" id="l"></div>
 		    <div class="col-sm-4"></div>
-			    <div style="background-color: transparent; width: 100%; height: 5pt;"></div>
 				<button id="btn_setdefault" type="button" class="btn btn-default" style="float:right;" onclick="download_stl()">
 					<span class="glyphicon glyphicon-asterisk"></span>
 					Export STL Model
@@ -960,12 +945,6 @@
 						    scene.remove(scene.children[scene.children.length-1]);
 							var temp_child_3 = scene.children[scene.children.length-1];
 						    scene.remove(scene.children[scene.children.length-1]);
-							var temp_child_4 = scene.children[scene.children.length-1];
-						    scene.remove(scene.children[scene.children.length-1]);
-						}
-						if (display_mode==2) {
-						    var temp_child_1 = scene.children[scene.children.length-1];
-						    scene.remove(scene.children[scene.children.length-1]);
 						}
 						var stlString = exporter.parse(scene);
 						console.log(stlString);
@@ -977,12 +956,8 @@
 						link.download = 'output.stl';
 						link.click();
 						if (display_mode==1) {
-							scene.add(temp_child_4);
 							scene.add(temp_child_3);
 							scene.add(temp_child_2);
-							scene.add(temp_child_1); 
-						}
-						if (display_mode==2) {
 							scene.add(temp_child_1); 
 						}
 						//window.open('../ghBackend/media/Default/output.stl')
@@ -990,7 +965,7 @@
 				</script>
 	</div>			
 				
-	<div id="container" style="position:absolute; top:548px; right:10px; width:288px; height:500px; float:right; display:inline; padding-left:20px;">
+	<div id="container" style="position:absolute; top:540px; right:10px; width:288px; height:500px; float:right; display:inline; padding-left:20px;">
 		<div class="form-group" id="l"></div>
 		    <div class="col-sm-4"></div>
 				<button id="btn_setdefault" type="button" class="btn btn-default" style="float:right;" onclick="download_csv()">
@@ -1007,7 +982,7 @@
 				</script>
 	</div>
 	
-	<div id="container" style="position:absolute; top:598px; right:10px; width:288px; height:500px; float:right; display:inline; padding-left:20px;">
+	<div id="container" style="position:absolute; top:590px; right:10px; width:288px; height:500px; float:right; display:inline; padding-left:20px;">
 		<div class="form-group" id="upload1"></div>
 		    <div class="col-sm-4"></div>
 				<button id="btn_setdefault" type="button" class="btn btn-default" style="float:right;" onclick="upload_csv()">
@@ -1080,17 +1055,15 @@
 								deleteGroup(group);
 								deleteGroup(group_mink);
 								deleteGroup(group_arrow);
-								deleteGroup(group_shadow);
 								
 								geometry = [];
 								group = new THREE.Group();
 								group_mink = new THREE.Group();
 								group_arrow = new THREE.Group();
-								group_shadow = new THREE.Group();
 								minrad = document.getElementById('minumum_radius').value;
 								maxrad = document.getElementById('maximum_radius').value;
 								mink = document.getElementById("minkowski_sum_indicator").value;
-								mat = new THREE.MeshStandardMaterial({color: 0x000000});
+								mat = new THREE.MeshLambertMaterial({color: 0x000000});
 								
 								console.log("local-file",minrad,maxrad);
 								
@@ -1171,26 +1144,13 @@
 												mesh.castShadow = true;
 												group.add(mesh);
 												geometry.push(geometry_temp);
-												
-												var geo_shadow = new THREE.Geometry();
-												var material_shadow = new THREE.LineBasicMaterial( { color: 0xEAEAEA, linecap: 'round', linejoin:  'round', linewidth: radius*2} );
-												var p1 = new THREE.Vector3(arr0[0]-0, arr0[1]-0, -29/0.07);
-												var p2 = new THREE.Vector3(arr0[2]-0, arr0[3]-0, -29/0.07);
-												geo_shadow.vertices.push(p1);
-												geo_shadow.vertices.push(p2);
-												var line_shadow = new THREE.Line(geo_shadow, material_shadow, THREE.LineSegments);
-												line_shadow.rotation.x = -0.5 * Math.PI; //将模型摆正
-												line_shadow.scale.set(0.07, 0.07, 0.07); //缩放
-												group_shadow.add(line_shadow);
-												geometry.push(line_shadow);
-												
 											}
 										}
 									}
 									//var loader = new THREE.STLLoader();
 									//loader.load('../ghBackend/media/Default/output.stl', function (geometry) {
 									//	//创建纹理
-									//	var mat = new THREE.MeshStandardMaterial({color: 0x0079ED});
+									//	var mat = new THREE.MeshLambertMaterial({color: 0x0079ED});
 									//	var mesh = new THREE.Mesh(geometry, mat);
 									//	mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
 									//	mesh.scale.set(0.07, 0.07, 0.07); //缩放
@@ -1212,14 +1172,10 @@
 									group_arrow.position.x = group_arrow.position.x - center.x;
 									group_arrow.position.y = group_arrow.position.y - center.y;
 									group_arrow.position.z = group_arrow.position.z - center.z;
-									group_shadow.position.x = group_shadow.position.x - center.x;
-									group_shadow.position.y = group_shadow.position.y - center.y;
-									group_shadow.position.z = group_shadow.position.z - center.z;
 									scene.add(group);
 									scene.add(group_arrow);
-									scene.add(group_shadow);
 									
-									var plane = new THREE.PlaneGeometry(100000,100000);
+									var plane = new THREE.PlaneGeometry(10000,10000);
 									var colormat = new THREE.MeshStandardMaterial({color: "0xFCFCFC"});
 									var mesh = new THREE.Mesh(plane, colormat);
 									mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
@@ -1368,14 +1324,6 @@
 									group_mink.position.y = group_mink.position.y - center.y;
 									group_mink.position.z = group_mink.position.z - center.z;
 									scene.add(group_mink);
-									
-									var plane = new THREE.PlaneGeometry(100000,100000);
-									var colormat = new THREE.MeshStandardMaterial({color: "0xFCFCFC"});
-									var mesh = new THREE.Mesh(plane, colormat);
-									mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
-									mesh.position.y = -30;
-									mesh.receiveShadow = true;
-									scene.add(mesh);
 								}
 								
 								pnum = pnum + pstep;
@@ -1383,13 +1331,13 @@
 								arr_input = arr_all.slice(pnum,pnum+pstep);
 								
 								document.getElementById("reduce_rate").defaultValue = arr_input[1];
-								document.getElementById('value_reduce_rate').innerHTML = (arr_input[1]*1.0).toFixed(2);
+								document.getElementById('value_reduce_rate').innerHTML = arr_input[1];
 								document.getElementById("tolerance_of_edge_length").defaultValue = arr_input[2];
-								document.getElementById('value_tolerance_of_edge_length').innerHTML = (arr_input[2]*1.0).toFixed(2);
+								document.getElementById('value_tolerance_of_edge_length').innerHTML = arr_input[2];
 								document.getElementById("length_constraint_maltiplier").defaultValue = arr_input[3];
-								document.getElementById('value_length_constraint_maltiplier').innerHTML = (arr_input[3]*1.0).toFixed(2);
+								document.getElementById('value_length_constraint_maltiplier').innerHTML = arr_input[3];
 								document.getElementById("boundary_constraint_magnitude").defaultValue = arr_input[4];
-								document.getElementById('value_boundary_constraint_magnitude').innerHTML = (arr_input[4]*1.0).toFixed(2);
+								document.getElementById('value_boundary_constraint_magnitude').innerHTML = arr_input[4];
 								document.getElementById("perp_steps").defaultValue = arr_input[5];
 								document.getElementById('value_perp_steps').innerHTML = arr_input[5];
 								
@@ -1495,7 +1443,7 @@
 				</script>
 	</div>
 				
-	<img id="loading" src="loading.gif" width="287" height="141" style="position:absolute; left:50%; top:50%; margin-left:-143px; margin-top:-70px; display:block;">
+	<img id="loading" src="loading.gif" width="287" height="141" style="position:absolute; top:300px; left:600px; display:block;">
 	
 	<img id="PSL" src="PSL.png" width="150" height="105" style="position:absolute; top:20px; right:10px; display:block;">
 	
@@ -1530,21 +1478,21 @@
 				// document.getElementById("minumum_radius").defaultValue = "1";
 				// document.getElementById("maximum_radius").defaultValue = "10";
 				document.getElementById("reduce_rate").defaultValue = arr_input[1];
-				document.getElementById('value_reduce_rate').innerHTML = (arr_input[1]*1.0).toFixed(2);
+				document.getElementById('value_reduce_rate').innerHTML = arr_input[1];
 				document.getElementById("tolerance_of_edge_length").defaultValue = arr_input[2];
-				document.getElementById('value_tolerance_of_edge_length').innerHTML = (arr_input[2]*1.0).toFixed(2);
+				document.getElementById('value_tolerance_of_edge_length').innerHTML = arr_input[2];
 				document.getElementById("length_constraint_maltiplier").defaultValue = arr_input[3];
-				document.getElementById('value_length_constraint_maltiplier').innerHTML = (arr_input[3]*1.0).toFixed(2);
+				document.getElementById('value_length_constraint_maltiplier').innerHTML = arr_input[3];
 				document.getElementById("boundary_constraint_magnitude").defaultValue = arr_input[4];
-				document.getElementById('value_boundary_constraint_magnitude').innerHTML = (arr_input[4]*1.0).toFixed(2);
+				document.getElementById('value_boundary_constraint_magnitude').innerHTML = arr_input[4];
 				document.getElementById("perp_steps").defaultValue = arr_input[5];
 				document.getElementById('value_perp_steps').innerHTML = arr_input[5];
 				document.getElementById("minumum_radius").defaultValue = 2;
-				document.getElementById('value_minumum_radius').innerHTML = (2).toFixed(2);
+				document.getElementById('value_minumum_radius').innerHTML = 2;
 				document.getElementById("maximum_radius").defaultValue = 20;
-				document.getElementById('value_maximum_radius').innerHTML = (20).toFixed(1);
+				document.getElementById('value_maximum_radius').innerHTML = 20;
+				document.getElementById('value_minkowski_sum_indicator').innerHTML = 0.5;
 				document.getElementById('minkowski_sum_indicator').defaultValue = 0.5;
-				document.getElementById('value_minkowski_sum_indicator').innerHTML = (0.5).toFixed(2);
 				arr0_input = arr_input[0].split(', ');
 				arr0_input[0] = arr0_input[0].split('[')[1];
 				arr0_input[arr0_input.length-1] = arr0_input[arr0_input.length-1].split(']')[0];
@@ -1595,7 +1543,7 @@
 				function Circle(x, y) {
 				this.x = x;
 				this.y = y;
-				this.radius = 7;
+				this.radius = 5;
 				this.color = "blue";
 				//拖拽点的标记
 				this.isSelected = false;
@@ -1603,6 +1551,19 @@
 
 				//进入下面的代码，绘制点
 				context.clearRect(0,0,canvas.width,canvas.height);
+				//遍历数组画圆
+				circles[0].color="blue";
+				for(var i=0; i<circles.length; i++) {
+				var circle = circles[i];
+				// 绘制圆圈
+				context.globalAlpha = 0.85;
+				context.beginPath();
+				context.arc(circle.x, circle.y, circle.radius, 0, Math.PI*2);
+				context.fillStyle = circle.color;
+				context.strokeStyle = "black";
+				context.fill();
+				context.stroke();
+				}
 				// 画线
 				//从起始点开始绘制
 				context.beginPath();
@@ -1630,20 +1591,10 @@
 					context.strokeStyle="black";
 					context.stroke();
 				}
-                context.lineWidth = 3;
-				for(var i=0; i<circles.length; i++) {
-					var circle = circles[i];
-					context.globalAlpha = 0.85;
-					context.beginPath();
-					context.arc(circle.x, circle.y, circle.radius, 0, Math.PI*2);
-					context.fillStyle = "black";
-					context.strokeStyle = "white";
-					context.fill();
-					context.stroke();
-				}
+
 				canvas.onmousedown=function(e){
 				var clickX = e.pageX - canvas.offsetLeft-40;
-				var clickY = e.pageY - canvas.offsetTop-100;
+				var clickY = e.pageY - canvas.offsetTop-130;
 				console.log("mouse click revised: ",clickX,clickY);
 				//判断当前点击点是否在已经绘制的圆圈上，如果是执行相关操作，并return，不进入画线的代码
 				for(var i=0; i<circles.length; i++) {
@@ -1667,13 +1618,24 @@
 					// 判断拖拽对象是否存在
 					// 取得鼠标位置
 					var x1 = e.pageX - canvas.offsetLeft-40;
-					var y1 = e.pageY - canvas.offsetTop-100;
+					var y1 = e.pageY - canvas.offsetTop-130;
 					context.clearRect(0,0,canvas.width,canvas.height);
 					//根据上文得到的index设置index点位置随鼠标改变
 					circles[index].x=x1;
 					circles[index].y=y1;
 					points[index].x=x1;
 					points[index].y=y1;
+					for(var i=0; i<circles.length; i++) {
+						var circle = circles[i];
+						// 绘制圆圈
+						context.globalAlpha = 0.85;
+						context.beginPath();
+						context.arc(circle.x, circle.y, circle.radius, 0, Math.PI*2);
+						context.fillStyle = circle.color;
+						context.strokeStyle = "black";
+						context.fill();
+						context.stroke();
+					}
 					context.beginPath();
 					context.lineWidth = 2;
 					context.moveTo(points[0].x,points[0].y);
@@ -1697,17 +1659,6 @@
 						context.fillStyle="rgb(128,128,128)";
 						context.fill();
 						context.strokeStyle="black";
-						context.stroke();
-					}
-					context.lineWidth = 3;
-					for(var i=0; i<circles.length; i++) {
-						var circle = circles[i];
-						context.globalAlpha = 0.85;
-						context.beginPath();
-						context.arc(circle.x, circle.y, circle.radius, 0, Math.PI*2);
-						context.fillStyle = "black";
-						context.strokeStyle = "white";
-						context.fill();
 						context.stroke();
 					}
 				}
@@ -1756,7 +1707,7 @@
 		var pstep;
 		var minrad;
 		var maxrad;
-		var mat = new THREE.MeshStandardMaterial({color: 0x000000});
+		var mat = new THREE.MeshLambertMaterial({color: 0x000000});
 		
 		function getColorCode(r,g,b){
 			var c="#";
@@ -1772,7 +1723,7 @@
 			renderer.setSize(window.innerWidth,window.innerHeight);
 			//告诉渲染器需要阴影效果
 			renderer.shadowMap.enabled = true;
-			renderer.setClearColor(0x808080);
+			renderer.setClearColor(0xFCFCFC);
 			document.body.appendChild(renderer.domElement);
 			document.body.style.backgroundColor = '#FCFCFC';
 		}
@@ -1780,7 +1731,7 @@
 		var camera;
 		function initCamera() {
 			camera = new THREE.PerspectiveCamera(50, window.innerWidth/window.innerHeight, 1, 1000);
-			camera.position.set(0, 120, 120);
+			camera.position.set(0, 100, 100);
 			camera.lookAt(new THREE.Vector3(0,0,0));
 		}
 
@@ -1790,44 +1741,18 @@
 		}
 
 		function initLight() {
-
-			scene.add(new THREE.AmbientLight(0xffffff,0.5));
-			
-			//var rectLight = new THREE.RectAreaLight(0xffffff, 1.0,  300, 300);
-			//rectLight.position.set(0,50,0);
-			//rectLight.lookAt(0,0,0);
-			//scene.add(rectLight);
-			
-			//var directionalLight = new THREE.DirectionalLight("0xffffff", 1.0);
-			//directionalLight.castShadow = true;
-			//directionalLight.position.set( 200, 200, 200 );
-			//directionalLight.lookAt( 200, 200, 0 );
-			//scene.add( directionalLight );
-			//scene.add( directionalLight.target );
-			
-			//var spotLight = new THREE.SpotLight(0xffffff);
-			//spotLight.position.set( 200, 200, 200 );
-
-			//spotLight.castShadow = true;
-
-			//spotLight.shadow.mapSize.width = 100;
-			//spotLight.shadow.mapSize.height = 100;
-
-			//spotLight.shadow.camera.near = 50;
-			//spotLight.shadow.camera.far = 400;
-			//spotLight.shadow.camera.fov = 3;
-
-			//scene.add( spotLight );
+		
+			scene.add(new THREE.AmbientLight(0x444444));
 			
 			//var light = new THREE.DirectionalLight(0xffffff, 2);
 			//light.position = new THREE.Vector3(140, 200, 140);
 
-			var light = new THREE.PointLight(0xffffff,2.0,500,1);
-			light.position.set(0,70,0);
-			light.intensity = 1.0;
+			var light = new THREE.PointLight(0xffffff,2.0,0,1);
+			light.position.set(-140,50,140);
+			//light.intensity = 1.5;
 
 			//告诉平行光需要开启阴影投射
-			//light.castShadow = true;
+			light.castShadow = true;
 
 			scene.add(light);
 			
@@ -1861,7 +1786,7 @@
 			//设置相机距离原点的最远距离
 			controls.minDistance  = 1;
 			//设置相机距离原点的最远距离
-			controls.maxDistance  = 300;
+			controls.maxDistance  = 1000;
 			//是否开启右键拖拽
 			controls.enablePan = true;
 		}
@@ -1918,7 +1843,6 @@
 		var group = new THREE.Group();
 		var group_mink = new THREE.Group();
 		var group_arrow = new THREE.Group();
-		var group_shadow = new THREE.Group();
 		
 		var content;
 		var textfile;
@@ -2028,26 +1952,13 @@
 								mesh.castShadow = true;
 								group.add(mesh);
 								geometry.push(geometry_temp);
-								
-								var geo_shadow = new THREE.Geometry();
-								var material_shadow = new THREE.LineBasicMaterial( { color: 0xEAEAEA, linecap: 'round', linejoin:  'round', linewidth: radius*2} );
-								var p1 = new THREE.Vector3(arr0[0]-0, arr0[1]-0, -29/0.07);
-								var p2 = new THREE.Vector3(arr0[2]-0, arr0[3]-0, -29/0.07);
-								geo_shadow.vertices.push(p1);
-								geo_shadow.vertices.push(p2);
-								var line_shadow = new THREE.Line(geo_shadow, material_shadow, THREE.LineSegments);
-								line_shadow.rotation.x = -0.5 * Math.PI; //将模型摆正
-								line_shadow.scale.set(0.07, 0.07, 0.07); //缩放
-								group_shadow.add(line_shadow);
-								geometry.push(line_shadow);
-								
 							}
 						}
 					}
 					//var loader = new THREE.STLLoader();
 					//loader.load('../ghBackend/media/Default/output.stl', function (geometry) {
 					//	//创建纹理
-					//	var mat = new THREE.MeshStandardMaterial({color: 0x0079ED});
+					//	var mat = new THREE.MeshLambertMaterial({color: 0x0079ED});
 					//	var mesh = new THREE.Mesh(geometry, mat);
 					//	mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
 					//	mesh.scale.set(0.07, 0.07, 0.07); //缩放
@@ -2069,14 +1980,10 @@
 					group_arrow.position.x = group_arrow.position.x - center.x;
 					group_arrow.position.y = group_arrow.position.y - center.y;
 					group_arrow.position.z = group_arrow.position.z - center.z;
-					group_shadow.position.x = group_shadow.position.x - center.x;
-					group_shadow.position.y = group_shadow.position.y - center.y;
-					group_shadow.position.z = group_shadow.position.z - center.z;
 					scene.add(group);
 					scene.add(group_arrow);
-					scene.add(group_shadow);
 					
-					var plane = new THREE.PlaneGeometry(100000,100000);
+					var plane = new THREE.PlaneGeometry(10000,10000);
 					var colormat = new THREE.MeshStandardMaterial({color: "0xFCFCFC"});
 					var mesh = new THREE.Mesh(plane, colormat);
 					mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
@@ -2225,14 +2132,6 @@
 					group_mink.position.y = group_mink.position.y - center.y;
 					group_mink.position.z = group_mink.position.z - center.z;
 					scene.add(group_mink);
-					
-					var plane = new THREE.PlaneGeometry(100000,100000);
-					var colormat = new THREE.MeshStandardMaterial({color: "0xFCFCFC"});
-					var mesh = new THREE.Mesh(plane, colormat);
-					mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
-					mesh.position.y = -30;
-					mesh.receiveShadow = true;
-					scene.add(mesh);
 				}
 				
 				if (display_mode==1) {
@@ -2270,6 +2169,8 @@
 				scene.remove(scene.children[0]); 
 			}
 			
+			initLight();
+			
 			//辅助工具
 			var helper = new THREE.AxesHelper(20);
 			helper.position.x = -100;
@@ -2291,19 +2192,15 @@
 			deleteGroup(group);
 			deleteGroup(group_mink);
 			deleteGroup(group_arrow);
-			deleteGroup(group_shadow);
 			
 			geometry = [];
 			group = new THREE.Group();
 			group_mink = new THREE.Group();
 			group_arrow = new THREE.Group();
-			group_shadow = new THREE.Group();
 			minrad = document.getElementById('minumum_radius').value;
 			maxrad = document.getElementById('maximum_radius').value;
 			mink = document.getElementById("minkowski_sum_indicator").value;
-			mat = new THREE.MeshStandardMaterial({color: 0x000000});
-			
-			initLight();
+			mat = new THREE.MeshLambertMaterial({color: 0x000000});
 			
 			console.log("update",minrad,maxrad);
 			
@@ -2384,18 +2281,6 @@
 							mesh.castShadow = true;
 							group.add(mesh);
 							geometry.push(geometry_temp);
-							
-							var geo_shadow = new THREE.Geometry();
-							var material_shadow = new THREE.LineBasicMaterial( { color: 0xEAEAEA, linecap: 'round', linejoin:  'round', linewidth: radius*2} );
-							var p1 = new THREE.Vector3(arr0[0]-0, arr0[1]-0, -29/0.07);
-							var p2 = new THREE.Vector3(arr0[2]-0, arr0[3]-0, -29/0.07);
-							geo_shadow.vertices.push(p1);
-							geo_shadow.vertices.push(p2);
-							var line_shadow = new THREE.Line(geo_shadow, material_shadow, THREE.LineSegments);
-							line_shadow.rotation.x = -0.5 * Math.PI; //将模型摆正
-							line_shadow.scale.set(0.07, 0.07, 0.07); //缩放
-							group_shadow.add(line_shadow);
-							geometry.push(line_shadow);
 						}
 					}
 				}
@@ -2415,14 +2300,10 @@
 				group_arrow.position.x = group_arrow.position.x - center.x;
 				group_arrow.position.y = group_arrow.position.y - center.y;
 				group_arrow.position.z = group_arrow.position.z - center.z;
-				group_shadow.position.x = group_shadow.position.x - center.x;
-				group_shadow.position.y = group_shadow.position.y - center.y;
-				group_shadow.position.z = group_shadow.position.z - center.z;
 				scene.add(group);
 				scene.add(group_arrow);
-				scene.add(group_shadow);
 				
-				var plane = new THREE.PlaneGeometry(100000,100000);
+				var plane = new THREE.PlaneGeometry(10000,10000);
 				var material = new THREE.MeshPhongMaterial({
 					color: 0xFCFCFC,
 					// 矩形平面网格模型默认单面显示，可以设置side属性值为THREE.DoubleSide双面显示
@@ -2532,14 +2413,6 @@
 				group_mink.position.y = group_mink.position.y - center.y;
 				group_mink.position.z = group_mink.position.z - center.z;
 				scene.add(group_mink);
-				
-				var plane = new THREE.PlaneGeometry(100000,100000);
-				var colormat = new THREE.MeshStandardMaterial({color: "0xFCFCFC"});
-				var mesh = new THREE.Mesh(plane, colormat);
-				mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
-				mesh.position.y = -30;
-				mesh.receiveShadow = true;
-				scene.add(mesh);
 				
 			}
 			
