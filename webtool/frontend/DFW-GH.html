@@ -98,10 +98,154 @@
 
 <body>
     
-	<div id="gcpb" style="background-color: #000000; opacity: 0.1; position:absolute; top:17px; left:30px; width: 275px; height: 650px;"></div>
+	<div id="gcpb" style="background-color: #000000; opacity: 0.1; position:absolute; top:17px; left:30px; width: 275px; height: 655px;"></div>
 	<div id="gcpb2" style="background-color: #000000; opacity: 0.2; position:absolute; top:21px; left:30px; width: 275px; height: 32px;"></div>
 	
-	<div id="container-item" style="position:absolute; top:20px; left:40px; width: 350px; display:block;">
+	<button id="btn_fold1" type="button" style="position:absolute; top:25px; left:265px; width:25px; height: 25px; display:inline; background:#808080;" onclick="fold_gcp()">
+		<span id="btn_fold1_spa" style="position:absolute; font-size:13px; top:-1px; left:5px;">▲</span>
+		<script type='text/javascript'>
+		    function fold_gcp() {
+			    var obj = document.getElementById("gcpb");
+			    obj.style.display = "none";
+				var obj = document.getElementById("btn_set_3poi");
+			    obj.style.display = "none";
+				var obj = document.getElementById("btn_set_4poi");
+			    obj.style.display = "none";
+				var obj = document.getElementById("btn_set_5poi");
+			    obj.style.display = "none";
+				var obj = document.getElementById("btn_set_6poi");
+			    obj.style.display = "none";
+				var obj = document.getElementById("canvas");
+			    obj.style.display = "none";
+				var obj = document.getElementById("reduce_rate_spa");
+			    obj.style.display = "none";
+				var obj = document.getElementById("reduce_rate_abb");
+			    obj.style.display = "none";
+				var obj = document.getElementById("reduce_rate");
+			    obj.style.display = "none";
+				var obj = document.getElementById("value_reduce_rate");
+			    obj.style.display = "none";
+				var obj = document.getElementById("tolerance_of_edge_length_spa");
+			    obj.style.display = "none";
+				var obj = document.getElementById("tolerance_of_edge_length_abb");
+			    obj.style.display = "none";
+				var obj = document.getElementById("tolerance_of_edge_length");
+			    obj.style.display = "none";
+				var obj = document.getElementById("value_tolerance_of_edge_length");
+			    obj.style.display = "none";
+				var obj = document.getElementById("value_perp_steps");
+				obj.style.display = "none";
+				var obj = document.getElementById("perp_steps");
+				obj.style.display = "none";
+				var obj = document.getElementById("perp_steps_abb");
+				obj.style.display = "none";
+				var obj = document.getElementById("perp_steps_spa");
+				obj.style.display = "none";
+				var obj = document.getElementById("value_boundary_constraint_magnitude");
+				obj.style.display = "none";
+				var obj = document.getElementById("boundary_constraint_magnitude");
+				obj.style.display = "none";
+				var obj = document.getElementById("boundary_constraint_magnitude_abb");
+				obj.style.display = "none";
+				var obj = document.getElementById("boundary_constraint_magnitude_spa");
+				obj.style.display = "none";
+				var obj = document.getElementById("value_length_constraint_maltiplier");
+				obj.style.display = "none";
+				var obj = document.getElementById("length_constraint_maltiplier");
+				obj.style.display = "none";
+				var obj = document.getElementById("length_constraint_maltiplier_abb");
+				obj.style.display = "none";
+				var obj = document.getElementById("length_constraint_maltiplier_spa");
+				obj.style.display = "none";
+				var obj = document.getElementById("model_select");
+				obj.style.display = "none";
+				var obj = document.getElementById("btn_showadv");
+				obj.style.display = "none";
+				var obj = document.getElementById("btn_submit");
+				obj.style.display = "none";
+				var obj = document.getElementById("btn_setdefault");
+				obj.style.display = "none";
+				var obj = document.getElementById("btn_fold1");
+				obj.style.display = "none";
+				var obj = document.getElementById("btn_show1");
+				obj.style.display = "inline";
+			}
+		</script>
+	</button>
+	
+	<button id="btn_show1" type="button" style="position:absolute; top:25px; left:265px; width:25px; height: 25px; background:#808080; display:none;" onclick="show_gcp()">
+		<span id="btn_show1_spa" style="position:absolute; font-size:13px; top:1px; left:5px;">▼</span>
+		<script type='text/javascript'>
+		    function show_gcp() {
+			    var obj = document.getElementById("gcpb");
+			    obj.style.display = "inline";
+				var obj = document.getElementById("btn_set_3poi");
+			    obj.style.display = "inline";
+				var obj = document.getElementById("btn_set_4poi");
+			    obj.style.display = "inline";
+				var obj = document.getElementById("btn_set_5poi");
+			    obj.style.display = "inline";
+				var obj = document.getElementById("btn_set_6poi");
+			    obj.style.display = "inline";
+				var obj = document.getElementById("canvas");
+			    obj.style.display = "inline";
+				var obj = document.getElementById("reduce_rate_spa");
+			    obj.style.display = "inline";
+				var obj = document.getElementById("reduce_rate_abb");
+			    obj.style.display = "inline";
+				var obj = document.getElementById("reduce_rate");
+			    obj.style.display = "inline";
+				var obj = document.getElementById("value_reduce_rate");
+			    obj.style.display = "inline";
+				var obj = document.getElementById("tolerance_of_edge_length_spa");
+			    obj.style.display = "inline";
+				var obj = document.getElementById("tolerance_of_edge_length_abb");
+			    obj.style.display = "inline";
+				var obj = document.getElementById("tolerance_of_edge_length");
+			    obj.style.display = "inline";
+				var obj = document.getElementById("value_tolerance_of_edge_length");
+			    obj.style.display = "inline";
+				var obj = document.getElementById("value_perp_steps");
+				obj.style.display = "none";
+				var obj = document.getElementById("perp_steps");
+				obj.style.display = "none";
+				var obj = document.getElementById("perp_steps_abb");
+				obj.style.display = "none";
+				var obj = document.getElementById("perp_steps_spa");
+				obj.style.display = "none";
+				var obj = document.getElementById("value_boundary_constraint_magnitude");
+				obj.style.display = "none";
+				var obj = document.getElementById("boundary_constraint_magnitude");
+				obj.style.display = "none";
+				var obj = document.getElementById("boundary_constraint_magnitude_abb");
+				obj.style.display = "none";
+				var obj = document.getElementById("boundary_constraint_magnitude_spa");
+				obj.style.display = "none";
+				var obj = document.getElementById("value_length_constraint_maltiplier");
+				obj.style.display = "none";
+				var obj = document.getElementById("length_constraint_maltiplier");
+				obj.style.display = "none";
+				var obj = document.getElementById("length_constraint_maltiplier_abb");
+				obj.style.display = "none";
+				var obj = document.getElementById("length_constraint_maltiplier_spa");
+				obj.style.display = "none";
+				var obj = document.getElementById("model_select");
+				obj.style.display = "none";
+				var obj = document.getElementById("btn_showadv");
+				obj.style.display = "inline";
+				var obj = document.getElementById("btn_submit");
+				obj.style.display = "inline";
+				var obj = document.getElementById("btn_setdefault");
+				obj.style.display = "inline";
+				var obj = document.getElementById("btn_fold1");
+				obj.style.display = "inline";
+				var obj = document.getElementById("btn_show1");
+				obj.style.display = "none";
+			}
+		</script>
+	</button>
+	
+	<div id="container-item" style="position:absolute; top:20px; left:40px; width: 220px; display:block;">
 	    <span class="glyphicon glyphicon-asterisk" style="font-size:20px">Geometric Control Panel</span>
 	</div>
 	<div id="container" style="position:absolute; top:100px; left:40px; width:260px; height:260px; float:left; display:block;">
@@ -430,11 +574,11 @@
     </div>
 	<div id="container" style="position:absolute; top:370px; left:20px; width:300px; height:500px; float:left; display:inline; padding-left:20px;">
 	
-	    <div class="form-group" id="l"></div>
+	    <div class="form-group" id="pppl"></div>
 		    <div class="col-sm-3"></div>
 			
-			    <span class="input-group-addon" style="font-size:15px; white-space:nowrap;">Subdivision Density
-				<abbr title="Subdivision Density defines the density of the structural members. By increasing it, more members will be generated with a longer time cost.">*</abbr></span>
+			    <span id="reduce_rate_spa" class="input-group-addon" style="font-size:15px; white-space:nowrap;">Subdivision Density
+				<abbr id="reduce_rate_abb" title="Subdivision Density defines the density of the structural members. By increasing it, more members will be generated with a longer time cost.">*</abbr></span>
 				
 				<div style="background-color: transparent; width: 100%; height: 0pt;"></div>
 				
@@ -448,8 +592,8 @@
 				</script>
 				<!-- <input type="text" class="form-control" name="reduce_rate" id="reduce_rate" style="width:400px; height:30px;"> -->
 
-				<span class="input-group-addon" style="font-size:15px; white-space:nowrap;">Tolerance of Edge Length
-				<abbr title="Tolerance of Edge Length defines the upper and lower bounds of the length constraint for each edge. Increasing it will give more freedom to the geometric generation process in graphic statics.">*</abbr></span>
+				<span id="tolerance_of_edge_length_spa" class="input-group-addon" style="font-size:15px; white-space:nowrap;">Tolerance of Edge Length
+				<abbr id="tolerance_of_edge_length_abb" title="Tolerance of Edge Length defines the upper and lower bounds of the length constraint for each edge. Increasing it will give more freedom to the geometric generation process in graphic statics.">*</abbr></span>
 				
 				<div style="background-color: transparent; width: 100%; height: 0pt;"></div>
 				
@@ -675,7 +819,95 @@
 	<div id="dcpb" style="background-color: #000000; opacity: 0.1; position:absolute; top:145px; right:5px; width: 285px; height: 305px;"></div>
 	<div id="dcpb2" style="background-color: #000000; opacity: 0.2; position:absolute; top:151px; right:5px; width: 285px; height: 32px;"></div>
 	
-	<div id="container-item" style="position:absolute; top:150px; right:10px; width: 350px; display:block;">
+	<button id="btn_fold2" type="button" style="position:absolute; top:155px; right:210px; width:25px; height: 25px; display:inline; background:#808080;" onclick="fold_dcp()">
+		<span id="btn_fold2_spa" style="position:absolute; font-size:13px; top:-1px; left:5px;">▲</span>
+		<script type='text/javascript'>
+		    function fold_dcp() {
+			    var obj = document.getElementById("dcpb");
+			    obj.style.display = "none";
+				var obj = document.getElementById("btn_set_mink");
+			    obj.style.display = "none";
+				var obj = document.getElementById("btn_set_normal");
+			    obj.style.display = "none";
+				var obj = document.getElementById("external_select");
+			    obj.style.display = "none";
+				var obj = document.getElementById("minumum_radius_spa");
+			    obj.style.display = "none";
+				var obj = document.getElementById("minumum_radius_abb");
+			    obj.style.display = "none";
+				var obj = document.getElementById("minumum_radius");
+			    obj.style.display = "none";
+				var obj = document.getElementById("value_minumum_radius");
+			    obj.style.display = "none";
+				var obj = document.getElementById("maximum_radius_spa");
+			    obj.style.display = "none";
+				var obj = document.getElementById("maximum_radius_abb");
+			    obj.style.display = "none";
+				var obj = document.getElementById("maximum_radius");
+			    obj.style.display = "none";
+				var obj = document.getElementById("value_maximum_radius");
+			    obj.style.display = "none";
+				var obj = document.getElementById("minkowski_sum_indicator_spa");
+			    obj.style.display = "none";
+				var obj = document.getElementById("minkowski_sum_indicator_abb");
+			    obj.style.display = "none";
+				var obj = document.getElementById("minkowski_sum_indicator");
+			    obj.style.display = "none";
+				var obj = document.getElementById("value_minkowski_sum_indicator");
+			    obj.style.display = "none";
+				var obj = document.getElementById("btn_fold2");
+				obj.style.display = "none";
+				var obj = document.getElementById("btn_show2");
+				obj.style.display = "inline";
+			}
+		</script>
+	</button>
+	
+	<button id="btn_show2" type="button" style="position:absolute; top:155px; right:210px; width:25px; height: 25px; background:#808080; display:none;" onclick="show_dcp()">
+		<span id="btn_show2_spa" style="position:absolute; font-size:13px; top:1px; left:5px;">▼</span>
+		<script type='text/javascript'>
+		    function show_dcp() {
+			    var obj = document.getElementById("dcpb");
+			    obj.style.display = "inline";
+				var obj = document.getElementById("btn_set_mink");
+			    obj.style.display = "inline";
+				var obj = document.getElementById("btn_set_normal");
+			    obj.style.display = "inline";
+				var obj = document.getElementById("external_select");
+			    obj.style.display = "inline";
+				var obj = document.getElementById("minumum_radius_spa");
+			    obj.style.display = "inline";
+				var obj = document.getElementById("minumum_radius_abb");
+			    obj.style.display = "inline";
+				var obj = document.getElementById("minumum_radius");
+			    obj.style.display = "inline";
+				var obj = document.getElementById("value_minumum_radius");
+			    obj.style.display = "inline";
+				var obj = document.getElementById("maximum_radius_spa");
+			    obj.style.display = "inline";
+				var obj = document.getElementById("maximum_radius_abb");
+			    obj.style.display = "inline";
+				var obj = document.getElementById("maximum_radius");
+			    obj.style.display = "inline";
+				var obj = document.getElementById("value_maximum_radius");
+			    obj.style.display = "inline";
+				var obj = document.getElementById("minkowski_sum_indicator_spa");
+			    obj.style.display = "inline";
+				var obj = document.getElementById("minkowski_sum_indicator_abb");
+			    obj.style.display = "inline";
+				var obj = document.getElementById("minkowski_sum_indicator");
+			    obj.style.display = "inline";
+				var obj = document.getElementById("value_minkowski_sum_indicator");
+			    obj.style.display = "inline";
+				var obj = document.getElementById("btn_fold2");
+				obj.style.display = "inline";
+				var obj = document.getElementById("btn_show2");
+				obj.style.display = "none";
+			}
+		</script>
+	</button>
+	
+	<div id="container-item" style="position:absolute; top:150px; right:10px; width: 200px; display:block;">
 	    <span class="glyphicon glyphicon-asterisk" style="font-size:20px; float:right;">Display Control Panel</span>
 	</div>
 	
@@ -734,8 +966,8 @@
 				
 				<div style="background-color: transparent; width: 100%; height: 25pt;"></div>
 
-				<span class="input-group-addon" style="font-size:15px; white-space:nowrap; float:right;">Minimum Radius&nbsp
-			    <abbr style="float:right;" title="Minimum Radius defines the size of the smallest pipes in the normal display mode.">*</abbr></span>				
+				<span id="minumum_radius_spa" class="input-group-addon" style="font-size:15px; white-space:nowrap; float:right;">Minimum Radius&nbsp
+			    <abbr id="minumum_radius_abb" style="float:right;" title="Minimum Radius defines the size of the smallest pipes in the normal display mode.">*</abbr></span>				
 				<input type="range" min="0" max="9.99" step="0.01" name="minumum_radius" id="minumum_radius" style="width:240px; height:23px; float:right;" oninput="input_minumum_radius()" onchange="change_minumum_radius()"/>
 				<span id="value_minumum_radius" style="font-size:15px; float:right;">0</span>
 				<script type='text/javascript'>
@@ -753,8 +985,8 @@
 
 				<div style="background-color: transparent; width: 100%; height: 20pt;"></div>
 
-				<span class="input-group-addon" style="font-size:15px; white-space:nowrap; float:right;">Maximum Radius&nbsp
-			    <abbr style="float:right;" title="Maximum Radius defines the size of the largest pipes in the normal display mode.">*</abbr></span>
+				<span id="maximum_radius_spa" class="input-group-addon" style="font-size:15px; white-space:nowrap; float:right;">Maximum Radius&nbsp
+			    <abbr id="maximum_radius_abb" style="float:right;" title="Maximum Radius defines the size of the largest pipes in the normal display mode.">*</abbr></span>
 				<input type="range" min="0" max="99.9" step="0.1" name="maximum_radius" id="maximum_radius" style="width:240px; height:23px; float:right;" oninput="input_maximum_radius()" onchange="change_maximum_radius()"/>
 			    <span id="value_maximum_radius" style="font-size:15px; float:right;">0</span>
 				<script type='text/javascript'>
@@ -772,8 +1004,8 @@
 
 				<div style="background-color: transparent; width: 100%; height: 20pt;"></div>
 
-				<span class="input-group-addon" style="font-size:15px; white-space:nowrap; float:right;">Minkowski Sum Indicator&nbsp
-			    <abbr style="float:right;" title="Minkowski Sum Indicator defines the form-to-force status in the minkowski sum display mode.">*</abbr></span>
+				<span id="minkowski_sum_indicator_spa" class="input-group-addon" style="font-size:15px; white-space:nowrap; float:right;">Minkowski Sum Indicator&nbsp
+			    <abbr id="minkowski_sum_indicator_abb" style="float:right;" title="Minkowski Sum Indicator defines the form-to-force status in the minkowski sum display mode.">*</abbr></span>
 				<input type="range" min="0.01" max="0.99" step="0.01" name="minkowski_sum_indicator" id="minkowski_sum_indicator" style="width:240px; height:23px; float:right;" oninput="input_minkowski_sum_indicator()" onchange="change_minkowski_sum_indicator()"/>
 			    <span id="value_minkowski_sum_indicator" style="font-size:15px; float:right;">0</span>
 				<script type='text/javascript'>
@@ -790,17 +1022,56 @@
 				
     </div>
 	
-	<div id="fmb" style="background-color: #000000; opacity: 0.1; position:absolute; top:465px; right:5px; width: 285px; height: 200px;"></div>
+	<div id="fmb" style="background-color: #000000; opacity: 0.1; position:absolute; top:465px; right:5px; width: 285px; height: 205px;"></div>
 	<div id="fmb2" style="background-color: #000000; opacity: 0.2; position:absolute; top:471px; right:5px; width: 285px; height: 32px;"></div>
 	
-	<div id="container-item" style="position:absolute; top:470px; right:10px; width: 350px; display:block;">
+	<button id="btn_fold3" type="button" style="position:absolute; top:475px; right:135px; width:25px; height: 25px; display:inline; background:#808080;" onclick="fold_fm()">
+		<span id="btn_fold3_spa" style="position:absolute; font-size:13px; top:-1px; left:5px;">▲</span>
+		<script type='text/javascript'>
+		    function fold_fm() {
+			    var obj = document.getElementById("fmb");
+			    obj.style.display = "none";
+				var obj = document.getElementById("btn_export");
+			    obj.style.display = "none";
+				var obj = document.getElementById("btn_download");
+			    obj.style.display = "none";
+				var obj = document.getElementById("btn_upload");
+			    obj.style.display = "none";
+				var obj = document.getElementById("btn_fold3");
+				obj.style.display = "none";
+				var obj = document.getElementById("btn_show3");
+				obj.style.display = "inline";
+			}
+		</script>
+	</button>
+	
+	<button id="btn_show3" type="button" style="position:absolute; top:475px; right:135px; width:25px; height: 25px; background:#808080; display:none;" onclick="show_fm()">
+		<span id="btn_show3_spa" style="position:absolute; font-size:13px; top:1px; left:5px;">▼</span>
+		<script type='text/javascript'>
+		    function show_fm() {
+			    var obj = document.getElementById("fmb");
+			    obj.style.display = "inline";
+				var obj = document.getElementById("btn_export");
+			    obj.style.display = "inline";
+				var obj = document.getElementById("btn_download");
+			    obj.style.display = "inline";
+				var obj = document.getElementById("btn_upload");
+			    obj.style.display = "inline";
+				var obj = document.getElementById("btn_fold3");
+				obj.style.display = "inline";
+				var obj = document.getElementById("btn_show3");
+				obj.style.display = "none";
+			}
+		</script>
+	</button>
+	
+	<div id="container-item" style="position:absolute; top:470px; right:10px; width: 115px; display:block;">
 	    <span class="glyphicon glyphicon-asterisk" style="font-size:20px; float:right;">File Manager</span>
 	</div>
-	<div id="container" style="position:absolute; top:490px; right:10px; width:288px; height:500px; float:right; display:inline; padding-left:20px;">
+	<div id="container" style="position:absolute; top:500px; right:10px; width:250px; height:500px; float:right; display:inline;">
 		<div class="form-group" id="l"></div>
 		    <div class="col-sm-4"></div>
-			    <div style="background-color: transparent; width: 100%; height: 5pt;"></div>
-				<button id="btn_setdefault" type="button" class="btn btn-default" style="float:right;" onclick="download_stl()">
+				<button id="btn_export" type="button" class="btn btn-default" style="float:right;" onclick="download_stl()">
 					<span class="glyphicon glyphicon-asterisk"></span>
 					Export STL Model
 				</button>
@@ -990,10 +1261,10 @@
 				</script>
 	</div>			
 				
-	<div id="container" style="position:absolute; top:548px; right:10px; width:288px; height:500px; float:right; display:inline; padding-left:20px;">
+	<div id="container" style="position:absolute; top:550px; right:10px; width:288px; height:500px; float:right; display:inline; padding-left:20px;">
 		<div class="form-group" id="l"></div>
 		    <div class="col-sm-4"></div>
-				<button id="btn_setdefault" type="button" class="btn btn-default" style="float:right;" onclick="download_csv()">
+				<button id="btn_download" type="button" class="btn btn-default" style="float:right;" onclick="download_csv()">
 					<span class="glyphicon glyphicon-asterisk"></span>
 					Download Data File
 				</button>
@@ -1010,7 +1281,7 @@
 	<div id="container" style="position:absolute; top:598px; right:10px; width:288px; height:500px; float:right; display:inline; padding-left:20px;">
 		<div class="form-group" id="upload1"></div>
 		    <div class="col-sm-4"></div>
-				<button id="btn_setdefault" type="button" class="btn btn-default" style="float:right;" onclick="upload_csv()">
+				<button id="btn_upload" type="button" class="btn btn-default" style="float:right;" onclick="upload_csv()">
 					<span class="glyphicon glyphicon-asterisk"></span>
 					Upload Data File
 				</button>
@@ -1402,7 +1673,7 @@
 								function Circle(x, y) {
 									this.x = x;
 									this.y = y;
-									this.radius = 5;
+									this.radius = 7;
 									this.color = "blue";
 									//拖拽点的标记
 									this.isSelected = false;
@@ -1445,16 +1716,6 @@
 								const canvas = document.getElementById('canvas');
 								const context = canvas.getContext('2d');
 								context.clearRect(0,0,canvas.width,canvas.height);
-								for(var i=0; i<circles.length; i++) {
-									var circle = circles[i];
-									context.globalAlpha = 0.85;
-									context.beginPath();
-									context.arc(circle.x, circle.y, circle.radius, 0, Math.PI*2);
-									context.fillStyle = circle.color;
-									context.strokeStyle = "black";
-									context.fill();
-									context.stroke();
-								}
 								context.beginPath();
 								context.lineWidth = 2;
 								context.moveTo(points[0].x,points[0].y);
@@ -1478,6 +1739,17 @@
 									context.fillStyle="rgb(128,128,128)";
 									context.fill();
 									context.strokeStyle="black";
+									context.stroke();
+								}
+								context.lineWidth = 3;
+								for(var i=0; i<circles.length; i++) {
+									var circle = circles[i];
+									context.globalAlpha = 0.85;
+									context.beginPath();
+									context.arc(circle.x, circle.y, circle.radius, 0, Math.PI*2);
+									context.fillStyle = "black";
+									context.strokeStyle = "white";
+									context.fill();
 									context.stroke();
 								}
 								
