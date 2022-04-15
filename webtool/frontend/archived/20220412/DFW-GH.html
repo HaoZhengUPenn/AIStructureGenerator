@@ -98,10 +98,10 @@
 
 <body>
     
-	<div id="gcpb" style="background-color: #000000; opacity: 0.1; position:absolute; top:17px; left:30px; width: 275px; height: 625px; border-radius: 15px;"></div>
-	<div id="gcpb2" style="background-color: #000000; opacity: 0.15; position:absolute; top:21px; left:30px; width: 275px; height: 32px; border-radius: 10px;"></div>
+	<div id="gcpb" style="background-color: #000000; opacity: 0.1; position:absolute; top:17px; left:30px; width: 275px; height: 655px;"></div>
+	<div id="gcpb2" style="background-color: #000000; opacity: 0.2; position:absolute; top:21px; left:30px; width: 275px; height: 32px;"></div>
 	
-	<button id="btn_fold1" type="button" style="position:absolute; top:25px; left:265px; width:25px; height: 25px; display:inline; background:transparent;  border-color: transparent; opacity:0.7;" onclick="fold_gcp()">
+	<button id="btn_fold1" type="button" style="position:absolute; top:25px; left:265px; width:25px; height: 25px; display:inline; background:#808080;" onclick="fold_gcp()">
 		<span id="btn_fold1_spa" style="position:absolute; font-size:13px; top:-1px; left:5px;">▲</span>
 		<script type='text/javascript'>
 		    function fold_gcp() {
@@ -165,10 +165,6 @@
 				obj.style.display = "none";
 				var obj = document.getElementById("btn_setdefault");
 				obj.style.display = "none";
-				var obj = document.getElementById("gcpb2");
-				obj.style.display = "none";
-				var obj = document.getElementById("container-item-gcp");
-				obj.style.display = "none";
 				var obj = document.getElementById("btn_fold1");
 				obj.style.display = "none";
 				var obj = document.getElementById("btn_show1");
@@ -177,7 +173,7 @@
 		</script>
 	</button>
 	
-	<button id="btn_show1" type="button" style="position:absolute; top:25px; left:30px; width:25px; height: 25px; background:transparent;  border-color: transparent; display:none; opacity:0.7; " onclick="show_gcp()">
+	<button id="btn_show1" type="button" style="position:absolute; top:25px; left:265px; width:25px; height: 25px; background:#808080; display:none;" onclick="show_gcp()">
 		<span id="btn_show1_spa" style="position:absolute; font-size:13px; top:1px; left:5px;">▼</span>
 		<script type='text/javascript'>
 		    function show_gcp() {
@@ -241,12 +237,6 @@
 				obj.style.display = "inline";
 				var obj = document.getElementById("btn_setdefault");
 				obj.style.display = "inline";
-				var obj = document.getElementById("gcpb");
-				obj.style.height = "625px";
-				var obj = document.getElementById("gcpb2");
-				obj.style.display = "inline";
-				var obj = document.getElementById("container-item-gcp");
-				obj.style.display = "inline";
 				var obj = document.getElementById("btn_fold1");
 				obj.style.display = "inline";
 				var obj = document.getElementById("btn_show1");
@@ -255,7 +245,7 @@
 		</script>
 	</button>
 	
-	<div id="container-item-gcp" style="position:absolute; top:20px; left:40px; width: 220px; display:block;">
+	<div id="container-item" style="position:absolute; top:20px; left:40px; width: 220px; display:block;">
 	    <span class="glyphicon glyphicon-asterisk" style="font-size:20px">Geometric Control Panel</span>
 	</div>
 	<div id="container" style="position:absolute; top:100px; left:40px; width:260px; height:260px; float:left; display:block;">
@@ -263,7 +253,7 @@
     </div>
 	<div id="container-item" style="position:absolute; top:70px; left:0px; width: 340px; height:30px; display:block;">
 	    <ul class="tabs" data-tab>
-			<button id="btn_set_3poi" type="button" class="btn btn-default" onclick="set_3poi()" style="float:left; font-size:8px; width:64px; height: 30px; opacity: 0.7;">
+			<button id="btn_set_3poi" type="button" class="btn btn-default" onclick="set_3poi()" style="float:left; font-size:8px; width:64px; height: 30px;">
 				<span class="glyphicon glyphicon-asterisk" style="font-size:8px">3 points</span>
 			</button>
 			<script type='text/javascript'>
@@ -336,7 +326,7 @@
 					}
 				}
 			</script>
-		    <button id="btn_set_4poi" type="button" class="btn btn-default" onclick="set_4poi()" style="float:left; font-size:8px; width:64px; height: 30px; opacity: 0.7;">
+		    <button id="btn_set_4poi" type="button" class="btn btn-default" onclick="set_4poi()" style="float:left; font-size:8px; width:64px; height: 30px;">
 				<span class="glyphicon glyphicon-asterisk" style="font-size:8px">4 points</span>
 			</button>
 			<script type='text/javascript'>
@@ -413,7 +403,7 @@
 					}
 				}
 			</script>
-			<button id="btn_set_5poi" type="button" class="btn btn-default" onclick="set_5poi()" style="float:left; font-size:8px; width:64px; height: 30px; opacity: 0.7;">
+			<button id="btn_set_5poi" type="button" class="btn btn-default" onclick="set_5poi()" style="float:left; font-size:8px; width:64px; height: 30px;">
 				<span class="glyphicon glyphicon-asterisk" style="font-size:8px">5 points</span>
 			</button>
 			<script type='text/javascript'>
@@ -494,7 +484,7 @@
 					}
 				}
 			</script>
-			<button id="btn_set_6poi" type="button" class="btn btn-default" onclick="set_6poi()" style="float:left; font-size:8px; width:64px; height: 30px; opacity: 0.7;">
+			<button id="btn_set_6poi" type="button" class="btn btn-default" onclick="set_6poi()" style="float:left; font-size:8px; width:64px; height: 30px;">
 				<span class="glyphicon glyphicon-asterisk" style="font-size:8px">6 points</span>
 			</button>
 			<script type='text/javascript'>
@@ -582,88 +572,82 @@
 
 		</ul>
     </div>
-	<div id="container" style="position:absolute; top:360px; left:20px; width:300px; height:500px; float:left; display:inline; padding-left:20px;">
+	<div id="container" style="position:absolute; top:370px; left:20px; width:300px; height:500px; float:left; display:inline; padding-left:20px;">
 	
 	    <div class="form-group" id="pppl"></div>
 		    <div class="col-sm-3"></div>
-			    <div class="mode1">
-					<span id="reduce_rate_spa" class="input-group-addon" style="font-size:15px; white-space:nowrap;">Subdivision Density
-					<abbr id="reduce_rate_abb" title="Subdivision Density defines the density of the structural members. By increasing it, more members will be generated with a longer time cost.">*</abbr></span>
-					<div style="background-color: transparent; width: 100%; height: 0pt;"></div>
-					<input type="range" min="0" max="1" step="0.01" name="reduce_rate" id="reduce_rate" style="width:222px; height:10px;" oninput="change_reduce_rate()" onchange="change_reduce_rate()"/>
-					<span id="value_reduce_rate" style="font-size:15px">0</span>
-					<script type='text/javascript'>
-						function change_reduce_rate() {
-							var value_reduce_rate = document.getElementById('reduce_rate').value;
-							document.getElementById('value_reduce_rate').innerHTML = (parseInt(value_reduce_rate*100)/100).toFixed(2);
-						}
-					</script>
-					<!-- <input type="text" class="form-control" name="reduce_rate" id="reduce_rate" style="width:400px; height:30px;"> -->
-                </div>
+			
+			    <span id="reduce_rate_spa" class="input-group-addon" style="font-size:15px; white-space:nowrap;">Subdivision Density
+				<abbr id="reduce_rate_abb" title="Subdivision Density defines the density of the structural members. By increasing it, more members will be generated with a longer time cost.">*</abbr></span>
 				
-				<div class="mode1">
-					<span id="tolerance_of_edge_length_spa" class="input-group-addon" style="font-size:15px; white-space:nowrap;">Tolerance of Edge Length
-					<abbr id="tolerance_of_edge_length_abb" title="Tolerance of Edge Length defines the upper and lower bounds of the length constraint for each edge. Increasing it will give more freedom to the geometric generation process in graphic statics.">*</abbr></span>
-					<div style="background-color: transparent; width: 100%; height: 0pt;"></div>
-					<input type="range" min="0" max="1" step="0.01" name="tolerance_of_edge_length" id="tolerance_of_edge_length" style="width:222px; height:10px;" oninput="change_tolerance_of_edge_length()" onchange="change_tolerance_of_edge_length()"/>
-					<span id="value_tolerance_of_edge_length" style="font-size:15px">0</span>
-					<script type='text/javascript'>
-						function change_tolerance_of_edge_length() {
-							var value_tolerance_of_edge_length = document.getElementById('tolerance_of_edge_length').value;
-							document.getElementById('value_tolerance_of_edge_length').innerHTML = (parseInt(value_tolerance_of_edge_length*100)/100).toFixed(2);
-						}
-					</script>
-					<!-- <input type="text" class="form-control" name="tolerance_of_edge_length" id="tolerance_of_edge_length" style="width:400px; height:30px;"> -->
-		        </div>
+				<div style="background-color: transparent; width: 100%; height: 0pt;"></div>
 				
+				<input type="range" min="0" max="1" step="0.01" name="reduce_rate" id="reduce_rate" style="width:222px; height:10px;" oninput="change_reduce_rate()" onchange="change_reduce_rate()"/>
+			    <span id="value_reduce_rate" style="font-size:15px">0</span>
+				<script type='text/javascript'>
+					function change_reduce_rate() {
+					    var value_reduce_rate = document.getElementById('reduce_rate').value;
+						document.getElementById('value_reduce_rate').innerHTML = (parseInt(value_reduce_rate*100)/100).toFixed(2);
+					}
+				</script>
+				<!-- <input type="text" class="form-control" name="reduce_rate" id="reduce_rate" style="width:400px; height:30px;"> -->
+
+				<span id="tolerance_of_edge_length_spa" class="input-group-addon" style="font-size:15px; white-space:nowrap;">Tolerance of Edge Length
+				<abbr id="tolerance_of_edge_length_abb" title="Tolerance of Edge Length defines the upper and lower bounds of the length constraint for each edge. Increasing it will give more freedom to the geometric generation process in graphic statics.">*</abbr></span>
+				
+				<div style="background-color: transparent; width: 100%; height: 0pt;"></div>
+				
+				<input type="range" min="0" max="1" step="0.01" name="tolerance_of_edge_length" id="tolerance_of_edge_length" style="width:222px; height:10px;" oninput="change_tolerance_of_edge_length()" onchange="change_tolerance_of_edge_length()"/>
+			    <span id="value_tolerance_of_edge_length" style="font-size:15px">0</span>
+				<script type='text/javascript'>
+					function change_tolerance_of_edge_length() {
+					    var value_tolerance_of_edge_length = document.getElementById('tolerance_of_edge_length').value;
+						document.getElementById('value_tolerance_of_edge_length').innerHTML = (parseInt(value_tolerance_of_edge_length*100)/100).toFixed(2);
+					}
+				</script>
+			    <!-- <input type="text" class="form-control" name="tolerance_of_edge_length" id="tolerance_of_edge_length" style="width:400px; height:30px;"> -->
+		
 		<div class="form-group" id="l"></div>
 		    <div class="col-sm-3"></div>
-			
-			    <div class="mode1">
-					<span id="length_constraint_maltiplier_spa" class="input-group-addon" style="font-size:15px; white-space:nowrap; display:none;">
-					<abbr id="length_constraint_maltiplier_abb" title="Length Constraint Multiplier defines the relaxation of the edge length constraints. Increasing it will cause more rectangular cells than circular cells." style="display:none">LCM</abbr></span>
-					<input type="range" min="0" max="2" step="0.01" name="length_constraint_maltiplier" id="length_constraint_maltiplier" style="width:188px; height:10px; display:none;" oninput="change_length_constraint_maltiplier()" onchange="change_length_constraint_maltiplier()"/>
-					<span id="value_length_constraint_maltiplier" style="font-size:15px; display:none">0</span>
-					<script type='text/javascript'>
-						function change_length_constraint_maltiplier() {
-							var value_length_constraint_maltiplier = document.getElementById('length_constraint_maltiplier').value;
-							document.getElementById('value_length_constraint_maltiplier').innerHTML = (parseInt(value_length_constraint_maltiplier*100)/100).toFixed(2);
-						}
-					</script>
-					<!-- <input type="text" class="form-control" name="length_constraint_maltiplier" id="length_constraint_maltiplier" style="width:400px; height:30px;"> -->
-				</div>
-				
+				<span id="length_constraint_maltiplier_spa" class="input-group-addon" style="font-size:15px; white-space:nowrap; display:none;">
+				<abbr id="length_constraint_maltiplier_abb" title="Length Constraint Multiplier defines the relaxation of the edge length constraints. Increasing it will cause more rectangular cells than circular cells." style="display:none">LCM</abbr></span>
+				<input type="range" min="0" max="2" step="0.01" name="length_constraint_maltiplier" id="length_constraint_maltiplier" style="width:188px; height:10px; display:none;" oninput="change_length_constraint_maltiplier()" onchange="change_length_constraint_maltiplier()"/>
+			    <span id="value_length_constraint_maltiplier" style="font-size:15px; display:none">0</span>
+				<script type='text/javascript'>
+					function change_length_constraint_maltiplier() {
+					    var value_length_constraint_maltiplier = document.getElementById('length_constraint_maltiplier').value;
+						document.getElementById('value_length_constraint_maltiplier').innerHTML = (parseInt(value_length_constraint_maltiplier*100)/100).toFixed(2);
+					}
+				</script>
+			    <!-- <input type="text" class="form-control" name="length_constraint_maltiplier" id="length_constraint_maltiplier" style="width:400px; height:30px;"> -->
+        
 				<div style="background-color: transparent; width: 100%; height: 0pt;"></div>
 		
-		        <div class="mode1">
-					<span id="boundary_constraint_magnitude_spa" class="input-group-addon" style="font-size:15px; white-space:nowrap; display:none;">
-					<abbr id="boundary_constraint_magnitude_abb" title="Boundary Constraint Magnitude to define the magnitude of the boundary constraint to the form. Increasing it will make the structure attach closer to the boundary." style="display:none;">BCM</abbr></span>
-					<input type="range" min="0" max="9.99" step="0.01" name="boundary_constraint_magnitude" id="boundary_constraint_magnitude" style="width:185px; height:10px; display:none;" oninput="change_boundary_constraint_magnitude()" onchange="change_boundary_constraint_magnitude()"/>
-					<span id="value_boundary_constraint_magnitude" style="font-size:15px; display:none;">0</span>
-					<script type='text/javascript'>
-						function change_boundary_constraint_magnitude() {
-							var value_boundary_constraint_magnitude = document.getElementById('boundary_constraint_magnitude').value;
-							document.getElementById('value_boundary_constraint_magnitude').innerHTML = (parseInt(value_boundary_constraint_magnitude*100)/100).toFixed(2);
-						}
-					</script>
-					<!-- <input type="text" class="form-control" name="boundary_constraint_magnitude" id="boundary_constraint_magnitude" style="width:400px; height:30px;"> -->
-				</div>
-				
+				<span id="boundary_constraint_magnitude_spa" class="input-group-addon" style="font-size:15px; white-space:nowrap; display:none;">
+				<abbr id="boundary_constraint_magnitude_abb" title="Boundary Constraint Magnitude to define the magnitude of the boundary constraint to the form. Increasing it will make the structure attach closer to the boundary." style="display:none;">BCM</abbr></span>
+				<input type="range" min="0" max="9.99" step="0.01" name="boundary_constraint_magnitude" id="boundary_constraint_magnitude" style="width:185px; height:10px; display:none;" oninput="change_boundary_constraint_magnitude()" onchange="change_boundary_constraint_magnitude()"/>
+			    <span id="value_boundary_constraint_magnitude" style="font-size:15px; display:none;">0</span>
+				<script type='text/javascript'>
+					function change_boundary_constraint_magnitude() {
+					    var value_boundary_constraint_magnitude = document.getElementById('boundary_constraint_magnitude').value;
+						document.getElementById('value_boundary_constraint_magnitude').innerHTML = (parseInt(value_boundary_constraint_magnitude*100)/100).toFixed(2);
+					}
+				</script>
+			    <!-- <input type="text" class="form-control" name="boundary_constraint_magnitude" id="boundary_constraint_magnitude" style="width:400px; height:30px;"> -->
+        
 				<div style="background-color: transparent; width: 100%; height: 0pt;"></div>
 		
-				<div class="mode1">
-					<span id="perp_steps_spa" class="input-group-addon" style="font-size:15px; white-space:nowrap; display:none;">
-					<abbr id="perp_steps_abb" title="Perp Steps defines the number of iterations in the geometric generation process in graphic statics. Increasing it will generate a more accurate structure but with a longer time." style="display:none;">PS</abbr></span>
-				    <input type="range" min="0" max="30000" step="1" name="perp_steps" id="perp_steps" style="width:188px; height:10px; display:none;" oninput="change_perp_steps()" onchange="change_perp_steps()"/>
-					<span id="value_perp_steps" style="font-size:15px; display:none;">0</span>
-					<script type='text/javascript'>
-						function change_perp_steps() {
-							var value_perp_steps = document.getElementById('perp_steps').value;
-							document.getElementById('value_perp_steps').innerHTML = value_perp_steps;
-						}
-					</script>
-					<!-- <input type="text" class="form-control" name="perp_steps" id="perp_steps" style="width:400px; height:30px;"> -->
-				</div>
+				<span id="perp_steps_spa" class="input-group-addon" style="font-size:15px; white-space:nowrap; display:none;">
+				<abbr id="perp_steps_abb" title="Perp Steps defines the number of iterations in the geometric generation process in graphic statics. Increasing it will generate a more accurate structure but with a longer time." style="display:none;">PS</abbr></span>
+				<input type="range" min="0" max="30000" step="1" name="perp_steps" id="perp_steps" style="width:188px; height:10px; display:none;" oninput="change_perp_steps()" onchange="change_perp_steps()"/>
+			    <span id="value_perp_steps" style="font-size:15px; display:none;">0</span>
+				<script type='text/javascript'>
+					function change_perp_steps() {
+					    var value_perp_steps = document.getElementById('perp_steps').value;
+						document.getElementById('value_perp_steps').innerHTML = value_perp_steps;
+					}
+				</script>
+			    <!-- <input type="text" class="form-control" name="perp_steps" id="perp_steps" style="width:400px; height:30px;"> -->
 				
         <form class="form-horizontal" role="form">
             <div id="btn">
@@ -672,13 +656,14 @@
 				
 					<span class="input-group-btn">
 					
-					    <select id="model_select" style="background:#DBDBDB; display:none;">
+					    <select id="model_select" style="display:none;">
 						    <option value ="volvo">Dragonfly Wing Model</option>
 						</select>
 						
 						<div style="background-color: transparent; width: 100%; height: 10pt;"></div>
 						
-						<button id="btn_showadv" type="button" class="btn btn-default" onclick="showadv()" style="position:absolute; top:0px; left:0px; width:255px; height: 40px; background:#ECECEC;">
+						<button id="btn_showadv" type="button" class="btn btn-default" onclick="showadv()">
+							<span class="glyphicon glyphicon-asterisk"></span>
 							Show Advanced Options
 						</button>
 						<script type='text/javascript'>
@@ -713,9 +698,6 @@
 								var obj = document.getElementById("model_select");
 								obj.style.display = "inline";
 								
-								var obj = document.getElementById("gcpb");
-								obj.style.height = "700px";
-								
 								var obj = document.getElementById("btn_showadv");
 								obj.style.display = "none";
 								
@@ -728,12 +710,12 @@
                         <!-- <span class="input-group-addon" style="font-size:15px; white-space:nowrap;">Click "Submit" bottom to proceed.</span> -->
                         
 						<!-- <button id="btn_submit" type="button" class="btn btn-default" onclick="getInputs()"> -->
-						<button id="btn_submit" type="button" class="btn btn-default" onclick="getInputs()" style="position:absolute; top:50px; left:0px; width:255px; height: 40px; background:#ECECEC;">
+						<button id="btn_submit" type="button" class="btn btn-default" onclick="getInputs()">
                             <span class="glyphicon glyphicon-asterisk"></span>
                             Submit
                         </button>
 
-						<button id="btn_setdefault" type="button" class="btn btn-default" onclick="set_default()" style="position:absolute; top:100px; left:0px; width:255px; height: 40px; background:#ECECEC;">
+						<button id="btn_setdefault" type="button" class="btn btn-default" onclick="set_default()">
                             <span class="glyphicon glyphicon-asterisk"></span>
                             Default Settings
                         </button>
@@ -834,10 +816,10 @@
         </form>
     </div>
 	
-	<div id="dcpb" style="background-color: #000000; opacity: 0.1; position:absolute; top:145px; right:5px; width: 285px; height: 275px; border-radius: 15px;"></div>
-	<div id="dcpb2" style="background-color: #000000; opacity: 0.2; position:absolute; top:151px; right:5px; width: 285px; height: 32px; border-radius: 10px;"></div>
+	<div id="dcpb" style="background-color: #000000; opacity: 0.1; position:absolute; top:145px; right:5px; width: 285px; height: 305px;"></div>
+	<div id="dcpb2" style="background-color: #000000; opacity: 0.2; position:absolute; top:151px; right:5px; width: 285px; height: 32px;"></div>
 	
-	<button id="btn_fold2" type="button" style="position:absolute; top:155px; right:215px; width:25px; height: 25px; display:inline; background:transparent;  border-color: transparent; opacity:0.7;" onclick="fold_dcp()">
+	<button id="btn_fold2" type="button" style="position:absolute; top:155px; right:210px; width:25px; height: 25px; display:inline; background:#808080;" onclick="fold_dcp()">
 		<span id="btn_fold2_spa" style="position:absolute; font-size:13px; top:-1px; left:5px;">▲</span>
 		<script type='text/javascript'>
 		    function fold_dcp() {
@@ -847,9 +829,7 @@
 			    obj.style.display = "none";
 				var obj = document.getElementById("btn_set_normal");
 			    obj.style.display = "none";
-				var obj = document.getElementById("btn_show_external");
-			    obj.style.display = "none";
-				var obj = document.getElementById("btn_hide_external");
+				var obj = document.getElementById("external_select");
 			    obj.style.display = "none";
 				var obj = document.getElementById("minumum_radius_spa");
 			    obj.style.display = "none";
@@ -875,10 +855,6 @@
 			    obj.style.display = "none";
 				var obj = document.getElementById("value_minkowski_sum_indicator");
 			    obj.style.display = "none";
-				var obj = document.getElementById("container-item-dcp");
-			    obj.style.display = "none";
-				var obj = document.getElementById("dcpb2");
-			    obj.style.display = "none";
 				var obj = document.getElementById("btn_fold2");
 				obj.style.display = "none";
 				var obj = document.getElementById("btn_show2");
@@ -887,7 +863,7 @@
 		</script>
 	</button>
 	
-	<button id="btn_show2" type="button" style="position:absolute; top:155px; right:10px; width:25px; height: 25px; background:transparent;  border-color: transparent; display:none; opacity:0.7;" onclick="show_dcp()">
+	<button id="btn_show2" type="button" style="position:absolute; top:155px; right:210px; width:25px; height: 25px; background:#808080; display:none;" onclick="show_dcp()">
 		<span id="btn_show2_spa" style="position:absolute; font-size:13px; top:1px; left:5px;">▼</span>
 		<script type='text/javascript'>
 		    function show_dcp() {
@@ -897,41 +873,31 @@
 			    obj.style.display = "inline";
 				var obj = document.getElementById("btn_set_normal");
 			    obj.style.display = "inline";
-				var obj = document.getElementById("btn_show_external");
+				var obj = document.getElementById("external_select");
 			    obj.style.display = "inline";
-				var obj = document.getElementById("btn_hide_external");
+				var obj = document.getElementById("minumum_radius_spa");
 			    obj.style.display = "inline";
-				if (display_mode==1) {
-					var obj = document.getElementById("minumum_radius_spa");
-					obj.style.display = "inline";
-					var obj = document.getElementById("minumum_radius_abb");
-					obj.style.display = "inline";
-					var obj = document.getElementById("minumum_radius");
-					obj.style.display = "inline";
-					var obj = document.getElementById("value_minumum_radius");
-					obj.style.display = "inline";
-					var obj = document.getElementById("maximum_radius_spa");
-					obj.style.display = "inline";
-					var obj = document.getElementById("maximum_radius_abb");
-					obj.style.display = "inline";
-					var obj = document.getElementById("maximum_radius");
-					obj.style.display = "inline";
-					var obj = document.getElementById("value_maximum_radius");
-					obj.style.display = "inline";
-				}
-				if (display_mode==2) {
-					var obj = document.getElementById("minkowski_sum_indicator_spa");
-					obj.style.display = "inline";
-					var obj = document.getElementById("minkowski_sum_indicator_abb");
-					obj.style.display = "inline";
-					var obj = document.getElementById("minkowski_sum_indicator");
-					obj.style.display = "inline";
-					var obj = document.getElementById("value_minkowski_sum_indicator");
-					obj.style.display = "inline";
-				}
-				var obj = document.getElementById("container-item-dcp");
+				var obj = document.getElementById("minumum_radius_abb");
 			    obj.style.display = "inline";
-				var obj = document.getElementById("dcpb2");
+				var obj = document.getElementById("minumum_radius");
+			    obj.style.display = "inline";
+				var obj = document.getElementById("value_minumum_radius");
+			    obj.style.display = "inline";
+				var obj = document.getElementById("maximum_radius_spa");
+			    obj.style.display = "inline";
+				var obj = document.getElementById("maximum_radius_abb");
+			    obj.style.display = "inline";
+				var obj = document.getElementById("maximum_radius");
+			    obj.style.display = "inline";
+				var obj = document.getElementById("value_maximum_radius");
+			    obj.style.display = "inline";
+				var obj = document.getElementById("minkowski_sum_indicator_spa");
+			    obj.style.display = "inline";
+				var obj = document.getElementById("minkowski_sum_indicator_abb");
+			    obj.style.display = "inline";
+				var obj = document.getElementById("minkowski_sum_indicator");
+			    obj.style.display = "inline";
+				var obj = document.getElementById("value_minkowski_sum_indicator");
 			    obj.style.display = "inline";
 				var obj = document.getElementById("btn_fold2");
 				obj.style.display = "inline";
@@ -941,7 +907,7 @@
 		</script>
 	</button>
 	
-	<div id="container-item-dcp" style="position:absolute; top:150px; right:15px; width: 200px; display:block;">
+	<div id="container-item" style="position:absolute; top:150px; right:10px; width: 200px; display:block;">
 	    <span class="glyphicon glyphicon-asterisk" style="font-size:20px; float:right;">Display Control Panel</span>
 	</div>
 	
@@ -952,71 +918,23 @@
 				
 				    <div style="background-color: transparent; width: 100%; height: 10pt;"></div>
 				
-					<button id="btn_set_mink" type="button" class="btn btn-default" onclick="set_mink()" style="position:absolute; top:10px; right:0px; width:140px; height: 40px; background:#ECECEC;">
+					<button id="btn_set_mink" type="button" class="btn btn-default" onclick="set_mink()" style="float:right;">
 						<span class="glyphicon glyphicon-asterisk"></span>
 						Minkowski Sum
 					</button>
 					<script type='text/javascript'>
 						function set_mink() {
 							display_mode = 2;
-							var obj = document.getElementById("minumum_radius_spa");
-							obj.style.display = "none";
-							var obj = document.getElementById("minumum_radius_abb");
-							obj.style.display = "none";
-							var obj = document.getElementById("minumum_radius");
-							obj.style.display = "none";
-							var obj = document.getElementById("value_minumum_radius");
-							obj.style.display = "none";
-							var obj = document.getElementById("maximum_radius_spa");
-							obj.style.display = "none";
-							var obj = document.getElementById("maximum_radius_abb");
-							obj.style.display = "none";
-							var obj = document.getElementById("maximum_radius");
-							obj.style.display = "none";
-							var obj = document.getElementById("value_maximum_radius");
-							obj.style.display = "none";
-							var obj = document.getElementById("minkowski_sum_indicator_spa");
-							obj.style.display = "inline";
-							var obj = document.getElementById("minkowski_sum_indicator_abb");
-							obj.style.display = "inline";
-							var obj = document.getElementById("minkowski_sum_indicator");
-							obj.style.display = "inline";
-							var obj = document.getElementById("value_minkowski_sum_indicator");
-							obj.style.display = "inline";
 							draw_update();
 						}
 					</script>
-					<button id="btn_set_normal" type="button" class="btn btn-default" onclick="set_normal()" style="position:absolute; top:10px; right:145px; width:130px; height: 40px; background:#ECECEC;">
+					<button id="btn_set_normal" type="button" class="btn btn-default" onclick="set_normal()" style="float:right;">
 						<span class="glyphicon glyphicon-asterisk"></span>
-						Normal Mode
+						Normal
 					</button>
 					<script type='text/javascript'>
 						function set_normal() {
 							display_mode = 1;
-							var obj = document.getElementById("minumum_radius_spa");
-							obj.style.display = "inline";
-							var obj = document.getElementById("minumum_radius_abb");
-							obj.style.display = "inline";
-							var obj = document.getElementById("minumum_radius");
-							obj.style.display = "inline";
-							var obj = document.getElementById("value_minumum_radius");
-							obj.style.display = "inline";
-							var obj = document.getElementById("maximum_radius_spa");
-							obj.style.display = "inline";
-							var obj = document.getElementById("maximum_radius_abb");
-							obj.style.display = "inline";
-							var obj = document.getElementById("maximum_radius");
-							obj.style.display = "inline";
-							var obj = document.getElementById("value_maximum_radius");
-							obj.style.display = "inline";
-							var obj = document.getElementById("minkowski_sum_indicator_spa");
-							obj.style.display = "none";
-							var obj = document.getElementById("minkowski_sum_indicator_abb");
-							obj.style.display = "none";
-							var obj = document.getElementById("minkowski_sum_indicator");
-							obj.style.display = "none";
-							var obj = document.getElementById("value_minkowski_sum_indicator");
-							obj.style.display = "none";
 							draw_update();
 						}
 					</script>
@@ -1029,95 +947,85 @@
 			
 			    <div style="background-color: transparent; width: 100%; height: 10pt;"></div>
 				
-				<button id="btn_show_external" type="button" class="btn btn-default" onclick="show_ext()" style="position:absolute; top:135px; right:140px; width:135px; height: 32px; background:#ECECEC; font-size:8px;">
-					<span class="glyphicon glyphicon-asterisk"></span>
-					Show External Forces
-				</button>
-				<script type='text/javascript'>
-					function show_ext() {
-						external_force_mode = 1;
-						draw_update();
-					}
-				</script>
-				
-				<button id="btn_hide_external" type="button" class="btn btn-default" onclick="hide_ext()" style="position:absolute; top:135px; right:0px; width:132px; height: 32px; background:#ECECEC; font-size:8px;">
-					<span class="glyphicon glyphicon-asterisk"></span>
-					Hide External Forces
-				</button>
-				<script type='text/javascript'>
-					function hide_ext() {
-						external_force_mode = 0;
-						draw_update();
-					}
-				</script>
+				<select id="external_select" onchange="show_or_hode_external_forces(this)" style="float:right;">
+					<option value ="a">Show External Forces</option>
+					<option value ="b">Hide External Forces</option>
+					<script type='text/javascript'>
+						function show_or_hode_external_forces(obj) {
+							//代表的是选中项的index索引
+							var index = obj.selectedIndex;
+							//代表的是选中项的的值
+							var val = obj.options[index].value;
+							//代表的是选中项的text
+							var txt = obj.options[index].text;
+							external_force_mode = 1 - index;
+							draw_update();
+						}
+					</script>
+				</select>
 				
 				<div style="background-color: transparent; width: 100%; height: 25pt;"></div>
 
-				<div class="mode2" style="position:absolute; top:20px; right:0px;">
-					<span id="minumum_radius_spa" class="input-group-addon" style="font-size:15px; white-space:nowrap; float:right;">Minimum Radius&nbsp
-					<abbr id="minumum_radius_abb" style="float:right;" title="Minimum Radius defines the size of the smallest pipes in the normal display mode.">*</abbr></span>				
-					<input type="range" min="0" max="9.99" step="0.01" name="minumum_radius" id="minumum_radius" style="width:240px; height:23px; float:right;" oninput="input_minumum_radius()" onchange="change_minumum_radius()"/>
-					<span id="value_minumum_radius" style="font-size:15px; float:right;">0</span>
-					<script type='text/javascript'>
-						function change_minumum_radius() {
-							var value_minumum_radius = document.getElementById('minumum_radius').value;
-							document.getElementById('value_minumum_radius').innerHTML = (parseInt(value_minumum_radius*100)/100).toFixed(2);
-						}
-						function input_minumum_radius() {
-							var value_minumum_radius = document.getElementById('minumum_radius').value;
-							document.getElementById('value_minumum_radius').innerHTML = (parseInt(value_minumum_radius*100)/100).toFixed(2);
-							draw_update();
-						}
-					</script>
-					<!-- <input type="text" class="form-control" name="minumum_radius" id="minumum_radius" style="width:400px; height:30px;"> -->
-				</div>
-				
+				<span id="minumum_radius_spa" class="input-group-addon" style="font-size:15px; white-space:nowrap; float:right;">Minimum Radius&nbsp
+			    <abbr id="minumum_radius_abb" style="float:right;" title="Minimum Radius defines the size of the smallest pipes in the normal display mode.">*</abbr></span>				
+				<input type="range" min="0" max="9.99" step="0.01" name="minumum_radius" id="minumum_radius" style="width:240px; height:23px; float:right;" oninput="input_minumum_radius()" onchange="change_minumum_radius()"/>
+				<span id="value_minumum_radius" style="font-size:15px; float:right;">0</span>
+				<script type='text/javascript'>
+					function change_minumum_radius() {
+					    var value_minumum_radius = document.getElementById('minumum_radius').value;
+						document.getElementById('value_minumum_radius').innerHTML = (parseInt(value_minumum_radius*100)/100).toFixed(2);
+					}
+					function input_minumum_radius() {
+					    var value_minumum_radius = document.getElementById('minumum_radius').value;
+						document.getElementById('value_minumum_radius').innerHTML = (parseInt(value_minumum_radius*100)/100).toFixed(2);
+						draw_update();
+					}
+				</script>
+			    <!-- <input type="text" class="form-control" name="minumum_radius" id="minumum_radius" style="width:400px; height:30px;"> -->
+
 				<div style="background-color: transparent; width: 100%; height: 20pt;"></div>
 
-				<div class="mode2" style="position:absolute; top:70px; right:0px;">
-					<span id="maximum_radius_spa" class="input-group-addon" style="font-size:15px; white-space:nowrap; float:right;">Maximum Radius&nbsp
-					<abbr id="maximum_radius_abb" style="float:right;" title="Maximum Radius defines the size of the largest pipes in the normal display mode.">*</abbr></span>
-					<input type="range" min="0" max="99.9" step="0.1" name="maximum_radius" id="maximum_radius" style="width:240px; height:23px; float:right;" oninput="input_maximum_radius()" onchange="change_maximum_radius()"/>
-					<span id="value_maximum_radius" style="font-size:15px; float:right;">0</span>
-					<script type='text/javascript'>
-						function change_maximum_radius() {
-							var value_maximum_radius = document.getElementById('maximum_radius').value;
-							document.getElementById('value_maximum_radius').innerHTML = (parseInt(value_maximum_radius*10)/10).toFixed(1);
-						}
-						function input_maximum_radius() {
-							var value_maximum_radius = document.getElementById('maximum_radius').value;
-							document.getElementById('value_maximum_radius').innerHTML = (parseInt(value_maximum_radius*10)/10).toFixed(1);
-							draw_update();
-						}
-					</script>
-					<!-- <input type="text" class="form-control" name="maximum_radius" id="maximum_radius" style="width:400px; height:30px;"> -->
-				</div>
-				
+				<span id="maximum_radius_spa" class="input-group-addon" style="font-size:15px; white-space:nowrap; float:right;">Maximum Radius&nbsp
+			    <abbr id="maximum_radius_abb" style="float:right;" title="Maximum Radius defines the size of the largest pipes in the normal display mode.">*</abbr></span>
+				<input type="range" min="0" max="99.9" step="0.1" name="maximum_radius" id="maximum_radius" style="width:240px; height:23px; float:right;" oninput="input_maximum_radius()" onchange="change_maximum_radius()"/>
+			    <span id="value_maximum_radius" style="font-size:15px; float:right;">0</span>
+				<script type='text/javascript'>
+					function change_maximum_radius() {
+					    var value_maximum_radius = document.getElementById('maximum_radius').value;
+						document.getElementById('value_maximum_radius').innerHTML = (parseInt(value_maximum_radius*10)/10).toFixed(1);
+					}
+					function input_maximum_radius() {
+					    var value_maximum_radius = document.getElementById('maximum_radius').value;
+						document.getElementById('value_maximum_radius').innerHTML = (parseInt(value_maximum_radius*10)/10).toFixed(1);
+						draw_update();
+					}
+				</script>
+			    <!-- <input type="text" class="form-control" name="maximum_radius" id="maximum_radius" style="width:400px; height:30px;"> -->
+
 				<div style="background-color: transparent; width: 100%; height: 20pt;"></div>
 
-				<div class="mode2" style="position:absolute; top:40px; right:0px;">
-					<span id="minkowski_sum_indicator_spa" class="input-group-addon" style="font-size:15px; white-space:nowrap; float:right; display:none;">Minkowski Sum Indicator&nbsp
-					<abbr id="minkowski_sum_indicator_abb" style="float:right; display:none;" title="Minkowski Sum Indicator defines the form-to-force status in the minkowski sum display mode.">*</abbr></span>
-					<input type="range" min="0.05" max="0.95" step="0.01" name="minkowski_sum_indicator" id="minkowski_sum_indicator" style="width:240px; height:23px; float:right; display:none;" oninput="input_minkowski_sum_indicator()" onchange="change_minkowski_sum_indicator()"/>
-					<span id="value_minkowski_sum_indicator" style="font-size:15px; float:right; display:none;">0</span>
-					<script type='text/javascript'>
-						function change_minkowski_sum_indicator() {
-							var value_minkowski_sum_indicator = document.getElementById('minkowski_sum_indicator').value;
-							document.getElementById('minkowski_sum_indicator').innerHTML = (parseInt(value_minkowski_sum_indicator*100)/100).toFixed(2);
-						}
-						function input_minkowski_sum_indicator() {
-							var value_minkowski_sum_indicator = document.getElementById('minkowski_sum_indicator').value;
-							document.getElementById('value_minkowski_sum_indicator').innerHTML = (parseInt(value_minkowski_sum_indicator*100)/100).toFixed(2);
-							draw_update();
-						}
-					</script>
-				</div>
+				<span id="minkowski_sum_indicator_spa" class="input-group-addon" style="font-size:15px; white-space:nowrap; float:right;">Minkowski Sum Indicator&nbsp
+			    <abbr id="minkowski_sum_indicator_abb" style="float:right;" title="Minkowski Sum Indicator defines the form-to-force status in the minkowski sum display mode.">*</abbr></span>
+				<input type="range" min="0.01" max="0.99" step="0.01" name="minkowski_sum_indicator" id="minkowski_sum_indicator" style="width:240px; height:23px; float:right;" oninput="input_minkowski_sum_indicator()" onchange="change_minkowski_sum_indicator()"/>
+			    <span id="value_minkowski_sum_indicator" style="font-size:15px; float:right;">0</span>
+				<script type='text/javascript'>
+					function change_minkowski_sum_indicator() {
+					    var value_minkowski_sum_indicator = document.getElementById('minkowski_sum_indicator').value;
+						document.getElementById('minkowski_sum_indicator').innerHTML = (parseInt(value_minkowski_sum_indicator*100)/100).toFixed(2);
+					}
+					function input_minkowski_sum_indicator() {
+					    var value_minkowski_sum_indicator = document.getElementById('minkowski_sum_indicator').value;
+						document.getElementById('value_minkowski_sum_indicator').innerHTML = (parseInt(value_minkowski_sum_indicator*100)/100).toFixed(2);
+						draw_update();
+					}
+				</script>
+				
     </div>
 	
-	<div id="fmb" style="background-color: #000000; opacity: 0.1; position:absolute; top:430px; right:5px; width: 285px; height: 240px; border-radius: 15px;"></div>
-	<div id="fmb2" style="background-color: #000000; opacity: 0.2; position:absolute; top:436px; right:5px; width: 285px; height: 32px; border-radius: 10px;"></div>
+	<div id="fmb" style="background-color: #000000; opacity: 0.1; position:absolute; top:465px; right:5px; width: 285px; height: 205px;"></div>
+	<div id="fmb2" style="background-color: #000000; opacity: 0.2; position:absolute; top:471px; right:5px; width: 285px; height: 32px;"></div>
 	
-	<button id="btn_fold3" type="button" style="position:absolute; top:440px; right:140px; width:25px; height: 25px; display:inline; background:transparent;  border-color: transparent; opacity:0.7;" onclick="fold_fm()">
+	<button id="btn_fold3" type="button" style="position:absolute; top:475px; right:135px; width:25px; height: 25px; display:inline; background:#808080;" onclick="fold_fm()">
 		<span id="btn_fold3_spa" style="position:absolute; font-size:13px; top:-1px; left:5px;">▲</span>
 		<script type='text/javascript'>
 		    function fold_fm() {
@@ -1129,16 +1037,6 @@
 			    obj.style.display = "none";
 				var obj = document.getElementById("btn_upload");
 			    obj.style.display = "none";
-				var obj = document.getElementById("fmb2");
-			    obj.style.display = "none";
-				var obj = document.getElementById("container-item-fm");
-			    obj.style.display = "none";
-				var obj = document.getElementById("sample1");
-			    obj.style.display = "none";
-				var obj = document.getElementById("sample2");
-			    obj.style.display = "none";
-				var obj = document.getElementById("sample3");
-			    obj.style.display = "none";
 				var obj = document.getElementById("btn_fold3");
 				obj.style.display = "none";
 				var obj = document.getElementById("btn_show3");
@@ -1147,7 +1045,7 @@
 		</script>
 	</button>
 	
-	<button id="btn_show3" type="button" style="position:absolute; top:440px; right:10px; width:25px; height: 25px; background:transparent;  border-color: transparent; opacity:0.7; display:none;" onclick="show_fm()">
+	<button id="btn_show3" type="button" style="position:absolute; top:475px; right:135px; width:25px; height: 25px; background:#808080; display:none;" onclick="show_fm()">
 		<span id="btn_show3_spa" style="position:absolute; font-size:13px; top:1px; left:5px;">▼</span>
 		<script type='text/javascript'>
 		    function show_fm() {
@@ -1159,16 +1057,6 @@
 			    obj.style.display = "inline";
 				var obj = document.getElementById("btn_upload");
 			    obj.style.display = "inline";
-				var obj = document.getElementById("fmb2");
-			    obj.style.display = "inline";
-				var obj = document.getElementById("container-item-fm");
-			    obj.style.display = "inline";
-				var obj = document.getElementById("sample1");
-			    obj.style.display = "inline";
-				var obj = document.getElementById("sample2");
-			    obj.style.display = "inline";
-				var obj = document.getElementById("sample3");
-			    obj.style.display = "inline";
 				var obj = document.getElementById("btn_fold3");
 				obj.style.display = "inline";
 				var obj = document.getElementById("btn_show3");
@@ -1177,13 +1065,13 @@
 		</script>
 	</button>
 	
-	<div id="container-item-fm" style="position:absolute; top:435px; right:15px; width: 115px; display:block;">
+	<div id="container-item" style="position:absolute; top:470px; right:10px; width: 115px; display:block;">
 	    <span class="glyphicon glyphicon-asterisk" style="font-size:20px; float:right;">File Manager</span>
 	</div>
-	<div id="container" style="position:absolute; top:465px; right:10px; width:250px; height:500px; float:right; display:inline;">
+	<div id="container" style="position:absolute; top:500px; right:10px; width:250px; height:500px; float:right; display:inline;">
 		<div class="form-group" id="l"></div>
 		    <div class="col-sm-4"></div>
-				<button id="btn_export" type="button" class="btn btn-default" style="position:absolute; top:15px; right:2px; width:270px; height: 40px; background:#ECECEC;" onclick="download_stl()">
+				<button id="btn_export" type="button" class="btn btn-default" style="float:right;" onclick="download_stl()">
 					<span class="glyphicon glyphicon-asterisk"></span>
 					Export STL Model
 				</button>
@@ -1373,10 +1261,10 @@
 				</script>
 	</div>			
 				
-	<div id="container" style="position:absolute; top:520px; right:10px; width:288px; height:500px; float:right; display:inline; padding-left:20px;">
+	<div id="container" style="position:absolute; top:550px; right:10px; width:288px; height:500px; float:right; display:inline; padding-left:20px;">
 		<div class="form-group" id="l"></div>
 		    <div class="col-sm-4"></div>
-				<button id="btn_download" type="button" class="btn btn-default" style="position:absolute; top:10px; right:2px; width:270px; height: 40px; background:#ECECEC;" onclick="download_csv()">
+				<button id="btn_download" type="button" class="btn btn-default" style="float:right;" onclick="download_csv()">
 					<span class="glyphicon glyphicon-asterisk"></span>
 					Download Data File
 				</button>
@@ -1390,10 +1278,10 @@
 				</script>
 	</div>
 	
-	<div id="container" style="position:absolute; top:570px; right:10px; width:288px; height:500px; float:right; display:inline; padding-left:20px;">
+	<div id="container" style="position:absolute; top:598px; right:10px; width:288px; height:500px; float:right; display:inline; padding-left:20px;">
 		<div class="form-group" id="upload1"></div>
 		    <div class="col-sm-4"></div>
-				<button id="btn_upload" type="button" class="btn btn-default" style="position:absolute; top:10px; right:2px; width:270px; height: 40px; background:#ECECEC;" onclick="upload_csv()">
+				<button id="btn_upload" type="button" class="btn btn-default" style="float:right;" onclick="upload_csv()">
 					<span class="glyphicon glyphicon-asterisk"></span>
 					Upload Data File
 				</button>
@@ -1874,495 +1762,6 @@
 								}
 								
 							})
-						}
-					}
-				</script>
-	</div>
-	
-	<div id="container" style="position:absolute; top:620px; right:10px; width:288px; height:500px; float:right; display:inline; padding-left:20px;">
-		<div class="form-group" id="l"></div>
-		    <div class="col-sm-4"></div>
-				<button id="sample3" type="button" class="btn btn-default" style="position:absolute; top:10px; right:2px; width:87px; height: 30px; background:#ECECEC; font-size:10px" onclick="load_sample('sample3.csv')">
-					<span class="glyphicon glyphicon-asterisk" style="font-size:10px"></span>
-					Sample 3
-				</button>
-				<button id="sample2" type="button" class="btn btn-default" style="position:absolute; top:10px; right:93px; width:87px; height: 30px; background:#ECECEC; font-size:10px" onclick="load_sample('sample2.csv')">
-					<span class="glyphicon glyphicon-asterisk" style="font-size:10px"></span>
-					Sample 2
-				</button>
-				<button id="sample1" type="button" class="btn btn-default" style="position:absolute; top:10px; right:184px; width:87px; height: 30px; background:#ECECEC; font-size:10px" onclick="load_sample('sample1.csv')">
-					<span class="glyphicon glyphicon-asterisk" style="font-size:10px"></span>
-					Sample 1
-				</button>
-				<script type='text/javascript'>
-				    
-					function load_sample(filename) {
-
-						if (window.XMLHttpRequest)
-							{ 
-								textfile = new XMLHttpRequest(); 
-							}
-						
-						var ran = Math.round(Math.random()*100000000).toString();
-						textfile.open("GET", filename+'?'+ran, true);
-						textfile.send();
-
-						textfile.onreadystatechange = function ()
-						{   
-
-							if (textfile.readyState == 4 && textfile.status == 200)
-							{ 
-								
-								localfileonload==true;
-								
-								form_pois = [];
-								form_pois_neib_pois = [];
-								form_pois_neib_edges = [];
-								form_pois_edges = [];
-								force_edges = [];
-								force_edges_magnitude = [];
-								
-								geometry = [];
-								minrad = document.getElementById('minumum_radius').value;
-								maxrad = document.getElementById('maximum_radius').value;
-								
-								while(scene.children.length > 0){ 
-									scene.remove(scene.children[0]); 
-								}
-								
-								initLight();
-								
-								//辅助工具
-								var helper = new THREE.AxesHelper(20);
-								helper.position.x = -100;
-								helper.position.z = -100;
-								scene.add(helper);
-								
-								function deleteGroup(group) {
-									//console.log(group);
-									if (!group) return;
-									// 删除掉所有的模型组内的mesh
-									group.traverse(function (item) {
-										if (item instanceof THREE.Mesh) {
-											item.geometry.dispose(); // 删除几何体
-											item.material.dispose(); // 删除材质
-										}
-									});
-								}
-								
-								deleteGroup(group);
-								deleteGroup(group_mink);
-								deleteGroup(group_arrow);
-								deleteGroup(group_shadow);
-								
-								geometry = [];
-								group = new THREE.Group();
-								group_mink = new THREE.Group();
-								group_arrow = new THREE.Group();
-								group_shadow = new THREE.Group();
-								minrad = document.getElementById('minumum_radius').value;
-								maxrad = document.getElementById('maximum_radius').value;
-								mink = document.getElementById("minkowski_sum_indicator").value;
-								mat = new THREE.MeshStandardMaterial({color: 0x000000});
-								
-								console.log("sample-file",minrad,maxrad);
-								
-								content = textfile.responseText;
-								arr_all = content.split('\r\n');
-								arr = arr_all.slice(1,parseInt(arr_all[0])+1);
-								if (display_mode==1) {
-									for (var i = 0; i < arr.length; i++) {
-										arr0 = arr[i].split(',');
-										if (isNaN(arr0[4])==false) {
-											//console.log(arr0);
-											
-											var p1 = new THREE.Vector3(arr0[0]-0, arr0[1]-0);
-											var p2 = new THREE.Vector3(arr0[2]-0, arr0[3]-0);
-											let line = new THREE.LineCurve3(p1,p2);
-											var CurvePath = new THREE.CurvePath();
-											CurvePath.curves.push(line);
-											
-											if (arr0[4]-0==-1) {
-												var dir = new THREE.Vector3(((arr0[2]-0)-(arr0[0]-0))*0.07, 0, -((arr0[3]-0)-(arr0[1]-0))*0.07);
-												var origin = new THREE.Vector3((arr0[0]-0)*0.07, 0, -(arr0[1]-0)*0.07);
-												var length = 6;
-												var colorstr = getColorCode(0,100,0);
-												var arrowHelper = new THREE.ArrowHelper(dir, origin, length, colorstr, 1.0, 1.0);
-												if (external_force_mode==1) {
-													group_arrow.add(arrowHelper);
-													geometry.push(arrowHelper);
-												}
-											} else {
-												radius = arr0[4]*(maxrad-minrad)+minrad*1.0;
-												
-												if (arr0[4]-0<0.333) {
-													var num1 = Math.round((c2[0]-c1[0])*(arr0[4]-0)/0.333+c1[0]);
-													var num2 = Math.round((c2[1]-c1[1])*(arr0[4]-0)/0.333+c1[1]);
-													var num3 = Math.round((c2[2]-c1[2])*(arr0[4]-0)/0.333+c1[2]);
-													var colorstr = getColorCode(num1,num2,num3);
-													var colormat = new THREE.MeshStandardMaterial({color: colorstr});
-												} else if (arr0[4]-0<0.666) {
-													var num1 = Math.round((c3[0]-c2[0])*(arr0[4]-0.333)/0.333+c2[0]);
-													var num2 = Math.round((c3[1]-c2[1])*(arr0[4]-0.333)/0.333+c2[1]);
-													var num3 = Math.round((c3[2]-c2[2])*(arr0[4]-0.333)/0.333+c2[2]);
-													var colorstr = getColorCode(num1,num2,num3);
-													var colormat = new THREE.MeshStandardMaterial({color: colorstr});
-												} else {
-													var num1 = Math.round((c4[0]-c3[0])*(arr0[4]-0.666)/0.333+c3[0]);
-													var num2 = Math.round((c4[1]-c3[1])*(arr0[4]-0.666)/0.333+c3[1]);
-													var num3 = Math.round((c4[2]-c3[2])*(arr0[4]-0.666)/0.333+c3[2]);
-													var colorstr = getColorCode(num1,num2,num3);
-													var colormat = new THREE.MeshStandardMaterial({color: colorstr});
-												};
-
-												var geometry_temp = new THREE.TubeGeometry(CurvePath, 8, radius, 8, false);
-												var mesh = new THREE.Mesh(geometry_temp, colormat);
-												mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
-												mesh.scale.set(0.07, 0.07, 0.07); //缩放
-												mesh.castShadow = true;
-												group.add(mesh);
-												geometry.push(geometry_temp);
-												
-												var geometry_temp = new THREE.SphereGeometry(radius, 8, 8);
-												var mesh = new THREE.Mesh(geometry_temp, colormat);
-												mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
-												mesh.scale.set(0.07, 0.07, 0.07); //缩放
-												mesh.position.x = arr0[0]*0.07;
-												mesh.position.y = 0;
-												mesh.position.z = -arr0[1]*0.07;
-												mesh.castShadow = true;
-												group.add(mesh);
-												geometry.push(geometry_temp);
-												
-												var geometry_temp = new THREE.SphereGeometry(radius, 8, 8);
-												var mesh = new THREE.Mesh(geometry_temp, colormat);
-												mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
-												mesh.scale.set(0.07, 0.07, 0.07); //缩放
-												mesh.position.x = arr0[2]*0.07;
-												mesh.position.y = 0;
-												mesh.position.z = -arr0[3]*0.07;
-												mesh.castShadow = true;
-												group.add(mesh);
-												geometry.push(geometry_temp);
-												
-												var geo_shadow = new THREE.Geometry();
-												var material_shadow = new THREE.LineBasicMaterial( { color: 0xEAEAEA, linecap: 'round', linejoin:  'round', linewidth: radius*2} );
-												var p1 = new THREE.Vector3(arr0[0]-0, arr0[1]-0, -29/0.07);
-												var p2 = new THREE.Vector3(arr0[2]-0, arr0[3]-0, -29/0.07);
-												geo_shadow.vertices.push(p1);
-												geo_shadow.vertices.push(p2);
-												var line_shadow = new THREE.Line(geo_shadow, material_shadow, THREE.LineSegments);
-												line_shadow.rotation.x = -0.5 * Math.PI; //将模型摆正
-												line_shadow.scale.set(0.07, 0.07, 0.07); //缩放
-												group_shadow.add(line_shadow);
-												geometry.push(line_shadow);
-												
-											}
-										}
-									}
-									//var loader = new THREE.STLLoader();
-									//loader.load('../ghBackend/media/Default/output.stl', function (geometry) {
-									//	//创建纹理
-									//	var mat = new THREE.MeshStandardMaterial({color: 0x0079ED});
-									//	var mesh = new THREE.Mesh(geometry, mat);
-									//	mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
-									//	mesh.scale.set(0.07, 0.07, 0.07); //缩放
-									//	geometry.center(); //居中显示
-									//	scene.add(mesh);
-									//});
-									var box3 = new THREE.Box3();
-									// 计算层级模型group的包围盒
-									// 模型group是加载一个三维模型返回的对象，包含多个网格模型
-									box3.expandByObject(group);
-									// 计算一个层级模型对应包围盒的几何体中心在世界坐标中的位置
-									var center = new THREE.Vector3();
-									box3.getCenter(center);
-									// console.log('查看几何体中心坐标', center);
-									// 重新设置模型的位置，使之居中。
-									group.position.x = group.position.x - center.x;
-									group.position.y = group.position.y - center.y;
-									group.position.z = group.position.z - center.z;
-									group_arrow.position.x = group_arrow.position.x - center.x;
-									group_arrow.position.y = group_arrow.position.y - center.y;
-									group_arrow.position.z = group_arrow.position.z - center.z;
-									group_shadow.position.x = group_shadow.position.x - center.x;
-									group_shadow.position.y = group_shadow.position.y - center.y;
-									group_shadow.position.z = group_shadow.position.z - center.z;
-									scene.add(group);
-									scene.add(group_arrow);
-									scene.add(group_shadow);
-									
-									var plane = new THREE.PlaneGeometry(100000,100000);
-									var colormat = new THREE.MeshStandardMaterial({color: "0xFCFCFC"});
-									var mesh = new THREE.Mesh(plane, colormat);
-									mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
-									mesh.position.y = -30;
-									mesh.receiveShadow = true;
-									scene.add(mesh);
-								}
-								
-								pnum = parseInt(arr_all[0])+1;
-								pstep = parseInt(arr_all[pnum]);
-								pnum = pnum + 1;
-								arr = arr_all.slice(pnum,pnum+pstep);
-								for (var i = 0; i < arr.length; i++) {
-									arr0 = arr[i].split(',');
-									var form_poi = new THREE.Vector3(arr0[0]-0, arr0[1]-0);
-									form_pois.push(form_poi);
-								}
-								
-								pnum = pnum + pstep;
-								arr = arr_all.slice(pnum,pnum+pstep);
-								for (var i = 0; i < arr.length; i++) {
-									arr0 = arr[i].split(',');
-									form_pois_neib_pois.push(arr0);
-								}
-								
-								pnum = pnum + pstep;
-								arr = arr_all.slice(pnum,pnum+pstep);
-								for (var i = 0; i < arr.length; i++) {
-									arr0 = arr[i].split(',');
-									form_pois_neib_edges.push(arr0);
-								}
-								
-								pnum = pnum + pstep;
-								arr = arr_all.slice(pnum,pnum+pstep);
-								for (var i = 0; i < arr.length; i++) {
-									arr0 = arr[i].split(',');
-									form_pois_edges.push(arr0);
-								}
-								
-								pnum = pnum + pstep;
-								pstep = parseInt(arr_all[pnum]);
-								pnum = pnum + 1;
-								arr = arr_all.slice(pnum,pnum+pstep);
-								for (var i = 0; i < arr.length; i++) {
-									arr0 = arr[i].split(',');
-									var p1 = new THREE.Vector3(arr0[0]-0, arr0[1]-0);
-									var p2 = new THREE.Vector3(arr0[2]-0, arr0[3]-0);
-									let line_force = new THREE.LineCurve3(p1,p2);
-									force_edges.push(line_force);
-									force_edges_magnitude.push(arr0[4]-0);
-								}
-								
-								if (display_mode==2) {
-									let form_pois_edges_geos = [];
-									for (var i = 0; i < form_pois_edges.length; i++) {
-										arr0 = [];
-										for (var j = 0; j < form_pois_edges[i].length; j++) {
-											temp = force_edges[form_pois_edges[i][j]];
-											var p1 = new THREE.Vector3(temp.v1.x*mink+form_pois[i].x*(1-mink),temp.v1.y*mink+form_pois[i].y*(1-mink));
-											var p2 = new THREE.Vector3(temp.v2.x*mink+form_pois[i].x*(1-mink),temp.v2.y*mink+form_pois[i].y*(1-mink));
-											temp = new THREE.LineCurve3(p1,p2);
-											arr0.push(temp);
-										}
-										form_pois_edges_geos.push(arr0);
-									}
-									
-									for (var i = 0; i < form_pois_neib_pois.length; i++) {
-										for (var j = 0; j < form_pois_neib_pois[i].length; j++) {
-										
-											var rad_temp = force_edges_magnitude[form_pois_edges[i][j]];
-											if (rad_temp-0==-1) {
-												var colorstr = getColorCode(0,100,0);
-												var colormat = new THREE.MeshStandardMaterial({color: colorstr});
-											}else if (rad_temp-0<0.333) {
-												var num1 = Math.round((c2[0]-c1[0])*(rad_temp-0)/0.333+c1[0]);
-												var num2 = Math.round((c2[1]-c1[1])*(rad_temp-0)/0.333+c1[1]);
-												var num3 = Math.round((c2[2]-c1[2])*(rad_temp-0)/0.333+c1[2]);
-												var colorstr = getColorCode(num1,num2,num3);
-												var colormat = new THREE.MeshStandardMaterial({color: colorstr});
-											} else if (rad_temp-0<0.666) {
-												var num1 = Math.round((c3[0]-c2[0])*(rad_temp-0.333)/0.333+c2[0]);
-												var num2 = Math.round((c3[1]-c2[1])*(rad_temp-0.333)/0.333+c2[1]);
-												var num3 = Math.round((c3[2]-c2[2])*(rad_temp-0.333)/0.333+c2[2]);
-												var colorstr = getColorCode(num1,num2,num3);
-												var colormat = new THREE.MeshStandardMaterial({color: colorstr});
-											} else {
-												var num1 = Math.round((c4[0]-c3[0])*(rad_temp-0.666)/0.333+c3[0]);
-												var num2 = Math.round((c4[1]-c3[1])*(rad_temp-0.666)/0.333+c3[1]);
-												var num3 = Math.round((c4[2]-c3[2])*(rad_temp-0.666)/0.333+c3[2]);
-												var colorstr = getColorCode(num1,num2,num3);
-												var colormat = new THREE.MeshStandardMaterial({color: colorstr});
-											};
-											
-											let line1 = form_pois_edges_geos[i][j];
-											let line2 = form_pois_edges_geos[form_pois_neib_pois[i][j]][form_pois_neib_edges[i][j]];
-											var p1 = line1.v1; //顶点1坐标
-											var p2 = line1.v2; //顶点2坐标
-											var p3 = line2.v2; //顶点3坐标
-											var p4 = line2.v1; //顶点4坐标
-											var geo = new THREE.Geometry(); //声明一个空几何体对象
-											geo.vertices.push(p1,p2,p3); //顶点坐标添加到geometry对象
-											var normal = new THREE.Vector3( 0, 0, 1 ); //三角面法向量
-											var face = new THREE.Face3( 0, 1, 2, normal); //创建三角面
-											geo.faces.push(face); //三角面添加到几何体
-											//var face = new THREE.Face3( 2, 3, 1, normal); //创建三角面
-											var mesh = new THREE.Mesh(geo,colormat);//网格模型对象
-											mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
-											mesh.scale.set(0.07, 0.07, 0.07); //缩放
-											mesh.castShadow = true;
-											if (rad_temp-0==-1) {
-												if (external_force_mode==1) {
-													group_mink.add(mesh);
-												}
-											} else {
-												group_mink.add(mesh);
-											}
-											var geo = new THREE.Geometry(); //声明一个空几何体对象
-											geo.vertices.push(p3,p4,p1); //顶点坐标添加到geometry对象
-											var normal = new THREE.Vector3( 0, 0, 1 ); //三角面法向量
-											var face = new THREE.Face3( 0, 1, 2, normal); //创建三角面
-											geo.faces.push(face); //三角面添加到几何体
-											//var face = new THREE.Face3( 2, 3, 1, normal); //创建三角面
-											var mesh = new THREE.Mesh(geo,colormat);//网格模型对象
-											mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
-											mesh.scale.set(0.07, 0.07, 0.07); //缩放
-											mesh.castShadow = true;
-											if (rad_temp-0==-1) {
-												if (external_force_mode==1) {
-													group_mink.add(mesh);
-												}
-											} else {
-												group_mink.add(mesh);
-											}
-										}
-									}
-									var box3 = new THREE.Box3();
-									// 计算层级模型group的包围盒
-									// 模型group是加载一个三维模型返回的对象，包含多个网格模型
-									box3.expandByObject(group_mink);
-									// 计算一个层级模型对应包围盒的几何体中心在世界坐标中的位置
-									var center = new THREE.Vector3();
-									box3.getCenter(center);
-									// console.log('查看几何体中心坐标', center);
-									// 重新设置模型的位置，使之居中。
-									group_mink.position.x = group_mink.position.x - center.x;
-									group_mink.position.y = group_mink.position.y - center.y;
-									group_mink.position.z = group_mink.position.z - center.z;
-									scene.add(group_mink);
-									
-									var plane = new THREE.PlaneGeometry(100000,100000);
-									var colormat = new THREE.MeshStandardMaterial({color: "0xFCFCFC"});
-									var mesh = new THREE.Mesh(plane, colormat);
-									mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
-									mesh.position.y = -30;
-									mesh.receiveShadow = true;
-									scene.add(mesh);
-								}
-								
-								pnum = pnum + pstep;
-								pstep = 6;
-								arr_input = arr_all.slice(pnum,pnum+pstep);
-								
-								document.getElementById("reduce_rate").defaultValue = arr_input[1];
-								document.getElementById('value_reduce_rate').innerHTML = (arr_input[1]*1.0).toFixed(2);
-								document.getElementById("tolerance_of_edge_length").defaultValue = arr_input[2];
-								document.getElementById('value_tolerance_of_edge_length').innerHTML = (arr_input[2]*1.0).toFixed(2);
-								document.getElementById("length_constraint_maltiplier").defaultValue = arr_input[3];
-								document.getElementById('value_length_constraint_maltiplier').innerHTML = (arr_input[3]*1.0).toFixed(2);
-								document.getElementById("boundary_constraint_magnitude").defaultValue = arr_input[4];
-								document.getElementById('value_boundary_constraint_magnitude').innerHTML = (arr_input[4]*1.0).toFixed(2);
-								document.getElementById("perp_steps").defaultValue = arr_input[5];
-								document.getElementById('value_perp_steps').innerHTML = arr_input[5];
-								
-								arr0_input = arr_input[0].split(',');
-								function Point(x, y) {
-									this.x = x;
-									this.y = y;
-									}
-									//圆圈对象
-								function Circle(x, y) {
-									this.x = x;
-									this.y = y;
-									this.radius = 7;
-									this.color = "blue";
-									//拖拽点的标记
-									this.isSelected = false;
-									}
-								points = [];
-								circles = [];
-								for (var i = 0; i < arr0_input.length/2; i++) {
-									var point=new Point((arr0_input[i*2]-0)/2,(500-arr0_input[i*2+1])/2);
-									points.push(point);
-									var circle=new Circle((arr0_input[i*2]-0)/2,(500-arr0_input[i*2+1])/2);
-									circles.push(circle);
-								}
-								
-								wall_info = [];
-								wall_info.push((arr0_input[0]-0)/500*3000*0.07);
-								wall_info.push((arr0_input[1]-0)/500*3000*0.07);
-								wall_info.push((arr0_input[arr0_input.length-2]-0)/500*3000*0.07);
-								wall_info.push((arr0_input[arr0_input.length-1]-0)/500*3000*0.07);
-								
-								if (display_mode==1) {
-								    var vec = new THREE.Vector3(wall_info[3]-wall_info[1], -(wall_info[2]-wall_info[0]));
-									vec = vec.normalize();
-									var baseShape = new THREE.Shape();
-									baseShape.moveTo(wall_info[0], wall_info[1]);
-									baseShape.lineTo(wall_info[2], wall_info[3]);
-									baseShape.lineTo(wall_info[2]+vec.x*3, wall_info[3]+vec.y*3);
-									baseShape.lineTo(wall_info[0]+vec.x*3, wall_info[1]+vec.y*3);
-									baseShape.lineTo(wall_info[0], wall_info[1]);
-									var extrudedGeometry = new THREE.ExtrudeGeometry(baseShape, {amount: 20, bevelEnabled: false});
-									var tmaterial = new THREE.MeshStandardMaterial({color:0xffffff,transparent:true,opacity:0.8});
-									//tmaterial.opacity = 0.1;
-									var extrudedMesh = new THREE.Mesh(extrudedGeometry, tmaterial);
-									extrudedMesh.rotation.x = -0.5 * Math.PI; //将模型摆正
-									extrudedMesh.position.x = extrudedMesh.position.x - center.x;
-									extrudedMesh.position.y = extrudedMesh.position.y - center.y -10;
-									extrudedMesh.position.z = extrudedMesh.position.z - center.z;
-									scene.add(extrudedMesh);
-								}
-
-								const canvas = document.getElementById('canvas');
-								const context = canvas.getContext('2d');
-								context.clearRect(0,0,canvas.width,canvas.height);
-								context.beginPath();
-								context.lineWidth = 2;
-								context.moveTo(points[0].x,points[0].y);
-								for (var i = 0; i < points.length; i++) {
-								context.lineTo(points[i].x, points[i].y);
-								}
-								context.lineTo(points[0].x, points[0].y);
-								context.closePath();
-								context.fillStyle="rgb(128,128,128)";
-								context.fill();
-								context.strokeStyle="black";
-								context.stroke();
-								for (var i = 0; i < 10; i++) {
-									context.beginPath();
-									context.lineWidth = 1;
-									var xx = points[0].x + (points[points.length-1].x-points[0].x)*i/9;
-									var yy = points[0].y + (points[points.length-1].y-points[0].y)*i/9;
-									context.moveTo(xx,yy);
-									context.lineTo(xx-7, yy+3);
-									context.closePath();
-									context.fillStyle="rgb(128,128,128)";
-									context.fill();
-									context.strokeStyle="black";
-									context.stroke();
-								}
-								context.lineWidth = 3;
-								for(var i=0; i<circles.length; i++) {
-									var circle = circles[i];
-									context.globalAlpha = 0.85;
-									context.beginPath();
-									context.arc(circle.x, circle.y, circle.radius, 0, Math.PI*2);
-									context.fillStyle = "black";
-									context.strokeStyle = "white";
-									context.fill();
-									context.stroke();
-								}
-								
-								animate();
-								window.onresize = onWindowResize;
-								
-								var oldnode = document.getElementById("loading");
-								if (oldnode!=null) {
-								    oldnode.parentNode.removeChild(oldnode);
-								}
-							}
 						}
 					}
 				</script>
