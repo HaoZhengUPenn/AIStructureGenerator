@@ -1,0 +1,65 @@
+body{
+    margin-left: 0px;
+	margin-top: 0px;
+}
+
+.mode1 input[type='range'] {
+  overflow: hidden;
+  width: 300px;
+  -webkit-appearance: none;
+  background-color: #ECECEC;
+}
+
+.mode1 input[type='range']::-webkit-slider-runnable-track {
+  height: 12px;
+  -webkit-appearance: none;
+  color: #3A94EF;
+  margin-top: -1px;
+}
+
+.mode1 input[type='range']::-webkit-slider-thumb {
+  width: 12px;
+  -webkit-appearance: none;
+  height: 12px;
+  cursor: ew-resize;
+  background: #3A94EF;
+  box-shadow: -300px 0 0 300px #808080;
+}
+
+
+
+
+
+.mode2 input[type='range'] {
+  -webkit-appearance: none;
+  background: transparent;
+  outline: none;
+  font-size: 8px;
+}
+.mode2 input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+/*
+ * 自定义range样式
+ */
+.mode2 input[type='range'] {
+  width: 12em;
+  height: 2.5em;
+}
+.mode2 input[type='range']::-webkit-slider-runnable-track {
+  border: none;
+  width: 12em;
+  height: 0.5em;
+  border-radius: 0.25em;
+  background: #343440;
+}
+.mode2 input[type='range']::-webkit-slider-thumb {
+  border: none;
+  width: 2.5em;
+  height: 2.5em;
+  border-radius: 50%;
+  background: #2E92FF;
+  transition: transform 0.5s ease-out;
+  transform: none;
+  margin-top: -1em;
+}
