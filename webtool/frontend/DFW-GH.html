@@ -2441,8 +2441,8 @@
 					context.stroke();
 				}
 				canvas.onmousedown=function(e){
-				var clickX = e.pageX - canvas.offsetLeft-40;
-				var clickY = e.pageY - canvas.offsetTop-100;
+				var clickX = e.pageX - canvas.offsetLeft - 40;
+				var clickY = e.pageY - canvas.offsetTop - (window.innerHeight - 100 - 260);
 				console.log("mouse click revised: ",clickX,clickY);
 				//判断当前点击点是否在已经绘制的圆圈上，如果是执行相关操作，并return，不进入画线的代码
 				for(var i=0; i<circles.length; i++) {
@@ -2465,8 +2465,8 @@
 				if (isDragging == true) {
 					// 判断拖拽对象是否存在
 					// 取得鼠标位置
-					var x1 = e.pageX - canvas.offsetLeft-40;
-					var y1 = e.pageY - canvas.offsetTop-100;
+					var x1 = e.pageX - canvas.offsetLeft - 40;
+					var y1 = e.pageY - canvas.offsetTop - (window.innerHeight - 100 - 260);
 					context.clearRect(0,0,canvas.width,canvas.height);
 					//根据上文得到的index设置index点位置随鼠标改变
 					circles[index].x=x1;
