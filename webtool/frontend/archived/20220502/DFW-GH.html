@@ -27,57 +27,49 @@
 
 <body>
     
-	<div id="gcpb" style="background-color: #000000; opacity: 0.3; position:absolute; bottom:30px; left:30px; width: 505px; height: 50px;"></div>
+	<div id="gcpb" style="background-color: #000000; opacity: 0.3; position:absolute; bottom:30px; left:30px; width: 450px; height: 55px;"></div>
 	
-	<button id="btn_01bou" type="button" class="btn btn-default" onclick="btn_01bou()" style="position:absolute; bottom:38px; left:40px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
-		<img src="icon/01bou.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Input Boundary">
+	<button id="btn_01bou" type="button" class="btn btn-default" onclick="btn_01bou()" style="position:absolute; bottom:38px; left:40px; float:left; width:40px; height: 40px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/01bou.png" width="40" style="position:absolute; bottom:0px; left:0px;" title="Input Boundary">
 	</button>
 	
-	<button id="btn_02sub" type="button" class="btn btn-default" onclick="btn_02sub()" style="position:absolute; bottom:38px; left:90px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
-		<img src="icon/02sub.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Subdivision Density">
+	<button id="btn_02sub" type="button" class="btn btn-default" onclick="btn_02sub()" style="position:absolute; bottom:38px; left:95px; float:left; width:40px; height: 40px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/02sub.png" width="40" style="position:absolute; bottom:0px; left:0px;" title="Subdivision Density">
 	</button>
 	
-	<button id="btn_03cir" type="button" class="btn btn-default" onclick="btn_03cir()" style="position:absolute; bottom:38px; left:140px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
-		<img src="icon/03cir.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Sharpness">
+	<button id="btn_03cir" type="button" class="btn btn-default" onclick="btn_03cir()" style="position:absolute; bottom:38px; left:150px; float:left; width:40px; height: 40px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/03cir.png" width="40" style="position:absolute; bottom:0px; left:0px;" title="Sharpness">
 	</button>
 	
-	<button id="btn_04len" type="button" class="btn btn-default" onclick="btn_04len()" style="position:absolute; bottom:38px; left:190px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
-		<img src="icon/04len.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Length Constraint Multiplier">
+	<button id="btn_04len" type="button" class="btn btn-default" onclick="btn_04len()" style="position:absolute; bottom:38px; left:205px; float:left; width:40px; height: 40px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/04len.png" width="40" style="position:absolute; bottom:0px; left:0px;" title="Length Constraint Multiplier">
 	</button>
 	
-	<button id="btn_05bou" type="button" class="btn btn-default" onclick="btn_05bou()" style="position:absolute; bottom:38px; left:240px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
-		<img src="icon/05bou.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Boundary Constraint Multiplier">
+	<button id="btn_05bou" type="button" class="btn btn-default" onclick="btn_05bou()" style="position:absolute; bottom:38px; left:260px; float:left; width:40px; height: 40px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/05bou.png" width="40" style="position:absolute; bottom:0px; left:0px;" title="Boundary Constraint Multiplier">
 	</button>
 	
-	<button id="btn_06ite" type="button" class="btn btn-default" onclick="btn_06ite()" style="position:absolute; bottom:38px; left:290px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
-		<img src="icon/06ite.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Iterations">
+	<button id="btn_06ite" type="button" class="btn btn-default" onclick="btn_06ite()" style="position:absolute; bottom:38px; left:315px; float:left; width:40px; height: 40px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/06ite.png" width="40" style="position:absolute; bottom:0px; left:0px;" title="Iterations">
 	</button>
 	
-	<button id="btn_24len" type="button" class="btn btn-default" onclick="btn_24len()" style="position:absolute; bottom:38px; left:340px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
-		<img src="icon/24len.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Total Length of the Wing (in mm)">
+	<button id="btn_07mac" type="button" class="btn btn-default" onclick="btn_07mac()" style="position:absolute; bottom:38px; left:370px; float:left; width:40px; height: 40px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/07mac.png" width="40" style="position:absolute; bottom:0px; left:0px;" title="Machine Learning Model">
 	</button>
 	
-	<button id="btn_25mat" type="button" class="btn btn-default" onclick="btn_25mat()" style="position:absolute; bottom:38px; left:390px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
-		<img src="icon/25mat.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Material of the Wing">
+	<button id="btn_08def" type="button" class="btn btn-default" onclick="btn_08def()" style="position:absolute; bottom:38px; left:425px; float:left; width:40px; height: 40px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/08def.png" width="40" style="position:absolute; bottom:0px; left:0px;" title="Default Settings">
 	</button>
 	
-	<button id="btn_07mac" type="button" class="btn btn-default" onclick="btn_07mac()" style="position:absolute; bottom:38px; left:440px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
-		<img src="icon/07mac.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Machine Learning Model">
-	</button>
-	
-	<button id="btn_08def" type="button" class="btn btn-default" onclick="btn_08def()" style="position:absolute; bottom:38px; left:490px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
-		<img src="icon/08def.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Default Settings">
-	</button>
-	
-	<div id="container-item-gcp" style="position:absolute; bottom:10px; left:220px; width: 220px; display:block;">
+	<div id="container-item-gcp" style="position:absolute; bottom:10px; left:190px; width: 220px; display:block;">
 	    <span class="glyphicon glyphicon-asterisk" style="font-size:14px">Input Control Panel</span>
 	</div>
 	
-	<button id="btn_fold1" type="button" style="position:absolute; bottom:8px; left:340px; width:25px; height: 25px; display:inline; background:transparent;  border-color: transparent; opacity:0.7;" onclick="fold_gcp()">
+	<button id="btn_fold1" type="button" style="position:absolute; bottom:8px; left:310px; width:25px; height: 25px; display:inline; background:transparent;  border-color: transparent; opacity:0.7;" onclick="fold_gcp()">
 		<span id="btn_fold1_spa" style="position:absolute; font-size:13px; top:-1px; left:5px;"title="fold">▼</span>
 	</button>
 	
-	<button id="btn_show1" type="button" style="position:absolute; bottom:8px; left:340px; width:25px; height: 25px; background:transparent;  border-color: transparent; display:none; opacity:0.7; " onclick="show_gcp()">
+	<button id="btn_show1" type="button" style="position:absolute; bottom:8px; left:310px; width:25px; height: 25px; background:transparent;  border-color: transparent; display:none; opacity:0.7; " onclick="show_gcp()">
 		<span id="btn_show1_spa" style="position:absolute; font-size:13px; top:1px; left:5px;" title="unfold">▲</span>
 	</button>
 	
@@ -102,58 +94,42 @@
 		</ul>
     </div>
 	
-	<div id="container_red" style="position:absolute; bottom:110px; left:105px; width:10px; height:200px; display:none;">
+	<div id="container_red" style="position:absolute; bottom:110px; left:110px; width:10px; height:200px; display:none;">
 		<div class="mode1">
 			<input type="range" min="0.01" max="1.00" step="0.01" name="reduce_rate" id="reduce_rate" style="width:10px; height:200px;" oninput="change_reduce_rate()" onchange="change_reduce_rate()"/>
 			<span id="value_reduce_rate" style="position:absolute; bottom:-25px; left:-8px; font-size:15px;">0</span>
 		</div>
 	</div>
 	
-	<div id="container_tol" style="position:absolute; bottom:110px; left:155px; width:10px; height:200px; display:none;">
+	<div id="container_tol" style="position:absolute; bottom:110px; left:165px; width:10px; height:200px; display:none;">
 		<div class="mode1">
             <input type="range" min="0.00" max="1.00" step="0.01" name="tolerance_of_edge_length" id="tolerance_of_edge_length" style="width:10px; height:200px;" oninput="change_tolerance_of_edge_length()" onchange="change_tolerance_of_edge_length()"/>
 			<span id="value_tolerance_of_edge_length" style="position:absolute; bottom:-25px; left:-8px; font-size:15px;">0</span>
 		</div>
 	</div>
 	
-	<div id="container_len" style="position:absolute; bottom:110px; left:205px; width:10px; height:200px; display:none;">
+	<div id="container_len" style="position:absolute; bottom:110px; left:220px; width:10px; height:200px; display:none;">
         <div class="mode1">
             <input type="range" min="0.01" max="2.00" step="0.01" name="length_constraint_maltiplier" id="length_constraint_maltiplier" style="width:10px; height:200px;" oninput="change_length_constraint_maltiplier()" onchange="change_length_constraint_maltiplier()"/>
 				<span id="value_length_constraint_maltiplier" style="position:absolute; bottom:-25px; left:-8px; font-size:15px;">0</span>
 		</div>
 	</div>
     
-	<div id="container_bou" style="position:absolute; bottom:110px; left:255px; width:10px; height:200px; display:none;">
+	<div id="container_bou" style="position:absolute; bottom:110px; left:275px; width:10px; height:200px; display:none;">
         <div class="mode1">
             <input type="range" min="0.01" max="9.99" step="0.01" name="boundary_constraint_magnitude" id="boundary_constraint_magnitude" style="width:10px; height:200px;" oninput="change_boundary_constraint_magnitude()" onchange="change_boundary_constraint_magnitude()"/>
 			<span id="value_boundary_constraint_magnitude" style="position:absolute; bottom:-25px; left:-8px; font-size:15px;">0</span>
 		</div>
 	</div>
 				
-	<div id="container_per" style="position:absolute; bottom:110px; left:305px; width:10px; height:200px; display:none;">
+	<div id="container_per" style="position:absolute; bottom:110px; left:330px; width:10px; height:200px; display:none;">
         <div class="mode1">
 			<input type="range" min="10000" max="30000" step="1" name="perp_steps" id="perp_steps" style="width:10px; height:200px;" oninput="change_perp_steps()" onchange="change_perp_steps()"/>
 			<span id="value_perp_steps" style="position:absolute; bottom:-25px; left:-16px; font-size:15px;">0</span>
 		</div>
 	</div>
 	
-	<div id="container_tlen" style="position:absolute; bottom:110px; left:355px; width:10px; height:200px; display:none;">
-        <div class="mode1">
-			<input type="range" min="10" max="50000" step="1" name="total_length" id="total_length" style="width:10px; height:200px;" oninput="change_total_length()" onchange="change_total_length()"/>
-			<span id="value_total_length" style="position:absolute; bottom:-25px; left:-16px; font-size:15px;">0</span>
-		</div>
-	</div>
-	
-	<div id="container_mat" style="position:absolute; bottom:-45px; left:395px; width:10px; height:240px; display:none;">
-		<select id="material_select" style="background:#FCFCFC; font-size:15px;">
-			<option value ="volvo">Steel</option>
-			<option value ="volvo">Wood</option>
-			<option value ="volvo">Concrete</option>
-			<option value ="volvo">Aluminum</option>
-		</select>
-	</div>
-	
-	<div id="container_sel" style="position:absolute; bottom:-65px; left:440px; width:10px; height:200px; display:none;">
+	<div id="container_sel" style="position:absolute; bottom:-65px; left:370px; width:10px; height:200px; display:none;">
 		<select id="model_select" style="background:#FCFCFC; font-size:15px;">
 			<option value ="volvo">Dragonfly Wing</option>
 		</select>
@@ -161,113 +137,105 @@
 
 
 
-	<div id="sb" style="background-color: #000000; opacity: 0.3; position:absolute; bottom:30px; left:550px; width: 90px; height: 50px;"></div>
+	<div id="sb" style="background-color: #000000; opacity: 0.3; position:absolute; bottom:30px; left:500px; width: 100px; height: 55px;"></div>
 	
-	<button id="btn_09sub" type="button" class="btn btn-default" onclick="getInputs()" style="position:absolute; bottom:38px; left:560px; float:left; width:70px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
-		<img src="icon/09sub.png" width="70" style="position:absolute; bottom:0px; left:0px;" title="Submit to Server for Computation (usually takes 5 minutes)">
+	<button id="btn_09sub" type="button" class="btn btn-default" onclick="getInputs()" style="position:absolute; bottom:38px; left:510px; float:left; width:80px; height: 40px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/09sub.png" width="80" style="position:absolute; bottom:0px; left:0px;" title="Submit to Server for Computation (usually takes 5 minutes)">
 	</button>
 	
-	<div id="container-item-sb" style="position:absolute; bottom:10px; left:565px; width: 220px; display:block;">
+	<div id="container-item-sb" style="position:absolute; bottom:10px; left:520px; width: 220px; display:block;">
 	    <span class="glyphicon glyphicon-asterisk" style="font-size:14px">Compute</span>
 	</div>
 	
-	<button id="btn_fold4" type="button" style="position:absolute; bottom:8px; left:620px; width:25px; height: 25px; display:inline; background:transparent;  border-color: transparent; opacity:0.7;" onclick="fold_sb()">
+	<button id="btn_fold4" type="button" style="position:absolute; bottom:8px; left:575px; width:25px; height: 25px; display:inline; background:transparent;  border-color: transparent; opacity:0.7;" onclick="fold_sb()">
 		<span id="btn_fold4_spa" style="position:absolute; font-size:13px; top:-1px; left:5px;" title="fold">▼</span>
 	</button>
 	
-	<button id="btn_show4" type="button" style="position:absolute; bottom:8px; left:620px; width:25px; height: 25px; background:transparent;  border-color: transparent; display:none; opacity:0.7; " onclick="show_sb()">
+	<button id="btn_show4" type="button" style="position:absolute; bottom:8px; left:575px; width:25px; height: 25px; background:transparent;  border-color: transparent; display:none; opacity:0.7; " onclick="show_sb()">
 		<span id="btn_show4_spa" style="position:absolute; font-size:13px; top:1px; left:5px;" title="unfold">▲</span>
 	</button>
 
 
 
-	<div id="dcpb" style="background-color: #000000; opacity: 0.3; position:absolute; bottom:30px; left:655px; width: 555px; height: 50px;"></div>
+	<div id="dcpb" style="background-color: #000000; opacity: 0.3; position:absolute; bottom:30px; left:620px; width: 505px; height: 55px;"></div>
 
-	<button id="btn_10nor" type="button" class="btn btn-default" onclick="btn_10nor()" style="position:absolute; bottom:38px; left:665px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
-		<img src="icon/10nor.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Normal Display Mode">
+	<button id="btn_10nor" type="button" class="btn btn-default" onclick="btn_10nor()" style="position:absolute; bottom:38px; left:630px; float:left; width:40px; height: 40px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/10nor.png" width="40" style="position:absolute; bottom:0px; left:0px;" title="Normal Display Mode">
 	</button>
 	
-	<button id="btn_25nor" type="button" class="btn btn-default" onclick="btn_25nor()" style="position:absolute; bottom:38px; left:715px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
-		<img src="icon/25nor.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Turn off Normal Display Mode">
+	<button id="btn_11min" type="button" class="btn btn-default" onclick="btn_11min()" style="position:absolute; bottom:38px; left:685px; float:left; width:40px; height: 40px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/11min.png" width="40" style="position:absolute; bottom:0px; left:0px;" title="Minkowski Sum Display Mode">
 	</button>
 	
-	<button id="btn_11min" type="button" class="btn btn-default" onclick="btn_11min()" style="position:absolute; bottom:38px; left:765px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
-		<img src="icon/11min.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Minkowski Sum Display Mode">
+	<button id="btn_12sho" type="button" class="btn btn-default" onclick="btn_12sho()" style="position:absolute; bottom:38px; left:740px; float:left; width:40px; height: 40px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/12sho.png" width="40" style="position:absolute; bottom:0px; left:0px;" title="Show External Forces">
 	</button>
 	
-	<button id="btn_26min" type="button" class="btn btn-default" onclick="btn_26min()" style="position:absolute; bottom:38px; left:815px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
-		<img src="icon/26min.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Turn off Minkowski Sum Display Mode">
+	<button id="btn_13hid" type="button" class="btn btn-default" onclick="btn_13hid()" style="position:absolute; bottom:38px; left:795px; float:left; width:40px; height: 40px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/13hid.png" width="40" style="position:absolute; bottom:0px; left:0px;" title="Hide External Forces">
 	</button>
 	
-	<button id="btn_12sho" type="button" class="btn btn-default" onclick="btn_12sho()" style="position:absolute; bottom:38px; left:865px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
-		<img src="icon/12sho.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Show External Forces">
+	<button id="btn_20slo" type="button" class="btn btn-default" onclick="btn_20slo()" style="position:absolute; bottom:38px; left:850px; float:left; width:40px; height: 40px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/btn_20slo.png" width="40" style="position:absolute; bottom:0px; left:0px;" title="Turn on Self Weight FEM Result">
 	</button>
 	
-	<button id="btn_13hid" type="button" class="btn btn-default" onclick="btn_13hid()" style="position:absolute; bottom:38px; left:915px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
-		<img src="icon/13hid.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Hide External Forces">
+	<button id="btn_21slf" type="button" class="btn btn-default" onclick="btn_21slf()" style="position:absolute; bottom:38px; left:905px; float:left; width:40px; height: 40px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/btn_21slf.png" width="40" style="position:absolute; bottom:0px; left:0px;" title="Turn off Self Weight FEM Result">
 	</button>
 	
-	<button id="btn_20slo" type="button" class="btn btn-default" onclick="btn_20slo()" style="position:absolute; bottom:38px; left:965px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
-		<img src="icon/btn_20slo.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Turn on Self Weight FEM Result">
+	<button id="btn_22plo" type="button" class="btn btn-default" onclick="btn_22plo()" style="position:absolute; bottom:38px; left:960px; float:left; width:40px; height: 40px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/btn_22plo.png" width="40" style="position:absolute; bottom:0px; left:0px;" title="Turn on Point Load FEM Result">
 	</button>
 	
-	<button id="btn_21slf" type="button" class="btn btn-default" onclick="btn_21slf()" style="position:absolute; bottom:38px; left:1015px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
-		<img src="icon/btn_21slf.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Turn off Self Weight FEM Result">
+	<button id="btn_23plf" type="button" class="btn btn-default" onclick="btn_23plf()" style="position:absolute; bottom:38px; left:1015px; float:left; width:40px; height: 40px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/btn_23plf.png" width="40" style="position:absolute; bottom:0px; left:0px;" title="Turn off Point Load FEM Result">
 	</button>
 	
-	<button id="btn_22plo" type="button" class="btn btn-default" onclick="btn_22plo()" style="position:absolute; bottom:38px; left:1065px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
-		<img src="icon/btn_22plo.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Turn on Point Load FEM Result">
+	<button id="btn_14stl" type="button" class="btn btn-default" onclick="btn_14stl()" style="position:absolute; bottom:38px; left:1070px; float:left; width:40px; height: 40px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/14stl.png" width="40" style="position:absolute; bottom:0px; left:0px;" title="Save as STL Model">
 	</button>
 	
-	<button id="btn_23plf" type="button" class="btn btn-default" onclick="btn_23plf()" style="position:absolute; bottom:38px; left:1115px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
-		<img src="icon/btn_23plf.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Turn off Point Load FEM Result">
-	</button>
-	
-	<button id="btn_14stl" type="button" class="btn btn-default" onclick="btn_14stl()" style="position:absolute; bottom:38px; left:1165px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
-		<img src="icon/14stl.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Save as STL Model">
-	</button>
-	
-	<div id="container-item-dcp" style="position:absolute; bottom:10px; left:865px; width: 220px; display:block;">
+	<div id="container-item-dcp" style="position:absolute; bottom:10px; left:800px; width: 220px; display:block;">
 	    <span class="glyphicon glyphicon-asterisk" style="font-size:14px;">Output Control Panel</span>
 	</div>
 	
-	<button id="btn_fold2" type="button" style="position:absolute; bottom:8px; left:995px; width:25px; height: 25px; display:inline; background:transparent;  border-color: transparent; opacity:0.7;" onclick="fold_dcp()">
+	<button id="btn_fold2" type="button" style="position:absolute; bottom:8px; left:930px; width:25px; height: 25px; display:inline; background:transparent;  border-color: transparent; opacity:0.7;" onclick="fold_dcp()">
 		<span id="btn_fold2_spa" style="position:absolute; font-size:13px; top:-1px; left:5px;" title="fold">▼</span>
 	</button>
 
-    <button id="btn_show2" type="button" style="position:absolute; bottom:8px; left:995px; width:25px; height: 25px; display:none; background:transparent;  border-color: transparent; opacity:0.7;" onclick="show_dcp()">
+    <button id="btn_show2" type="button" style="position:absolute; bottom:8px; left:930px; width:25px; height: 25px; display:none; background:transparent;  border-color: transparent; opacity:0.7;" onclick="show_dcp()">
 		<span id="btn_show2_spa" style="position:absolute; font-size:13px; top:-1px; left:5px;" title="unfold">▲</span>
 	</button>
 	
-	<div id="container_min" style="position:absolute; bottom:110px; left:660px; width:10px; height:200px; display:none;">
+	<div id="container_min" style="position:absolute; bottom:110px; left:625px; width:10px; height:200px; display:none;">
         <div class="mode1">
             <input type="range" min="0" max="9.99" step="0.01" name="minumum_radius" id="minumum_radius" style="width:10px; height:200px;" oninput="input_minumum_radius()" onchange="change_minumum_radius()"/>
 			<span id="value_minumum_radius" style="position:absolute; bottom:-25px; left:-8px; font-size:15px;">0</span>
 		</div>
 	</div>
 	
-	<div id="container_max" style="position:absolute; bottom:110px; left:695px; width:10px; height:200px; display:none;">
+	<div id="container_max" style="position:absolute; bottom:110px; left:660px; width:10px; height:200px; display:none;">
         <div class="mode1">
 			<input type="range" min="0" max="99.9" step="0.1" name="maximum_radius" id="maximum_radius" style="width:10px; height:200px;" oninput="input_maximum_radius()" onchange="change_maximum_radius()"/>
 			<span id="value_maximum_radius" style="position:absolute; bottom:-25px; left:-8px; font-size:15px;">0</span>
         </div>
 	</div>
 	
-	<div id="container_mink" style="position:absolute; bottom:110px; left:775px; width:10px; height:200px; display:none;">
+	<div id="container_mink" style="position:absolute; bottom:110px; left:700px; width:10px; height:200px; display:none;">
         <div class="mode1">
 			<input type="range" min="0.05" max="0.95" step="0.01" name="minkowski_sum_indicator" id="minkowski_sum_indicator" style="width:10px; height:200px;" oninput="input_minkowski_sum_indicator()" onchange="change_minkowski_sum_indicator()"/>
 			<span id="value_minkowski_sum_indicator" style="position:absolute; bottom:-25px; left:-8px; font-size:15px;">0</span>
 		</div>
 	</div>
 	
-	<div id="container_selfload" style="position:absolute; bottom:110px; left:975px; width:10px; height:200px; display:none;">
+	<div id="container_selfload" style="position:absolute; bottom:110px; left:865px; width:10px; height:200px; display:none;">
         <div class="mode1">
 			<input type="range" min="0.01" max="2.00" step="0.01" name="selfload_ind" id="selfload_ind" style="width:10px; height:200px;" oninput="input_selfload_ind()" onchange="change_selfload_ind()"/>
 			<span id="value_selfload_ind" style="position:absolute; bottom:-25px; left:-8px; font-size:15px;">0</span>
 		</div>
 	</div>
 	
-	<div id="container_pointload" style="position:absolute; bottom:110px; left:1075px; width:10px; height:200px; display:none;">
+	<div id="container_pointload" style="position:absolute; bottom:110px; left:975px; width:10px; height:200px; display:none;">
         <div class="mode1">
 			<input type="range" min="0.01" max="2.00" step="0.01" name="pointload_ind" id="pointload_ind" style="width:10px; height:200px;" oninput="input_pointload_ind()" onchange="change_pointload_ind()"/>
 			<span id="value_pointload_ind" style="position:absolute; bottom:-25px; left:-8px; font-size:15px;">0</span>
@@ -277,51 +245,51 @@
 	<div id="container_scale" style="background:rgba(0,0,0,0.0); position:absolute; top:150px; right:20px; width: 100px; height: 400px; display:inline;">
 	    <div id="container_scale_pointload" style="background:rgba(0,0,0,0.0); position:absolute; top:0px; right:0px; width: 50px; height: 300px; display:none; float: right;">
 			<img id="scale_pointload" src="icon/scale.jpg" height="300" style="position:absolute; right:35px; top:30px;">
-			<span id="value_pointload_min" style="position:absolute; top:330px; left:-15px; font-size:15px;">0%</span>
-			<span id="value_pointload_max" style="position:absolute; top:-15px; left:-15px; font-size:15px;">0%</span>
-			<span id="spa_pointload" style="position:absolute; top:380px; right:0px; font-size:15px;">Point Load Deformation</span>
+			<span id="value_pointload_min" style="position:absolute; top:330px; right:30px; font-size:15px;">0%</span>
+			<span id="value_pointload_max" style="position:absolute; top:5px; right:30px; font-size:15px;">0%</span>
+			<span id="spa_pointload" style="position:absolute; top:360px; right:0px; font-size:15px;">Point Load Deformation</span>
 		</div>
 		<div id="container_scale_selfload" style="background:rgba(0,0,0,0.0); position:absolute; top:0px; right:90px; width: 50px; height: 300px; display:none; float: right;">
 			<img id="scale_selfload" src="icon/scale.jpg" height="300" style="position:absolute; right:50px; top:30px;">
-			<span id="value_selfload_min" style="position:absolute; top:330px; left:-30px; font-size:15px;">0%</span>
-			<span id="value_selfload_max" style="position:absolute; top:-15px; left:-30px; font-size:15px;">0%</span>
-			<span id="spa_selfload" style="position:absolute; top:380px; right:15px; font-size:15px;">Self Weight Deformation</span>
+			<span id="value_selfload_min" style="position:absolute; top:330px; right:45px; font-size:15px;">0%</span>
+			<span id="value_selfload_max" style="position:absolute; top:5px; right:45px; font-size:15px;">0%</span>
+			<span id="spa_selfload" style="position:absolute; top:360px; right:15px; font-size:15px;">Self Weight Deformation</span>
 		</div>
 	</div>
 	
 	
 	
-	<div id="fmb" style="background-color: #000000; opacity: 0.3; position:absolute; bottom:30px; left:1225px; width: 255px; height: 50px;"></div>
+	<div id="fmb" style="background-color: #000000; opacity: 0.3; position:absolute; bottom:30px; left:1145px; width: 280px; height: 55px;"></div>
 
-	<button id="btn_15csv" type="button" class="btn btn-default" onclick="btn_15csv()" style="position:absolute; bottom:38px; left:1235px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
-		<img src="icon/15csv.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Download CSV Data File">
+	<button id="btn_15csv" type="button" class="btn btn-default" onclick="btn_15csv()" style="position:absolute; bottom:38px; left:1155px; float:left; width:40px; height: 40px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/15csv.png" width="40" style="position:absolute; bottom:0px; left:0px;" title="Download CSV Data File">
 	</button>
 	
-	<button id="btn_16upl" type="button" class="btn btn-default" onclick="btn_16upl()" style="position:absolute; bottom:38px; left:1285px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
-		<img src="icon/16upl.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Upload CSV Data File">
+	<button id="btn_16upl" type="button" class="btn btn-default" onclick="btn_16upl()" style="position:absolute; bottom:38px; left:1210px; float:left; width:40px; height: 40px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/16upl.png" width="40" style="position:absolute; bottom:0px; left:0px;" title="Upload CSV Data File">
 	</button>
 	
-	<button id="btn_17sa1" type="button" class="btn btn-default" onclick="load_sample('sample/sample1.csv')" style="position:absolute; bottom:38px; left:1335px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
-		<img src="icon/17sa1.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Load Sample Case 1">
+	<button id="btn_17sa1" type="button" class="btn btn-default" onclick="load_sample('sample/sample1.csv')" style="position:absolute; bottom:38px; left:1265px; float:left; width:40px; height: 40px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/17sa1.png" width="40" style="position:absolute; bottom:0px; left:0px;" title="Load Sample Case 1">
 	</button>
 	
-	<button id="btn_18sa2" type="button" class="btn btn-default" onclick="load_sample('sample/sample2.csv')" style="position:absolute; bottom:38px; left:1385px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
-		<img src="icon/18sa2.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Load Sample Case 2">
+	<button id="btn_18sa2" type="button" class="btn btn-default" onclick="load_sample('sample/sample2.csv')" style="position:absolute; bottom:38px; left:1320px; float:left; width:40px; height: 40px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/18sa2.png" width="40" style="position:absolute; bottom:0px; left:0px;" title="Load Sample Case 2">
 	</button>
 	
-	<button id="btn_19sa3" type="button" class="btn btn-default" onclick="load_sample('sample/sample3.csv')" style="position:absolute; bottom:38px; left:1435px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
-		<img src="icon/19sa3.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Load Sample Case 3">
+	<button id="btn_19sa3" type="button" class="btn btn-default" onclick="load_sample('sample/sample3.csv')" style="position:absolute; bottom:38px; left:1375px; float:left; width:40px; height: 40px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/19sa3.png" width="40" style="position:absolute; bottom:0px; left:0px;" title="Load Sample Case 3">
 	</button>
 	
-	<div id="container-item-fm" style="position:absolute; bottom:10px; left:1310px; width: 220px; display:block;">
+	<div id="container-item-fm" style="position:absolute; bottom:10px; left:1245px; width: 220px; display:block;">
 	    <span class="glyphicon glyphicon-asterisk" style="font-size:14px">File Manager</span>
 	</div>
 	
-	<button id="btn_fold3" type="button" style="position:absolute; bottom:8px; left:1388px; width:25px; height: 25px; display:inline; background:transparent;  border-color: transparent; opacity:0.7;" onclick="fold_fm()">
+	<button id="btn_fold3" type="button" style="position:absolute; bottom:8px; left:1325px; width:25px; height: 25px; display:inline; background:transparent;  border-color: transparent; opacity:0.7;" onclick="fold_fm()">
 		<span id="btn_fold3_spa" style="position:absolute; font-size:13px; top:-1px; left:5px;" title="fold">▼</span>
 	</button>
 	
-	<button id="btn_show3" type="button" style="position:absolute; bottom:8px; left:1388px; width:25px; height: 25px; background:transparent;  border-color: transparent; display:none; opacity:0.7; " onclick="show_fm()">
+	<button id="btn_show3" type="button" style="position:absolute; bottom:8px; left:1325px; width:25px; height: 25px; background:transparent;  border-color: transparent; display:none; opacity:0.7; " onclick="show_fm()">
 		<span id="btn_show3_spa" style="position:absolute; font-size:13px; top:1px; left:5px;" title="unfold">▲</span>
 	</button>
 	
@@ -381,49 +349,41 @@
 			<span style="position:absolute; top:170px; left:40px; font-size:10px; color:white;">Boundary Constraint Magnitude to define the magnitude of the boundary constraint to the form.</span>
 			<img src="icon/06ite.png" width="30" style="position:absolute; top:200px; left:0px;" title="Iterations">
 			<span style="position:absolute; top:210px; left:40px; font-size:10px; color:white;">Iterations defines the number of iterations in the geometric generation process in graphic statics.</span>
-			<img src="icon/24len.png" width="30" style="position:absolute; top:240px; left:0px;" title="Total Length of the Wing (in mm)">
-			<span style="position:absolute; top:250px; left:40px; font-size:10px; color:white;">Total Length of the Wing (span) defines the size of the generated model in millimeter.</span>
-			<img src="icon/25mat.png" width="30" style="position:absolute; top:280px; left:0px;" title="Material of the Wing">
-			<span style="position:absolute; top:290px; left:40px; font-size:10px; color:white;">Material of the Wing defines the material for FEM analysis.</span>
-			<img src="icon/07mac.png" width="30" style="position:absolute; top:320px; left:0px;" title="Machine Learning Model">
-			<span style="position:absolute; top:330px; left:40px; font-size:10px; color:white;">Machine Learning Model defines the pre-trained model to be used.</span>
-			<img src="icon/08def.png" width="30" style="position:absolute; top:360px; left:0px;" title="Default Settings">
-			<span style="position:absolute; top:370px; left:40px; font-size:10px; color:white;">Set all parameters to default.</span>
-			<span style="position:absolute; top:400px; left:0px; font-size:10px; color:white;">--------------------------------------------------------------------------------------------------------------------</span>
-		    <img src="icon/09sub.png" width="60" style="position:absolute; top:420px; left:0px;" title="Submit">
-			<span style="position:absolute; top:430px; left:70px; font-size:10px; color:white;">Compute the result in the server. It usually takes 5 minutes to compute and show.</span>
-			<span style="position:absolute; top:450px; left:0px; font-size:10px; color:white;">--------------------------------------------------------------------------------------------------------------------</span>
-			<img src="icon/10nor.png" width="30" style="position:absolute; top:480px; left:0px;" title="Normal Display Mode">
-			<span style="position:absolute; top:490px; left:40px; font-size:10px; color:white;">Adjust the minumum and maximum radius, and view the generated model.</span>
-			<img src="icon/25nor.png" width="30" style="position:absolute; top:520px; left:0px;" title="Turn off Normal Display Mode">
-			<span style="position:absolute; top:530px; left:40px; font-size:10px; color:white;">Turn off the generated pipe structure.</span>
-			<img src="icon/11min.png" width="30" style="position:absolute; top:560px; left:0px;" title="Minkowski Sum Display Mode">
-			<span style="position:absolute; top:570px; left:40px; font-size:10px; color:white;">Adjust the indicator, and view the Minkowski Sum.</span>
-			<img src="icon/26min.png" width="30" style="position:absolute; top:600px; left:0px;" title="Turn off Minkowski Sum Display Mode">
-			<span style="position:absolute; top:610px; left:40px; font-size:10px; color:white;">Turn off the Minkowski Sum result.</span>
-			<img src="icon/12sho.png" width="30" style="position:absolute; top:640px; left:0px;" title="Show External Forces">
-			<span style="position:absolute; top:650px; left:40px; font-size:10px; color:white;">Show the external forces.</span>
-			<img src="icon/13hid.png" width="30" style="position:absolute; top:680px; left:0px;" title="Hide External Forces">
-			<span style="position:absolute; top:690px; left:40px; font-size:10px; color:white;">Hide the external forces.</span>
-			<img src="icon/btn_20slo.png" width="30" style="position:absolute; top:720px; left:0px;" title="Turn on Self Weight FEM Result">
-			<span style="position:absolute; top:730px; left:40px; font-size:10px; color:white;">Turn on the FEM result under the load of self weight.</span>
-			<img src="icon/btn_21slf.png" width="30" style="position:absolute; top:760px; left:0px;" title="Turn off Self Weight FEM Result">
-			<span style="position:absolute; top:770px; left:40px; font-size:10px; color:white;">Turn off the FEM result under the load of self weight.</span>
-			<img src="icon/btn_22plo.png" width="30" style="position:absolute; top:800px; left:0px;" title="Turn on Point Load FEM Result">
-			<span style="position:absolute; top:810px; left:40px; font-size:10px; color:white;">Turn on the FEM result under the point load on the farthest vertex.</span>
-			<img src="icon/btn_23plf.png" width="30" style="position:absolute; top:840px; left:0px;" title="Turn off Point Load FEM Result">
-			<span style="position:absolute; top:850px; left:40px; font-size:10px; color:white;">Turn off the FEM result under the point load on the farthest vertex.</span>
-			<img src="icon/14stl.png" width="30" style="position:absolute; top:880px; left:0px;" title="Save as STL Model">
-			<span style="position:absolute; top:890px; left:40px; font-size:10px; color:white;">Export the current scene as a STL model.</span>
-			<span style="position:absolute; top:920px; left:0px; font-size:10px; color:white;">--------------------------------------------------------------------------------------------------------------------</span>
-			<img src="icon/15csv.png" width="30" style="position:absolute; top:940px; left:0px;" title="Download CSV Data File">
-			<span style="position:absolute; top:950px; left:40px; font-size:10px; color:white;">Download the vector-based data file to save the result.</span>
-			<img src="icon/16upl.png" width="30" style="position:absolute; top:980px; left:0px;" title="Upload CSV Data File">
-			<span style="position:absolute; top:990px; left:40px; font-size:10px; color:white;">Upload the vector-based data file to restore the result.</span>
-			<img src="icon/17sa1.png" width="30" style="position:absolute; top:1020px; left:0px;" title="Load Sample Case 1">
-			<img src="icon/18sa2.png" width="30" style="position:absolute; top:1020px; left:35px;" title="Load Sample Case 2">
-			<img src="icon/19sa3.png" width="30" style="position:absolute; top:1020px; left:70px;" title="Load Sample Case 3">
-			<span style="position:absolute; top:1030px; left:110px; font-size:10px; color:white;">Restore the pre-generated samples from the server.</span>
+			<img src="icon/07mac.png" width="30" style="position:absolute; top:240px; left:0px;" title="Machine Learning Model">
+			<span style="position:absolute; top:250px; left:40px; font-size:10px; color:white;">Machine Learning Model defines the pre-trained model to be used.</span>
+			<img src="icon/08def.png" width="30" style="position:absolute; top:280px; left:0px;" title="Default Settings">
+			<span style="position:absolute; top:290px; left:40px; font-size:10px; color:white;">Set all parameters to default.</span>
+			<span style="position:absolute; top:320px; left:0px; font-size:10px; color:white;">--------------------------------------------------------------------------------------------------------------------</span>
+		    <img src="icon/09sub.png" width="60" style="position:absolute; top:340px; left:0px;" title="Submit">
+			<span style="position:absolute; top:350px; left:70px; font-size:10px; color:white;">Compute the result in the server. It usually takes 5 minutes to compute and show.</span>
+			<span style="position:absolute; top:380px; left:0px; font-size:10px; color:white;">--------------------------------------------------------------------------------------------------------------------</span>
+			<img src="icon/10nor.png" width="30" style="position:absolute; top:400px; left:0px;" title="Normal Display Mode">
+			<span style="position:absolute; top:410px; left:40px; font-size:10px; color:white;">Adjust the minumum and maximum radius, and view the generated model.</span>
+			<img src="icon/11min.png" width="30" style="position:absolute; top:440px; left:0px;" title="Minkowski Sum Display Mode">
+			<span style="position:absolute; top:450px; left:40px; font-size:10px; color:white;">Adjust the indicator, and view the Minkowski Sum.</span>
+			<img src="icon/12sho.png" width="30" style="position:absolute; top:480px; left:0px;" title="Show External Forces">
+			<span style="position:absolute; top:490px; left:40px; font-size:10px; color:white;">Show the external forces.</span>
+			<img src="icon/13hid.png" width="30" style="position:absolute; top:520px; left:0px;" title="Hide External Forces">
+			<span style="position:absolute; top:530px; left:40px; font-size:10px; color:white;">Hide the external forces.</span>
+			<img src="icon/btn_20slo.png" width="30" style="position:absolute; top:560px; left:0px;" title="Turn on Self Weight FEM Result">
+			<span style="position:absolute; top:570px; left:40px; font-size:10px; color:white;">Turn on the FEM result under the load of self weight.</span>
+			<img src="icon/btn_21slf.png" width="30" style="position:absolute; top:600px; left:0px;" title="Turn off Self Weight FEM Result">
+			<span style="position:absolute; top:610px; left:40px; font-size:10px; color:white;">Turn off the FEM result under the load of self weight.</span>
+			<img src="icon/btn_22plo.png" width="30" style="position:absolute; top:640px; left:0px;" title="Turn on Point Load FEM Result">
+			<span style="position:absolute; top:650px; left:40px; font-size:10px; color:white;">Turn on the FEM result under the point load on the farthest vertex.</span>
+			<img src="icon/btn_23plf.png" width="30" style="position:absolute; top:680px; left:0px;" title="Turn off Point Load FEM Result">
+			<span style="position:absolute; top:690px; left:40px; font-size:10px; color:white;">Turn off the FEM result under the point load on the farthest vertex.</span>
+			<img src="icon/14stl.png" width="30" style="position:absolute; top:720px; left:0px;" title="Save as STL Model">
+			<span style="position:absolute; top:730px; left:40px; font-size:10px; color:white;">Export the current scene as a STL model.</span>
+			<span style="position:absolute; top:760px; left:0px; font-size:10px; color:white;">--------------------------------------------------------------------------------------------------------------------</span>
+			<img src="icon/15csv.png" width="30" style="position:absolute; top:780px; left:0px;" title="Download CSV Data File">
+			<span style="position:absolute; top:790px; left:40px; font-size:10px; color:white;">Download the vector-based data file to save the result.</span>
+			<img src="icon/16upl.png" width="30" style="position:absolute; top:820px; left:0px;" title="Upload CSV Data File">
+			<span style="position:absolute; top:830px; left:40px; font-size:10px; color:white;">Upload the vector-based data file to restore the result.</span>
+			<img src="icon/17sa1.png" width="30" style="position:absolute; top:860px; left:0px;" title="Load Sample Case 1">
+			<img src="icon/18sa2.png" width="30" style="position:absolute; top:860px; left:35px;" title="Load Sample Case 2">
+			<img src="icon/19sa3.png" width="30" style="position:absolute; top:860px; left:70px;" title="Load Sample Case 3">
+			<span style="position:absolute; top:870px; left:110px; font-size:10px; color:white;">Restore the pre-generated samples from the server.</span>
 		</span>
 	</div>
 
@@ -491,7 +451,7 @@
 					{ 
 						content_done = textfile_done.responseText;
 						arr_done = content_done.split('\r\n');
-
+						//console.log(arr_done);
 						if (arr_done[0]=="1"){
 							var pointdata = [];
 							for (var i = 0; i < points.length; i++) {
@@ -502,12 +462,8 @@
 							var length_constraint_maltiplier=document.getElementById("length_constraint_maltiplier").value;
 							var boundary_constraint_magnitude=document.getElementById("boundary_constraint_magnitude").value;
 							var perp_steps=document.getElementById("perp_steps").value;
-							
-							var total_length=document.getElementById("total_length").value;
-							var oSelect = document.getElementById('material_select');
-							var ind = oSelect.selectedIndex;
-							var material_select=ind;
-							
+							var minumum_radius=document.getElementById("minumum_radius").value;
+							var maximum_radius=document.getElementById("maximum_radius").value;
 							value_inputs = {
 								"canvas_points": pointdata,
 								"reduce_rate": reduce_rate,
@@ -515,8 +471,8 @@
 								"length_constraint_maltiplier": length_constraint_maltiplier,
 								"boundary_constraint_magnitude": boundary_constraint_magnitude,
 								"perp_steps": perp_steps,
-								"minumum_radius": total_length,
-								"maximum_radius": material_select
+								"minumum_radius": minumum_radius,
+								"maximum_radius": maximum_radius
 							};
 							axios({
 								// headers:{'Cache-Control':'no-cache'},
@@ -564,8 +520,6 @@
 				var obj = document.getElementById("container_len");
 				obj.style.display = "none";
 				var obj = document.getElementById("container_bou");
-				obj.style.display = "none";
-				var obj = document.getElementById("container_per");
 				obj.style.display = "none";
 			} else {
 			    obj.style.display = "none";
@@ -630,28 +584,6 @@
 		    var obj = document.getElementById("container_per");
 			if (obj.style.display == "none") {
 			    obj.style.display = "inline";
-				var obj = document.getElementById("container_canvas");
-				obj.style.display = "none";
-				var obj = document.getElementById("container-item");
-				obj.style.display = "none";
-			} else {
-			    obj.style.display = "none";
-			}
-		}
-		
-		function btn_24len() {
-		    var obj = document.getElementById("container_tlen");
-			if (obj.style.display == "none") {
-			    obj.style.display = "inline";
-			} else {
-			    obj.style.display = "none";
-			}
-		}
-		
-		function btn_25mat() {
-		    var obj = document.getElementById("container_mat");
-			if (obj.style.display == "none") {
-			    obj.style.display = "inline";
 			} else {
 			    obj.style.display = "none";
 			}
@@ -685,10 +617,6 @@
 			obj.style.display = "none";
 			var obj = document.getElementById("container_per");
 			obj.style.display = "none";
-			var obj = document.getElementById("container_tlen");
-			obj.style.display = "none";
-			var obj = document.getElementById("container_mat");
-			obj.style.display = "none";
 			var obj = document.getElementById("container_sel");
 			obj.style.display = "none";
 			var obj = document.getElementById("btn_01bou");
@@ -702,10 +630,6 @@
 			var obj = document.getElementById("btn_05bou");
 			obj.style.display = "none";
 			var obj = document.getElementById("btn_06ite");
-			obj.style.display = "none";
-			var obj = document.getElementById("btn_24len");
-			obj.style.display = "none";
-			var obj = document.getElementById("btn_25mat");
 			obj.style.display = "none";
 			var obj = document.getElementById("btn_07mac");
 			obj.style.display = "none";
@@ -733,10 +657,6 @@
 			var obj = document.getElementById("btn_05bou");
 			obj.style.display = "inline";
 			var obj = document.getElementById("btn_06ite");
-			obj.style.display = "inline";
-			var obj = document.getElementById("btn_24len");
-			obj.style.display = "inline";
-			var obj = document.getElementById("btn_25mat");
 			obj.style.display = "inline";
 			var obj = document.getElementById("btn_07mac");
 			obj.style.display = "inline";
@@ -1073,11 +993,6 @@
 			document.getElementById('value_perp_steps').innerHTML = value_perp_steps;
 		}
 		
-		function change_total_length() {
-			var value_total_length = document.getElementById('total_length').value;
-			document.getElementById('value_total_length').innerHTML = value_total_length;
-		}
-		
 		function btn_08def() {
 			document.getElementById("reduce_rate").value = 0.5;
 			document.getElementById('value_reduce_rate').innerHTML = (0.5).toFixed(2);
@@ -1089,8 +1004,6 @@
 			document.getElementById('value_boundary_constraint_magnitude').innerHTML = (5).toFixed(2);
 			document.getElementById("perp_steps").value = 10000;
 			document.getElementById('value_perp_steps').innerHTML = 10000;
-			document.getElementById('value_total_length').innerHTML = 30000;
-			document.getElementById('material_select').selectedIndex = 0;
 			function Point(x, y) {
 				this.x = x;
 				this.y = y;
@@ -1206,23 +1119,14 @@
 			} else {
 				obj.style.display = "none";
 			}
-			if (display_mode == 0) {
+			if (display_mode == 2) {
 			    var obj = document.getElementById("container_min");
 				obj.style.display = "inline";
 				var obj = document.getElementById("container_max");
 				obj.style.display = "inline";
+				var obj = document.getElementById("container_mink");
+				obj.style.display = "none";
 				display_mode = 1;
-				draw_update();
-			}
-		}
-		
-		function btn_25nor() {
-		    var obj = document.getElementById("container_min");
-			obj.style.display = "none";
-			var obj = document.getElementById("container_max");
-			obj.style.display = "none";
-			if (display_mode == 1) {
-				display_mode = 0;
 				draw_update();
 			}
 		}
@@ -1234,19 +1138,14 @@
 			} else {
 				obj.style.display = "none";
 			}
-			if (mink_mode == 0) {
+			if (display_mode == 1) {
 				var obj = document.getElementById("container_mink");
 				obj.style.display = "inline";
-				mink_mode = 1;
-				draw_update();
-			}
-		}
-		
-		function btn_26min() {
-			var obj = document.getElementById("container_mink");
-		    obj.style.display = "none";
-			if (mink_mode == 1) {
-				mink_mode = 0;
+				var obj = document.getElementById("container_min");
+				obj.style.display = "none";
+				var obj = document.getElementById("container_max");
+				obj.style.display = "none";
+				display_mode = 2;
 				draw_update();
 			}
 		}
@@ -1279,9 +1178,8 @@
 				draw_update();
 			}
 			var value_selfload_ind = document.getElementById('selfload_ind').value;
-			var total_length_input = document.getElementById('total_length').value;
-			document.getElementById('value_selfload_min').innerHTML = (parseInt(value_selfload_ind*(-mindef_self)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_selfload_ind*(-mindef_self)/structure_length)).toFixed(0)+"mm)";
-			document.getElementById('value_selfload_max').innerHTML = (parseInt(value_selfload_ind*(-maxdef_self)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_selfload_ind*(-maxdef_self)/structure_length)).toFixed(0)+"mm)";
+			document.getElementById('value_selfload_min').innerHTML = (parseInt(value_selfload_ind*(-mindef_self)/structure_length*10000)/100).toFixed(2)+"%";
+			document.getElementById('value_selfload_max').innerHTML = (parseInt(value_selfload_ind*(-maxdef_self)/structure_length*10000)/100).toFixed(2)+"%";
 		}
 		
 		function btn_21slf() {
@@ -1309,9 +1207,8 @@
 				draw_update();
 			}
 			var value_pointload_ind = document.getElementById('pointload_ind').value;
-			var total_length_input = document.getElementById('total_length').value;
-			document.getElementById('value_pointload_min').innerHTML = (parseInt(value_pointload_ind*(-mindef_point)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_pointload_ind*(-mindef_point)/structure_length)).toFixed(0)+"mm)";
-			document.getElementById('value_pointload_max').innerHTML = (parseInt(value_pointload_ind*(-maxdef_point)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_pointload_ind*(-maxdef_point)/structure_length)).toFixed(0)+"mm)";
+			document.getElementById('value_pointload_min').innerHTML = (parseInt(value_pointload_ind*(-mindef_point)/structure_length*10000)/100).toFixed(2)+"%";
+			document.getElementById('value_pointload_max').innerHTML = (parseInt(value_pointload_ind*(-maxdef_point)/structure_length*10000)/100).toFixed(2)+"%";
 		}
 		
 		function btn_23plf() {
@@ -1335,7 +1232,6 @@
 					return function ( scene ) {
 						var output = '';
 						output += 'solid exported\n';
-						var scalefactor = document.getElementById('total_length').value / structure_length/0.07;
 						scene.traverse( function ( object ) {
 							if ( object instanceof THREE.Mesh ) {
 								// if object is hidden - exit
@@ -1360,7 +1256,7 @@
 												var vertexIndex = indices[ j ];
 												if (typeof geometry.skinIndices !== 'undefined' && geometry.skinIndices.length == 0) {
 													vector.copy( vertices[ vertexIndex ] ).applyMatrix4( matrixWorld );
-													output += '\t\t\tvertex ' + vector.x*scalefactor + ' ' + vector.y*scalefactor + ' ' + vector.z*scalefactor + '\n';
+													output += '\t\t\tvertex ' + vector.x + ' ' + vector.y + ' ' + vector.z + '\n';
 												} else {
 													vector.copy( vertices[ vertexIndex ] ); //.applyMatrix4( matrixWorld );
 													// see https://github.com/mrdoob/three.js/issues/3187
@@ -1420,7 +1316,7 @@
 														.applyMatrix4(skinMatrices[k]);
 														finalVector.add(tempVector);
 													}
-													output += '\t\t\tvertex ' + finalVector.x*scalefactor + ' ' + finalVector.y*scalefactor + ' ' + finalVector.z*scalefactor + '\n';
+													output += '\t\t\tvertex ' + finalVector.x + ' ' + finalVector.y + ' ' + finalVector.z + '\n';
 												}
 											}
 											output += '\t\tendloop\n';
@@ -1435,32 +1331,31 @@
 					};
 				}() )
 			};
-			
 			var exporter = new THREE.STLExporter();
-			
-			var remove_count = 1;
 			if (display_mode==1) {
-				remove_count = remove_count + 1;
-				if (external_force_mode==1) {
-					remove_count = remove_count + 1;
-				}
+				var temp_child_1 = scene.children[scene.children.length-1];
+				scene.remove(scene.children[scene.children.length-1]);
+				var temp_child_2 = scene.children[scene.children.length-1];
+				scene.remove(scene.children[scene.children.length-1]);
+				var temp_child_3 = scene.children[scene.children.length-1];
+				scene.remove(scene.children[scene.children.length-1]);
+				var temp_child_4 = scene.children[scene.children.length-1];
+				scene.remove(scene.children[scene.children.length-1]);
+			}
+			if (display_mode==2) {
+				var temp_child_1 = scene.children[scene.children.length-1];
+				scene.remove(scene.children[scene.children.length-1]);
 			}
 			if (display_pointload==1) {
-				remove_count = remove_count + 1;
+				var temp_child_pointload = scene.children[scene.children.length-1];
+				scene.remove(scene.children[scene.children.length-1]);
 			}
 			if (display_selfload==1) {
-				remove_count = remove_count + 1;
-			}
-			if ((display_mode==1) || (display_selfload==1) || (display_pointload==1)) {
-				remove_count = remove_count + 1;
-			}
-			let remove_children = [];
-			for ( var i = 0; i < remove_count; i ++ ) {
-				remove_children.push(scene.children[scene.children.length-1]);
+				var temp_child_selfload = scene.children[scene.children.length-1];
 				scene.remove(scene.children[scene.children.length-1]);
 			}
 			var stlString = exporter.parse(scene);
-			//console.log(stlString);
+			console.log(stlString);
 			var blob = new Blob( [stlString], { type : 'text/plain' } ); // Generate Blob from the string
 			var link = document.createElement('a');
 			link.style.display = 'none';
@@ -1468,12 +1363,22 @@
 			link.href = URL.createObjectURL(blob);
 			link.download = 'output.stl';
 			link.click();
-			//window.open('../ghBackend/media/Default/output.stl')
-			
-			for ( var i = 0; i < remove_count; i ++ ) {
-				scene.add(remove_children[remove_count-1-i]);
+			if (display_mode==1) {
+				scene.add(temp_child_4);
+				scene.add(temp_child_3);
+				scene.add(temp_child_2);
+				scene.add(temp_child_1); 
 			}
-
+			if (display_mode==2) {
+				scene.add(temp_child_1); 
+			}
+			if (display_pointload==1) {
+				scene.add(temp_child_pointload);
+			}
+			if (display_selfload==1) {
+				scene.add(temp_child_selfload);
+			}
+			//window.open('../ghBackend/media/Default/output.stl')
 		}
 		
 		function change_minumum_radius() {
@@ -1513,9 +1418,8 @@
 			var value_selfload_ind = document.getElementById('selfload_ind').value;
 			document.getElementById('selfload_ind').innerHTML = (parseInt(value_selfload_ind*100)/100).toFixed(2);
 			var value_selfload_ind = document.getElementById('selfload_ind').value;
-			var total_length_input = document.getElementById('total_length').value;
-			document.getElementById('value_selfload_min').innerHTML = (parseInt(value_selfload_ind*(-mindef_self)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_selfload_ind*(-mindef_self)/structure_length)).toFixed(0)+"mm)";
-			document.getElementById('value_selfload_max').innerHTML = (parseInt(value_selfload_ind*(-maxdef_self)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_selfload_ind*(-maxdef_self)/structure_length)).toFixed(0)+"mm)";
+			document.getElementById('value_selfload_min').innerHTML = (parseInt(value_selfload_ind*(-mindef_self)/structure_length*10000)/100).toFixed(2)+"%";
+			document.getElementById('value_selfload_max').innerHTML = (parseInt(value_selfload_ind*(-maxdef_self)/structure_length*10000)/100).toFixed(2)+"%";
 		}
 		
 		function input_selfload_ind() {
@@ -1523,18 +1427,16 @@
 			document.getElementById('value_selfload_ind').innerHTML = (parseInt(value_selfload_ind*100)/100).toFixed(2);
 			draw_update();
 			var value_selfload_ind = document.getElementById('selfload_ind').value;
-			var total_length_input = document.getElementById('total_length').value;
-			document.getElementById('value_selfload_min').innerHTML = (parseInt(value_selfload_ind*(-mindef_self)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_selfload_ind*(-mindef_self)/structure_length)).toFixed(0)+"mm)";
-			document.getElementById('value_selfload_max').innerHTML = (parseInt(value_selfload_ind*(-maxdef_self)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_selfload_ind*(-maxdef_self)/structure_length)).toFixed(0)+"mm)";
+			document.getElementById('value_selfload_min').innerHTML = (parseInt(value_selfload_ind*(-mindef_self)/structure_length*10000)/100).toFixed(2)+"%";
+			document.getElementById('value_selfload_max').innerHTML = (parseInt(value_selfload_ind*(-maxdef_self)/structure_length*10000)/100).toFixed(2)+"%";
 		}
 		
 		function change_pointload_ind() {
 			var value_pointload_ind = document.getElementById('pointload_ind').value;
 			document.getElementById('pointload_ind').innerHTML = (parseInt(value_pointload_ind*100)/100).toFixed(2);
 		    var value_pointload_ind = document.getElementById('pointload_ind').value;
-			var total_length_input = document.getElementById('total_length').value;
-			document.getElementById('value_pointload_min').innerHTML = (parseInt(value_pointload_ind*(-mindef_point)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_pointload_ind*(-mindef_point)/structure_length)).toFixed(0)+"mm)";
-			document.getElementById('value_pointload_max').innerHTML = (parseInt(value_pointload_ind*(-maxdef_point)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_pointload_ind*(-maxdef_point)/structure_length)).toFixed(0)+"mm)";
+			document.getElementById('value_pointload_min').innerHTML = (parseInt(value_pointload_ind*(-mindef_point)/structure_length*10000)/100).toFixed(2)+"%";
+			document.getElementById('value_pointload_max').innerHTML = (parseInt(value_pointload_ind*(-maxdef_point)/structure_length*10000)/100).toFixed(2)+"%";
 		}
 		
 		function input_pointload_ind() {
@@ -1542,9 +1444,8 @@
 			document.getElementById('value_pointload_ind').innerHTML = (parseInt(value_pointload_ind*100)/100).toFixed(2);
 			draw_update();
 			var value_pointload_ind = document.getElementById('pointload_ind').value;
-			var total_length_input = document.getElementById('total_length').value;
-			document.getElementById('value_pointload_min').innerHTML = (parseInt(value_pointload_ind*(-mindef_point)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_pointload_ind*(-mindef_point)/structure_length)).toFixed(0)+"mm)";
-			document.getElementById('value_pointload_max').innerHTML = (parseInt(value_pointload_ind*(-maxdef_point)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_pointload_ind*(-maxdef_point)/structure_length)).toFixed(0)+"mm)";
+			document.getElementById('value_pointload_min').innerHTML = (parseInt(value_pointload_ind*(-mindef_point)/structure_length*10000)/100).toFixed(2)+"%";
+			document.getElementById('value_pointload_max').innerHTML = (parseInt(value_pointload_ind*(-maxdef_point)/structure_length*10000)/100).toFixed(2)+"%";
 		}
 		
 	    function fold_dcp() {
@@ -1554,11 +1455,7 @@
 			obj.style.display = "none";
 			var obj = document.getElementById("btn_10nor");
 			obj.style.display = "none";
-			var obj = document.getElementById("btn_25nor");
-			obj.style.display = "none";
 			var obj = document.getElementById("btn_11min");
-			obj.style.display = "none";
-			var obj = document.getElementById("btn_26min");
 			obj.style.display = "none";
 			var obj = document.getElementById("btn_12sho");
 			obj.style.display = "none";
@@ -1599,11 +1496,7 @@
 			obj.style.display = "inline";
 			var obj = document.getElementById("btn_10nor");
 			obj.style.display = "inline";
-			var obj = document.getElementById("btn_25nor");
-			obj.style.display = "inline";
 			var obj = document.getElementById("btn_11min");
-			obj.style.display = "inline";
-			var obj = document.getElementById("btn_26min");
 			obj.style.display = "inline";
 			var obj = document.getElementById("btn_12sho");
 			obj.style.display = "inline";
@@ -1827,6 +1720,7 @@
 							// 模型group是加载一个三维模型返回的对象，包含多个网格模型
 							box3.expandByObject(group);
 							// 计算一个层级模型对应包围盒的几何体中心在世界坐标中的位置
+							var center = new THREE.Vector3();
 							box3.getCenter(center);
 							// console.log('查看几何体中心坐标', center);
 							// 重新设置模型的位置，使之居中。
@@ -1842,6 +1736,14 @@
 							scene.add(group);
 							scene.add(group_arrow);
 							scene.add(group_shadow);
+							
+							var plane = new THREE.PlaneGeometry(100000,100000);
+							var colormat = new THREE.MeshStandardMaterial({color: "0xFCFCFC"});
+							var mesh = new THREE.Mesh(plane, colormat);
+							mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+							mesh.position.y = -30;
+							mesh.receiveShadow = true;
+							scene.add(mesh);
 						}
 						
 						pnum = parseInt(arr_all[0])+1;
@@ -1888,7 +1790,7 @@
 							force_edges_magnitude.push(arr0[4]-0);
 						}
 						
-						if (mink_mode==1) {
+						if (display_mode==2) {
 							let form_pois_edges_geos = [];
 							for (var i = 0; i < form_pois_edges.length; i++) {
 								arr0 = [];
@@ -1976,6 +1878,7 @@
 							// 模型group是加载一个三维模型返回的对象，包含多个网格模型
 							box3.expandByObject(group_mink);
 							// 计算一个层级模型对应包围盒的几何体中心在世界坐标中的位置
+							var center = new THREE.Vector3();
 							box3.getCenter(center);
 							// console.log('查看几何体中心坐标', center);
 							// 重新设置模型的位置，使之居中。
@@ -1983,6 +1886,14 @@
 							group_mink.position.y = group_mink.position.y - center.y;
 							group_mink.position.z = group_mink.position.z - center.z;
 							scene.add(group_mink);
+							
+							var plane = new THREE.PlaneGeometry(100000,100000);
+							var colormat = new THREE.MeshStandardMaterial({color: "0xFCFCFC"});
+							var mesh = new THREE.Mesh(plane, colormat);
+							mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+							mesh.position.y = -30;
+							mesh.receiveShadow = true;
+							scene.add(mesh);
 						}
 						
 						pnum = pnum + pstep;
@@ -2072,17 +1983,9 @@
 							}
 							scene.add(group_pointload);
 						}
-						
-						var plane = new THREE.PlaneGeometry(100000,100000);
-						var colormat = new THREE.MeshStandardMaterial({color: "0xFCFCFC"});
-						var mesh = new THREE.Mesh(plane, colormat);
-						mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
-						mesh.position.y = -30;
-						mesh.receiveShadow = true;
-						scene.add(mesh);
 
 						pnum = pnum + pstep;
-						pstep = 8;
+						pstep = 6;
 						arr_input = arr_all.slice(pnum,pnum+pstep);
 						
 						document.getElementById("reduce_rate").defaultValue = arr_input[1];
@@ -2095,10 +1998,7 @@
 						document.getElementById('value_boundary_constraint_magnitude').innerHTML = (arr_input[4]*1.0).toFixed(2);
 						document.getElementById("perp_steps").defaultValue = arr_input[5];
 						document.getElementById('value_perp_steps').innerHTML = arr_input[5];
-						document.getElementById("total_length").defaultValue = arr_input[6];
-						document.getElementById('value_total_length').innerHTML = (arr_input[6]*1.0).toFixed(0);
-						document.getElementById("material_select").selectedIndex = arr_input[7];
-
+						
 						arr0_input = arr_input[0].split(',');
 						function Point(x, y) {
 							this.x = x;
@@ -2128,7 +2028,7 @@
 						wall_info.push((arr0_input[arr0_input.length-2]-0)/500*3000*0.07);
 						wall_info.push((arr0_input[arr0_input.length-1]-0)/500*3000*0.07);
 						
-						if ((display_mode==1) || (display_selfload==1) || (display_pointload==1)) {
+						if (display_mode==1) {
 							var vec = new THREE.Vector3(wall_info[3]-wall_info[1], -(wall_info[2]-wall_info[0]));
 							vec = vec.normalize();
 							//var baseShape = new THREE.Shape();
@@ -2233,14 +2133,12 @@
 						}
 						
 						var value_selfload_ind = document.getElementById('selfload_ind').value;
-						var total_length_input = document.getElementById('total_length').value;
-						document.getElementById('value_selfload_min').innerHTML = (parseInt(value_selfload_ind*(-mindef_self)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_selfload_ind*(-mindef_self)/structure_length)).toFixed(0)+"mm)";
-						document.getElementById('value_selfload_max').innerHTML = (parseInt(value_selfload_ind*(-maxdef_self)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_selfload_ind*(-maxdef_self)/structure_length)).toFixed(0)+"mm)";
+						document.getElementById('value_selfload_min').innerHTML = (parseInt(value_selfload_ind*(-mindef_self)/structure_length*10000)/100).toFixed(2)+"%";
+						document.getElementById('value_selfload_max').innerHTML = (parseInt(value_selfload_ind*(-maxdef_self)/structure_length*10000)/100).toFixed(2)+"%";
 						var value_pointload_ind = document.getElementById('pointload_ind').value;
-						var total_length_input = document.getElementById('total_length').value;
-						document.getElementById('value_pointload_min').innerHTML = (parseInt(value_pointload_ind*(-mindef_point)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_pointload_ind*(-mindef_point)/structure_length)).toFixed(0)+"mm)";
-						document.getElementById('value_pointload_max').innerHTML = (parseInt(value_pointload_ind*(-maxdef_point)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_pointload_ind*(-maxdef_point)/structure_length)).toFixed(0)+"mm)";
-					
+						document.getElementById('value_pointload_min').innerHTML = (parseInt(value_pointload_ind*(-mindef_point)/structure_length*10000)/100).toFixed(2)+"%";
+						document.getElementById('value_pointload_max').innerHTML = (parseInt(value_pointload_ind*(-maxdef_point)/structure_length*10000)/100).toFixed(2)+"%";
+						
 						var oldnode = document.getElementById("loading");
 						if (oldnode!=null) {
 							oldnode.parentNode.removeChild(oldnode);
@@ -2447,6 +2345,7 @@
 						// 模型group是加载一个三维模型返回的对象，包含多个网格模型
 						box3.expandByObject(group);
 						// 计算一个层级模型对应包围盒的几何体中心在世界坐标中的位置
+						var center = new THREE.Vector3();
 						box3.getCenter(center);
 						// console.log('查看几何体中心坐标', center);
 						// 重新设置模型的位置，使之居中。
@@ -2462,6 +2361,14 @@
 						scene.add(group);
 						scene.add(group_arrow);
 						scene.add(group_shadow);
+						
+						var plane = new THREE.PlaneGeometry(100000,100000);
+						var colormat = new THREE.MeshStandardMaterial({color: "0xFCFCFC"});
+						var mesh = new THREE.Mesh(plane, colormat);
+						mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+						mesh.position.y = -30;
+						mesh.receiveShadow = true;
+						scene.add(mesh);
 					}
 					
 					pnum = parseInt(arr_all[0])+1;
@@ -2508,7 +2415,7 @@
 						force_edges_magnitude.push(arr0[4]-0);
 					}
 					
-					if (mink_mode==1) {
+					if (display_mode==2) {
 						let form_pois_edges_geos = [];
 						for (var i = 0; i < form_pois_edges.length; i++) {
 							arr0 = [];
@@ -2596,6 +2503,7 @@
 						// 模型group是加载一个三维模型返回的对象，包含多个网格模型
 						box3.expandByObject(group_mink);
 						// 计算一个层级模型对应包围盒的几何体中心在世界坐标中的位置
+						var center = new THREE.Vector3();
 						box3.getCenter(center);
 						// console.log('查看几何体中心坐标', center);
 						// 重新设置模型的位置，使之居中。
@@ -2603,6 +2511,14 @@
 						group_mink.position.y = group_mink.position.y - center.y;
 						group_mink.position.z = group_mink.position.z - center.z;
 						scene.add(group_mink);
+						
+						var plane = new THREE.PlaneGeometry(100000,100000);
+						var colormat = new THREE.MeshStandardMaterial({color: "0xFCFCFC"});
+						var mesh = new THREE.Mesh(plane, colormat);
+						mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+						mesh.position.y = -30;
+						mesh.receiveShadow = true;
+						scene.add(mesh);
 					}
 					
 					pnum = pnum + pstep;
@@ -2693,16 +2609,8 @@
 						scene.add(group_pointload);
 					}
 					
-					var plane = new THREE.PlaneGeometry(100000,100000);
-					var colormat = new THREE.MeshStandardMaterial({color: "0xFCFCFC"});
-					var mesh = new THREE.Mesh(plane, colormat);
-					mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
-					mesh.position.y = -30;
-					mesh.receiveShadow = true;
-					scene.add(mesh);
-					
 					pnum = pnum + pstep;
-					pstep = 8;
+					pstep = 6;
 					arr_input = arr_all.slice(pnum,pnum+pstep);
 					
 					document.getElementById("reduce_rate").defaultValue = arr_input[1];
@@ -2715,9 +2623,6 @@
 					document.getElementById('value_boundary_constraint_magnitude').innerHTML = (arr_input[4]*1.0).toFixed(2);
 					document.getElementById("perp_steps").defaultValue = arr_input[5];
 					document.getElementById('value_perp_steps').innerHTML = arr_input[5];
-					document.getElementById("total_length").defaultValue = arr_input[6];
-					document.getElementById('value_total_length').innerHTML = (arr_input[6]*1.0).toFixed(0);
-					document.getElementById("material_select").selectedIndex = arr_input[7];
 					
 					arr0_input = arr_input[0].split(',');
 					function Point(x, y) {
@@ -2748,7 +2653,7 @@
 					wall_info.push((arr0_input[arr0_input.length-2]-0)/500*3000*0.07);
 					wall_info.push((arr0_input[arr0_input.length-1]-0)/500*3000*0.07);
 					
-					if ((display_mode==1) || (display_selfload==1) || (display_pointload==1)) {
+					if (display_mode==1) {
 						var vec = new THREE.Vector3(wall_info[3]-wall_info[1], -(wall_info[2]-wall_info[0]));
 						vec = vec.normalize();
 						//var baseShape = new THREE.Shape();
@@ -2853,14 +2758,12 @@
 					}
 					
 					var value_selfload_ind = document.getElementById('selfload_ind').value;
-					var total_length_input = document.getElementById('total_length').value;
-					document.getElementById('value_selfload_min').innerHTML = (parseInt(value_selfload_ind*(-mindef_self)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_selfload_ind*(-mindef_self)/structure_length)).toFixed(0)+"mm)";
-					document.getElementById('value_selfload_max').innerHTML = (parseInt(value_selfload_ind*(-maxdef_self)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_selfload_ind*(-maxdef_self)/structure_length)).toFixed(0)+"mm)";
+					document.getElementById('value_selfload_min').innerHTML = (parseInt(value_selfload_ind*(-mindef_self)/structure_length*10000)/100).toFixed(2)+"%";
+					document.getElementById('value_selfload_max').innerHTML = (parseInt(value_selfload_ind*(-maxdef_self)/structure_length*10000)/100).toFixed(2)+"%";
 					var value_pointload_ind = document.getElementById('pointload_ind').value;
-					var total_length_input = document.getElementById('total_length').value;
-					document.getElementById('value_pointload_min').innerHTML = (parseInt(value_pointload_ind*(-mindef_point)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_pointload_ind*(-mindef_point)/structure_length)).toFixed(0)+"mm)";
-					document.getElementById('value_pointload_max').innerHTML = (parseInt(value_pointload_ind*(-maxdef_point)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_pointload_ind*(-maxdef_point)/structure_length)).toFixed(0)+"mm)";
-				
+					document.getElementById('value_pointload_min').innerHTML = (parseInt(value_pointload_ind*(-mindef_point)/structure_length*10000)/100).toFixed(2)+"%";
+					document.getElementById('value_pointload_max').innerHTML = (parseInt(value_pointload_ind*(-maxdef_point)/structure_length*10000)/100).toFixed(2)+"%";
+					
 					var oldnode = document.getElementById("loading");
 					if (oldnode!=null) {
 						oldnode.parentNode.removeChild(oldnode);
@@ -2925,13 +2828,9 @@
 		document.getElementById('value_selfload_ind').innerHTML = (1.0).toFixed(2);
 		document.getElementById('pointload_ind').defaultValue = 1.0;
 		document.getElementById('value_pointload_ind').innerHTML = (1.0).toFixed(2);
-		document.getElementById("total_length").defaultValue = 30000;
-		document.getElementById('value_total_length').innerHTML = (30000*1.0).toFixed(0);
-		document.getElementById("material_select").selectedIndex = 0;
 		
 		var localfileonload = false;
 		
-		var center = new THREE.Vector3();
 		let wall_info;
 		var content_input;
 		var textfile_input;
@@ -2975,9 +2874,6 @@
 				document.getElementById('value_maximum_radius').innerHTML = (20).toFixed(1);
 				document.getElementById('minkowski_sum_indicator').defaultValue = 0.5;
 				document.getElementById('value_minkowski_sum_indicator').innerHTML = (0.5).toFixed(2);
-				document.getElementById("total_length").defaultValue = arr_input[6];
-				document.getElementById('value_total_length').innerHTML = (arr_input[6]*1.0).toFixed(0);
-				document.getElementById("material_select").selectedIndex = arr_input[7];
 				arr0_input = arr_input[0].split(', ');
 				arr0_input[0] = arr0_input[0].split('[')[1];
 				arr0_input[arr0_input.length-1] = arr0_input[arr0_input.length-1].split(']')[0];
@@ -3166,8 +3062,7 @@
 		var pointload_ind = document.getElementById("pointload_ind").value;
 		
 		var display_mode = 1;
-		var mink_mode = 0;
-		var external_force_mode = 0;
+		var external_force_mode = 1;
 		var display_selfload = 0;
 		var display_pointload = 0;
 		
@@ -3513,6 +3408,7 @@
 					// 模型group是加载一个三维模型返回的对象，包含多个网格模型
 					box3.expandByObject(group);
 					// 计算一个层级模型对应包围盒的几何体中心在世界坐标中的位置
+					var center = new THREE.Vector3();
 					box3.getCenter(center);
 					// console.log('查看几何体中心坐标', center);
 					// 重新设置模型的位置，使之居中。
@@ -3527,7 +3423,15 @@
 					group_shadow.position.z = group_shadow.position.z - center.z;
 					scene.add(group);
 					scene.add(group_arrow);
-					scene.add(group_shadow);		
+					scene.add(group_shadow);
+					
+					var plane = new THREE.PlaneGeometry(100000,100000);
+					var colormat = new THREE.MeshStandardMaterial({color: "0xFCFCFC"});
+					var mesh = new THREE.Mesh(plane, colormat);
+					mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+					mesh.position.y = -30;
+					mesh.receiveShadow = true;
+					scene.add(mesh);		
 				}
 				
 				pnum = parseInt(arr_all[0])+1;
@@ -3574,7 +3478,7 @@
 					force_edges_magnitude.push(arr0[4]-0);
 				}
 
-				if (mink_mode==1) {
+				if (display_mode==2) {
 					let form_pois_edges_geos = [];
 					for (var i = 0; i < form_pois_edges.length; i++) {
 						arr0 = [];
@@ -3662,6 +3566,7 @@
 					// 模型group是加载一个三维模型返回的对象，包含多个网格模型
 					box3.expandByObject(group_mink);
 					// 计算一个层级模型对应包围盒的几何体中心在世界坐标中的位置
+					var center = new THREE.Vector3();
 					box3.getCenter(center);
 					// console.log('查看几何体中心坐标', center);
 					// 重新设置模型的位置，使之居中。
@@ -3669,6 +3574,14 @@
 					group_mink.position.y = group_mink.position.y - center.y;
 					group_mink.position.z = group_mink.position.z - center.z;
 					scene.add(group_mink);
+					
+					var plane = new THREE.PlaneGeometry(100000,100000);
+					var colormat = new THREE.MeshStandardMaterial({color: "0xFCFCFC"});
+					var mesh = new THREE.Mesh(plane, colormat);
+					mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+					mesh.position.y = -30;
+					mesh.receiveShadow = true;
+					scene.add(mesh);
 				}
 				
 				pnum = pnum + pstep;
@@ -3758,17 +3671,9 @@
 					}
 					scene.add(group_pointload);
 				}
-				
-				var plane = new THREE.PlaneGeometry(100000,100000);
-				var colormat = new THREE.MeshStandardMaterial({color: "0xFCFCFC"});
-				var mesh = new THREE.Mesh(plane, colormat);
-				mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
-				mesh.position.y = -30;
-				mesh.receiveShadow = true;
-				scene.add(mesh);
 
 				pnum = pnum + pstep;
-				pstep = 8;
+				pstep = 6;
 				arr_input = arr_all.slice(pnum,pnum+pstep);
 				
 				document.getElementById("reduce_rate").defaultValue = arr_input[1];
@@ -3781,9 +3686,6 @@
 				document.getElementById('value_boundary_constraint_magnitude').innerHTML = (arr_input[4]*1.0).toFixed(2);
 				document.getElementById("perp_steps").defaultValue = arr_input[5];
 				document.getElementById('value_perp_steps').innerHTML = arr_input[5];
-				document.getElementById("total_length").defaultValue = arr_input[6];
-				document.getElementById('value_total_length').innerHTML = (arr_input[6]*1.0).toFixed(0);
-				document.getElementById("material_select").selectedIndex = arr_input[7];
 				
 				arr0_input = arr_input[0].split(',');
 				function Point(x, y) {
@@ -3814,7 +3716,7 @@
 				wall_info.push((arr0_input[arr0_input.length-2]-0)/500*3000*0.07);
 				wall_info.push((arr0_input[arr0_input.length-1]-0)/500*3000*0.07);
 				
-				if ((display_mode==1) || (display_selfload==1) || (display_pointload==1)) {
+				if (display_mode==1) {
 					var vec = new THREE.Vector3(wall_info[3]-wall_info[1], -(wall_info[2]-wall_info[0]));
 					vec = vec.normalize();
 					//var baseShape = new THREE.Shape();
@@ -3879,14 +3781,12 @@
 				}
 				
 				var value_selfload_ind = document.getElementById('selfload_ind').value;
-				var total_length_input = document.getElementById('total_length').value;
-				document.getElementById('value_selfload_min').innerHTML = (parseInt(value_selfload_ind*(-mindef_self)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_selfload_ind*(-mindef_self)/structure_length)).toFixed(0)+"mm)";
-				document.getElementById('value_selfload_max').innerHTML = (parseInt(value_selfload_ind*(-maxdef_self)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_selfload_ind*(-maxdef_self)/structure_length)).toFixed(0)+"mm)";
+				document.getElementById('value_selfload_min').innerHTML = (parseInt(value_selfload_ind*(-mindef_self)/structure_length*10000)/100).toFixed(2)+"%";
+				document.getElementById('value_selfload_max').innerHTML = (parseInt(value_selfload_ind*(-maxdef_self)/structure_length*10000)/100).toFixed(2)+"%";
 				var value_pointload_ind = document.getElementById('pointload_ind').value;
-				var total_length_input = document.getElementById('total_length').value;
-				document.getElementById('value_pointload_min').innerHTML = (parseInt(value_pointload_ind*(-mindef_point)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_pointload_ind*(-mindef_point)/structure_length)).toFixed(0)+"mm)";
-				document.getElementById('value_pointload_max').innerHTML = (parseInt(value_pointload_ind*(-maxdef_point)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_pointload_ind*(-maxdef_point)/structure_length)).toFixed(0)+"mm)";
-			
+				document.getElementById('value_pointload_min').innerHTML = (parseInt(value_pointload_ind*(-mindef_point)/structure_length*10000)/100).toFixed(2)+"%";
+				document.getElementById('value_pointload_max').innerHTML = (parseInt(value_pointload_ind*(-maxdef_point)/structure_length*10000)/100).toFixed(2)+"%";
+				
 				var oldnode = document.getElementById("loading");
 				oldnode.parentNode.removeChild(oldnode);
 				
@@ -4045,6 +3945,7 @@
 				// 模型group是加载一个三维模型返回的对象，包含多个网格模型
 				box3.expandByObject(group);
 				// 计算一个层级模型对应包围盒的几何体中心在世界坐标中的位置
+				var center = new THREE.Vector3();
 				box3.getCenter(center);
 				// console.log('查看几何体中心坐标', center);
 				// 重新设置模型的位置，使之居中。
@@ -4060,9 +3961,20 @@
 				scene.add(group);
 				scene.add(group_arrow);
 				scene.add(group_shadow);
+				
+				var plane = new THREE.PlaneGeometry(100000,100000);
+				var material = new THREE.MeshPhongMaterial({
+					color: 0xFCFCFC,
+					// 矩形平面网格模型默认单面显示，可以设置side属性值为THREE.DoubleSide双面显示
+				});
+				var mesh = new THREE.Mesh(plane, material);
+				mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+				mesh.position.y = -30;
+				mesh.receiveShadow = true;
+				scene.add(mesh);
 			}
 			
-			if (mink_mode==1) {
+			if (display_mode==2) {
 			
 				let form_pois_edges_geos = [];
 				for (var i = 0; i < form_pois_edges.length; i++) {
@@ -4152,6 +4064,7 @@
 				// 模型group是加载一个三维模型返回的对象，包含多个网格模型
 				box3.expandByObject(group_mink);
 				// 计算一个层级模型对应包围盒的几何体中心在世界坐标中的位置
+				var center = new THREE.Vector3();
 				box3.getCenter(center);
 				// console.log('查看几何体中心坐标', center);
 				// 重新设置模型的位置，使之居中。
@@ -4159,9 +4072,18 @@
 				group_mink.position.y = group_mink.position.y - center.y;
 				group_mink.position.z = group_mink.position.z - center.z;
 				scene.add(group_mink);
+				
+				var plane = new THREE.PlaneGeometry(100000,100000);
+				var colormat = new THREE.MeshStandardMaterial({color: "0xFCFCFC"});
+				var mesh = new THREE.Mesh(plane, colormat);
+				mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+				mesh.position.y = -30;
+				mesh.receiveShadow = true;
+				scene.add(mesh);
+				
 			}
 			
-			if ((display_mode==1) || (display_selfload==1) || (display_pointload==1)) {
+			if (display_mode==1) {
 				var vec = new THREE.Vector3(wall_info[3]-wall_info[1], -(wall_info[2]-wall_info[0]));
 				vec = vec.normalize();
 				//var baseShape = new THREE.Shape();
@@ -4267,22 +4189,13 @@
 				scene.add(group_pointload);
 			}
 			
-			var plane = new THREE.PlaneGeometry(100000,100000);
-			var colormat = new THREE.MeshStandardMaterial({color: "0xFCFCFC"});
-			var mesh = new THREE.Mesh(plane, colormat);
-			mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
-			mesh.position.y = -30;
-			mesh.receiveShadow = true;
-			scene.add(mesh);
-			
 			var value_selfload_ind = document.getElementById('selfload_ind').value;
-			var total_length_input = document.getElementById('total_length').value;
-			document.getElementById('value_selfload_min').innerHTML = (parseInt(value_selfload_ind*(-mindef_self)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_selfload_ind*(-mindef_self)/structure_length)).toFixed(0)+"mm)";
-			document.getElementById('value_selfload_max').innerHTML = (parseInt(value_selfload_ind*(-maxdef_self)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_selfload_ind*(-maxdef_self)/structure_length)).toFixed(0)+"mm)";
+			document.getElementById('value_selfload_min').innerHTML = (parseInt(value_selfload_ind*(-mindef_self)/structure_length*10000)/100).toFixed(2)+"%";
+			document.getElementById('value_selfload_max').innerHTML = (parseInt(value_selfload_ind*(-maxdef_self)/structure_length*10000)/100).toFixed(2)+"%";
 			var value_pointload_ind = document.getElementById('pointload_ind').value;
-			var total_length_input = document.getElementById('total_length').value;
-			document.getElementById('value_pointload_min').innerHTML = (parseInt(value_pointload_ind*(-mindef_point)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_pointload_ind*(-mindef_point)/structure_length)).toFixed(0)+"mm)";
-			document.getElementById('value_pointload_max').innerHTML = (parseInt(value_pointload_ind*(-maxdef_point)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_pointload_ind*(-maxdef_point)/structure_length)).toFixed(0)+"mm)";
+			document.getElementById('value_pointload_min').innerHTML = (parseInt(value_pointload_ind*(-mindef_point)/structure_length*10000)/100).toFixed(2)+"%";
+			document.getElementById('value_pointload_max').innerHTML = (parseInt(value_pointload_ind*(-maxdef_point)/structure_length*10000)/100).toFixed(2)+"%";
+		
 		}
 	</script>
 
