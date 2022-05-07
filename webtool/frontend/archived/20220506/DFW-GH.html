@@ -1,0 +1,4290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Wing Structure Generator | PSL</title>
+
+    <!-- 引入标准bootstrap文件和jQuery文件 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+	<script src="lib/three.js"></script>
+	<script src="lib/js/loaders/STLLoader.js"></script>
+	<script src="lib/js/controls/OrbitControls.js"></script>
+	<script src="lib/js/libs/stats.min.js"></script>
+	<script src="lib/js/libs/dat.gui.min.js"></script>
+	<script src="js/FileSaver.js"></script>
+
+    <!-- 引入自定义的css和js -->
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+	
+	<!-- 接口 -->
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+</head>
+
+<body>
+    
+	<div id="gcpb" style="background-color: #000000; opacity: 0.3; position:absolute; bottom:30px; left:30px; width: 505px; height: 50px;"></div>
+	
+	<button id="btn_01bou" type="button" class="btn btn-default" onclick="btn_01bou()" style="position:absolute; bottom:38px; left:40px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/01bou.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Input Boundary">
+	</button>
+	
+	<button id="btn_02sub" type="button" class="btn btn-default" onclick="btn_02sub()" style="position:absolute; bottom:38px; left:90px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/02sub.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Subdivision Density">
+	</button>
+	
+	<button id="btn_03cir" type="button" class="btn btn-default" onclick="btn_03cir()" style="position:absolute; bottom:38px; left:140px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/03cir.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Sharpness">
+	</button>
+	
+	<button id="btn_04len" type="button" class="btn btn-default" onclick="btn_04len()" style="position:absolute; bottom:38px; left:190px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/04len.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Length Constraint Multiplier">
+	</button>
+	
+	<button id="btn_05bou" type="button" class="btn btn-default" onclick="btn_05bou()" style="position:absolute; bottom:38px; left:240px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/05bou.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Boundary Constraint Multiplier">
+	</button>
+	
+	<button id="btn_06ite" type="button" class="btn btn-default" onclick="btn_06ite()" style="position:absolute; bottom:38px; left:290px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/06ite.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Iterations">
+	</button>
+	
+	<button id="btn_24len" type="button" class="btn btn-default" onclick="btn_24len()" style="position:absolute; bottom:38px; left:340px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/24len.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Total Length of the Wing (in mm)">
+	</button>
+	
+	<button id="btn_25mat" type="button" class="btn btn-default" onclick="btn_25mat()" style="position:absolute; bottom:38px; left:390px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/25mat.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Material of the Wing">
+	</button>
+	
+	<button id="btn_07mac" type="button" class="btn btn-default" onclick="btn_07mac()" style="position:absolute; bottom:38px; left:440px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/07mac.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Machine Learning Model">
+	</button>
+	
+	<button id="btn_08def" type="button" class="btn btn-default" onclick="btn_08def()" style="position:absolute; bottom:38px; left:490px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/08def.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Default Settings">
+	</button>
+	
+	<div id="container-item-gcp" style="position:absolute; bottom:10px; left:220px; width: 220px; display:block;">
+	    <span class="glyphicon glyphicon-asterisk" style="font-size:14px">Input Control Panel</span>
+	</div>
+	
+	<button id="btn_fold1" type="button" style="position:absolute; bottom:8px; left:340px; width:25px; height: 25px; display:inline; background:transparent;  border-color: transparent; opacity:0.7;" onclick="fold_gcp()">
+		<span id="btn_fold1_spa" style="position:absolute; font-size:13px; top:-1px; left:5px;"title="fold">▼</span>
+	</button>
+	
+	<button id="btn_show1" type="button" style="position:absolute; bottom:8px; left:340px; width:25px; height: 25px; background:transparent;  border-color: transparent; display:none; opacity:0.7; " onclick="show_gcp()">
+		<span id="btn_show1_spa" style="position:absolute; font-size:13px; top:1px; left:5px;" title="unfold">▲</span>
+	</button>
+	
+	<div id="container_canvas" style="position:absolute; bottom:90px; left:40px; width:260px; height:260px; float:left; display:none;">
+	    <canvas id="canvas" width="250" height="250" style="border: 3px solid #DADADA"></canvas>
+    </div>
+	
+	<div id="container-item" style="position:absolute; bottom:350px; left:0px; width: 340px; height:30px; display:none;">
+	    <ul class="tabs" data-tab>
+			<button id="btn_set_3poi" type="button" class="btn btn-default" onclick="set_3poi()" style="float:left; font-size:8px; width:64px; height: 30px; opacity: 0.7;">
+				<span class="glyphicon glyphicon-asterisk" style="font-size:8px">3 points</span>
+			</button>
+		    <button id="btn_set_4poi" type="button" class="btn btn-default" onclick="set_4poi()" style="float:left; font-size:8px; width:64px; height: 30px; opacity: 0.7;">
+				<span class="glyphicon glyphicon-asterisk" style="font-size:8px">4 points</span>
+			</button>
+			<button id="btn_set_5poi" type="button" class="btn btn-default" onclick="set_5poi()" style="float:left; font-size:8px; width:64px; height: 30px; opacity: 0.7;">
+				<span class="glyphicon glyphicon-asterisk" style="font-size:8px">5 points</span>
+			</button>
+			<button id="btn_set_6poi" type="button" class="btn btn-default" onclick="set_6poi()" style="float:left; font-size:8px; width:64px; height: 30px; opacity: 0.7;">
+				<span class="glyphicon glyphicon-asterisk" style="font-size:8px">6 points</span>
+			</button>
+		</ul>
+    </div>
+	
+	<div id="container_red" style="position:absolute; bottom:110px; left:105px; width:10px; height:200px; display:none;">
+		<div class="mode1">
+			<input type="range" min="0.01" max="1.00" step="0.01" name="reduce_rate" id="reduce_rate" style="width:10px; height:200px;" oninput="change_reduce_rate()" onchange="change_reduce_rate()"/>
+			<span id="value_reduce_rate" style="position:absolute; bottom:-25px; left:-8px; font-size:15px;">0</span>
+		</div>
+	</div>
+	
+	<div id="container_tol" style="position:absolute; bottom:110px; left:155px; width:10px; height:200px; display:none;">
+		<div class="mode1">
+            <input type="range" min="0.00" max="1.00" step="0.01" name="tolerance_of_edge_length" id="tolerance_of_edge_length" style="width:10px; height:200px;" oninput="change_tolerance_of_edge_length()" onchange="change_tolerance_of_edge_length()"/>
+			<span id="value_tolerance_of_edge_length" style="position:absolute; bottom:-25px; left:-8px; font-size:15px;">0</span>
+		</div>
+	</div>
+	
+	<div id="container_len" style="position:absolute; bottom:110px; left:205px; width:10px; height:200px; display:none;">
+        <div class="mode1">
+            <input type="range" min="0.01" max="2.00" step="0.01" name="length_constraint_maltiplier" id="length_constraint_maltiplier" style="width:10px; height:200px;" oninput="change_length_constraint_maltiplier()" onchange="change_length_constraint_maltiplier()"/>
+				<span id="value_length_constraint_maltiplier" style="position:absolute; bottom:-25px; left:-8px; font-size:15px;">0</span>
+		</div>
+	</div>
+    
+	<div id="container_bou" style="position:absolute; bottom:110px; left:255px; width:10px; height:200px; display:none;">
+        <div class="mode1">
+            <input type="range" min="0.01" max="9.99" step="0.01" name="boundary_constraint_magnitude" id="boundary_constraint_magnitude" style="width:10px; height:200px;" oninput="change_boundary_constraint_magnitude()" onchange="change_boundary_constraint_magnitude()"/>
+			<span id="value_boundary_constraint_magnitude" style="position:absolute; bottom:-25px; left:-8px; font-size:15px;">0</span>
+		</div>
+	</div>
+				
+	<div id="container_per" style="position:absolute; bottom:110px; left:305px; width:10px; height:200px; display:none;">
+        <div class="mode1">
+			<input type="range" min="10000" max="30000" step="1" name="perp_steps" id="perp_steps" style="width:10px; height:200px;" oninput="change_perp_steps()" onchange="change_perp_steps()"/>
+			<span id="value_perp_steps" style="position:absolute; bottom:-25px; left:-16px; font-size:15px;">0</span>
+		</div>
+	</div>
+	
+	<div id="container_tlen" style="position:absolute; bottom:110px; left:355px; width:10px; height:200px; display:none;">
+        <div class="mode1">
+			<input type="range" min="10" max="50000" step="1" name="total_length" id="total_length" style="width:10px; height:200px;" oninput="change_total_length()" onchange="change_total_length()"/>
+			<span id="value_total_length" style="position:absolute; bottom:-25px; left:-16px; font-size:15px;">0</span>
+		</div>
+	</div>
+	
+	<div id="container_mat" style="position:absolute; bottom:-45px; left:395px; width:10px; height:240px; display:none;">
+		<select id="material_select" style="background:#FCFCFC; font-size:15px;">
+			<option value ="volvo">Steel</option>
+			<option value ="volvo">Wood</option>
+			<option value ="volvo">Concrete</option>
+			<option value ="volvo">Aluminum</option>
+		</select>
+	</div>
+	
+	<div id="container_sel" style="position:absolute; bottom:-65px; left:440px; width:10px; height:200px; display:none;">
+		<select id="model_select" style="background:#FCFCFC; font-size:15px;">
+			<option value ="volvo">Dragonfly Wing</option>
+		</select>
+	</div>
+
+
+
+	<div id="sb" style="background-color: #000000; opacity: 0.3; position:absolute; bottom:30px; left:550px; width: 90px; height: 50px;"></div>
+	
+	<button id="btn_09sub" type="button" class="btn btn-default" onclick="getInputs()" style="position:absolute; bottom:38px; left:560px; float:left; width:70px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/09sub.png" width="70" style="position:absolute; bottom:0px; left:0px;" title="Submit to Server for Computation (usually takes 5 minutes)">
+	</button>
+	
+	<div id="container-item-sb" style="position:absolute; bottom:10px; left:565px; width: 220px; display:block;">
+	    <span class="glyphicon glyphicon-asterisk" style="font-size:14px">Compute</span>
+	</div>
+	
+	<button id="btn_fold4" type="button" style="position:absolute; bottom:8px; left:620px; width:25px; height: 25px; display:inline; background:transparent;  border-color: transparent; opacity:0.7;" onclick="fold_sb()">
+		<span id="btn_fold4_spa" style="position:absolute; font-size:13px; top:-1px; left:5px;" title="fold">▼</span>
+	</button>
+	
+	<button id="btn_show4" type="button" style="position:absolute; bottom:8px; left:620px; width:25px; height: 25px; background:transparent;  border-color: transparent; display:none; opacity:0.7; " onclick="show_sb()">
+		<span id="btn_show4_spa" style="position:absolute; font-size:13px; top:1px; left:5px;" title="unfold">▲</span>
+	</button>
+
+
+
+	<div id="dcpb" style="background-color: #000000; opacity: 0.3; position:absolute; bottom:30px; left:655px; width: 555px; height: 50px;"></div>
+
+	<button id="btn_10nor" type="button" class="btn btn-default" onclick="btn_10nor()" style="position:absolute; bottom:38px; left:665px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/10nor.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Normal Display Mode">
+	</button>
+	
+	<button id="btn_25nor" type="button" class="btn btn-default" onclick="btn_25nor()" style="position:absolute; bottom:38px; left:715px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/25nor.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Turn off Normal Display Mode">
+	</button>
+	
+	<button id="btn_11min" type="button" class="btn btn-default" onclick="btn_11min()" style="position:absolute; bottom:38px; left:765px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/11min.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Minkowski Sum Display Mode">
+	</button>
+	
+	<button id="btn_26min" type="button" class="btn btn-default" onclick="btn_26min()" style="position:absolute; bottom:38px; left:815px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/26min.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Turn off Minkowski Sum Display Mode">
+	</button>
+	
+	<button id="btn_12sho" type="button" class="btn btn-default" onclick="btn_12sho()" style="position:absolute; bottom:38px; left:865px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/12sho.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Show External Forces">
+	</button>
+	
+	<button id="btn_13hid" type="button" class="btn btn-default" onclick="btn_13hid()" style="position:absolute; bottom:38px; left:915px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/13hid.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Hide External Forces">
+	</button>
+	
+	<button id="btn_20slo" type="button" class="btn btn-default" onclick="btn_20slo()" style="position:absolute; bottom:38px; left:965px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/btn_20slo.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Turn on Self Weight FEM Result">
+	</button>
+	
+	<button id="btn_21slf" type="button" class="btn btn-default" onclick="btn_21slf()" style="position:absolute; bottom:38px; left:1015px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/btn_21slf.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Turn off Self Weight FEM Result">
+	</button>
+	
+	<button id="btn_22plo" type="button" class="btn btn-default" onclick="btn_22plo()" style="position:absolute; bottom:38px; left:1065px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/btn_22plo.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Turn on Point Load FEM Result">
+	</button>
+	
+	<button id="btn_23plf" type="button" class="btn btn-default" onclick="btn_23plf()" style="position:absolute; bottom:38px; left:1115px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/btn_23plf.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Turn off Point Load FEM Result">
+	</button>
+	
+	<button id="btn_14stl" type="button" class="btn btn-default" onclick="btn_14stl()" style="position:absolute; bottom:38px; left:1165px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/14stl.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Save as STL Model">
+	</button>
+	
+	<div id="container-item-dcp" style="position:absolute; bottom:10px; left:865px; width: 220px; display:block;">
+	    <span class="glyphicon glyphicon-asterisk" style="font-size:14px;">Output Control Panel</span>
+	</div>
+	
+	<button id="btn_fold2" type="button" style="position:absolute; bottom:8px; left:995px; width:25px; height: 25px; display:inline; background:transparent;  border-color: transparent; opacity:0.7;" onclick="fold_dcp()">
+		<span id="btn_fold2_spa" style="position:absolute; font-size:13px; top:-1px; left:5px;" title="fold">▼</span>
+	</button>
+
+    <button id="btn_show2" type="button" style="position:absolute; bottom:8px; left:995px; width:25px; height: 25px; display:none; background:transparent;  border-color: transparent; opacity:0.7;" onclick="show_dcp()">
+		<span id="btn_show2_spa" style="position:absolute; font-size:13px; top:-1px; left:5px;" title="unfold">▲</span>
+	</button>
+	
+	<div id="container_min" style="position:absolute; bottom:110px; left:660px; width:10px; height:200px; display:none;">
+        <div class="mode1">
+            <input type="range" min="0" max="9.99" step="0.01" name="minumum_radius" id="minumum_radius" style="width:10px; height:200px;" oninput="input_minumum_radius()" onchange="change_minumum_radius()"/>
+			<span id="value_minumum_radius" style="position:absolute; bottom:-25px; left:-8px; font-size:15px;">0</span>
+		</div>
+	</div>
+	
+	<div id="container_max" style="position:absolute; bottom:110px; left:695px; width:10px; height:200px; display:none;">
+        <div class="mode1">
+			<input type="range" min="0" max="99.9" step="0.1" name="maximum_radius" id="maximum_radius" style="width:10px; height:200px;" oninput="input_maximum_radius()" onchange="change_maximum_radius()"/>
+			<span id="value_maximum_radius" style="position:absolute; bottom:-25px; left:-8px; font-size:15px;">0</span>
+        </div>
+	</div>
+	
+	<div id="container_mink" style="position:absolute; bottom:110px; left:775px; width:10px; height:200px; display:none;">
+        <div class="mode1">
+			<input type="range" min="0.05" max="0.95" step="0.01" name="minkowski_sum_indicator" id="minkowski_sum_indicator" style="width:10px; height:200px;" oninput="input_minkowski_sum_indicator()" onchange="change_minkowski_sum_indicator()"/>
+			<span id="value_minkowski_sum_indicator" style="position:absolute; bottom:-25px; left:-8px; font-size:15px;">0</span>
+		</div>
+	</div>
+	
+	<div id="container_selfload" style="position:absolute; bottom:110px; left:975px; width:10px; height:200px; display:none;">
+        <div class="mode1">
+			<input type="range" min="0.01" max="2.00" step="0.01" name="selfload_ind" id="selfload_ind" style="width:10px; height:200px;" oninput="input_selfload_ind()" onchange="change_selfload_ind()"/>
+			<span id="value_selfload_ind" style="position:absolute; bottom:-25px; left:-8px; font-size:15px;">0</span>
+		</div>
+	</div>
+	
+	<div id="container_pointload" style="position:absolute; bottom:110px; left:1075px; width:10px; height:200px; display:none;">
+        <div class="mode1">
+			<input type="range" min="0.01" max="2.00" step="0.01" name="pointload_ind" id="pointload_ind" style="width:10px; height:200px;" oninput="input_pointload_ind()" onchange="change_pointload_ind()"/>
+			<span id="value_pointload_ind" style="position:absolute; bottom:-25px; left:-8px; font-size:15px;">0</span>
+		</div>
+	</div>
+	
+	<div id="container_scale" style="background:rgba(0,0,0,0.0); position:absolute; top:150px; right:20px; width: 100px; height: 400px; display:inline;">
+	    <div id="container_scale_pointload" style="background:rgba(0,0,0,0.0); position:absolute; top:0px; right:0px; width: 50px; height: 300px; display:none; float: right;">
+			<img id="scale_pointload" src="icon/scale.jpg" height="300" style="position:absolute; right:35px; top:30px;">
+			<span id="value_pointload_min" style="position:absolute; top:330px; left:-15px; font-size:15px;">0%</span>
+			<span id="value_pointload_max" style="position:absolute; top:-15px; left:-15px; font-size:15px;">0%</span>
+			<span id="spa_pointload" style="position:absolute; top:380px; right:0px; font-size:15px;">Point Load Deformation</span>
+		</div>
+		<div id="container_scale_selfload" style="background:rgba(0,0,0,0.0); position:absolute; top:0px; right:90px; width: 50px; height: 300px; display:none; float: right;">
+			<img id="scale_selfload" src="icon/scale.jpg" height="300" style="position:absolute; right:50px; top:30px;">
+			<span id="value_selfload_min" style="position:absolute; top:330px; left:-30px; font-size:15px;">0%</span>
+			<span id="value_selfload_max" style="position:absolute; top:-15px; left:-30px; font-size:15px;">0%</span>
+			<span id="spa_selfload" style="position:absolute; top:380px; right:15px; font-size:15px;">Self Weight Deformation</span>
+		</div>
+	</div>
+	
+	
+	
+	<div id="fmb" style="background-color: #000000; opacity: 0.3; position:absolute; bottom:30px; left:1225px; width: 255px; height: 50px;"></div>
+
+	<button id="btn_15csv" type="button" class="btn btn-default" onclick="btn_15csv()" style="position:absolute; bottom:38px; left:1235px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/15csv.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Download CSV Data File">
+	</button>
+	
+	<button id="btn_16upl" type="button" class="btn btn-default" onclick="btn_16upl()" style="position:absolute; bottom:38px; left:1285px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/16upl.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Upload CSV Data File">
+	</button>
+	
+	<button id="btn_17sa1" type="button" class="btn btn-default" onclick="load_sample('sample/sample1.csv')" style="position:absolute; bottom:38px; left:1335px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/17sa1.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Load Sample Case 1">
+	</button>
+	
+	<button id="btn_18sa2" type="button" class="btn btn-default" onclick="load_sample('sample/sample2.csv')" style="position:absolute; bottom:38px; left:1385px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/18sa2.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Load Sample Case 2">
+	</button>
+	
+	<button id="btn_19sa3" type="button" class="btn btn-default" onclick="load_sample('sample/sample3.csv')" style="position:absolute; bottom:38px; left:1435px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/19sa3.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Load Sample Case 3">
+	</button>
+	
+	<div id="container-item-fm" style="position:absolute; bottom:10px; left:1310px; width: 220px; display:block;">
+	    <span class="glyphicon glyphicon-asterisk" style="font-size:14px">File Manager</span>
+	</div>
+	
+	<button id="btn_fold3" type="button" style="position:absolute; bottom:8px; left:1388px; width:25px; height: 25px; display:inline; background:transparent;  border-color: transparent; opacity:0.7;" onclick="fold_fm()">
+		<span id="btn_fold3_spa" style="position:absolute; font-size:13px; top:-1px; left:5px;" title="fold">▼</span>
+	</button>
+	
+	<button id="btn_show3" type="button" style="position:absolute; bottom:8px; left:1388px; width:25px; height: 25px; background:transparent;  border-color: transparent; display:none; opacity:0.7; " onclick="show_fm()">
+		<span id="btn_show3_spa" style="position:absolute; font-size:13px; top:1px; left:5px;" title="unfold">▲</span>
+	</button>
+	
+	
+	
+	<img id="loading" src="icon/loading.gif" width="400" height="186" style="position:absolute; left:50%; top:50%; margin-left:-200px; margin-top:-93px; display:block;">
+	
+	
+	
+	<a href="https://psl.design.upenn.edu/"><img id="PSL" src="icon/PSL-long.png" height="50" style="position:absolute; top:30px; right:190px; display:block;"></a>
+	<a href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=1944691&HistoricalAwards=false"><img id="NSF" src="icon/NSF-long.png" height="50" style="position:absolute; top:30px; right:20px; display:block;"></a>
+
+
+    
+	<button id="btn_menu" type="button" class="btn btn-default" onclick="btn_menu()" style="position:absolute; top:20px; left:40px; float:left; width:30px; height: 30px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/menu.png" width="30" style="position:absolute; bottom:0px; left:0px;" title="Menu">
+	</button>
+	
+    <button id="btn_about" type="button" class="btn btn-default" onclick="btn_about()" style="position:absolute; top:65px; left:40px; float:left; width:70px; height: 40px; background:rgba(0,0,0,0.1); border: none; display: none;">
+		<span id="btn_about_spa" style="font-size:15px; color:white;">about</span>
+	</button>
+	
+	<button id="btn_help" type="button" class="btn btn-default" onclick="btn_help()" style="position:absolute; top:115px; left:40px; float:left; width:70px; height: 40px; background:rgba(0,0,0,0.1); border: none; display: none;">
+		<span id="btn_help_spa" style="font-size:15px; color:white;">help</span>
+	</button>
+	
+	<div id="about_b" style="background:rgba(0,0,0,0.7); position:absolute; top:20px; left:120px; width: 640px; height: 500px; border-radius: 15px; display:none;">
+		<span id="about_b_spa" style="position:absolute; top:20px; left:20px; bottom:20px; right:20px; font-size:15px; color:white; text-align:left; overflow: auto;">
+		    <h5>Wing Structure Generator</h5>
+			<h6>Machine Learning + Graphic Statics</h6>
+			<br>
+			<p style="font-size: 10px;">Author:</p>
+			<p style="font-size: 10px;">Hao Zheng, Masoud Akbarzadeh</p>
+			<p style="font-size: 10px;">Polyhedral Structures Laboratory, Department of Architecture, Weitzman School of Design, University of Pennsylvania, Philadelphia, PA, 19146 USA.</p>
+			<br>
+			<p style="font-size: 10px;">Related Publications:</p>
+			<p style="font-size: 10px;">Zheng, Hao, and Masoud Akbarzadeh. “The Dragonfly Wing Project.” Architectural Design 92.3 (2022): 132-133.</p>
+			<p style="font-size: 10px;">Zheng, Hao, Marton Hablicsek, and Masoud Akbarzadeh. “Lightweight Structures and the Geometric Equilibrium in Dragonfly Wings.” Proceedings of International Association for Shell and Spatial Structures Annual Symposia (IASS), Guildford, UK. 2021: 1592-1603.</p>
+			<p style="font-size: 10px;">Zheng, Hao, Xinyu Wang, Zehua Qi, Shixuan Sun, and Masoud Akbarzadeh. “Generating and Optimizing a Funicular Arch Floor Structure.” Proceedings of the 40th Annual Conference of the Association for Computer Aided Design in Architecture (ACADIA), Philadelphia, USA. 2020: 208-217.</p>
+			<p style="font-size: 10px;">Zheng, Hao, Vahid Moosavi, and Masoud Akbarzadeh. “Machine Learning Assisted Evaluations in Structural Design and Construction.” Automation in Construction 119 (2020): 103346.</p>
+		    <p style="font-size: 10px;">Akbarzadeh, Masoud. 3D Graphical Statics Using Reciprocal Polyhedral Diagrams. Diss. ETH Zurich, 2016.</p>
+		    <p style="font-size: 10px;">Nejur, Andrei, and Masoud Akbarzadeh. "Polyframe, efficient computation for 3d graphic statics." Computer-Aided Design 134 (2021): 103003.</p>
+		</span>
+	</div>
+
+    <div id="help_b" style="background:rgba(0,0,0,0.7); position:absolute; top:20px; left:120px; width: 640px; height: 500px; border-radius: 15px; display:none;">
+		<span id="help_b_spa" style="position:absolute; top:20px; left:20px; bottom:20px; right:20px; font-size:15px; color:white; text-align:left; overflow: auto;">
+		    <img src="icon/01bou.png" width="30" style="position:absolute; top:0px; left:0px;" title="Input Boundary">
+			<span style="position:absolute; top:10px; left:40px; font-size:10px; color:white;">Boundary geometry can be input as control vertexes.</span>
+			<img src="icon/02sub.png" width="30" style="position:absolute; top:40px; left:0px;" title="Subdivision Density">
+			<span style="position:absolute; top:50px; left:40px; font-size:10px; color:white;">Subdivision Density defines the density of the structural members.</span>
+			<img src="icon/03cir.png" width="30" style="position:absolute; top:80px; left:0px;" title="Sharpness">
+			<span style="position:absolute; top:90px; left:40px; font-size:10px; color:white;">Sharpness (reversely) defines the degree of circularity in each cell.</span>
+			<img src="icon/04len.png" width="30" style="position:absolute; top:120px; left:0px;" title="Length Constraint Multiplier">
+			<span style="position:absolute; top:130px; left:40px; font-size:10px; color:white;">Length Constraint Multiplier defines the relaxation of the edge length constraints.</span>
+			<img src="icon/05bou.png" width="30" style="position:absolute; top:160px; left:0px;" title="Boundary Constraint Magnitude">
+			<span style="position:absolute; top:170px; left:40px; font-size:10px; color:white;">Boundary Constraint Magnitude to define the magnitude of the boundary constraint to the form.</span>
+			<img src="icon/06ite.png" width="30" style="position:absolute; top:200px; left:0px;" title="Iterations">
+			<span style="position:absolute; top:210px; left:40px; font-size:10px; color:white;">Iterations defines the number of iterations in the geometric generation process in graphic statics.</span>
+			<img src="icon/24len.png" width="30" style="position:absolute; top:240px; left:0px;" title="Total Length of the Wing (in mm)">
+			<span style="position:absolute; top:250px; left:40px; font-size:10px; color:white;">Total Length of the Wing (span) defines the size of the generated model in millimeter.</span>
+			<img src="icon/25mat.png" width="30" style="position:absolute; top:280px; left:0px;" title="Material of the Wing">
+			<span style="position:absolute; top:290px; left:40px; font-size:10px; color:white;">Material of the Wing defines the material for FEM analysis.</span>
+			<img src="icon/07mac.png" width="30" style="position:absolute; top:320px; left:0px;" title="Machine Learning Model">
+			<span style="position:absolute; top:330px; left:40px; font-size:10px; color:white;">Machine Learning Model defines the pre-trained model to be used.</span>
+			<img src="icon/08def.png" width="30" style="position:absolute; top:360px; left:0px;" title="Default Settings">
+			<span style="position:absolute; top:370px; left:40px; font-size:10px; color:white;">Set all parameters to default.</span>
+			<span style="position:absolute; top:400px; left:0px; font-size:10px; color:white;">--------------------------------------------------------------------------------------------------------------------</span>
+		    <img src="icon/09sub.png" width="60" style="position:absolute; top:420px; left:0px;" title="Submit">
+			<span style="position:absolute; top:430px; left:70px; font-size:10px; color:white;">Compute the result in the server. It usually takes 5 minutes to compute and show.</span>
+			<span style="position:absolute; top:450px; left:0px; font-size:10px; color:white;">--------------------------------------------------------------------------------------------------------------------</span>
+			<img src="icon/10nor.png" width="30" style="position:absolute; top:480px; left:0px;" title="Normal Display Mode">
+			<span style="position:absolute; top:490px; left:40px; font-size:10px; color:white;">Adjust the minumum and maximum radius, and view the generated model.</span>
+			<img src="icon/25nor.png" width="30" style="position:absolute; top:520px; left:0px;" title="Turn off Normal Display Mode">
+			<span style="position:absolute; top:530px; left:40px; font-size:10px; color:white;">Turn off the generated pipe structure.</span>
+			<img src="icon/11min.png" width="30" style="position:absolute; top:560px; left:0px;" title="Minkowski Sum Display Mode">
+			<span style="position:absolute; top:570px; left:40px; font-size:10px; color:white;">Adjust the indicator, and view the Minkowski Sum.</span>
+			<img src="icon/26min.png" width="30" style="position:absolute; top:600px; left:0px;" title="Turn off Minkowski Sum Display Mode">
+			<span style="position:absolute; top:610px; left:40px; font-size:10px; color:white;">Turn off the Minkowski Sum result.</span>
+			<img src="icon/12sho.png" width="30" style="position:absolute; top:640px; left:0px;" title="Show External Forces">
+			<span style="position:absolute; top:650px; left:40px; font-size:10px; color:white;">Show the external forces.</span>
+			<img src="icon/13hid.png" width="30" style="position:absolute; top:680px; left:0px;" title="Hide External Forces">
+			<span style="position:absolute; top:690px; left:40px; font-size:10px; color:white;">Hide the external forces.</span>
+			<img src="icon/btn_20slo.png" width="30" style="position:absolute; top:720px; left:0px;" title="Turn on Self Weight FEM Result">
+			<span style="position:absolute; top:730px; left:40px; font-size:10px; color:white;">Turn on the FEM result under the load of self weight.</span>
+			<img src="icon/btn_21slf.png" width="30" style="position:absolute; top:760px; left:0px;" title="Turn off Self Weight FEM Result">
+			<span style="position:absolute; top:770px; left:40px; font-size:10px; color:white;">Turn off the FEM result under the load of self weight.</span>
+			<img src="icon/btn_22plo.png" width="30" style="position:absolute; top:800px; left:0px;" title="Turn on Point Load FEM Result">
+			<span style="position:absolute; top:810px; left:40px; font-size:10px; color:white;">Turn on the FEM result under the point load on the farthest vertex.</span>
+			<img src="icon/btn_23plf.png" width="30" style="position:absolute; top:840px; left:0px;" title="Turn off Point Load FEM Result">
+			<span style="position:absolute; top:850px; left:40px; font-size:10px; color:white;">Turn off the FEM result under the point load on the farthest vertex.</span>
+			<img src="icon/14stl.png" width="30" style="position:absolute; top:880px; left:0px;" title="Save as STL Model">
+			<span style="position:absolute; top:890px; left:40px; font-size:10px; color:white;">Export the current scene as a STL model.</span>
+			<span style="position:absolute; top:920px; left:0px; font-size:10px; color:white;">--------------------------------------------------------------------------------------------------------------------</span>
+			<img src="icon/15csv.png" width="30" style="position:absolute; top:940px; left:0px;" title="Download CSV Data File">
+			<span style="position:absolute; top:950px; left:40px; font-size:10px; color:white;">Download the vector-based data file to save the result.</span>
+			<img src="icon/16upl.png" width="30" style="position:absolute; top:980px; left:0px;" title="Upload CSV Data File">
+			<span style="position:absolute; top:990px; left:40px; font-size:10px; color:white;">Upload the vector-based data file to restore the result.</span>
+			<img src="icon/17sa1.png" width="30" style="position:absolute; top:1020px; left:0px;" title="Load Sample Case 1">
+			<img src="icon/18sa2.png" width="30" style="position:absolute; top:1020px; left:35px;" title="Load Sample Case 2">
+			<img src="icon/19sa3.png" width="30" style="position:absolute; top:1020px; left:70px;" title="Load Sample Case 3">
+			<span style="position:absolute; top:1030px; left:110px; font-size:10px; color:white;">Restore the pre-generated samples from the server.</span>
+		</span>
+	</div>
+
+
+
+    <script type='text/javascript'>
+	
+		function btn_about(){
+		    var obj = document.getElementById("about_b");
+			if (obj.style.display == "none") {
+			    obj.style.display = "inline";
+				var obj = document.getElementById("help_b");
+				obj.style.display = "none";
+			} else {
+			    obj.style.display = "none";
+			}
+		}
+		
+		function btn_help(){
+		    var obj = document.getElementById("help_b");
+			if (obj.style.display == "none") {
+			    obj.style.display = "inline";
+				var obj = document.getElementById("about_b");
+				obj.style.display = "none";
+			} else {
+			    obj.style.display = "none";
+			}
+		}
+		
+		function btn_menu(){
+		    var obj = document.getElementById("btn_help");
+			if (obj.style.display == "none") {
+			    obj.style.display = "inline";
+				var obj = document.getElementById("btn_about");
+				obj.style.display = "inline";
+				
+			} else {
+			    obj.style.display = "none";
+				var obj = document.getElementById("btn_about");
+				obj.style.display = "none";
+			}
+			var obj = document.getElementById("help_b");
+			obj.style.display = "none";
+			var obj = document.getElementById("about_b");
+			obj.style.display = "none";
+		}
+	
+		function getInputs(){
+		
+			var v = confirm("You are submitting a request to our server. It takes around five minutes to feedback the result. Meanwhile, your web page will refresh automatically to receive the result. Please confirm.");
+
+		    if(v){
+			
+				var content_done;
+				var textfile_done;
+				
+				if (window.XMLHttpRequest)
+				{ 
+					textfile_done = new XMLHttpRequest(); 
+				}
+				textfile_done.onreadystatechange = function ()
+				{   
+				
+					if (textfile_done.readyState == 4 && textfile_done.status == 200)
+					{ 
+						content_done = textfile_done.responseText;
+						arr_done = content_done.split('\r\n');
+
+						if (arr_done[0]=="1"){
+							var pointdata = [];
+							for (var i = 0; i < points.length; i++) {
+								pointdata.push(points[i].x*2, 500-points[i].y*2);
+							}
+							var reduce_rate=document.getElementById("reduce_rate").value;
+							var tolerance_of_edge_length=document.getElementById("tolerance_of_edge_length").value;
+							var length_constraint_maltiplier=document.getElementById("length_constraint_maltiplier").value;
+							var boundary_constraint_magnitude=document.getElementById("boundary_constraint_magnitude").value;
+							var perp_steps=document.getElementById("perp_steps").value;
+							
+							var total_length=document.getElementById("total_length").value;
+							var oSelect = document.getElementById('material_select');
+							var ind = oSelect.selectedIndex;
+							var material_select=ind;
+							
+							value_inputs = {
+								"canvas_points": pointdata,
+								"reduce_rate": reduce_rate,
+								"tolerance_of_edge_length": tolerance_of_edge_length,
+								"length_constraint_maltiplier": length_constraint_maltiplier,
+								"boundary_constraint_magnitude": boundary_constraint_magnitude,
+								"perp_steps": perp_steps,
+								"minumum_radius": total_length,
+								"maximum_radius": material_select
+							};
+							axios({
+								// headers:{'Cache-Control':'no-cache'},
+								method: 'post',
+								//url: 'http://127.0.0.1:8888/ghHere/ep/predict/?delay=900&interval=15',
+								url: 'http://128.91.16.228:8888/ghHere/ep/predict/?delay=900&interval=1',
+								data: value_inputs
+							}).then(function (response){
+								console.log(response.data);
+								// let fp = response.data.fp
+							}).catch(function(err){
+								console.log(err)
+							});
+							// alert(value_inputs);
+							
+							// location.reload();
+							console.log(value_inputs);
+							
+							setTimeout(function(){
+								console.log("3 second to wait the server to remove the previous stl file");
+								location.reload(true) //refresh the web page
+							},3000);
+						} else { 
+							window.alert("Ops! The server is responding to other requests. Please try again later.");
+						}
+					}
+				}
+				
+				var ran = Math.round(Math.random()*100000000).toString();
+				textfile_done.open("GET", '../ghBackend/media/Default/done.txt'+'?'+ran, true);
+				textfile_done.send();
+			}
+		}
+	
+	    function btn_01bou() {
+		    var obj = document.getElementById("container_canvas");
+			if (obj.style.display == "none") {
+			    obj.style.display = "inline";
+				var obj = document.getElementById("container-item");
+				obj.style.display = "inline";
+				var obj = document.getElementById("container_red");
+				obj.style.display = "none";
+				var obj = document.getElementById("container_tol");
+				obj.style.display = "none";
+				var obj = document.getElementById("container_len");
+				obj.style.display = "none";
+				var obj = document.getElementById("container_bou");
+				obj.style.display = "none";
+				var obj = document.getElementById("container_per");
+				obj.style.display = "none";
+			} else {
+			    obj.style.display = "none";
+				var obj = document.getElementById("container-item");
+				obj.style.display = "none";
+			}
+		}
+		
+		function btn_02sub() {
+		    var obj = document.getElementById("container_red");
+			if (obj.style.display == "none") {
+			    obj.style.display = "inline";
+				var obj = document.getElementById("container_canvas");
+				obj.style.display = "none";
+				var obj = document.getElementById("container-item");
+				obj.style.display = "none";
+			} else {
+			    obj.style.display = "none";
+			}
+		}
+		
+		function btn_03cir() {
+		    var obj = document.getElementById("container_tol");
+			if (obj.style.display == "none") {
+			    obj.style.display = "inline";
+				var obj = document.getElementById("container_canvas");
+				obj.style.display = "none";
+				var obj = document.getElementById("container-item");
+				obj.style.display = "none";
+			} else {
+			    obj.style.display = "none";
+			}
+		}
+		
+		function btn_04len() {
+		    var obj = document.getElementById("container_len");
+			if (obj.style.display == "none") {
+			    obj.style.display = "inline";
+				var obj = document.getElementById("container_canvas");
+				obj.style.display = "none";
+				var obj = document.getElementById("container-item");
+				obj.style.display = "none";
+			} else {
+			    obj.style.display = "none";
+			}
+		}
+		
+		function btn_05bou() {
+		    var obj = document.getElementById("container_bou");
+			if (obj.style.display == "none") {
+			    obj.style.display = "inline";
+				var obj = document.getElementById("container_canvas");
+				obj.style.display = "none";
+				var obj = document.getElementById("container-item");
+				obj.style.display = "none";
+			} else {
+			    obj.style.display = "none";
+			}
+		}
+		
+		function btn_06ite() {
+		    var obj = document.getElementById("container_per");
+			if (obj.style.display == "none") {
+			    obj.style.display = "inline";
+				var obj = document.getElementById("container_canvas");
+				obj.style.display = "none";
+				var obj = document.getElementById("container-item");
+				obj.style.display = "none";
+			} else {
+			    obj.style.display = "none";
+			}
+		}
+		
+		function btn_24len() {
+		    var obj = document.getElementById("container_tlen");
+			if (obj.style.display == "none") {
+			    obj.style.display = "inline";
+			} else {
+			    obj.style.display = "none";
+			}
+		}
+		
+		function btn_25mat() {
+		    var obj = document.getElementById("container_mat");
+			if (obj.style.display == "none") {
+			    obj.style.display = "inline";
+			} else {
+			    obj.style.display = "none";
+			}
+		}
+		
+		function btn_07mac() {
+		    var obj = document.getElementById("container_sel");
+			if (obj.style.display == "none") {
+			    obj.style.display = "inline";
+			} else {
+			    obj.style.display = "none";
+			}
+		}
+	
+		function fold_gcp() {
+			var obj = document.getElementById("gcpb");
+			obj.style.display = "none";
+			var obj = document.getElementById("container-item-gcp");
+			obj.style.display = "none";
+			var obj = document.getElementById("container-item");
+			obj.style.display = "none";
+			var obj = document.getElementById("container_canvas");
+			obj.style.display = "none";
+			var obj = document.getElementById("container_red");
+			obj.style.display = "none";
+			var obj = document.getElementById("container_tol");
+			obj.style.display = "none";
+			var obj = document.getElementById("container_len");
+			obj.style.display = "none";
+			var obj = document.getElementById("container_bou");
+			obj.style.display = "none";
+			var obj = document.getElementById("container_per");
+			obj.style.display = "none";
+			var obj = document.getElementById("container_tlen");
+			obj.style.display = "none";
+			var obj = document.getElementById("container_mat");
+			obj.style.display = "none";
+			var obj = document.getElementById("container_sel");
+			obj.style.display = "none";
+			var obj = document.getElementById("btn_01bou");
+			obj.style.display = "none";
+			var obj = document.getElementById("btn_02sub");
+			obj.style.display = "none";
+			var obj = document.getElementById("btn_03cir");
+			obj.style.display = "none";
+			var obj = document.getElementById("btn_04len");
+			obj.style.display = "none";
+			var obj = document.getElementById("btn_05bou");
+			obj.style.display = "none";
+			var obj = document.getElementById("btn_06ite");
+			obj.style.display = "none";
+			var obj = document.getElementById("btn_24len");
+			obj.style.display = "none";
+			var obj = document.getElementById("btn_25mat");
+			obj.style.display = "none";
+			var obj = document.getElementById("btn_07mac");
+			obj.style.display = "none";
+			var obj = document.getElementById("btn_08def");
+			obj.style.display = "none";
+			var obj = document.getElementById("btn_fold1");
+			obj.style.display = "none";
+			var obj = document.getElementById("btn_show1");
+			obj.style.display = "inline";
+		}
+		
+		function show_gcp() {
+			var obj = document.getElementById("gcpb");
+			obj.style.display = "inline";
+			var obj = document.getElementById("container-item-gcp");
+			obj.style.display = "inline";
+			var obj = document.getElementById("btn_01bou");
+			obj.style.display = "inline";
+			var obj = document.getElementById("btn_02sub");
+			obj.style.display = "inline";
+			var obj = document.getElementById("btn_03cir");
+			obj.style.display = "inline";
+			var obj = document.getElementById("btn_04len");
+			obj.style.display = "inline";
+			var obj = document.getElementById("btn_05bou");
+			obj.style.display = "inline";
+			var obj = document.getElementById("btn_06ite");
+			obj.style.display = "inline";
+			var obj = document.getElementById("btn_24len");
+			obj.style.display = "inline";
+			var obj = document.getElementById("btn_25mat");
+			obj.style.display = "inline";
+			var obj = document.getElementById("btn_07mac");
+			obj.style.display = "inline";
+			var obj = document.getElementById("btn_08def");
+			obj.style.display = "inline";
+			var obj = document.getElementById("btn_fold1");
+			obj.style.display = "inline";
+			var obj = document.getElementById("btn_show1");
+			obj.style.display = "none";
+			}
+		
+		function set_3poi() {
+			function Point(x, y) {
+				this.x = x;
+				this.y = y;
+				}
+				//圆圈对象
+			function Circle(x, y) {
+				this.x = x;
+				this.y = y;
+				this.radius = 7;
+				this.color = "blue";
+				//拖拽点的标记
+				this.isSelected = false;
+				}
+			points = [];
+			circles = [];
+			var point=new Point(25,25);
+			points.push(point);
+			var circle=new Circle(25,25);
+			circles.push(circle);
+			var point=new Point(225,175);
+			points.push(point);
+			var circle=new Circle(225,175);
+			circles.push(circle);
+			var point=new Point(25,175);
+			points.push(point);
+			var circle=new Circle(25,175);
+			circles.push(circle);
+			const canvas = document.getElementById('canvas');
+			const context = canvas.getContext('2d');
+			context.clearRect(0,0,canvas.width,canvas.height);
+			context.beginPath();
+			context.lineWidth = 2;
+			context.moveTo(points[0].x,points[0].y);
+			for (var i = 0; i < points.length; i++) {
+			context.lineTo(points[i].x, points[i].y);
+			}
+			context.lineTo(points[0].x, points[0].y);
+			context.closePath();
+			context.fillStyle="rgb(128,128,128)";
+			context.fill();
+			context.strokeStyle="black";
+			context.stroke();
+			for (var i = 0; i < 10; i++) {
+				context.beginPath();
+				context.lineWidth = 1;
+				var xx = points[0].x + (points[points.length-1].x-points[0].x)*i/9;
+				var yy = points[0].y + (points[points.length-1].y-points[0].y)*i/9;
+				context.moveTo(xx,yy);
+				context.lineTo(xx-7, yy+3);
+				context.closePath();
+				context.fillStyle="rgb(128,128,128)";
+				context.fill();
+				context.strokeStyle="black";
+				context.stroke();
+			}
+			context.lineWidth = 3;
+			for(var i=0; i<circles.length; i++) {
+				var circle = circles[i];
+				context.globalAlpha = 0.85;
+				context.beginPath();
+				context.arc(circle.x, circle.y, circle.radius, 0, Math.PI*2);
+				context.fillStyle = "black";
+				context.strokeStyle = "white";
+				context.fill();
+				context.stroke();
+			}
+		}
+		
+		function set_4poi() {
+			function Point(x, y) {
+				this.x = x;
+				this.y = y;
+				}
+				//圆圈对象
+			function Circle(x, y) {
+				this.x = x;
+				this.y = y;
+				this.radius = 7;
+				this.color = "blue";
+				//拖拽点的标记
+				this.isSelected = false;
+				}
+			points = [];
+			circles = [];
+			var point=new Point(25,25);
+			points.push(point);
+			var circle=new Circle(25,25);
+			circles.push(circle);
+			var point=new Point(225,125);
+			points.push(point);
+			var circle=new Circle(225,125);
+			circles.push(circle);
+			var point=new Point(225,175);
+			points.push(point);
+			var circle=new Circle(225,175);
+			circles.push(circle);
+			var point=new Point(25,100);
+			points.push(point);
+			var circle=new Circle(25,100);
+			circles.push(circle);
+			const canvas = document.getElementById('canvas');
+			const context = canvas.getContext('2d');
+			context.clearRect(0,0,canvas.width,canvas.height);
+			context.beginPath();
+			context.lineWidth = 2;
+			context.moveTo(points[0].x,points[0].y);
+			for (var i = 0; i < points.length; i++) {
+			context.lineTo(points[i].x, points[i].y);
+			}
+			context.lineTo(points[0].x, points[0].y);
+			context.closePath();
+			context.fillStyle="rgb(128,128,128)";
+			context.fill();
+			context.strokeStyle="black";
+			context.stroke();
+			for (var i = 0; i < 10; i++) {
+				context.beginPath();
+				context.lineWidth = 1;
+				var xx = points[0].x + (points[points.length-1].x-points[0].x)*i/9;
+				var yy = points[0].y + (points[points.length-1].y-points[0].y)*i/9;
+				context.moveTo(xx,yy);
+				context.lineTo(xx-7, yy+3);
+				context.closePath();
+				context.fillStyle="rgb(128,128,128)";
+				context.fill();
+				context.strokeStyle="black";
+				context.stroke();
+			}
+			context.lineWidth = 3;
+			for(var i=0; i<circles.length; i++) {
+				var circle = circles[i];
+				context.globalAlpha = 0.85;
+				context.beginPath();
+				context.arc(circle.x, circle.y, circle.radius, 0, Math.PI*2);
+				context.fillStyle = "black";
+				context.strokeStyle = "white";
+				context.fill();
+				context.stroke();
+			}
+		}
+		
+	    function set_5poi() {
+			function Point(x, y) {
+				this.x = x;
+				this.y = y;
+				}
+				//圆圈对象
+			function Circle(x, y) {
+				this.x = x;
+				this.y = y;
+				this.radius = 7;
+				this.color = "blue";
+				//拖拽点的标记
+				this.isSelected = false;
+				}
+			points = [];
+			circles = [];
+			var point=new Point(25,25);
+			points.push(point);
+			var circle=new Circle(25,25);
+			circles.push(circle);
+			var point=new Point(225,125);
+			points.push(point);
+			var circle=new Circle(225,125);
+			circles.push(circle);
+			var point=new Point(225,175);
+			points.push(point);
+			var circle=new Circle(225,175);
+			circles.push(circle);
+			var point=new Point(100,112);
+			points.push(point);
+			var circle=new Circle(100,112);
+			circles.push(circle);
+			var point=new Point(25,100);
+			points.push(point);
+			var circle=new Circle(25,100);
+			circles.push(circle);
+			const canvas = document.getElementById('canvas');
+			const context = canvas.getContext('2d');
+			context.clearRect(0,0,canvas.width,canvas.height);
+			context.beginPath();
+			context.lineWidth = 2;
+			context.moveTo(points[0].x,points[0].y);
+			for (var i = 0; i < points.length; i++) {
+			context.lineTo(points[i].x, points[i].y);
+			}
+			context.lineTo(points[0].x, points[0].y);
+			context.closePath();
+			context.fillStyle="rgb(128,128,128)";
+			context.fill();
+			context.strokeStyle="black";
+			context.stroke();
+			for (var i = 0; i < 10; i++) {
+				context.beginPath();
+				context.lineWidth = 1;
+				var xx = points[0].x + (points[points.length-1].x-points[0].x)*i/9;
+				var yy = points[0].y + (points[points.length-1].y-points[0].y)*i/9;
+				context.moveTo(xx,yy);
+				context.lineTo(xx-7, yy+3);
+				context.closePath();
+				context.fillStyle="rgb(128,128,128)";
+				context.fill();
+				context.strokeStyle="black";
+				context.stroke();
+			}
+			context.lineWidth = 3;
+			for(var i=0; i<circles.length; i++) {
+				var circle = circles[i];
+				context.globalAlpha = 0.85;
+				context.beginPath();
+				context.arc(circle.x, circle.y, circle.radius, 0, Math.PI*2);
+				context.fillStyle = "black";
+				context.strokeStyle = "white";
+				context.fill();
+				context.stroke();
+			}
+		}
+		
+		function set_6poi() {
+			function Point(x, y) {
+				this.x = x;
+				this.y = y;
+				}
+				//圆圈对象
+			function Circle(x, y) {
+				this.x = x;
+				this.y = y;
+				this.radius = 7;
+				this.color = "blue";
+				//拖拽点的标记
+				this.isSelected = false;
+				}
+			points = [];
+			circles = [];
+			var point=new Point(25,25);
+			points.push(point);
+			var circle=new Circle(25,25);
+			circles.push(circle);
+			var point=new Point(100,50);
+			points.push(point);
+			var circle=new Circle(100,50);
+			circles.push(circle);
+			var point=new Point(225,125);
+			points.push(point);
+			var circle=new Circle(225,125);
+			circles.push(circle);
+			var point=new Point(225,175);
+			points.push(point);
+			var circle=new Circle(225,175);
+			circles.push(circle);
+			var point=new Point(100,112);
+			points.push(point);
+			var circle=new Circle(100,112);
+			circles.push(circle);
+			var point=new Point(25,100);
+			points.push(point);
+			var circle=new Circle(25,100);
+			circles.push(circle);
+			const canvas = document.getElementById('canvas');
+			const context = canvas.getContext('2d');
+			context.clearRect(0,0,canvas.width,canvas.height);
+			context.beginPath();
+			context.lineWidth = 2;
+			context.moveTo(points[0].x,points[0].y);
+			for (var i = 0; i < points.length; i++) {
+			context.lineTo(points[i].x, points[i].y);
+			}
+			context.lineTo(points[0].x, points[0].y);
+			context.closePath();
+			context.fillStyle="rgb(128,128,128)";
+			context.fill();
+			context.strokeStyle="black";
+			context.stroke();
+			for (var i = 0; i < 10; i++) {
+				context.beginPath();
+				context.lineWidth = 1;
+				var xx = points[0].x + (points[points.length-1].x-points[0].x)*i/9;
+				var yy = points[0].y + (points[points.length-1].y-points[0].y)*i/9;
+				context.moveTo(xx,yy);
+				context.lineTo(xx-7, yy+3);
+				context.closePath();
+				context.fillStyle="rgb(128,128,128)";
+				context.fill();
+				context.strokeStyle="black";
+				context.stroke();
+			}
+			context.lineWidth = 3;
+			for(var i=0; i<circles.length; i++) {
+				var circle = circles[i];
+				context.globalAlpha = 0.85;
+				context.beginPath();
+				context.arc(circle.x, circle.y, circle.radius, 0, Math.PI*2);
+				context.fillStyle = "black";
+				context.strokeStyle = "white";
+				context.fill();
+				context.stroke();
+			}
+		}
+		
+		function change_reduce_rate() {
+			var value_reduce_rate = document.getElementById('reduce_rate').value;
+			document.getElementById('value_reduce_rate').innerHTML = (parseInt(value_reduce_rate*100)/100).toFixed(2);
+		}
+		
+		function change_tolerance_of_edge_length() {
+			var value_tolerance_of_edge_length = document.getElementById('tolerance_of_edge_length').value;
+			document.getElementById('value_tolerance_of_edge_length').innerHTML = (parseInt(value_tolerance_of_edge_length*100)/100).toFixed(2);
+		}
+		
+		function change_length_constraint_maltiplier() {
+			var value_length_constraint_maltiplier = document.getElementById('length_constraint_maltiplier').value;
+			document.getElementById('value_length_constraint_maltiplier').innerHTML = (parseInt(value_length_constraint_maltiplier*100)/100).toFixed(2);
+		}
+		
+		function change_boundary_constraint_magnitude() {
+			var value_boundary_constraint_magnitude = document.getElementById('boundary_constraint_magnitude').value;
+			document.getElementById('value_boundary_constraint_magnitude').innerHTML = (parseInt(value_boundary_constraint_magnitude*100)/100).toFixed(2);
+		}
+		
+		function change_perp_steps() {
+			var value_perp_steps = document.getElementById('perp_steps').value;
+			document.getElementById('value_perp_steps').innerHTML = value_perp_steps;
+		}
+		
+		function change_total_length() {
+			var value_total_length = document.getElementById('total_length').value;
+			document.getElementById('value_total_length').innerHTML = value_total_length;
+		}
+		
+		function btn_08def() {
+			document.getElementById("reduce_rate").value = 0.5;
+			document.getElementById('value_reduce_rate').innerHTML = (0.5).toFixed(2);
+			document.getElementById("tolerance_of_edge_length").value = 0.3;
+			document.getElementById('value_tolerance_of_edge_length').innerHTML = (0.3).toFixed(2);
+			document.getElementById("length_constraint_maltiplier").value = 0.5;
+			document.getElementById('value_length_constraint_maltiplier').innerHTML = (0.5).toFixed(2);
+			document.getElementById("boundary_constraint_magnitude").value = 5;
+			document.getElementById('value_boundary_constraint_magnitude').innerHTML = (5).toFixed(2);
+			document.getElementById("perp_steps").value = 10000;
+			document.getElementById('value_perp_steps').innerHTML = 10000;
+			document.getElementById('value_total_length').innerHTML = 30000;
+			document.getElementById('material_select').selectedIndex = 0;
+			function Point(x, y) {
+				this.x = x;
+				this.y = y;
+				}
+				//圆圈对象
+			function Circle(x, y) {
+				this.x = x;
+				this.y = y;
+				this.radius = 7;
+				this.color = "blue";
+				//拖拽点的标记
+				this.isSelected = false;
+				}
+			points = [];
+			circles = [];
+			var point=new Point(25,25);
+			points.push(point);
+			var circle=new Circle(25,25);
+			circles.push(circle);
+			var point=new Point(225,125);
+			points.push(point);
+			var circle=new Circle(225,125);
+			circles.push(circle);
+			var point=new Point(225,175);
+			points.push(point);
+			var circle=new Circle(225,175);
+			circles.push(circle);
+			var point=new Point(100,112);
+			points.push(point);
+			var circle=new Circle(100,112);
+			circles.push(circle);
+			var point=new Point(25,100);
+			points.push(point);
+			var circle=new Circle(25,100);
+			circles.push(circle);
+			const canvas = document.getElementById('canvas');
+			const context = canvas.getContext('2d');
+			context.clearRect(0,0,canvas.width,canvas.height);
+			context.beginPath();
+			context.lineWidth = 2;
+			context.moveTo(points[0].x,points[0].y);
+			for (var i = 0; i < points.length; i++) {
+			context.lineTo(points[i].x, points[i].y);
+			}
+			context.lineTo(points[0].x, points[0].y);
+			context.closePath();
+			context.fillStyle="rgb(128,128,128)";
+			context.fill();
+			context.strokeStyle="black";
+			context.stroke();
+			for (var i = 0; i < 10; i++) {
+				context.beginPath();
+				context.lineWidth = 1;
+				var xx = points[0].x + (points[points.length-1].x-points[0].x)*i/9;
+				var yy = points[0].y + (points[points.length-1].y-points[0].y)*i/9;
+				context.moveTo(xx,yy);
+				context.lineTo(xx-7, yy+3);
+				context.closePath();
+				context.fillStyle="rgb(128,128,128)";
+				context.fill();
+				context.strokeStyle="black";
+				context.stroke();
+			}
+			context.lineWidth = 3;
+			for(var i=0; i<circles.length; i++) {
+				var circle = circles[i];
+				context.globalAlpha = 0.85;
+				context.beginPath();
+				context.arc(circle.x, circle.y, circle.radius, 0, Math.PI*2);
+				context.fillStyle = "black";
+				context.strokeStyle = "white";
+				context.fill();
+				context.stroke();
+			}
+		}
+		
+		function fold_sb() {
+			var obj = document.getElementById("btn_09sub");
+			obj.style.display = "none";
+			var obj = document.getElementById("container-item-sb");
+			obj.style.display = "none";
+			var obj = document.getElementById("sb");
+			obj.style.display = "none";
+			var obj = document.getElementById("btn_fold4");
+			obj.style.display = "none";
+			var obj = document.getElementById("btn_show4");
+			obj.style.display = "inline";
+		}
+	    
+		function show_sb() {
+			var obj = document.getElementById("btn_09sub");
+			obj.style.display = "inline";
+			var obj = document.getElementById("container-item-sb");
+			obj.style.display = "inline";
+			var obj = document.getElementById("sb");
+			obj.style.display = "inline";
+			var obj = document.getElementById("btn_fold4");
+			obj.style.display = "inline";
+			var obj = document.getElementById("btn_show4");
+			obj.style.display = "none";
+		}
+		
+		function btn_10nor() {
+		    var obj = document.getElementById("container_min");
+			if  (obj.style.display == "none") {
+				obj.style.display = "inline";
+			} else {
+				obj.style.display = "none";
+			}
+			var obj = document.getElementById("container_max");
+			if  (obj.style.display == "none") {
+				obj.style.display = "inline";
+			} else {
+				obj.style.display = "none";
+			}
+			if (display_mode == 0) {
+			    var obj = document.getElementById("container_min");
+				obj.style.display = "inline";
+				var obj = document.getElementById("container_max");
+				obj.style.display = "inline";
+				display_mode = 1;
+				draw_update();
+			}
+		}
+		
+		function btn_25nor() {
+		    var obj = document.getElementById("container_min");
+			obj.style.display = "none";
+			var obj = document.getElementById("container_max");
+			obj.style.display = "none";
+			if (display_mode == 1) {
+				display_mode = 0;
+				draw_update();
+			}
+		}
+		
+		function btn_11min() {
+			var obj = document.getElementById("container_mink");
+			if  (obj.style.display == "none") {
+				obj.style.display = "inline";
+			} else {
+				obj.style.display = "none";
+			}
+			if (mink_mode == 0) {
+				var obj = document.getElementById("container_mink");
+				obj.style.display = "inline";
+				mink_mode = 1;
+				draw_update();
+			}
+		}
+		
+		function btn_26min() {
+			var obj = document.getElementById("container_mink");
+		    obj.style.display = "none";
+			if (mink_mode == 1) {
+				mink_mode = 0;
+				draw_update();
+			}
+		}
+		
+		function btn_12sho() {
+			if (external_force_mode == 0) {
+			    external_force_mode = 1;
+				draw_update();
+			}
+		}
+		
+		function btn_13hid() {
+			if (external_force_mode == 1) {
+			    external_force_mode = 0;
+				draw_update();
+			}
+		}
+		
+		function btn_20slo() {
+			var obj = document.getElementById("container_scale_selfload");
+			obj.style.display = "inline";
+			var obj = document.getElementById("container_selfload");
+			if  (obj.style.display == "none") {
+				obj.style.display = "inline";
+			} else {
+				obj.style.display = "none";
+			}
+			if (display_selfload == 0) {
+				display_selfload = 1;
+				draw_update();
+			}
+			var value_selfload_ind = document.getElementById('selfload_ind').value;
+			var total_length_input = document.getElementById('total_length').value;
+			document.getElementById('value_selfload_min').innerHTML = (parseInt(value_selfload_ind*(-mindef_self)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_selfload_ind*(-mindef_self)/structure_length)).toFixed(0)+"mm)";
+			document.getElementById('value_selfload_max').innerHTML = (parseInt(value_selfload_ind*(-maxdef_self)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_selfload_ind*(-maxdef_self)/structure_length)).toFixed(0)+"mm)";
+		}
+		
+		function btn_21slf() {
+			var obj = document.getElementById("container_selfload");
+			obj.style.display = "none";
+			var obj = document.getElementById("container_scale_selfload");
+			obj.style.display = "none";
+			if (display_selfload == 1) {
+				display_selfload = 0;
+				draw_update();
+			}
+		}
+		
+		function btn_22plo() {
+			var obj = document.getElementById("container_scale_pointload");
+			obj.style.display = "inline";
+			var obj = document.getElementById("container_pointload");
+			if  (obj.style.display == "none") {
+				obj.style.display = "inline";
+			} else {
+				obj.style.display = "none";
+			}
+			if (display_pointload == 0) {
+				display_pointload = 1;
+				draw_update();
+			}
+			var value_pointload_ind = document.getElementById('pointload_ind').value;
+			var total_length_input = document.getElementById('total_length').value;
+			document.getElementById('value_pointload_min').innerHTML = (parseInt(value_pointload_ind*(-mindef_point)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_pointload_ind*(-mindef_point)/structure_length)).toFixed(0)+"mm)";
+			document.getElementById('value_pointload_max').innerHTML = (parseInt(value_pointload_ind*(-maxdef_point)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_pointload_ind*(-maxdef_point)/structure_length)).toFixed(0)+"mm)";
+		}
+		
+		function btn_23plf() {
+			var obj = document.getElementById("container_pointload");
+			obj.style.display = "none";
+			var obj = document.getElementById("container_scale_pointload");
+			obj.style.display = "none";
+			if (display_pointload == 1) {
+				display_pointload = 0;
+				draw_update();
+			}
+		}
+		
+		function btn_14stl() {
+			THREE.STLExporter = function () {};
+			THREE.STLExporter.prototype = {
+				constructor: THREE.STLExporter,
+				parse: ( function () {
+					var vector = new THREE.Vector3();
+					var normalMatrixWorld = new THREE.Matrix3();
+					return function ( scene ) {
+						var output = '';
+						output += 'solid exported\n';
+						var scalefactor = document.getElementById('total_length').value / structure_length/0.07;
+						scene.traverse( function ( object ) {
+							if ( object instanceof THREE.Mesh ) {
+								// if object is hidden - exit
+								if(object.visible == false) return; 
+								var geometry = object.geometry;
+								var matrixWorld = object.matrixWorld;
+								var mesh = object;
+								if(geometry instanceof THREE.BufferGeometry)
+									geometry = new THREE.Geometry().fromBufferGeometry(geometry)
+								if ( geometry instanceof THREE.Geometry) {
+									var vertices = geometry.vertices;
+									var faces = geometry.faces;
+									normalMatrixWorld.getNormalMatrix( matrixWorld );
+									if(typeof faces != 'undefined'){
+										for ( var i = 0, l = faces.length; i < l; i ++ ) {
+											var face = faces[ i ];
+											vector.copy( face.normal ).applyMatrix3( normalMatrixWorld ).normalize();
+											output += '\tfacet normal ' + vector.x + ' ' + vector.y + ' ' + vector.z + '\n';
+											output += '\t\touter loop\n';
+											var indices = [ face.a, face.b, face.c ];
+											for ( var j = 0; j < 3; j ++ ) {
+												var vertexIndex = indices[ j ];
+												if (typeof geometry.skinIndices !== 'undefined' && geometry.skinIndices.length == 0) {
+													vector.copy( vertices[ vertexIndex ] ).applyMatrix4( matrixWorld );
+													output += '\t\t\tvertex ' + vector.x*scalefactor + ' ' + vector.y*scalefactor + ' ' + vector.z*scalefactor + '\n';
+												} else {
+													vector.copy( vertices[ vertexIndex ] ); //.applyMatrix4( matrixWorld );
+													// see https://github.com/mrdoob/three.js/issues/3187
+													var boneIndices = [
+														geometry.skinIndices[vertexIndex].x,
+														geometry.skinIndices[vertexIndex].y,
+														geometry.skinIndices[vertexIndex].z,
+														geometry.skinIndices[vertexIndex].w
+													];
+													var weights = [
+														geometry.skinWeights[vertexIndex].x,
+														geometry.skinWeights[vertexIndex].y,
+														geometry.skinWeights[vertexIndex].z,
+														geometry.skinWeights[vertexIndex].w
+													];
+													var inverses = [
+														skeleton.boneInverses[ boneIndices[0] ],
+														skeleton.boneInverses[ boneIndices[1] ],
+														skeleton.boneInverses[ boneIndices[2] ],
+														skeleton.boneInverses[ boneIndices[3] ]
+													];
+													var skinMatrices = [
+														skeleton.bones[ boneIndices[0] ].matrixWorld,
+														skeleton.bones[ boneIndices[1] ].matrixWorld,
+														skeleton.bones[ boneIndices[2] ].matrixWorld,
+														skeleton.bones[ boneIndices[3] ].matrixWorld
+													];
+													//this checks to see if the mesh has any morphTargets - jc
+													if (geometry.morphTargets !== 'undefined') {										
+														var morphMatricesX = [];
+														var morphMatricesY = [];
+														var morphMatricesZ = [];
+														var morphMatricesInfluence = [];
+														for (var mt = 0; mt < geometry.morphTargets.length; mt++) {
+															//collect the needed vertex info - jc
+															morphMatricesX[mt] = geometry.morphTargets[mt].vertices[vertexIndex].x;
+															morphMatricesY[mt] = geometry.morphTargets[mt].vertices[vertexIndex].y;
+															morphMatricesZ[mt] = geometry.morphTargets[mt].vertices[vertexIndex].z;
+															morphMatricesInfluence[mt] = morphTargetInfluences[mt];
+														}
+													}
+													var finalVector = new THREE.Vector4();
+													if (mesh.geometry.morphTargets !== 'undefined') {
+														var morphVector = new THREE.Vector4(vector.x, vector.y, vector.z);
+														for (var mt = 0; mt < geometry.morphTargets.length; mt++) {
+															//not pretty, but it gets the job done - jc
+															morphVector.lerp(new THREE.Vector4(morphMatricesX[mt], morphMatricesY[mt], morphMatricesZ[mt], 1), morphMatricesInfluence[mt]);
+														}
+
+													}
+													for (var k = 0; k < 4; k++) {
+														var tempVector = new THREE.Vector4(vector.x, vector.y, vector.z);
+														tempVector.multiplyScalar(weights[k]);
+														//the inverse takes the vector into local bone space
+														tempVector.applyMatrix4(inverses[k])
+														//which is then transformed to the appropriate world space
+														.applyMatrix4(skinMatrices[k]);
+														finalVector.add(tempVector);
+													}
+													output += '\t\t\tvertex ' + finalVector.x*scalefactor + ' ' + finalVector.y*scalefactor + ' ' + finalVector.z*scalefactor + '\n';
+												}
+											}
+											output += '\t\tendloop\n';
+											output += '\tendfacet\n';
+										}
+									}
+								}
+							}
+						} );
+						output += 'endsolid exported\n';
+						return output;
+					};
+				}() )
+			};
+			
+			var exporter = new THREE.STLExporter();
+			
+			var remove_count = 1;
+			if (display_mode==1) {
+				remove_count = remove_count + 1;
+				if (external_force_mode==1) {
+					remove_count = remove_count + 1;
+				}
+			}
+			if (display_pointload==1) {
+				remove_count = remove_count + 1;
+			}
+			if (display_selfload==1) {
+				remove_count = remove_count + 1;
+			}
+			if ((display_mode==1) || (display_selfload==1) || (display_pointload==1)) {
+				remove_count = remove_count + 1;
+			}
+			let remove_children = [];
+			for ( var i = 0; i < remove_count; i ++ ) {
+				remove_children.push(scene.children[scene.children.length-1]);
+				scene.remove(scene.children[scene.children.length-1]);
+			}
+			var stlString = exporter.parse(scene);
+			//console.log(stlString);
+			var blob = new Blob( [stlString], { type : 'text/plain' } ); // Generate Blob from the string
+			var link = document.createElement('a');
+			link.style.display = 'none';
+			document.body.appendChild(link);
+			link.href = URL.createObjectURL(blob);
+			link.download = 'output.stl';
+			link.click();
+			//window.open('../ghBackend/media/Default/output.stl')
+			
+			for ( var i = 0; i < remove_count; i ++ ) {
+				scene.add(remove_children[remove_count-1-i]);
+			}
+
+		}
+		
+		function change_minumum_radius() {
+			var value_minumum_radius = document.getElementById('minumum_radius').value;
+			document.getElementById('value_minumum_radius').innerHTML = (parseInt(value_minumum_radius*100)/100).toFixed(2);
+		}
+		
+		function input_minumum_radius() {
+			var value_minumum_radius = document.getElementById('minumum_radius').value;
+			document.getElementById('value_minumum_radius').innerHTML = (parseInt(value_minumum_radius*100)/100).toFixed(2);
+			draw_update();
+		}
+		
+		function change_maximum_radius() {
+			var value_maximum_radius = document.getElementById('maximum_radius').value;
+			document.getElementById('value_maximum_radius').innerHTML = (parseInt(value_maximum_radius*10)/10).toFixed(1);
+		}
+		
+		function input_maximum_radius() {
+			var value_maximum_radius = document.getElementById('maximum_radius').value;
+			document.getElementById('value_maximum_radius').innerHTML = (parseInt(value_maximum_radius*10)/10).toFixed(1);
+			draw_update();
+		}
+		
+		function change_minkowski_sum_indicator() {
+			var value_minkowski_sum_indicator = document.getElementById('minkowski_sum_indicator').value;
+			document.getElementById('minkowski_sum_indicator').innerHTML = (parseInt(value_minkowski_sum_indicator*100)/100).toFixed(2);
+		}
+		
+		function input_minkowski_sum_indicator() {
+			var value_minkowski_sum_indicator = document.getElementById('minkowski_sum_indicator').value;
+			document.getElementById('value_minkowski_sum_indicator').innerHTML = (parseInt(value_minkowski_sum_indicator*100)/100).toFixed(2);
+			draw_update();
+		}
+		
+		function change_selfload_ind() {
+			var value_selfload_ind = document.getElementById('selfload_ind').value;
+			document.getElementById('selfload_ind').innerHTML = (parseInt(value_selfload_ind*100)/100).toFixed(2);
+			var value_selfload_ind = document.getElementById('selfload_ind').value;
+			var total_length_input = document.getElementById('total_length').value;
+			document.getElementById('value_selfload_min').innerHTML = (parseInt(value_selfload_ind*(-mindef_self)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_selfload_ind*(-mindef_self)/structure_length)).toFixed(0)+"mm)";
+			document.getElementById('value_selfload_max').innerHTML = (parseInt(value_selfload_ind*(-maxdef_self)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_selfload_ind*(-maxdef_self)/structure_length)).toFixed(0)+"mm)";
+		}
+		
+		function input_selfload_ind() {
+			var value_selfload_ind = document.getElementById('selfload_ind').value;
+			document.getElementById('value_selfload_ind').innerHTML = (parseInt(value_selfload_ind*100)/100).toFixed(2);
+			draw_update();
+			var value_selfload_ind = document.getElementById('selfload_ind').value;
+			var total_length_input = document.getElementById('total_length').value;
+			document.getElementById('value_selfload_min').innerHTML = (parseInt(value_selfload_ind*(-mindef_self)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_selfload_ind*(-mindef_self)/structure_length)).toFixed(0)+"mm)";
+			document.getElementById('value_selfload_max').innerHTML = (parseInt(value_selfload_ind*(-maxdef_self)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_selfload_ind*(-maxdef_self)/structure_length)).toFixed(0)+"mm)";
+		}
+		
+		function change_pointload_ind() {
+			var value_pointload_ind = document.getElementById('pointload_ind').value;
+			document.getElementById('pointload_ind').innerHTML = (parseInt(value_pointload_ind*100)/100).toFixed(2);
+		    var value_pointload_ind = document.getElementById('pointload_ind').value;
+			var total_length_input = document.getElementById('total_length').value;
+			document.getElementById('value_pointload_min').innerHTML = (parseInt(value_pointload_ind*(-mindef_point)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_pointload_ind*(-mindef_point)/structure_length)).toFixed(0)+"mm)";
+			document.getElementById('value_pointload_max').innerHTML = (parseInt(value_pointload_ind*(-maxdef_point)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_pointload_ind*(-maxdef_point)/structure_length)).toFixed(0)+"mm)";
+		}
+		
+		function input_pointload_ind() {
+			var value_pointload_ind = document.getElementById('pointload_ind').value;
+			document.getElementById('value_pointload_ind').innerHTML = (parseInt(value_pointload_ind*100)/100).toFixed(2);
+			draw_update();
+			var value_pointload_ind = document.getElementById('pointload_ind').value;
+			var total_length_input = document.getElementById('total_length').value;
+			document.getElementById('value_pointload_min').innerHTML = (parseInt(value_pointload_ind*(-mindef_point)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_pointload_ind*(-mindef_point)/structure_length)).toFixed(0)+"mm)";
+			document.getElementById('value_pointload_max').innerHTML = (parseInt(value_pointload_ind*(-maxdef_point)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_pointload_ind*(-maxdef_point)/structure_length)).toFixed(0)+"mm)";
+		}
+		
+	    function fold_dcp() {
+			var obj = document.getElementById("dcpb");
+			obj.style.display = "none";
+			var obj = document.getElementById("container-item-dcp");
+			obj.style.display = "none";
+			var obj = document.getElementById("btn_10nor");
+			obj.style.display = "none";
+			var obj = document.getElementById("btn_25nor");
+			obj.style.display = "none";
+			var obj = document.getElementById("btn_11min");
+			obj.style.display = "none";
+			var obj = document.getElementById("btn_26min");
+			obj.style.display = "none";
+			var obj = document.getElementById("btn_12sho");
+			obj.style.display = "none";
+			var obj = document.getElementById("btn_13hid");
+			obj.style.display = "none";
+			var obj = document.getElementById("btn_14stl");
+			obj.style.display = "none";
+			var obj = document.getElementById("btn_20slo");
+			obj.style.display = "none";
+			var obj = document.getElementById("btn_21slf");
+			obj.style.display = "none";
+			var obj = document.getElementById("btn_22plo");
+			obj.style.display = "none";
+			var obj = document.getElementById("btn_23plf");
+			obj.style.display = "none";
+			var obj = document.getElementById("container_min");
+			obj.style.display = "none";
+			var obj = document.getElementById("container_max");
+			obj.style.display = "none";
+			var obj = document.getElementById("container_mink");
+			obj.style.display = "none";
+			var obj = document.getElementById("container_selfload");
+			obj.style.display = "none";
+			var obj = document.getElementById("container_pointload");
+			obj.style.display = "none";
+			var obj = document.getElementById("container_scale_pointload");
+			obj.style.display = "none";
+			var obj = document.getElementById("btn_fold2");
+			obj.style.display = "none";
+			var obj = document.getElementById("btn_show2");
+			obj.style.display = "inline";
+		}
+	    
+		function show_dcp() {
+			var obj = document.getElementById("dcpb");
+			obj.style.display = "inline";
+			var obj = document.getElementById("container-item-dcp");
+			obj.style.display = "inline";
+			var obj = document.getElementById("btn_10nor");
+			obj.style.display = "inline";
+			var obj = document.getElementById("btn_25nor");
+			obj.style.display = "inline";
+			var obj = document.getElementById("btn_11min");
+			obj.style.display = "inline";
+			var obj = document.getElementById("btn_26min");
+			obj.style.display = "inline";
+			var obj = document.getElementById("btn_12sho");
+			obj.style.display = "inline";
+			var obj = document.getElementById("btn_13hid");
+			obj.style.display = "inline";
+			var obj = document.getElementById("btn_14stl");
+			obj.style.display = "inline";
+			var obj = document.getElementById("btn_20slo");
+			obj.style.display = "inline";
+			var obj = document.getElementById("btn_21slf");
+			obj.style.display = "inline";
+			var obj = document.getElementById("btn_22plo");
+			obj.style.display = "inline";
+			var obj = document.getElementById("btn_23plf");
+			obj.style.display = "inline";
+			var obj = document.getElementById("btn_fold2");
+			obj.style.display = "inline";
+			var obj = document.getElementById("btn_show2");
+			obj.style.display = "none";
+		}
+		
+		function btn_15csv() {
+			var element = document.createElement('a');
+			element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(content));
+			element.setAttribute('download', 'output.csv');
+			element.click();
+		}
+		
+		function btn_16upl() {
+			var input = document.createElement("input");
+			input.type="file";
+			var ran = Math.round(Math.random()*100000000).toString();
+			input.id="files"+ran;
+			input.style="display: none;";
+			document.body.appendChild(input);
+			document.getElementById('files'+ran).addEventListener('change', handleFileSelect, false);
+			//console.log(input);
+			input.click();
+			
+			function handleFileSelect(evt) {
+				localfileonload = true;
+				var files = evt.target.files; // FileList object
+				for (var i = 0, f; f = files[i]; i++) {
+					var reader = new FileReader();
+					reader.readAsText(f);
+					reader.onload = (function () {
+					
+						//console.log(reader);
+						//console.log(reader.result);
+						
+						form_pois = [];
+						form_pois_neib_pois = [];
+						form_pois_neib_edges = [];
+						form_pois_edges = [];
+						force_edges = [];
+						force_edges_magnitude = [];
+						info_selfload = [];
+						info_pointload = [];
+						mindef_self = 0;
+						maxdef_self = 0;
+						mindef_point = 0;
+						maxdef_point = 0;
+						structure_length = 0;
+						
+						geometry = [];
+						
+						while(scene.children.length > 0){ 
+							scene.remove(scene.children[0]); 
+						}
+						
+						initLight();
+						
+						//辅助工具
+						var helper = new THREE.AxesHelper(20);
+						helper.position.x = -100;
+						helper.position.z = -100;
+						scene.add(helper);
+						
+						function deleteGroup(group) {
+							//console.log(group);
+							if (!group) return;
+							// 删除掉所有的模型组内的mesh
+							group.traverse(function (item) {
+								if (item instanceof THREE.Mesh) {
+									item.geometry.dispose(); // 删除几何体
+									item.material.dispose(); // 删除材质
+								}
+							});
+						}
+						
+						deleteGroup(group);
+						deleteGroup(group_mink);
+						deleteGroup(group_arrow);
+						deleteGroup(group_shadow);
+						deleteGroup(group_anchor);
+						deleteGroup(group_selfload);
+						deleteGroup(group_pointload);
+						
+						geometry = [];
+						group = new THREE.Group();
+						group_mink = new THREE.Group();
+						group_arrow = new THREE.Group();
+						group_shadow = new THREE.Group();
+						group_anchor = new THREE.Group();
+						group_selfload = new THREE.Group();
+						group_pointload = new THREE.Group();
+						minrad = document.getElementById('minumum_radius').value;
+						maxrad = document.getElementById('maximum_radius').value;
+						mink = document.getElementById("minkowski_sum_indicator").value;
+						selfload_ind = document.getElementById("selfload_ind").value;
+						pointload_ind = document.getElementById("pointload_ind").value;
+						mat = new THREE.MeshStandardMaterial({color: 0x000000});
+						
+						console.log("local-file",minrad,maxrad);
+						
+						content = reader.result;
+						arr_all = content.split('\r\n');
+						arr = arr_all.slice(1,parseInt(arr_all[0])+1);
+						if (display_mode==1) {
+							for (var i = 0; i < arr.length; i++) {
+								arr0 = arr[i].split(',');
+								if (isNaN(arr0[4])==false) {
+									//console.log(arr0);
+									
+									var p1 = new THREE.Vector3(arr0[0]-0, arr0[1]-0);
+									var p2 = new THREE.Vector3(arr0[2]-0, arr0[3]-0);
+									let line = new THREE.LineCurve3(p1,p2);
+									var CurvePath = new THREE.CurvePath();
+									CurvePath.curves.push(line);
+									
+									if (arr0[4]-0==-1) {
+										var dir = new THREE.Vector3(((arr0[2]-0)-(arr0[0]-0))*0.07, 0, -((arr0[3]-0)-(arr0[1]-0))*0.07);
+										var origin = new THREE.Vector3((arr0[0]-0)*0.07, 0, -(arr0[1]-0)*0.07);
+										var length = 6;
+										var colorstr = getColorCode(0,100,0);
+										var arrowHelper = new THREE.ArrowHelper(dir, origin, length, colorstr, 1.0, 1.0);
+										if (external_force_mode==1) {
+											group_arrow.add(arrowHelper);
+											geometry.push(arrowHelper);
+										}
+									} else {
+										radius = arr0[4]*(maxrad-minrad)+minrad*1.0;
+										
+										if (arr0[4]-0<0.333) {
+											var num1 = Math.round((c2[0]-c1[0])*(arr0[4]-0)/0.333+c1[0]);
+											var num2 = Math.round((c2[1]-c1[1])*(arr0[4]-0)/0.333+c1[1]);
+											var num3 = Math.round((c2[2]-c1[2])*(arr0[4]-0)/0.333+c1[2]);
+											var colorstr = getColorCode(num1,num2,num3);
+											var colormat = new THREE.MeshStandardMaterial({color: colorstr});
+										} else if (arr0[4]-0<0.666) {
+											var num1 = Math.round((c3[0]-c2[0])*(arr0[4]-0.333)/0.333+c2[0]);
+											var num2 = Math.round((c3[1]-c2[1])*(arr0[4]-0.333)/0.333+c2[1]);
+											var num3 = Math.round((c3[2]-c2[2])*(arr0[4]-0.333)/0.333+c2[2]);
+											var colorstr = getColorCode(num1,num2,num3);
+											var colormat = new THREE.MeshStandardMaterial({color: colorstr});
+										} else {
+											var num1 = Math.round((c4[0]-c3[0])*(arr0[4]-0.666)/0.333+c3[0]);
+											var num2 = Math.round((c4[1]-c3[1])*(arr0[4]-0.666)/0.333+c3[1]);
+											var num3 = Math.round((c4[2]-c3[2])*(arr0[4]-0.666)/0.333+c3[2]);
+											var colorstr = getColorCode(num1,num2,num3);
+											var colormat = new THREE.MeshStandardMaterial({color: colorstr});
+										};
+
+										var geometry_temp = new THREE.TubeGeometry(CurvePath, 8, radius, 8, false);
+										var mesh = new THREE.Mesh(geometry_temp, colormat);
+										mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+										mesh.scale.set(0.07, 0.07, 0.07); //缩放
+										mesh.castShadow = true;
+										group.add(mesh);
+										geometry.push(geometry_temp);
+										
+										var geometry_temp = new THREE.SphereGeometry(radius, 8, 8);
+										var mesh = new THREE.Mesh(geometry_temp, colormat);
+										mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+										mesh.scale.set(0.07, 0.07, 0.07); //缩放
+										mesh.position.x = arr0[0]*0.07;
+										mesh.position.y = 0;
+										mesh.position.z = -arr0[1]*0.07;
+										mesh.castShadow = true;
+										group.add(mesh);
+										geometry.push(geometry_temp);
+										
+										var geometry_temp = new THREE.SphereGeometry(radius, 8, 8);
+										var mesh = new THREE.Mesh(geometry_temp, colormat);
+										mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+										mesh.scale.set(0.07, 0.07, 0.07); //缩放
+										mesh.position.x = arr0[2]*0.07;
+										mesh.position.y = 0;
+										mesh.position.z = -arr0[3]*0.07;
+										mesh.castShadow = true;
+										group.add(mesh);
+										geometry.push(geometry_temp);
+										
+										var geo_shadow = new THREE.Geometry();
+										var material_shadow = new THREE.LineBasicMaterial( { color: 0xEAEAEA, linecap: 'round', linejoin:  'round', linewidth: radius*2} );
+										var p1 = new THREE.Vector3(arr0[0]-0, arr0[1]-0, -29/0.07);
+										var p2 = new THREE.Vector3(arr0[2]-0, arr0[3]-0, -29/0.07);
+										geo_shadow.vertices.push(p1);
+										geo_shadow.vertices.push(p2);
+										var line_shadow = new THREE.Line(geo_shadow, material_shadow, THREE.LineSegments);
+										line_shadow.rotation.x = -0.5 * Math.PI; //将模型摆正
+										line_shadow.scale.set(0.07, 0.07, 0.07); //缩放
+										group_shadow.add(line_shadow);
+										geometry.push(line_shadow);
+										
+									}
+								}
+							}
+							//var loader = new THREE.STLLoader();
+							//loader.load('../ghBackend/media/Default/output.stl', function (geometry) {
+							//	//创建纹理
+							//	var mat = new THREE.MeshStandardMaterial({color: 0x0079ED});
+							//	var mesh = new THREE.Mesh(geometry, mat);
+							//	mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+							//	mesh.scale.set(0.07, 0.07, 0.07); //缩放
+							//	geometry.center(); //居中显示
+							//	scene.add(mesh);
+							//});
+							var box3 = new THREE.Box3();
+							// 计算层级模型group的包围盒
+							// 模型group是加载一个三维模型返回的对象，包含多个网格模型
+							box3.expandByObject(group);
+							// 计算一个层级模型对应包围盒的几何体中心在世界坐标中的位置
+							box3.getCenter(center);
+							// console.log('查看几何体中心坐标', center);
+							// 重新设置模型的位置，使之居中。
+							group.position.x = group.position.x - center.x;
+							group.position.y = group.position.y - center.y;
+							group.position.z = group.position.z - center.z;
+							group_arrow.position.x = group_arrow.position.x - center.x;
+							group_arrow.position.y = group_arrow.position.y - center.y;
+							group_arrow.position.z = group_arrow.position.z - center.z;
+							group_shadow.position.x = group_shadow.position.x - center.x;
+							group_shadow.position.y = group_shadow.position.y - center.y;
+							group_shadow.position.z = group_shadow.position.z - center.z;
+							scene.add(group);
+							scene.add(group_arrow);
+							scene.add(group_shadow);
+						}
+						
+						pnum = parseInt(arr_all[0])+1;
+						pstep = parseInt(arr_all[pnum]);
+						pnum = pnum + 1;
+						arr = arr_all.slice(pnum,pnum+pstep);
+						for (var i = 0; i < arr.length; i++) {
+							arr0 = arr[i].split(',');
+							var form_poi = new THREE.Vector3(arr0[0]-0, arr0[1]-0);
+							form_pois.push(form_poi);
+						}
+						
+						pnum = pnum + pstep;
+						arr = arr_all.slice(pnum,pnum+pstep);
+						for (var i = 0; i < arr.length; i++) {
+							arr0 = arr[i].split(',');
+							form_pois_neib_pois.push(arr0);
+						}
+						
+						pnum = pnum + pstep;
+						arr = arr_all.slice(pnum,pnum+pstep);
+						for (var i = 0; i < arr.length; i++) {
+							arr0 = arr[i].split(',');
+							form_pois_neib_edges.push(arr0);
+						}
+						
+						pnum = pnum + pstep;
+						arr = arr_all.slice(pnum,pnum+pstep);
+						for (var i = 0; i < arr.length; i++) {
+							arr0 = arr[i].split(',');
+							form_pois_edges.push(arr0);
+						}
+						
+						pnum = pnum + pstep;
+						pstep = parseInt(arr_all[pnum]);
+						pnum = pnum + 1;
+						arr = arr_all.slice(pnum,pnum+pstep);
+						for (var i = 0; i < arr.length; i++) {
+							arr0 = arr[i].split(',');
+							var p1 = new THREE.Vector3(arr0[0]-0, arr0[1]-0);
+							var p2 = new THREE.Vector3(arr0[2]-0, arr0[3]-0);
+							let line_force = new THREE.LineCurve3(p1,p2);
+							force_edges.push(line_force);
+							force_edges_magnitude.push(arr0[4]-0);
+						}
+						
+						if (mink_mode==1) {
+							let form_pois_edges_geos = [];
+							for (var i = 0; i < form_pois_edges.length; i++) {
+								arr0 = [];
+								for (var j = 0; j < form_pois_edges[i].length; j++) {
+									temp = force_edges[form_pois_edges[i][j]];
+									var p1 = new THREE.Vector3(temp.v1.x*mink+form_pois[i].x*(1-mink),temp.v1.y*mink+form_pois[i].y*(1-mink));
+									var p2 = new THREE.Vector3(temp.v2.x*mink+form_pois[i].x*(1-mink),temp.v2.y*mink+form_pois[i].y*(1-mink));
+									temp = new THREE.LineCurve3(p1,p2);
+									arr0.push(temp);
+								}
+								form_pois_edges_geos.push(arr0);
+							}
+							
+							for (var i = 0; i < form_pois_neib_pois.length; i++) {
+								for (var j = 0; j < form_pois_neib_pois[i].length; j++) {
+								
+									var rad_temp = force_edges_magnitude[form_pois_edges[i][j]];
+									if (rad_temp-0==-1) {
+										var colorstr = getColorCode(0,100,0);
+										var colormat = new THREE.MeshStandardMaterial({color: colorstr});
+									}else if (rad_temp-0<0.333) {
+										var num1 = Math.round((c2[0]-c1[0])*(rad_temp-0)/0.333+c1[0]);
+										var num2 = Math.round((c2[1]-c1[1])*(rad_temp-0)/0.333+c1[1]);
+										var num3 = Math.round((c2[2]-c1[2])*(rad_temp-0)/0.333+c1[2]);
+										var colorstr = getColorCode(num1,num2,num3);
+										var colormat = new THREE.MeshStandardMaterial({color: colorstr});
+									} else if (rad_temp-0<0.666) {
+										var num1 = Math.round((c3[0]-c2[0])*(rad_temp-0.333)/0.333+c2[0]);
+										var num2 = Math.round((c3[1]-c2[1])*(rad_temp-0.333)/0.333+c2[1]);
+										var num3 = Math.round((c3[2]-c2[2])*(rad_temp-0.333)/0.333+c2[2]);
+										var colorstr = getColorCode(num1,num2,num3);
+										var colormat = new THREE.MeshStandardMaterial({color: colorstr});
+									} else {
+										var num1 = Math.round((c4[0]-c3[0])*(rad_temp-0.666)/0.333+c3[0]);
+										var num2 = Math.round((c4[1]-c3[1])*(rad_temp-0.666)/0.333+c3[1]);
+										var num3 = Math.round((c4[2]-c3[2])*(rad_temp-0.666)/0.333+c3[2]);
+										var colorstr = getColorCode(num1,num2,num3);
+										var colormat = new THREE.MeshStandardMaterial({color: colorstr});
+									};
+									
+									let line1 = form_pois_edges_geos[i][j];
+									let line2 = form_pois_edges_geos[form_pois_neib_pois[i][j]][form_pois_neib_edges[i][j]];
+									var p1 = line1.v1; //顶点1坐标
+									var p2 = line1.v2; //顶点2坐标
+									var p3 = line2.v2; //顶点3坐标
+									var p4 = line2.v1; //顶点4坐标
+									var geo = new THREE.Geometry(); //声明一个空几何体对象
+									geo.vertices.push(p1,p2,p3); //顶点坐标添加到geometry对象
+									var normal = new THREE.Vector3( 0, 0, 1 ); //三角面法向量
+									var face = new THREE.Face3( 0, 1, 2, normal); //创建三角面
+									geo.faces.push(face); //三角面添加到几何体
+									//var face = new THREE.Face3( 2, 3, 1, normal); //创建三角面
+									var mesh = new THREE.Mesh(geo,colormat);//网格模型对象
+									mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+									mesh.scale.set(0.07, 0.07, 0.07); //缩放
+									mesh.castShadow = true;
+									if (rad_temp-0==-1) {
+										if (external_force_mode==1) {
+											group_mink.add(mesh);
+										}
+									} else {
+										group_mink.add(mesh);
+									}
+									var geo = new THREE.Geometry(); //声明一个空几何体对象
+									geo.vertices.push(p3,p4,p1); //顶点坐标添加到geometry对象
+									var normal = new THREE.Vector3( 0, 0, 1 ); //三角面法向量
+									var face = new THREE.Face3( 0, 1, 2, normal); //创建三角面
+									geo.faces.push(face); //三角面添加到几何体
+									//var face = new THREE.Face3( 2, 3, 1, normal); //创建三角面
+									var mesh = new THREE.Mesh(geo,colormat);//网格模型对象
+									mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+									mesh.scale.set(0.07, 0.07, 0.07); //缩放
+									mesh.castShadow = true;
+									if (rad_temp-0==-1) {
+										if (external_force_mode==1) {
+											group_mink.add(mesh);
+										}
+									} else {
+										group_mink.add(mesh);
+									}
+								}
+							}
+							var box3 = new THREE.Box3();
+							// 计算层级模型group的包围盒
+							// 模型group是加载一个三维模型返回的对象，包含多个网格模型
+							box3.expandByObject(group_mink);
+							// 计算一个层级模型对应包围盒的几何体中心在世界坐标中的位置
+							box3.getCenter(center);
+							// console.log('查看几何体中心坐标', center);
+							// 重新设置模型的位置，使之居中。
+							group_mink.position.x = group_mink.position.x - center.x;
+							group_mink.position.y = group_mink.position.y - center.y;
+							group_mink.position.z = group_mink.position.z - center.z;
+							scene.add(group_mink);
+						}
+						
+						pnum = pnum + pstep;
+						arr0 = arr_all[pnum].split(',');
+						pstep = parseInt(arr0[0]);
+						mindef_self = parseFloat(arr0[1]);
+						maxdef_self = parseFloat(arr0[2]);
+						structure_length = parseFloat(arr0[3]);
+						pnum = pnum + 1;
+						arr = arr_all.slice(pnum,pnum+pstep);
+						for (var i = 0; i < arr.length; i++) {
+							arr0 = arr[i].split(',');
+							let temp = [];
+							temp.push(parseFloat(arr0[0]));
+							temp.push(parseFloat(arr0[1]));
+							temp.push(parseFloat(arr0[2]));
+							temp.push(parseFloat(arr0[3]));
+							temp.push(parseFloat(arr0[4]));
+							temp.push(parseFloat(arr0[5]));
+							temp.push(parseInt(arr0[6]));
+							temp.push(parseInt(arr0[7]));
+							temp.push(parseInt(arr0[8]));
+							info_selfload.push(temp);
+						}
+						
+						if (display_selfload==1) {
+							for (var i = 0; i < info_selfload.length; i++) {
+								var geo_selfload = new THREE.Geometry();
+								var color_selfload = getColorCode(info_selfload[i][6],info_selfload[i][7],info_selfload[i][8]);
+								var material_selfload = new THREE.LineBasicMaterial( { color: color_selfload, linecap: 'round', linejoin:  'round'} );
+								var p1 = new THREE.Vector3(info_selfload[i][0], info_selfload[i][1], info_selfload[i][2]*selfload_ind);
+								var p2 = new THREE.Vector3(info_selfload[i][3], info_selfload[i][4], info_selfload[i][5]*selfload_ind);
+								geo_selfload.vertices.push(p1);
+								geo_selfload.vertices.push(p2);
+								var line_selfload = new THREE.Line(geo_selfload, material_selfload, THREE.LineSegments);
+								line_selfload.rotation.x = -0.5 * Math.PI; //将模型摆正
+								line_selfload.scale.set(0.07, 0.07, 0.07); //缩放
+								line_selfload.position.x = line_selfload.position.x - center.x;
+								line_selfload.position.y = line_selfload.position.y - center.y;
+								line_selfload.position.z = line_selfload.position.z - center.z;
+								group_selfload.add(line_selfload);
+								geometry.push(line_selfload);
+							}
+							scene.add(group_selfload);
+						}
+						
+						pnum = pnum + pstep;
+						arr0 = arr_all[pnum].split(',');
+						pstep = parseInt(arr0[0]);
+						mindef_point = parseFloat(arr0[1]);
+						maxdef_point = parseFloat(arr0[2]);
+						structure_length = parseFloat(arr0[3]);
+						pnum = pnum + 1;
+						arr = arr_all.slice(pnum,pnum+pstep);
+						for (var i = 0; i < arr.length; i++) {
+							arr0 = arr[i].split(',');
+							let temp = [];
+							temp.push(parseFloat(arr0[0]));
+							temp.push(parseFloat(arr0[1]));
+							temp.push(parseFloat(arr0[2]));
+							temp.push(parseFloat(arr0[3]));
+							temp.push(parseFloat(arr0[4]));
+							temp.push(parseFloat(arr0[5]));
+							temp.push(parseInt(arr0[6]));
+							temp.push(parseInt(arr0[7]));
+							temp.push(parseInt(arr0[8]));
+							info_pointload.push(temp);
+						}
+
+						if (display_pointload==1) {
+							for (var i = 0; i < info_pointload.length; i++) {
+								var geo_pointload = new THREE.Geometry();
+								var color_pointload = getColorCode(info_pointload[i][6],info_pointload[i][7],info_pointload[i][8]);
+								var material_pointload = new THREE.LineBasicMaterial( { color: color_pointload, linecap: 'round', linejoin:  'round'} );
+								var p1 = new THREE.Vector3(info_pointload[i][0], info_pointload[i][1], info_pointload[i][2]*pointload_ind);
+								var p2 = new THREE.Vector3(info_pointload[i][3], info_pointload[i][4], info_pointload[i][5]*pointload_ind);
+								geo_pointload.vertices.push(p1);
+								geo_pointload.vertices.push(p2);
+								var line_pointload = new THREE.Line(geo_pointload, material_pointload, THREE.LineSegments);
+								line_pointload.rotation.x = -0.5 * Math.PI; //将模型摆正
+								line_pointload.scale.set(0.07, 0.07, 0.07); //缩放
+								line_pointload.position.x = line_pointload.position.x - center.x;
+								line_pointload.position.y = line_pointload.position.y - center.y;
+								line_pointload.position.z = line_pointload.position.z - center.z;
+								group_pointload.add(line_pointload);
+								geometry.push(line_pointload);
+							}
+							scene.add(group_pointload);
+						}
+						
+						var plane = new THREE.PlaneGeometry(100000,100000);
+						var colormat = new THREE.MeshStandardMaterial({color: "0xFCFCFC"});
+						var mesh = new THREE.Mesh(plane, colormat);
+						mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+						mesh.position.y = -30;
+						mesh.receiveShadow = true;
+						scene.add(mesh);
+
+						pnum = pnum + pstep;
+						pstep = 8;
+						arr_input = arr_all.slice(pnum,pnum+pstep);
+						
+						document.getElementById("reduce_rate").defaultValue = arr_input[1];
+						document.getElementById('value_reduce_rate').innerHTML = (arr_input[1]*1.0).toFixed(2);
+						document.getElementById("tolerance_of_edge_length").defaultValue = arr_input[2];
+						document.getElementById('value_tolerance_of_edge_length').innerHTML = (arr_input[2]*1.0).toFixed(2);
+						document.getElementById("length_constraint_maltiplier").defaultValue = arr_input[3];
+						document.getElementById('value_length_constraint_maltiplier').innerHTML = (arr_input[3]*1.0).toFixed(2);
+						document.getElementById("boundary_constraint_magnitude").defaultValue = arr_input[4];
+						document.getElementById('value_boundary_constraint_magnitude').innerHTML = (arr_input[4]*1.0).toFixed(2);
+						document.getElementById("perp_steps").defaultValue = arr_input[5];
+						document.getElementById('value_perp_steps').innerHTML = arr_input[5];
+						document.getElementById("total_length").defaultValue = arr_input[6];
+						document.getElementById('value_total_length').innerHTML = (arr_input[6]*1.0).toFixed(0);
+						document.getElementById("material_select").selectedIndex = arr_input[7];
+
+						arr0_input = arr_input[0].split(',');
+						function Point(x, y) {
+							this.x = x;
+							this.y = y;
+							}
+							//圆圈对象
+						function Circle(x, y) {
+							this.x = x;
+							this.y = y;
+							this.radius = 7;
+							this.color = "blue";
+							//拖拽点的标记
+							this.isSelected = false;
+							}
+						points = [];
+						circles = [];
+						for (var i = 0; i < arr0_input.length/2; i++) {
+							var point=new Point((arr0_input[i*2]-0)/2,(500-arr0_input[i*2+1])/2);
+							points.push(point);
+							var circle=new Circle((arr0_input[i*2]-0)/2,(500-arr0_input[i*2+1])/2);
+							circles.push(circle);
+						}
+						
+						wall_info = [];
+						wall_info.push((arr0_input[0]-0)/500*3000*0.07);
+						wall_info.push((arr0_input[1]-0)/500*3000*0.07);
+						wall_info.push((arr0_input[arr0_input.length-2]-0)/500*3000*0.07);
+						wall_info.push((arr0_input[arr0_input.length-1]-0)/500*3000*0.07);
+						
+						if ((display_mode==1) || (display_selfload==1) || (display_pointload==1)) {
+							var vec = new THREE.Vector3(wall_info[3]-wall_info[1], -(wall_info[2]-wall_info[0]));
+							vec = vec.normalize();
+							//var baseShape = new THREE.Shape();
+							//baseShape.moveTo(wall_info[0], wall_info[1]);
+							//baseShape.lineTo(wall_info[2], wall_info[3]);
+							//baseShape.lineTo(wall_info[2]+vec.x*3, wall_info[3]+vec.y*3);
+							//baseShape.lineTo(wall_info[0]+vec.x*3, wall_info[1]+vec.y*3);
+							//baseShape.lineTo(wall_info[0], wall_info[1]);
+							//var extrudedGeometry = new THREE.ExtrudeGeometry(baseShape, {amount: 20, bevelEnabled: false});
+							//var tmaterial = new THREE.MeshStandardMaterial({color:0xffffff,transparent:true,opacity:0.8});
+							////tmaterial.opacity = 0.1;
+							//var extrudedMesh = new THREE.Mesh(extrudedGeometry, tmaterial);
+							//extrudedMesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+							//extrudedMesh.position.x = extrudedMesh.position.x - center.x;
+							//extrudedMesh.position.y = extrudedMesh.position.y - center.y -10;
+							//extrudedMesh.position.z = extrudedMesh.position.z - center.z;
+							//scene.add(extrudedMesh);
+							
+							group_anchor = new THREE.Group();
+							let consr = [-10,-9,-7,-5,0,5,7,9,10];
+							for (var is = 0; is < 8; is++) {
+								xx = -Math.abs((is-4)*vec.x);
+								yy = -Math.abs((is-4)*vec.y);
+								zz = consr[is];
+								xxn = -Math.abs((is-3)*vec.x);
+								yyn = -Math.abs((is-3)*vec.y);
+								zzn = consr[is+1];
+								var p1 = new THREE.Vector3(wall_info[0]+xx, wall_info[1]+yy,zz);
+								var p2 = new THREE.Vector3(wall_info[2]+xx, wall_info[3]+yy,zz);
+								var p3 = new THREE.Vector3(wall_info[2]+vec.x*3+xx, wall_info[3]+vec.y*3+yy,zz);
+								var p4 = new THREE.Vector3(wall_info[0]+vec.x*3+xx, wall_info[1]+vec.y*3+yy,zz);
+								var p5 = new THREE.Vector3(wall_info[0]+xxn, wall_info[1]+yyn,zzn);
+								var p6 = new THREE.Vector3(wall_info[2]+xxn, wall_info[3]+yyn,zzn);
+								var p7 = new THREE.Vector3(wall_info[2]+vec.x*3+xxn, wall_info[3]+vec.y*3+yyn,zzn);
+								var p8 = new THREE.Vector3(wall_info[0]+vec.x*3+xxn, wall_info[1]+vec.y*3+yyn,zzn);
+								let plist = [p1,p2,p3,p4,p5,p6,p7,p8];
+								let porder = [[0,4,3,0,-1,0],[3,4,7,0,-1,0],[1,5,2,0,1,0],[2,5,6,0,1,0],[0,1,5,-1,0,0],[5,4,0,-1,0,0],[3,2,6,1,0,0],[6,7,3,1,0,0]];
+								if (is==0) {
+									porder.push([0,1,2,0,0,1]);
+									porder.push([2,3,0,0,0,1]);
+								} else if (is==7) {
+									porder.push([4,5,6,0,0,-1]);
+									porder.push([6,7,4,0,0,-1]);
+								}
+								for (var iss = 0; iss < porder.length; iss++) {
+									var geo = new THREE.Geometry(); //声明一个空几何体对象
+									geo.vertices.push(plist[porder[iss][0]],plist[porder[iss][1]],plist[porder[iss][2]]); //顶点坐标添加到geometry对象
+									var normal = new THREE.Vector3( porder[iss][3], porder[iss][4], porder[iss][5] ); //三角面法向量
+									var face = new THREE.Face3( 0, 1, 2, normal); //创建三角面
+									geo.faces.push(face); //三角面添加到几何体
+									var tmaterial = new THREE.MeshStandardMaterial({color:0xffffff,transparent:true,opacity:0.8,side:THREE.DoubleSide});
+									var mesh = new THREE.Mesh(geo,tmaterial);//网格模型对象
+									mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+									mesh.position.x = mesh.position.x - center.x;
+									mesh.position.y = mesh.position.y - center.y;
+									mesh.position.z = mesh.position.z - center.z;
+									mesh.castShadow = false;
+									group_anchor.add(mesh);
+								}
+							}
+							scene.add(group_anchor);
+						}
+
+						const canvas = document.getElementById('canvas');
+						const context = canvas.getContext('2d');
+						context.clearRect(0,0,canvas.width,canvas.height);
+						context.beginPath();
+						context.lineWidth = 2;
+						context.moveTo(points[0].x,points[0].y);
+						for (var i = 0; i < points.length; i++) {
+						context.lineTo(points[i].x, points[i].y);
+						}
+						context.lineTo(points[0].x, points[0].y);
+						context.closePath();
+						context.fillStyle="rgb(128,128,128)";
+						context.fill();
+						context.strokeStyle="black";
+						context.stroke();
+						for (var i = 0; i < 10; i++) {
+							context.beginPath();
+							context.lineWidth = 1;
+							var xx = points[0].x + (points[points.length-1].x-points[0].x)*i/9;
+							var yy = points[0].y + (points[points.length-1].y-points[0].y)*i/9;
+							context.moveTo(xx,yy);
+							context.lineTo(xx-7, yy+3);
+							context.closePath();
+							context.fillStyle="rgb(128,128,128)";
+							context.fill();
+							context.strokeStyle="black";
+							context.stroke();
+						}
+						context.lineWidth = 3;
+						for(var i=0; i<circles.length; i++) {
+							var circle = circles[i];
+							context.globalAlpha = 0.85;
+							context.beginPath();
+							context.arc(circle.x, circle.y, circle.radius, 0, Math.PI*2);
+							context.fillStyle = "black";
+							context.strokeStyle = "white";
+							context.fill();
+							context.stroke();
+						}
+						
+						var value_selfload_ind = document.getElementById('selfload_ind').value;
+						var total_length_input = document.getElementById('total_length').value;
+						document.getElementById('value_selfload_min').innerHTML = (parseInt(value_selfload_ind*(-mindef_self)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_selfload_ind*(-mindef_self)/structure_length)).toFixed(0)+"mm)";
+						document.getElementById('value_selfload_max').innerHTML = (parseInt(value_selfload_ind*(-maxdef_self)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_selfload_ind*(-maxdef_self)/structure_length)).toFixed(0)+"mm)";
+						var value_pointload_ind = document.getElementById('pointload_ind').value;
+						var total_length_input = document.getElementById('total_length').value;
+						document.getElementById('value_pointload_min').innerHTML = (parseInt(value_pointload_ind*(-mindef_point)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_pointload_ind*(-mindef_point)/structure_length)).toFixed(0)+"mm)";
+						document.getElementById('value_pointload_max').innerHTML = (parseInt(value_pointload_ind*(-maxdef_point)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_pointload_ind*(-maxdef_point)/structure_length)).toFixed(0)+"mm)";
+					
+						var oldnode = document.getElementById("loading");
+						if (oldnode!=null) {
+							oldnode.parentNode.removeChild(oldnode);
+						
+						animate();
+						window.onresize = onWindowResize;
+						
+						}
+						
+					})
+				}
+			}
+		}
+		
+		function load_sample(filename) {
+
+			if (window.XMLHttpRequest)
+				{ 
+					textfile = new XMLHttpRequest(); 
+				}
+			
+			var ran = Math.round(Math.random()*100000000).toString();
+			textfile.open("GET", filename+'?'+ran, true);
+			textfile.send();
+
+			textfile.onreadystatechange = function ()
+			{   
+
+				if (textfile.readyState == 4 && textfile.status == 200)
+				{ 
+					
+					localfileonload==true;
+					
+					form_pois = [];
+					form_pois_neib_pois = [];
+					form_pois_neib_edges = [];
+					form_pois_edges = [];
+					force_edges = [];
+					force_edges_magnitude = [];
+					info_selfload = [];
+					info_pointload = [];
+					mindef_self = 0;
+					maxdef_self = 0;
+					mindef_point = 0;
+					maxdef_point = 0;
+					structure_length = 0;
+					
+					geometry = [];
+					
+					while(scene.children.length > 0){ 
+						scene.remove(scene.children[0]); 
+					}
+					
+					initLight();
+					
+					//辅助工具
+					var helper = new THREE.AxesHelper(20);
+					helper.position.x = -100;
+					helper.position.z = -100;
+					scene.add(helper);
+					
+					function deleteGroup(group) {
+						//console.log(group);
+						if (!group) return;
+						// 删除掉所有的模型组内的mesh
+						group.traverse(function (item) {
+							if (item instanceof THREE.Mesh) {
+								item.geometry.dispose(); // 删除几何体
+								item.material.dispose(); // 删除材质
+							}
+						});
+					}
+					
+					deleteGroup(group);
+					deleteGroup(group_mink);
+					deleteGroup(group_arrow);
+					deleteGroup(group_shadow);
+					deleteGroup(group_anchor);
+					deleteGroup(group_selfload);
+					deleteGroup(group_pointload);
+					
+					geometry = [];
+					group = new THREE.Group();
+					group_mink = new THREE.Group();
+					group_arrow = new THREE.Group();
+					group_shadow = new THREE.Group();
+					group_anchor = new THREE.Group();
+					group_selfload = new THREE.Group();
+					group_pointload = new THREE.Group();
+					minrad = document.getElementById('minumum_radius').value;
+					maxrad = document.getElementById('maximum_radius').value;
+					mink = document.getElementById("minkowski_sum_indicator").value;
+					selfload_ind = document.getElementById("selfload_ind").value;
+					pointload_ind = document.getElementById("pointload_ind").value;
+					mat = new THREE.MeshStandardMaterial({color: 0x000000});
+					
+					console.log("sample-file",minrad,maxrad);
+					
+					content = textfile.responseText;
+					arr_all = content.split('\r\n');
+					arr = arr_all.slice(1,parseInt(arr_all[0])+1);
+					if (display_mode==1) {
+						for (var i = 0; i < arr.length; i++) {
+							arr0 = arr[i].split(',');
+							if (isNaN(arr0[4])==false) {
+								//console.log(arr0);
+								
+								var p1 = new THREE.Vector3(arr0[0]-0, arr0[1]-0);
+								var p2 = new THREE.Vector3(arr0[2]-0, arr0[3]-0);
+								let line = new THREE.LineCurve3(p1,p2);
+								var CurvePath = new THREE.CurvePath();
+								CurvePath.curves.push(line);
+								
+								if (arr0[4]-0==-1) {
+									var dir = new THREE.Vector3(((arr0[2]-0)-(arr0[0]-0))*0.07, 0, -((arr0[3]-0)-(arr0[1]-0))*0.07);
+									var origin = new THREE.Vector3((arr0[0]-0)*0.07, 0, -(arr0[1]-0)*0.07);
+									var length = 6;
+									var colorstr = getColorCode(0,100,0);
+									var arrowHelper = new THREE.ArrowHelper(dir, origin, length, colorstr, 1.0, 1.0);
+									if (external_force_mode==1) {
+										group_arrow.add(arrowHelper);
+										geometry.push(arrowHelper);
+									}
+								} else {
+									radius = arr0[4]*(maxrad-minrad)+minrad*1.0;
+									
+									if (arr0[4]-0<0.333) {
+										var num1 = Math.round((c2[0]-c1[0])*(arr0[4]-0)/0.333+c1[0]);
+										var num2 = Math.round((c2[1]-c1[1])*(arr0[4]-0)/0.333+c1[1]);
+										var num3 = Math.round((c2[2]-c1[2])*(arr0[4]-0)/0.333+c1[2]);
+										var colorstr = getColorCode(num1,num2,num3);
+										var colormat = new THREE.MeshStandardMaterial({color: colorstr});
+									} else if (arr0[4]-0<0.666) {
+										var num1 = Math.round((c3[0]-c2[0])*(arr0[4]-0.333)/0.333+c2[0]);
+										var num2 = Math.round((c3[1]-c2[1])*(arr0[4]-0.333)/0.333+c2[1]);
+										var num3 = Math.round((c3[2]-c2[2])*(arr0[4]-0.333)/0.333+c2[2]);
+										var colorstr = getColorCode(num1,num2,num3);
+										var colormat = new THREE.MeshStandardMaterial({color: colorstr});
+									} else {
+										var num1 = Math.round((c4[0]-c3[0])*(arr0[4]-0.666)/0.333+c3[0]);
+										var num2 = Math.round((c4[1]-c3[1])*(arr0[4]-0.666)/0.333+c3[1]);
+										var num3 = Math.round((c4[2]-c3[2])*(arr0[4]-0.666)/0.333+c3[2]);
+										var colorstr = getColorCode(num1,num2,num3);
+										var colormat = new THREE.MeshStandardMaterial({color: colorstr});
+									};
+
+									var geometry_temp = new THREE.TubeGeometry(CurvePath, 8, radius, 8, false);
+									var mesh = new THREE.Mesh(geometry_temp, colormat);
+									mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+									mesh.scale.set(0.07, 0.07, 0.07); //缩放
+									mesh.castShadow = true;
+									group.add(mesh);
+									geometry.push(geometry_temp);
+									
+									var geometry_temp = new THREE.SphereGeometry(radius, 8, 8);
+									var mesh = new THREE.Mesh(geometry_temp, colormat);
+									mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+									mesh.scale.set(0.07, 0.07, 0.07); //缩放
+									mesh.position.x = arr0[0]*0.07;
+									mesh.position.y = 0;
+									mesh.position.z = -arr0[1]*0.07;
+									mesh.castShadow = true;
+									group.add(mesh);
+									geometry.push(geometry_temp);
+									
+									var geometry_temp = new THREE.SphereGeometry(radius, 8, 8);
+									var mesh = new THREE.Mesh(geometry_temp, colormat);
+									mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+									mesh.scale.set(0.07, 0.07, 0.07); //缩放
+									mesh.position.x = arr0[2]*0.07;
+									mesh.position.y = 0;
+									mesh.position.z = -arr0[3]*0.07;
+									mesh.castShadow = true;
+									group.add(mesh);
+									geometry.push(geometry_temp);
+									
+									var geo_shadow = new THREE.Geometry();
+									var material_shadow = new THREE.LineBasicMaterial( { color: 0xEAEAEA, linecap: 'round', linejoin:  'round', linewidth: radius*2} );
+									var p1 = new THREE.Vector3(arr0[0]-0, arr0[1]-0, -29/0.07);
+									var p2 = new THREE.Vector3(arr0[2]-0, arr0[3]-0, -29/0.07);
+									geo_shadow.vertices.push(p1);
+									geo_shadow.vertices.push(p2);
+									var line_shadow = new THREE.Line(geo_shadow, material_shadow, THREE.LineSegments);
+									line_shadow.rotation.x = -0.5 * Math.PI; //将模型摆正
+									line_shadow.scale.set(0.07, 0.07, 0.07); //缩放
+									group_shadow.add(line_shadow);
+									geometry.push(line_shadow);
+									
+								}
+							}
+						}
+						//var loader = new THREE.STLLoader();
+						//loader.load('../ghBackend/media/Default/output.stl', function (geometry) {
+						//	//创建纹理
+						//	var mat = new THREE.MeshStandardMaterial({color: 0x0079ED});
+						//	var mesh = new THREE.Mesh(geometry, mat);
+						//	mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+						//	mesh.scale.set(0.07, 0.07, 0.07); //缩放
+						//	geometry.center(); //居中显示
+						//	scene.add(mesh);
+						//});
+						var box3 = new THREE.Box3();
+						// 计算层级模型group的包围盒
+						// 模型group是加载一个三维模型返回的对象，包含多个网格模型
+						box3.expandByObject(group);
+						// 计算一个层级模型对应包围盒的几何体中心在世界坐标中的位置
+						box3.getCenter(center);
+						// console.log('查看几何体中心坐标', center);
+						// 重新设置模型的位置，使之居中。
+						group.position.x = group.position.x - center.x;
+						group.position.y = group.position.y - center.y;
+						group.position.z = group.position.z - center.z;
+						group_arrow.position.x = group_arrow.position.x - center.x;
+						group_arrow.position.y = group_arrow.position.y - center.y;
+						group_arrow.position.z = group_arrow.position.z - center.z;
+						group_shadow.position.x = group_shadow.position.x - center.x;
+						group_shadow.position.y = group_shadow.position.y - center.y;
+						group_shadow.position.z = group_shadow.position.z - center.z;
+						scene.add(group);
+						scene.add(group_arrow);
+						scene.add(group_shadow);
+					}
+					
+					pnum = parseInt(arr_all[0])+1;
+					pstep = parseInt(arr_all[pnum]);
+					pnum = pnum + 1;
+					arr = arr_all.slice(pnum,pnum+pstep);
+					for (var i = 0; i < arr.length; i++) {
+						arr0 = arr[i].split(',');
+						var form_poi = new THREE.Vector3(arr0[0]-0, arr0[1]-0);
+						form_pois.push(form_poi);
+					}
+					
+					pnum = pnum + pstep;
+					arr = arr_all.slice(pnum,pnum+pstep);
+					for (var i = 0; i < arr.length; i++) {
+						arr0 = arr[i].split(',');
+						form_pois_neib_pois.push(arr0);
+					}
+					
+					pnum = pnum + pstep;
+					arr = arr_all.slice(pnum,pnum+pstep);
+					for (var i = 0; i < arr.length; i++) {
+						arr0 = arr[i].split(',');
+						form_pois_neib_edges.push(arr0);
+					}
+					
+					pnum = pnum + pstep;
+					arr = arr_all.slice(pnum,pnum+pstep);
+					for (var i = 0; i < arr.length; i++) {
+						arr0 = arr[i].split(',');
+						form_pois_edges.push(arr0);
+					}
+					
+					pnum = pnum + pstep;
+					pstep = parseInt(arr_all[pnum]);
+					pnum = pnum + 1;
+					arr = arr_all.slice(pnum,pnum+pstep);
+					for (var i = 0; i < arr.length; i++) {
+						arr0 = arr[i].split(',');
+						var p1 = new THREE.Vector3(arr0[0]-0, arr0[1]-0);
+						var p2 = new THREE.Vector3(arr0[2]-0, arr0[3]-0);
+						let line_force = new THREE.LineCurve3(p1,p2);
+						force_edges.push(line_force);
+						force_edges_magnitude.push(arr0[4]-0);
+					}
+					
+					if (mink_mode==1) {
+						let form_pois_edges_geos = [];
+						for (var i = 0; i < form_pois_edges.length; i++) {
+							arr0 = [];
+							for (var j = 0; j < form_pois_edges[i].length; j++) {
+								temp = force_edges[form_pois_edges[i][j]];
+								var p1 = new THREE.Vector3(temp.v1.x*mink+form_pois[i].x*(1-mink),temp.v1.y*mink+form_pois[i].y*(1-mink));
+								var p2 = new THREE.Vector3(temp.v2.x*mink+form_pois[i].x*(1-mink),temp.v2.y*mink+form_pois[i].y*(1-mink));
+								temp = new THREE.LineCurve3(p1,p2);
+								arr0.push(temp);
+							}
+							form_pois_edges_geos.push(arr0);
+						}
+						
+						for (var i = 0; i < form_pois_neib_pois.length; i++) {
+							for (var j = 0; j < form_pois_neib_pois[i].length; j++) {
+							
+								var rad_temp = force_edges_magnitude[form_pois_edges[i][j]];
+								if (rad_temp-0==-1) {
+									var colorstr = getColorCode(0,100,0);
+									var colormat = new THREE.MeshStandardMaterial({color: colorstr});
+								}else if (rad_temp-0<0.333) {
+									var num1 = Math.round((c2[0]-c1[0])*(rad_temp-0)/0.333+c1[0]);
+									var num2 = Math.round((c2[1]-c1[1])*(rad_temp-0)/0.333+c1[1]);
+									var num3 = Math.round((c2[2]-c1[2])*(rad_temp-0)/0.333+c1[2]);
+									var colorstr = getColorCode(num1,num2,num3);
+									var colormat = new THREE.MeshStandardMaterial({color: colorstr});
+								} else if (rad_temp-0<0.666) {
+									var num1 = Math.round((c3[0]-c2[0])*(rad_temp-0.333)/0.333+c2[0]);
+									var num2 = Math.round((c3[1]-c2[1])*(rad_temp-0.333)/0.333+c2[1]);
+									var num3 = Math.round((c3[2]-c2[2])*(rad_temp-0.333)/0.333+c2[2]);
+									var colorstr = getColorCode(num1,num2,num3);
+									var colormat = new THREE.MeshStandardMaterial({color: colorstr});
+								} else {
+									var num1 = Math.round((c4[0]-c3[0])*(rad_temp-0.666)/0.333+c3[0]);
+									var num2 = Math.round((c4[1]-c3[1])*(rad_temp-0.666)/0.333+c3[1]);
+									var num3 = Math.round((c4[2]-c3[2])*(rad_temp-0.666)/0.333+c3[2]);
+									var colorstr = getColorCode(num1,num2,num3);
+									var colormat = new THREE.MeshStandardMaterial({color: colorstr});
+								};
+								
+								let line1 = form_pois_edges_geos[i][j];
+								let line2 = form_pois_edges_geos[form_pois_neib_pois[i][j]][form_pois_neib_edges[i][j]];
+								var p1 = line1.v1; //顶点1坐标
+								var p2 = line1.v2; //顶点2坐标
+								var p3 = line2.v2; //顶点3坐标
+								var p4 = line2.v1; //顶点4坐标
+								var geo = new THREE.Geometry(); //声明一个空几何体对象
+								geo.vertices.push(p1,p2,p3); //顶点坐标添加到geometry对象
+								var normal = new THREE.Vector3( 0, 0, 1 ); //三角面法向量
+								var face = new THREE.Face3( 0, 1, 2, normal); //创建三角面
+								geo.faces.push(face); //三角面添加到几何体
+								//var face = new THREE.Face3( 2, 3, 1, normal); //创建三角面
+								var mesh = new THREE.Mesh(geo,colormat);//网格模型对象
+								mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+								mesh.scale.set(0.07, 0.07, 0.07); //缩放
+								mesh.castShadow = true;
+								if (rad_temp-0==-1) {
+									if (external_force_mode==1) {
+										group_mink.add(mesh);
+									}
+								} else {
+									group_mink.add(mesh);
+								}
+								var geo = new THREE.Geometry(); //声明一个空几何体对象
+								geo.vertices.push(p3,p4,p1); //顶点坐标添加到geometry对象
+								var normal = new THREE.Vector3( 0, 0, 1 ); //三角面法向量
+								var face = new THREE.Face3( 0, 1, 2, normal); //创建三角面
+								geo.faces.push(face); //三角面添加到几何体
+								//var face = new THREE.Face3( 2, 3, 1, normal); //创建三角面
+								var mesh = new THREE.Mesh(geo,colormat);//网格模型对象
+								mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+								mesh.scale.set(0.07, 0.07, 0.07); //缩放
+								mesh.castShadow = true;
+								if (rad_temp-0==-1) {
+									if (external_force_mode==1) {
+										group_mink.add(mesh);
+									}
+								} else {
+									group_mink.add(mesh);
+								}
+							}
+						}
+						var box3 = new THREE.Box3();
+						// 计算层级模型group的包围盒
+						// 模型group是加载一个三维模型返回的对象，包含多个网格模型
+						box3.expandByObject(group_mink);
+						// 计算一个层级模型对应包围盒的几何体中心在世界坐标中的位置
+						box3.getCenter(center);
+						// console.log('查看几何体中心坐标', center);
+						// 重新设置模型的位置，使之居中。
+						group_mink.position.x = group_mink.position.x - center.x;
+						group_mink.position.y = group_mink.position.y - center.y;
+						group_mink.position.z = group_mink.position.z - center.z;
+						scene.add(group_mink);
+					}
+					
+					pnum = pnum + pstep;
+					arr0 = arr_all[pnum].split(',');
+					pstep = parseInt(arr0[0]);
+					mindef_self = parseFloat(arr0[1]);
+					maxdef_self = parseFloat(arr0[2]);
+					structure_length = parseFloat(arr0[3]);
+					pnum = pnum + 1;
+					arr = arr_all.slice(pnum,pnum+pstep);
+					for (var i = 0; i < arr.length; i++) {
+						arr0 = arr[i].split(',');
+						let temp = [];
+						temp.push(parseFloat(arr0[0]));
+						temp.push(parseFloat(arr0[1]));
+						temp.push(parseFloat(arr0[2]));
+						temp.push(parseFloat(arr0[3]));
+						temp.push(parseFloat(arr0[4]));
+						temp.push(parseFloat(arr0[5]));
+						temp.push(parseInt(arr0[6]));
+						temp.push(parseInt(arr0[7]));
+						temp.push(parseInt(arr0[8]));
+						info_selfload.push(temp);
+					}
+					
+					if (display_selfload==1) {
+						for (var i = 0; i < info_selfload.length; i++) {
+							var geo_selfload = new THREE.Geometry();
+							var color_selfload = getColorCode(info_selfload[i][6],info_selfload[i][7],info_selfload[i][8]);
+							var material_selfload = new THREE.LineBasicMaterial( { color: color_selfload, linecap: 'round', linejoin:  'round'} );
+							var p1 = new THREE.Vector3(info_selfload[i][0], info_selfload[i][1], info_selfload[i][2]*selfload_ind);
+							var p2 = new THREE.Vector3(info_selfload[i][3], info_selfload[i][4], info_selfload[i][5]*selfload_ind);
+							geo_selfload.vertices.push(p1);
+							geo_selfload.vertices.push(p2);
+							var line_selfload = new THREE.Line(geo_selfload, material_selfload, THREE.LineSegments);
+							line_selfload.rotation.x = -0.5 * Math.PI; //将模型摆正
+							line_selfload.scale.set(0.07, 0.07, 0.07); //缩放
+							line_selfload.position.x = line_selfload.position.x - center.x;
+							line_selfload.position.y = line_selfload.position.y - center.y;
+							line_selfload.position.z = line_selfload.position.z - center.z;
+							group_selfload.add(line_selfload);
+							geometry.push(line_selfload);
+						}
+						scene.add(group_selfload);
+					}
+					
+					pnum = pnum + pstep;
+					arr0 = arr_all[pnum].split(',');
+					pstep = parseInt(arr0[0]);
+					mindef_point = parseFloat(arr0[1]);
+					maxdef_point = parseFloat(arr0[2]);
+					structure_length = parseFloat(arr0[3]);
+					pnum = pnum + 1;
+					arr = arr_all.slice(pnum,pnum+pstep);
+					for (var i = 0; i < arr.length; i++) {
+						arr0 = arr[i].split(',');
+						let temp = [];
+						temp.push(parseFloat(arr0[0]));
+						temp.push(parseFloat(arr0[1]));
+						temp.push(parseFloat(arr0[2]));
+						temp.push(parseFloat(arr0[3]));
+						temp.push(parseFloat(arr0[4]));
+						temp.push(parseFloat(arr0[5]));
+						temp.push(parseInt(arr0[6]));
+						temp.push(parseInt(arr0[7]));
+						temp.push(parseInt(arr0[8]));
+						info_pointload.push(temp);
+					}
+
+					if (display_pointload==1) {
+						for (var i = 0; i < info_pointload.length; i++) {
+							var geo_pointload = new THREE.Geometry();
+							var color_pointload = getColorCode(info_pointload[i][6],info_pointload[i][7],info_pointload[i][8]);
+							var material_pointload = new THREE.LineBasicMaterial( { color: color_pointload, linecap: 'round', linejoin:  'round'} );
+							var p1 = new THREE.Vector3(info_pointload[i][0], info_pointload[i][1], info_pointload[i][2]*pointload_ind);
+							var p2 = new THREE.Vector3(info_pointload[i][3], info_pointload[i][4], info_pointload[i][5]*pointload_ind);
+							geo_pointload.vertices.push(p1);
+							geo_pointload.vertices.push(p2);
+							var line_pointload = new THREE.Line(geo_pointload, material_pointload, THREE.LineSegments);
+							line_pointload.rotation.x = -0.5 * Math.PI; //将模型摆正
+							line_pointload.scale.set(0.07, 0.07, 0.07); //缩放
+							line_pointload.position.x = line_pointload.position.x - center.x;
+							line_pointload.position.y = line_pointload.position.y - center.y;
+							line_pointload.position.z = line_pointload.position.z - center.z;
+							group_pointload.add(line_pointload);
+							geometry.push(line_pointload);
+						}
+						scene.add(group_pointload);
+					}
+					
+					var plane = new THREE.PlaneGeometry(100000,100000);
+					var colormat = new THREE.MeshStandardMaterial({color: "0xFCFCFC"});
+					var mesh = new THREE.Mesh(plane, colormat);
+					mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+					mesh.position.y = -30;
+					mesh.receiveShadow = true;
+					scene.add(mesh);
+					
+					pnum = pnum + pstep;
+					pstep = 8;
+					arr_input = arr_all.slice(pnum,pnum+pstep);
+					
+					document.getElementById("reduce_rate").defaultValue = arr_input[1];
+					document.getElementById('value_reduce_rate').innerHTML = (arr_input[1]*1.0).toFixed(2);
+					document.getElementById("tolerance_of_edge_length").defaultValue = arr_input[2];
+					document.getElementById('value_tolerance_of_edge_length').innerHTML = (arr_input[2]*1.0).toFixed(2);
+					document.getElementById("length_constraint_maltiplier").defaultValue = arr_input[3];
+					document.getElementById('value_length_constraint_maltiplier').innerHTML = (arr_input[3]*1.0).toFixed(2);
+					document.getElementById("boundary_constraint_magnitude").defaultValue = arr_input[4];
+					document.getElementById('value_boundary_constraint_magnitude').innerHTML = (arr_input[4]*1.0).toFixed(2);
+					document.getElementById("perp_steps").defaultValue = arr_input[5];
+					document.getElementById('value_perp_steps').innerHTML = arr_input[5];
+					document.getElementById("total_length").defaultValue = arr_input[6];
+					document.getElementById('value_total_length').innerHTML = (arr_input[6]*1.0).toFixed(0);
+					document.getElementById("material_select").selectedIndex = arr_input[7];
+					
+					arr0_input = arr_input[0].split(',');
+					function Point(x, y) {
+						this.x = x;
+						this.y = y;
+						}
+						//圆圈对象
+					function Circle(x, y) {
+						this.x = x;
+						this.y = y;
+						this.radius = 7;
+						this.color = "blue";
+						//拖拽点的标记
+						this.isSelected = false;
+						}
+					points = [];
+					circles = [];
+					for (var i = 0; i < arr0_input.length/2; i++) {
+						var point=new Point((arr0_input[i*2]-0)/2,(500-arr0_input[i*2+1])/2);
+						points.push(point);
+						var circle=new Circle((arr0_input[i*2]-0)/2,(500-arr0_input[i*2+1])/2);
+						circles.push(circle);
+					}
+					
+					wall_info = [];
+					wall_info.push((arr0_input[0]-0)/500*3000*0.07);
+					wall_info.push((arr0_input[1]-0)/500*3000*0.07);
+					wall_info.push((arr0_input[arr0_input.length-2]-0)/500*3000*0.07);
+					wall_info.push((arr0_input[arr0_input.length-1]-0)/500*3000*0.07);
+					
+					if ((display_mode==1) || (display_selfload==1) || (display_pointload==1)) {
+						var vec = new THREE.Vector3(wall_info[3]-wall_info[1], -(wall_info[2]-wall_info[0]));
+						vec = vec.normalize();
+						//var baseShape = new THREE.Shape();
+						//baseShape.moveTo(wall_info[0], wall_info[1]);
+						//baseShape.lineTo(wall_info[2], wall_info[3]);
+						//baseShape.lineTo(wall_info[2]+vec.x*3, wall_info[3]+vec.y*3);
+						//baseShape.lineTo(wall_info[0]+vec.x*3, wall_info[1]+vec.y*3);
+						//baseShape.lineTo(wall_info[0], wall_info[1]);
+						//var extrudedGeometry = new THREE.ExtrudeGeometry(baseShape, {amount: 20, bevelEnabled: false});
+						//var tmaterial = new THREE.MeshStandardMaterial({color:0xffffff,transparent:true,opacity:0.8});
+						////tmaterial.opacity = 0.1;
+						//var extrudedMesh = new THREE.Mesh(extrudedGeometry, tmaterial);
+						//extrudedMesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+						//extrudedMesh.position.x = extrudedMesh.position.x - center.x;
+						//extrudedMesh.position.y = extrudedMesh.position.y - center.y -10;
+						//extrudedMesh.position.z = extrudedMesh.position.z - center.z;
+						//scene.add(extrudedMesh);
+						
+						group_anchor = new THREE.Group();
+						let consr = [-10,-9,-7,-5,0,5,7,9,10];
+						for (var is = 0; is < 8; is++) {
+							xx = -Math.abs((is-4)*vec.x);
+							yy = -Math.abs((is-4)*vec.y);
+							zz = consr[is];
+							xxn = -Math.abs((is-3)*vec.x);
+							yyn = -Math.abs((is-3)*vec.y);
+							zzn = consr[is+1];
+							var p1 = new THREE.Vector3(wall_info[0]+xx, wall_info[1]+yy,zz);
+							var p2 = new THREE.Vector3(wall_info[2]+xx, wall_info[3]+yy,zz);
+							var p3 = new THREE.Vector3(wall_info[2]+vec.x*3+xx, wall_info[3]+vec.y*3+yy,zz);
+							var p4 = new THREE.Vector3(wall_info[0]+vec.x*3+xx, wall_info[1]+vec.y*3+yy,zz);
+							var p5 = new THREE.Vector3(wall_info[0]+xxn, wall_info[1]+yyn,zzn);
+							var p6 = new THREE.Vector3(wall_info[2]+xxn, wall_info[3]+yyn,zzn);
+							var p7 = new THREE.Vector3(wall_info[2]+vec.x*3+xxn, wall_info[3]+vec.y*3+yyn,zzn);
+							var p8 = new THREE.Vector3(wall_info[0]+vec.x*3+xxn, wall_info[1]+vec.y*3+yyn,zzn);
+							let plist = [p1,p2,p3,p4,p5,p6,p7,p8];
+							let porder = [[0,4,3,0,-1,0],[3,4,7,0,-1,0],[1,5,2,0,1,0],[2,5,6,0,1,0],[0,1,5,-1,0,0],[5,4,0,-1,0,0],[3,2,6,1,0,0],[6,7,3,1,0,0]];
+							if (is==0) {
+								porder.push([0,1,2,0,0,1]);
+								porder.push([2,3,0,0,0,1]);
+							} else if (is==7) {
+								porder.push([4,5,6,0,0,-1]);
+								porder.push([6,7,4,0,0,-1]);
+							}
+							for (var iss = 0; iss < porder.length; iss++) {
+								var geo = new THREE.Geometry(); //声明一个空几何体对象
+								geo.vertices.push(plist[porder[iss][0]],plist[porder[iss][1]],plist[porder[iss][2]]); //顶点坐标添加到geometry对象
+								var normal = new THREE.Vector3( porder[iss][3], porder[iss][4], porder[iss][5] ); //三角面法向量
+								var face = new THREE.Face3( 0, 1, 2, normal); //创建三角面
+								geo.faces.push(face); //三角面添加到几何体
+								var tmaterial = new THREE.MeshStandardMaterial({color:0xffffff,transparent:true,opacity:0.8,side:THREE.DoubleSide});
+								var mesh = new THREE.Mesh(geo,tmaterial);//网格模型对象
+								mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+								mesh.position.x = mesh.position.x - center.x;
+								mesh.position.y = mesh.position.y - center.y;
+								mesh.position.z = mesh.position.z - center.z;
+								mesh.castShadow = false;
+								group_anchor.add(mesh);
+							}
+						}
+						scene.add(group_anchor);
+					}
+
+					const canvas = document.getElementById('canvas');
+					const context = canvas.getContext('2d');
+					context.clearRect(0,0,canvas.width,canvas.height);
+					context.beginPath();
+					context.lineWidth = 2;
+					context.moveTo(points[0].x,points[0].y);
+					for (var i = 0; i < points.length; i++) {
+					context.lineTo(points[i].x, points[i].y);
+					}
+					context.lineTo(points[0].x, points[0].y);
+					context.closePath();
+					context.fillStyle="rgb(128,128,128)";
+					context.fill();
+					context.strokeStyle="black";
+					context.stroke();
+					for (var i = 0; i < 10; i++) {
+						context.beginPath();
+						context.lineWidth = 1;
+						var xx = points[0].x + (points[points.length-1].x-points[0].x)*i/9;
+						var yy = points[0].y + (points[points.length-1].y-points[0].y)*i/9;
+						context.moveTo(xx,yy);
+						context.lineTo(xx-7, yy+3);
+						context.closePath();
+						context.fillStyle="rgb(128,128,128)";
+						context.fill();
+						context.strokeStyle="black";
+						context.stroke();
+					}
+					context.lineWidth = 3;
+					for(var i=0; i<circles.length; i++) {
+						var circle = circles[i];
+						context.globalAlpha = 0.85;
+						context.beginPath();
+						context.arc(circle.x, circle.y, circle.radius, 0, Math.PI*2);
+						context.fillStyle = "black";
+						context.strokeStyle = "white";
+						context.fill();
+						context.stroke();
+					}
+					
+					var value_selfload_ind = document.getElementById('selfload_ind').value;
+					var total_length_input = document.getElementById('total_length').value;
+					document.getElementById('value_selfload_min').innerHTML = (parseInt(value_selfload_ind*(-mindef_self)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_selfload_ind*(-mindef_self)/structure_length)).toFixed(0)+"mm)";
+					document.getElementById('value_selfload_max').innerHTML = (parseInt(value_selfload_ind*(-maxdef_self)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_selfload_ind*(-maxdef_self)/structure_length)).toFixed(0)+"mm)";
+					var value_pointload_ind = document.getElementById('pointload_ind').value;
+					var total_length_input = document.getElementById('total_length').value;
+					document.getElementById('value_pointload_min').innerHTML = (parseInt(value_pointload_ind*(-mindef_point)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_pointload_ind*(-mindef_point)/structure_length)).toFixed(0)+"mm)";
+					document.getElementById('value_pointload_max').innerHTML = (parseInt(value_pointload_ind*(-maxdef_point)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_pointload_ind*(-maxdef_point)/structure_length)).toFixed(0)+"mm)";
+				
+					var oldnode = document.getElementById("loading");
+					if (oldnode!=null) {
+						oldnode.parentNode.removeChild(oldnode);
+
+					animate();
+					window.onresize = onWindowResize;
+					
+					}
+				}
+			}
+		}
+		
+		function fold_fm() {
+			var obj = document.getElementById("fmb");
+			obj.style.display = "none";
+			var obj = document.getElementById("container-item-fm");
+			obj.style.display = "none";
+			var obj = document.getElementById("btn_15csv");
+			obj.style.display = "none";
+			var obj = document.getElementById("btn_16upl");
+			obj.style.display = "none";
+			var obj = document.getElementById("btn_17sa1");
+			obj.style.display = "none";
+			var obj = document.getElementById("btn_18sa2");
+			obj.style.display = "none";
+			var obj = document.getElementById("btn_19sa3");
+			obj.style.display = "none";
+			var obj = document.getElementById("btn_fold3");
+			obj.style.display = "none";
+			var obj = document.getElementById("btn_show3");
+			obj.style.display = "inline";
+		}
+		
+		function show_fm() {
+			var obj = document.getElementById("fmb");
+			obj.style.display = "inline";
+			var obj = document.getElementById("container-item-fm");
+			obj.style.display = "inline";
+			var obj = document.getElementById("btn_15csv");
+			obj.style.display = "inline";
+			var obj = document.getElementById("btn_16upl");
+			obj.style.display = "inline";
+			var obj = document.getElementById("btn_17sa1");
+			obj.style.display = "inline";
+			var obj = document.getElementById("btn_18sa2");
+			obj.style.display = "inline";
+			var obj = document.getElementById("btn_19sa3");
+			obj.style.display = "inline";
+			var obj = document.getElementById("btn_fold3");
+			obj.style.display = "inline";
+			var obj = document.getElementById("btn_show3");
+			obj.style.display = "none";
+		}
+		
+		document.getElementById("minumum_radius").defaultValue = 2;
+		document.getElementById('value_minumum_radius').innerHTML = (2).toFixed(2);
+		document.getElementById("maximum_radius").defaultValue = 20;
+		document.getElementById('value_maximum_radius').innerHTML = (20).toFixed(1);
+		document.getElementById('minkowski_sum_indicator').defaultValue = 0.5;
+		document.getElementById('value_minkowski_sum_indicator').innerHTML = (0.5).toFixed(2);
+		document.getElementById('selfload_ind').defaultValue = 1.0;
+		document.getElementById('value_selfload_ind').innerHTML = (1.0).toFixed(2);
+		document.getElementById('pointload_ind').defaultValue = 1.0;
+		document.getElementById('value_pointload_ind').innerHTML = (1.0).toFixed(2);
+		document.getElementById("total_length").defaultValue = 30000;
+		document.getElementById('value_total_length').innerHTML = (30000*1.0).toFixed(0);
+		document.getElementById("material_select").selectedIndex = 0;
+		
+		var localfileonload = false;
+		
+		var center = new THREE.Vector3();
+		let wall_info;
+		var content_input;
+		var textfile_input;
+		let arr_input;
+		let arr0_input;
+		//线段的点的集合
+		var points=[];
+		//可拖动圆圈的点的集合
+		var circles=[];
+		if (window.XMLHttpRequest)
+		{ 
+			textfile_input = new XMLHttpRequest(); 
+		}
+		textfile_input.onreadystatechange = function ()
+		{   
+		
+			if (textfile_input.readyState == 4 && textfile_input.status == 200)
+			{ 
+				content_input = textfile_input.responseText;
+				arr_input = content_input.split('\r\n');
+				// document.getElementById("reduce_rate").defaultValue = "0.5";
+				// document.getElementById("tolerance_of_edge_length").defaultValue = "0.3";
+				// document.getElementById("length_constraint_maltiplier").defaultValue = "0.5";
+				// document.getElementById("boundary_constraint_magnitude").defaultValue = "5";
+				// document.getElementById("perp_steps").defaultValue = "10000";
+				// document.getElementById("minumum_radius").defaultValue = "1";
+				// document.getElementById("maximum_radius").defaultValue = "10";
+				document.getElementById("reduce_rate").defaultValue = arr_input[1];
+				document.getElementById('value_reduce_rate').innerHTML = (arr_input[1]*1.0).toFixed(2);
+				document.getElementById("tolerance_of_edge_length").defaultValue = arr_input[2];
+				document.getElementById('value_tolerance_of_edge_length').innerHTML = (arr_input[2]*1.0).toFixed(2);
+				document.getElementById("length_constraint_maltiplier").defaultValue = arr_input[3];
+				document.getElementById('value_length_constraint_maltiplier').innerHTML = (arr_input[3]*1.0).toFixed(2);
+				document.getElementById("boundary_constraint_magnitude").defaultValue = arr_input[4];
+				document.getElementById('value_boundary_constraint_magnitude').innerHTML = (arr_input[4]*1.0).toFixed(2);
+				document.getElementById("perp_steps").defaultValue = arr_input[5];
+				document.getElementById('value_perp_steps').innerHTML = arr_input[5];
+				document.getElementById("minumum_radius").defaultValue = 2;
+				document.getElementById('value_minumum_radius').innerHTML = (2).toFixed(2);
+				document.getElementById("maximum_radius").defaultValue = 20;
+				document.getElementById('value_maximum_radius').innerHTML = (20).toFixed(1);
+				document.getElementById('minkowski_sum_indicator').defaultValue = 0.5;
+				document.getElementById('value_minkowski_sum_indicator').innerHTML = (0.5).toFixed(2);
+				document.getElementById("total_length").defaultValue = arr_input[6];
+				document.getElementById('value_total_length').innerHTML = (arr_input[6]*1.0).toFixed(0);
+				document.getElementById("material_select").selectedIndex = arr_input[7];
+				arr0_input = arr_input[0].split(', ');
+				arr0_input[0] = arr0_input[0].split('[')[1];
+				arr0_input[arr0_input.length-1] = arr0_input[arr0_input.length-1].split(']')[0];
+				console.log(arr0_input);
+				//每一个点的对象
+				// var point=new Point(50,50);
+				// points.push(point);
+				// var point=new Point(450,250);
+				// points.push(point);
+				// var point=new Point(450,350);
+				// points.push(point);
+				// var point=new Point(200,225);
+				// points.push(point);
+				// var point=new Point(50,200);
+				// points.push(point);
+				// var circle=new Circle(50,50);
+				// circles.push(circle);
+				// var circle=new Circle(450,250);
+				// circles.push(circle);
+				// var circle=new Circle(450,350);
+				// circles.push(circle);
+				// var circle=new Circle(200,225);
+				// circles.push(circle);
+				// var circle=new Circle(50,200);
+				// circles.push(circle);
+				points = [];
+				circles = [];
+				for (var i = 0; i < arr0_input.length/2; i++) {
+					var point=new Point((arr0_input[i*2]-0)/2,(500-arr0_input[i*2+1])/2);
+					points.push(point);
+					var circle=new Circle((arr0_input[i*2]-0)/2,(500-arr0_input[i*2+1])/2);
+					circles.push(circle);
+				}
+				
+				wall_info = [];
+				wall_info.push((arr0_input[0]-0)/500*3000*0.07);
+				wall_info.push((arr0_input[1]-0)/500*3000*0.07);
+				wall_info.push((arr0_input[arr0_input.length-2]-0)/500*3000*0.07);
+				wall_info.push((arr0_input[arr0_input.length-1]-0)/500*3000*0.07);
+
+				const canvas = document.getElementById('canvas');
+				const context = canvas.getContext('2d');
+
+				var isDragging=false
+				function Point(x, y) {
+				this.x = x;
+				this.y = y;
+				}
+				//圆圈对象
+				function Circle(x, y) {
+				this.x = x;
+				this.y = y;
+				this.radius = 7;
+				this.color = "blue";
+				//拖拽点的标记
+				this.isSelected = false;
+				}
+
+				//进入下面的代码，绘制点
+				context.clearRect(0,0,canvas.width,canvas.height);
+				// 画线
+				//从起始点开始绘制
+				context.beginPath();
+				context.lineWidth = 2;
+				context.moveTo(points[0].x,points[0].y);
+				for (var i = 0; i < points.length; i++) {
+				context.lineTo(points[i].x, points[i].y);
+				}
+				context.lineTo(points[0].x, points[0].y);
+				context.closePath();
+				context.fillStyle="rgb(128,128,128)";
+				context.fill();
+				context.strokeStyle="black";
+				context.stroke();
+				for (var i = 0; i < 10; i++) {
+					context.beginPath();
+					context.lineWidth = 1;
+					var xx = points[0].x + (points[points.length-1].x-points[0].x)*i/9;
+					var yy = points[0].y + (points[points.length-1].y-points[0].y)*i/9;
+					context.moveTo(xx,yy);
+					context.lineTo(xx-7, yy+3);
+					context.closePath();
+					context.fillStyle="rgb(128,128,128)";
+					context.fill();
+					context.strokeStyle="black";
+					context.stroke();
+				}
+                context.lineWidth = 3;
+				for(var i=0; i<circles.length; i++) {
+					var circle = circles[i];
+					context.globalAlpha = 0.85;
+					context.beginPath();
+					context.arc(circle.x, circle.y, circle.radius, 0, Math.PI*2);
+					context.fillStyle = "black";
+					context.strokeStyle = "white";
+					context.fill();
+					context.stroke();
+				}
+				canvas.onmousedown=function(e){
+				var clickX = e.pageX - canvas.offsetLeft - 40;
+				var clickY = e.pageY - canvas.offsetTop - (window.innerHeight - 90 - 260);
+				console.log("mouse click revised: ",clickX,clickY);
+				//判断当前点击点是否在已经绘制的圆圈上，如果是执行相关操作，并return，不进入画线的代码
+				for(var i=0; i<circles.length; i++) {
+					var circle = circles[i];
+					//使用勾股定理计算这个点与圆心之间的距离
+					var distanceFromCenter = Math.sqrt(Math.pow(circle.x - clickX, 2) + Math.pow(circle.y - clickY, 2));
+					// 如果是其他的点，则设置可以拖动
+					if (distanceFromCenter <= circle.radius) {
+						// 清除之前选择的圆圈
+						index=i;
+						isDragging=true;
+						//停止搜索
+						return;
+					}
+				}
+				};
+
+				canvas.onmousemove=function(e){
+				// 判断圆圈是否开始拖拽
+				if (isDragging == true) {
+					// 判断拖拽对象是否存在
+					// 取得鼠标位置
+					var x1 = e.pageX - canvas.offsetLeft - 40;
+					var y1 = e.pageY - canvas.offsetTop - (window.innerHeight - 90 - 260);
+					context.clearRect(0,0,canvas.width,canvas.height);
+					//根据上文得到的index设置index点位置随鼠标改变
+					circles[index].x=x1;
+					circles[index].y=y1;
+					points[index].x=x1;
+					points[index].y=y1;
+					context.beginPath();
+					context.lineWidth = 2;
+					context.moveTo(points[0].x,points[0].y);
+					for (var i = 0; i < points.length; i++) {
+					context.lineTo(points[i].x, points[i].y);
+					}
+					context.lineTo(points[0].x, points[0].y);
+					context.closePath();
+					context.fillStyle="rgb(128,128,128)";
+					context.fill();
+					context.strokeStyle="black";
+					context.stroke();
+					for (var i = 0; i < 10; i++) {
+						context.beginPath();
+						context.lineWidth = 1;
+						var xx = points[0].x + (points[points.length-1].x-points[0].x)*i/9;
+						var yy = points[0].y + (points[points.length-1].y-points[0].y)*i/9;
+						context.moveTo(xx,yy);
+						context.lineTo(xx-7, yy+3);
+						context.closePath();
+						context.fillStyle="rgb(128,128,128)";
+						context.fill();
+						context.strokeStyle="black";
+						context.stroke();
+					}
+					context.lineWidth = 3;
+					for(var i=0; i<circles.length; i++) {
+						var circle = circles[i];
+						context.globalAlpha = 0.85;
+						context.beginPath();
+						context.arc(circle.x, circle.y, circle.radius, 0, Math.PI*2);
+						context.fillStyle = "black";
+						context.strokeStyle = "white";
+						context.fill();
+						context.stroke();
+					}
+				}
+				};
+
+				canvas.onmouseup=function(){
+				isDragging=false;
+				};
+
+				canvas.onmouseout=function(){
+				isDragging=false;
+				};
+			}
+		}
+		var ran = Math.round(Math.random()*100000000).toString();
+		textfile_input.open("GET", '../ghBackend/media/Default/input.txt'+'?'+ran, true);
+		textfile_input.send();
+		
+		var mink = document.getElementById("minkowski_sum_indicator").value;
+		var selfload_ind = document.getElementById("selfload_ind").value;
+		var pointload_ind = document.getElementById("pointload_ind").value;
+		
+		var display_mode = 1;
+		var mink_mode = 0;
+		var external_force_mode = 0;
+		var display_selfload = 0;
+		var display_pointload = 0;
+		
+		let c1 = [90,135,175];
+		let c2 = [55,110,155];
+		let c3 = [5,65,110];
+		let c4 = [15,50,80];
+		
+		let form_pois = [];
+		let form_pois_neib_pois = [];
+		let form_pois_neib_edges = [];
+		let form_pois_edges = [];
+		let force_edges = [];
+		let force_edges_magnitude = [];
+		let info_selfload = [];
+		let info_pointload = [];
+		var mindef_self;
+		var maxdef_self;
+		var mindef_point;
+		var maxdef_point;
+		var structure_length;
+		
+		let arr;
+		let arr_all;
+		let arr0;
+		var geometry = [];
+		var radius;
+		var pnum;
+		var pstep;
+		var minrad;
+		var maxrad;
+		var mat = new THREE.MeshStandardMaterial({color: 0x000000});
+		
+		function getColorCode(r,g,b){
+			var c="#";
+			c+=r.toString(16).length==1?"0"+r.toString(16):r.toString(16);
+			c+=g.toString(16).length==1?"0"+g.toString(16):g.toString(16);
+			c+=b.toString(16).length==1?"0"+b.toString(16):b.toString(16);
+			return c;
+		}
+	
+		var renderer;
+		function initRender() {
+			renderer = new THREE.WebGLRenderer({antialias:true,alpha:true});
+			renderer.setSize(window.innerWidth,window.innerHeight);
+			//告诉渲染器需要阴影效果
+			renderer.shadowMap.enabled = true;
+			renderer.setClearColor(0x808080);
+			renderer.domElement.style.outline = "none";
+			renderer.domElement.style.border = "none";
+			renderer.domElement.style.margin = "none";
+			renderer.domElement.style.padding = "none";
+			document.body.appendChild(renderer.domElement);
+			document.body.style.backgroundColor = '#FCFCFC';
+		}
+
+		var camera;
+		function initCamera() {
+			camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 1, 1000);
+			camera.position.set(-35, 75, 90);
+		}
+
+		var scene;
+		function initScene() {
+			scene = new THREE.Scene();
+		}
+
+		function initLight() {
+
+			scene.add(new THREE.AmbientLight(0xffffff,0.5));
+			
+			//var rectLight = new THREE.RectAreaLight(0xffffff, 1.0,  300, 300);
+			//rectLight.position.set(0,50,0);
+			//rectLight.lookAt(0,0,0);
+			//scene.add(rectLight);
+			
+			//var directionalLight = new THREE.DirectionalLight("0xffffff", 1.0);
+			//directionalLight.castShadow = true;
+			//directionalLight.position.set( 200, 200, 200 );
+			//directionalLight.lookAt( 200, 200, 0 );
+			//scene.add( directionalLight );
+			//scene.add( directionalLight.target );
+			
+			//var spotLight = new THREE.SpotLight(0xffffff);
+			//spotLight.position.set( 200, 200, 200 );
+
+			//spotLight.castShadow = true;
+
+			//spotLight.shadow.mapSize.width = 100;
+			//spotLight.shadow.mapSize.height = 100;
+
+			//spotLight.shadow.camera.near = 50;
+			//spotLight.shadow.camera.far = 400;
+			//spotLight.shadow.camera.fov = 3;
+
+			//scene.add( spotLight );
+			
+			//var light = new THREE.DirectionalLight(0xffffff, 2);
+			//light.position = new THREE.Vector3(140, 200, 140);
+
+			var light = new THREE.PointLight(0xffffff,2.0,500,1);
+			light.position.set(0,70,0);
+			light.intensity = 1.0;
+
+			//告诉平行光需要开启阴影投射
+			//light.castShadow = true;
+
+			scene.add(light);
+			
+		}
+			
+		//初始化性能插件
+			
+		var stats;
+		function initStats() {
+			stats = new Stats();
+			//document.body.appendChild(stats.dom);
+		}
+
+		//用户交互插件 鼠标左键按住旋转，右键按住平移，滚轮缩放
+		var controls;
+		function initControls() {
+
+			controls = new THREE.OrbitControls( camera, renderer.domElement );
+
+			// 如果使用animate方法时，将此函数删除
+			//controls.addEventListener( 'change', render );
+			// 使动画循环使用时阻尼或自转 意思是否有惯性
+			controls.enableDamping = false;
+			//动态阻尼系数 就是鼠标拖拽旋转灵敏度
+			controls.dampingFactor = 0.1;
+			//是否可以缩放
+			controls.enableZoom = true;
+			//是否自动旋转
+			controls.autoRotate = false;
+			controls.autoRotateSpeed = 0.5;
+			//设置相机距离原点的最远距离
+			controls.minDistance  = 1;
+			//设置相机距离原点的最远距离
+			controls.maxDistance  = 300;
+			//是否开启右键拖拽
+			controls.enablePan = true;
+			
+			controls.target = new THREE.Vector3(0, -20, 0);
+
+		}
+
+		function render() {
+			
+			//console.log(scene)
+			//console.log(camera)
+
+			renderer.render( scene, camera );		
+			
+		}
+
+		//窗口变动触发的函数
+		function onWindowResize() {
+
+			camera.aspect = window.innerWidth/window.innerHeight;
+			camera.updateProjectionMatrix();
+			render();
+			renderer.setSize(window.innerWidth,window.innerHeight);
+
+		}
+
+		function animate() {
+		    
+			//console.log(camera.position,camera.target);
+			
+			//更新控制器
+			render();
+
+			//更新性能插件
+			stats.update();
+
+			controls.update();
+			
+			requestAnimationFrame(animate);
+			
+		}
+		
+		initRender();
+		
+		
+		initScene();
+		initCamera();
+		initControls();
+		initStats();
+		
+		initLight();
+
+		//辅助工具
+		var helper = new THREE.AxesHelper(20);
+		helper.position.x = -100;
+		helper.position.z = -100;
+		scene.add(helper);
+		
+		var group = new THREE.Group();
+		var group_mink = new THREE.Group();
+		var group_arrow = new THREE.Group();
+		var group_shadow = new THREE.Group();
+		var group_anchor = new THREE.Group();
+		var group_selfload = new THREE.Group();
+		var group_pointload = new THREE.Group();
+		
+		var content;
+		var textfile;
+		
+		if (window.XMLHttpRequest)
+			{ 
+				textfile = new XMLHttpRequest(); 
+			}
+		
+		var ran = Math.round(Math.random()*100000000).toString();
+		textfile.open("GET", '../ghBackend/media/Default/output.csv'+'?'+ran, true);
+		textfile.send();
+		
+		setTimeout(function(){
+			if (textfile.readyState != 4 || textfile.status != 200) {
+			    if (localfileonload==false){ 
+					console.log("10 second to auto fresh the web page");
+					location.reload(true) //refresh the web page
+				}
+			}
+		},10000);
+		
+		textfile.onreadystatechange = function ()
+		{   
+
+			if (textfile.readyState == 4 && textfile.status == 200)
+			{ 
+
+				minrad = document.getElementById('minumum_radius').value;
+				maxrad = document.getElementById('maximum_radius').value;
+				console.log("draw",minrad,maxrad);
+				
+				content = textfile.responseText;
+				arr_all = content.split('\r\n');
+				arr = arr_all.slice(1,parseInt(arr_all[0])+1);
+				if (display_mode==1) {
+					for (var i = 0; i < arr.length; i++) {
+						arr0 = arr[i].split(',');
+						if (isNaN(arr0[4])==false) {
+							//console.log(arr0);
+							
+							var p1 = new THREE.Vector3(arr0[0]-0, arr0[1]-0);
+							var p2 = new THREE.Vector3(arr0[2]-0, arr0[3]-0);
+							let line = new THREE.LineCurve3(p1,p2);
+							var CurvePath = new THREE.CurvePath();
+							CurvePath.curves.push(line);
+							
+							if (arr0[4]-0==-1) {
+								var dir = new THREE.Vector3(((arr0[2]-0)-(arr0[0]-0))*0.07, 0, -((arr0[3]-0)-(arr0[1]-0))*0.07);
+								var origin = new THREE.Vector3((arr0[0]-0)*0.07, 0, -(arr0[1]-0)*0.07);
+								var length = 6;
+								var colorstr = getColorCode(0,100,0);
+								var arrowHelper = new THREE.ArrowHelper(dir, origin, length, colorstr, 1.0, 1.0);
+								if (external_force_mode==1) {
+									group_arrow.add(arrowHelper);
+									geometry.push(arrowHelper);
+								}
+							} else {
+								radius = arr0[4]*(maxrad-minrad)+minrad*1.0;
+								
+								if (arr0[4]-0<0.333) {
+									var num1 = Math.round((c2[0]-c1[0])*(arr0[4]-0)/0.333+c1[0]);
+									var num2 = Math.round((c2[1]-c1[1])*(arr0[4]-0)/0.333+c1[1]);
+									var num3 = Math.round((c2[2]-c1[2])*(arr0[4]-0)/0.333+c1[2]);
+									var colorstr = getColorCode(num1,num2,num3);
+									var colormat = new THREE.MeshStandardMaterial({color: colorstr});
+								} else if (arr0[4]-0<0.666) {
+									var num1 = Math.round((c3[0]-c2[0])*(arr0[4]-0.333)/0.333+c2[0]);
+									var num2 = Math.round((c3[1]-c2[1])*(arr0[4]-0.333)/0.333+c2[1]);
+									var num3 = Math.round((c3[2]-c2[2])*(arr0[4]-0.333)/0.333+c2[2]);
+									var colorstr = getColorCode(num1,num2,num3);
+									var colormat = new THREE.MeshStandardMaterial({color: colorstr});
+								} else {
+									var num1 = Math.round((c4[0]-c3[0])*(arr0[4]-0.666)/0.333+c3[0]);
+									var num2 = Math.round((c4[1]-c3[1])*(arr0[4]-0.666)/0.333+c3[1]);
+									var num3 = Math.round((c4[2]-c3[2])*(arr0[4]-0.666)/0.333+c3[2]);
+									var colorstr = getColorCode(num1,num2,num3);
+									var colormat = new THREE.MeshStandardMaterial({color: colorstr});
+								};
+
+								var geometry_temp = new THREE.TubeGeometry(CurvePath, 8, radius, 8, false);
+								var mesh = new THREE.Mesh(geometry_temp, colormat);
+								mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+								mesh.scale.set(0.07, 0.07, 0.07); //缩放
+								mesh.castShadow = true;
+								group.add(mesh);
+								geometry.push(geometry_temp);
+								
+								var geometry_temp = new THREE.SphereGeometry(radius, 8, 8);
+								var mesh = new THREE.Mesh(geometry_temp, colormat);
+								mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+								mesh.scale.set(0.07, 0.07, 0.07); //缩放
+								mesh.position.x = arr0[0]*0.07;
+								mesh.position.y = 0;
+								mesh.position.z = -arr0[1]*0.07;
+								mesh.castShadow = true;
+								group.add(mesh);
+								geometry.push(geometry_temp);
+								
+								var geometry_temp = new THREE.SphereGeometry(radius, 8, 8);
+								var mesh = new THREE.Mesh(geometry_temp, colormat);
+								mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+								mesh.scale.set(0.07, 0.07, 0.07); //缩放
+								mesh.position.x = arr0[2]*0.07;
+								mesh.position.y = 0;
+								mesh.position.z = -arr0[3]*0.07;
+								mesh.castShadow = true;
+								group.add(mesh);
+								geometry.push(geometry_temp);
+								
+								var geo_shadow = new THREE.Geometry();
+								var material_shadow = new THREE.LineBasicMaterial( { color: 0xEAEAEA, linecap: 'round', linejoin:  'round', linewidth: radius*2} );
+								var p1 = new THREE.Vector3(arr0[0]-0, arr0[1]-0, -29/0.07);
+								var p2 = new THREE.Vector3(arr0[2]-0, arr0[3]-0, -29/0.07);
+								geo_shadow.vertices.push(p1);
+								geo_shadow.vertices.push(p2);
+								var line_shadow = new THREE.Line(geo_shadow, material_shadow, THREE.LineSegments);
+								line_shadow.rotation.x = -0.5 * Math.PI; //将模型摆正
+								line_shadow.scale.set(0.07, 0.07, 0.07); //缩放
+								group_shadow.add(line_shadow);
+								geometry.push(line_shadow);
+								
+							}
+						}
+					}
+					//var loader = new THREE.STLLoader();
+					//loader.load('../ghBackend/media/Default/output.stl', function (geometry) {
+					//	//创建纹理
+					//	var mat = new THREE.MeshStandardMaterial({color: 0x0079ED});
+					//	var mesh = new THREE.Mesh(geometry, mat);
+					//	mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+					//	mesh.scale.set(0.07, 0.07, 0.07); //缩放
+					//	geometry.center(); //居中显示
+					//	scene.add(mesh);
+					//});
+					var box3 = new THREE.Box3();
+					// 计算层级模型group的包围盒
+					// 模型group是加载一个三维模型返回的对象，包含多个网格模型
+					box3.expandByObject(group);
+					// 计算一个层级模型对应包围盒的几何体中心在世界坐标中的位置
+					box3.getCenter(center);
+					// console.log('查看几何体中心坐标', center);
+					// 重新设置模型的位置，使之居中。
+					group.position.x = group.position.x - center.x;
+					group.position.y = group.position.y - center.y;
+					group.position.z = group.position.z - center.z;
+					group_arrow.position.x = group_arrow.position.x - center.x;
+					group_arrow.position.y = group_arrow.position.y - center.y;
+					group_arrow.position.z = group_arrow.position.z - center.z;
+					group_shadow.position.x = group_shadow.position.x - center.x;
+					group_shadow.position.y = group_shadow.position.y - center.y;
+					group_shadow.position.z = group_shadow.position.z - center.z;
+					scene.add(group);
+					scene.add(group_arrow);
+					scene.add(group_shadow);		
+				}
+				
+				pnum = parseInt(arr_all[0])+1;
+				pstep = parseInt(arr_all[pnum]);
+				pnum = pnum + 1;
+				arr = arr_all.slice(pnum,pnum+pstep);
+				for (var i = 0; i < arr.length; i++) {
+					arr0 = arr[i].split(',');
+					var form_poi = new THREE.Vector3(arr0[0]-0, arr0[1]-0);
+					form_pois.push(form_poi);
+				}
+				
+				pnum = pnum + pstep;
+				arr = arr_all.slice(pnum,pnum+pstep);
+				for (var i = 0; i < arr.length; i++) {
+					arr0 = arr[i].split(',');
+					form_pois_neib_pois.push(arr0);
+				}
+				
+				pnum = pnum + pstep;
+				arr = arr_all.slice(pnum,pnum+pstep);
+				for (var i = 0; i < arr.length; i++) {
+					arr0 = arr[i].split(',');
+					form_pois_neib_edges.push(arr0);
+				}
+				
+				pnum = pnum + pstep;
+				arr = arr_all.slice(pnum,pnum+pstep);
+				for (var i = 0; i < arr.length; i++) {
+					arr0 = arr[i].split(',');
+					form_pois_edges.push(arr0);
+				}
+				
+				pnum = pnum + pstep;
+				pstep = parseInt(arr_all[pnum]);
+				pnum = pnum + 1;
+				arr = arr_all.slice(pnum,pnum+pstep);
+				for (var i = 0; i < arr.length; i++) {
+					arr0 = arr[i].split(',');
+					var p1 = new THREE.Vector3(arr0[0]-0, arr0[1]-0);
+					var p2 = new THREE.Vector3(arr0[2]-0, arr0[3]-0);
+					let line_force = new THREE.LineCurve3(p1,p2);
+					force_edges.push(line_force);
+					force_edges_magnitude.push(arr0[4]-0);
+				}
+
+				if (mink_mode==1) {
+					let form_pois_edges_geos = [];
+					for (var i = 0; i < form_pois_edges.length; i++) {
+						arr0 = [];
+						for (var j = 0; j < form_pois_edges[i].length; j++) {
+							temp = force_edges[form_pois_edges[i][j]];
+							var p1 = new THREE.Vector3(temp.v1.x*mink+form_pois[i].x*(1-mink),temp.v1.y*mink+form_pois[i].y*(1-mink));
+							var p2 = new THREE.Vector3(temp.v2.x*mink+form_pois[i].x*(1-mink),temp.v2.y*mink+form_pois[i].y*(1-mink));
+							temp = new THREE.LineCurve3(p1,p2);
+							arr0.push(temp);
+						}
+						form_pois_edges_geos.push(arr0);
+					}
+					
+					for (var i = 0; i < form_pois_neib_pois.length; i++) {
+						for (var j = 0; j < form_pois_neib_pois[i].length; j++) {
+						
+							var rad_temp = force_edges_magnitude[form_pois_edges[i][j]];
+							if (rad_temp-0==-1) {
+							    var colorstr = getColorCode(0,100,0);
+								var colormat = new THREE.MeshStandardMaterial({color: colorstr});
+							}else if (rad_temp-0<0.333) {
+								var num1 = Math.round((c2[0]-c1[0])*(rad_temp-0)/0.333+c1[0]);
+								var num2 = Math.round((c2[1]-c1[1])*(rad_temp-0)/0.333+c1[1]);
+								var num3 = Math.round((c2[2]-c1[2])*(rad_temp-0)/0.333+c1[2]);
+								var colorstr = getColorCode(num1,num2,num3);
+								var colormat = new THREE.MeshStandardMaterial({color: colorstr});
+							} else if (rad_temp-0<0.666) {
+								var num1 = Math.round((c3[0]-c2[0])*(rad_temp-0.333)/0.333+c2[0]);
+								var num2 = Math.round((c3[1]-c2[1])*(rad_temp-0.333)/0.333+c2[1]);
+								var num3 = Math.round((c3[2]-c2[2])*(rad_temp-0.333)/0.333+c2[2]);
+								var colorstr = getColorCode(num1,num2,num3);
+								var colormat = new THREE.MeshStandardMaterial({color: colorstr});
+							} else {
+								var num1 = Math.round((c4[0]-c3[0])*(rad_temp-0.666)/0.333+c3[0]);
+								var num2 = Math.round((c4[1]-c3[1])*(rad_temp-0.666)/0.333+c3[1]);
+								var num3 = Math.round((c4[2]-c3[2])*(rad_temp-0.666)/0.333+c3[2]);
+								var colorstr = getColorCode(num1,num2,num3);
+								var colormat = new THREE.MeshStandardMaterial({color: colorstr});
+							};
+							
+							let line1 = form_pois_edges_geos[i][j];
+							let line2 = form_pois_edges_geos[form_pois_neib_pois[i][j]][form_pois_neib_edges[i][j]];
+							var p1 = line1.v1; //顶点1坐标
+							var p2 = line1.v2; //顶点2坐标
+							var p3 = line2.v2; //顶点3坐标
+							var p4 = line2.v1; //顶点4坐标
+							var geo = new THREE.Geometry(); //声明一个空几何体对象
+							geo.vertices.push(p1,p2,p3); //顶点坐标添加到geometry对象
+							var normal = new THREE.Vector3( 0, 0, 1 ); //三角面法向量
+							var face = new THREE.Face3( 0, 1, 2, normal); //创建三角面
+							geo.faces.push(face); //三角面添加到几何体
+							//var face = new THREE.Face3( 2, 3, 1, normal); //创建三角面
+							var mesh = new THREE.Mesh(geo,colormat);//网格模型对象
+							mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+							mesh.scale.set(0.07, 0.07, 0.07); //缩放
+							mesh.castShadow = true;
+							if (rad_temp-0==-1) {
+								if (external_force_mode==1) {
+									group_mink.add(mesh);
+								}
+							} else {
+								group_mink.add(mesh);
+							}
+							var geo = new THREE.Geometry(); //声明一个空几何体对象
+							geo.vertices.push(p3,p4,p1); //顶点坐标添加到geometry对象
+							var normal = new THREE.Vector3( 0, 0, 1 ); //三角面法向量
+							var face = new THREE.Face3( 0, 1, 2, normal); //创建三角面
+							geo.faces.push(face); //三角面添加到几何体
+							//var face = new THREE.Face3( 2, 3, 1, normal); //创建三角面
+							var mesh = new THREE.Mesh(geo,colormat);//网格模型对象
+							mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+							mesh.scale.set(0.07, 0.07, 0.07); //缩放
+							mesh.castShadow = true;
+							if (rad_temp-0==-1) {
+								if (external_force_mode==1) {
+									group_mink.add(mesh);
+								}
+							} else {
+								group_mink.add(mesh);
+							}
+						}
+					}
+					var box3 = new THREE.Box3();
+					// 计算层级模型group的包围盒
+					// 模型group是加载一个三维模型返回的对象，包含多个网格模型
+					box3.expandByObject(group_mink);
+					// 计算一个层级模型对应包围盒的几何体中心在世界坐标中的位置
+					box3.getCenter(center);
+					// console.log('查看几何体中心坐标', center);
+					// 重新设置模型的位置，使之居中。
+					group_mink.position.x = group_mink.position.x - center.x;
+					group_mink.position.y = group_mink.position.y - center.y;
+					group_mink.position.z = group_mink.position.z - center.z;
+					scene.add(group_mink);
+				}
+				
+				pnum = pnum + pstep;
+				arr0 = arr_all[pnum].split(',');
+				pstep = parseInt(arr0[0]);
+				mindef_self = parseFloat(arr0[1]);
+				maxdef_self = parseFloat(arr0[2]);
+				structure_length = parseFloat(arr0[3]);
+				pnum = pnum + 1;
+				arr = arr_all.slice(pnum,pnum+pstep);
+				for (var i = 0; i < arr.length; i++) {
+					arr0 = arr[i].split(',');
+					let temp = [];
+					temp.push(parseFloat(arr0[0]));
+					temp.push(parseFloat(arr0[1]));
+					temp.push(parseFloat(arr0[2]));
+					temp.push(parseFloat(arr0[3]));
+					temp.push(parseFloat(arr0[4]));
+					temp.push(parseFloat(arr0[5]));
+					temp.push(parseInt(arr0[6]));
+					temp.push(parseInt(arr0[7]));
+					temp.push(parseInt(arr0[8]));
+					info_selfload.push(temp);
+				}
+				
+				if (display_selfload==1) {
+				    for (var i = 0; i < info_selfload.length; i++) {
+					    var geo_selfload = new THREE.Geometry();
+					    var color_selfload = getColorCode(info_selfload[i][6],info_selfload[i][7],info_selfload[i][8]);
+						var material_selfload = new THREE.LineBasicMaterial( { color: color_selfload, linecap: 'round', linejoin:  'round'} );
+						var p1 = new THREE.Vector3(info_selfload[i][0], info_selfload[i][1], info_selfload[i][2]*selfload_ind);
+						var p2 = new THREE.Vector3(info_selfload[i][3], info_selfload[i][4], info_selfload[i][5]*selfload_ind);
+						geo_selfload.vertices.push(p1);
+						geo_selfload.vertices.push(p2);
+						var line_selfload = new THREE.Line(geo_selfload, material_selfload, THREE.LineSegments);
+						line_selfload.rotation.x = -0.5 * Math.PI; //将模型摆正
+						line_selfload.scale.set(0.07, 0.07, 0.07); //缩放
+						line_selfload.position.x = line_selfload.position.x - center.x;
+						line_selfload.position.y = line_selfload.position.y - center.y;
+						line_selfload.position.z = line_selfload.position.z - center.z;
+						group_selfload.add(line_selfload);
+						geometry.push(line_selfload);
+					}
+					scene.add(group_selfload);
+				}
+				
+				pnum = pnum + pstep;
+				arr0 = arr_all[pnum].split(',');
+				pstep = parseInt(arr0[0]);
+				mindef_point = parseFloat(arr0[1]);
+				maxdef_point = parseFloat(arr0[2]);
+				structure_length = parseFloat(arr0[3]);
+				pnum = pnum + 1;
+				arr = arr_all.slice(pnum,pnum+pstep);
+				for (var i = 0; i < arr.length; i++) {
+					arr0 = arr[i].split(',');
+					let temp = [];
+					temp.push(parseFloat(arr0[0]));
+					temp.push(parseFloat(arr0[1]));
+					temp.push(parseFloat(arr0[2]));
+					temp.push(parseFloat(arr0[3]));
+					temp.push(parseFloat(arr0[4]));
+					temp.push(parseFloat(arr0[5]));
+					temp.push(parseInt(arr0[6]));
+					temp.push(parseInt(arr0[7]));
+					temp.push(parseInt(arr0[8]));
+					info_pointload.push(temp);
+				}
+
+				if (display_pointload==1) {
+				    for (var i = 0; i < info_pointload.length; i++) {
+					    var geo_pointload = new THREE.Geometry();
+					    var color_pointload = getColorCode(info_pointload[i][6],info_pointload[i][7],info_pointload[i][8]);
+						var material_pointload = new THREE.LineBasicMaterial( { color: color_pointload, linecap: 'round', linejoin:  'round'} );
+						var p1 = new THREE.Vector3(info_pointload[i][0], info_pointload[i][1], info_pointload[i][2]*pointload_ind);
+						var p2 = new THREE.Vector3(info_pointload[i][3], info_pointload[i][4], info_pointload[i][5]*pointload_ind);
+						geo_pointload.vertices.push(p1);
+						geo_pointload.vertices.push(p2);
+						var line_pointload = new THREE.Line(geo_pointload, material_pointload, THREE.LineSegments);
+						line_pointload.rotation.x = -0.5 * Math.PI; //将模型摆正
+						line_pointload.scale.set(0.07, 0.07, 0.07); //缩放
+						line_pointload.position.x = line_pointload.position.x - center.x;
+						line_pointload.position.y = line_pointload.position.y - center.y;
+						line_pointload.position.z = line_pointload.position.z - center.z;
+						group_pointload.add(line_pointload);
+						geometry.push(line_pointload);
+					}
+					scene.add(group_pointload);
+				}
+				
+				var plane = new THREE.PlaneGeometry(100000,100000);
+				var colormat = new THREE.MeshStandardMaterial({color: "0xFCFCFC"});
+				var mesh = new THREE.Mesh(plane, colormat);
+				mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+				mesh.position.y = -30;
+				mesh.receiveShadow = true;
+				scene.add(mesh);
+
+				pnum = pnum + pstep;
+				pstep = 8;
+				arr_input = arr_all.slice(pnum,pnum+pstep);
+				
+				document.getElementById("reduce_rate").defaultValue = arr_input[1];
+				document.getElementById('value_reduce_rate').innerHTML = (arr_input[1]*1.0).toFixed(2);
+				document.getElementById("tolerance_of_edge_length").defaultValue = arr_input[2];
+				document.getElementById('value_tolerance_of_edge_length').innerHTML = (arr_input[2]*1.0).toFixed(2);
+				document.getElementById("length_constraint_maltiplier").defaultValue = arr_input[3];
+				document.getElementById('value_length_constraint_maltiplier').innerHTML = (arr_input[3]*1.0).toFixed(2);
+				document.getElementById("boundary_constraint_magnitude").defaultValue = arr_input[4];
+				document.getElementById('value_boundary_constraint_magnitude').innerHTML = (arr_input[4]*1.0).toFixed(2);
+				document.getElementById("perp_steps").defaultValue = arr_input[5];
+				document.getElementById('value_perp_steps').innerHTML = arr_input[5];
+				document.getElementById("total_length").defaultValue = arr_input[6];
+				document.getElementById('value_total_length').innerHTML = (arr_input[6]*1.0).toFixed(0);
+				document.getElementById("material_select").selectedIndex = arr_input[7];
+				
+				arr0_input = arr_input[0].split(',');
+				function Point(x, y) {
+					this.x = x;
+					this.y = y;
+					}
+					//圆圈对象
+				function Circle(x, y) {
+					this.x = x;
+					this.y = y;
+					this.radius = 7;
+					this.color = "blue";
+					//拖拽点的标记
+					this.isSelected = false;
+					}
+				points = [];
+				circles = [];
+				for (var i = 0; i < arr0_input.length/2; i++) {
+					var point=new Point((arr0_input[i*2]-0)/2,(500-arr0_input[i*2+1])/2);
+					points.push(point);
+					var circle=new Circle((arr0_input[i*2]-0)/2,(500-arr0_input[i*2+1])/2);
+					circles.push(circle);
+				}
+				
+				wall_info = [];
+				wall_info.push((arr0_input[0]-0)/500*3000*0.07);
+				wall_info.push((arr0_input[1]-0)/500*3000*0.07);
+				wall_info.push((arr0_input[arr0_input.length-2]-0)/500*3000*0.07);
+				wall_info.push((arr0_input[arr0_input.length-1]-0)/500*3000*0.07);
+				
+				if ((display_mode==1) || (display_selfload==1) || (display_pointload==1)) {
+					var vec = new THREE.Vector3(wall_info[3]-wall_info[1], -(wall_info[2]-wall_info[0]));
+					vec = vec.normalize();
+					//var baseShape = new THREE.Shape();
+					//baseShape.moveTo(wall_info[0], wall_info[1]);
+					//baseShape.lineTo(wall_info[2], wall_info[3]);
+					//baseShape.lineTo(wall_info[2]+vec.x*3, wall_info[3]+vec.y*3);
+					//baseShape.lineTo(wall_info[0]+vec.x*3, wall_info[1]+vec.y*3);
+					//baseShape.lineTo(wall_info[0], wall_info[1]);
+					//var extrudedGeometry = new THREE.ExtrudeGeometry(baseShape, {amount: 20, bevelEnabled: false});
+					//var tmaterial = new THREE.MeshStandardMaterial({color:0xffffff,transparent:true,opacity:0.8});
+					////tmaterial.opacity = 0.1;
+					//var extrudedMesh = new THREE.Mesh(extrudedGeometry, tmaterial);
+					//extrudedMesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+					//extrudedMesh.position.x = extrudedMesh.position.x - center.x;
+					//extrudedMesh.position.y = extrudedMesh.position.y - center.y -10;
+					//extrudedMesh.position.z = extrudedMesh.position.z - center.z;
+					//scene.add(extrudedMesh);
+					
+					group_anchor = new THREE.Group();
+					let consr = [-10,-9,-7,-5,0,5,7,9,10];
+					for (var is = 0; is < 8; is++) {
+					    xx = -Math.abs((is-4)*vec.x);
+						yy = -Math.abs((is-4)*vec.y);
+						zz = consr[is];
+						xxn = -Math.abs((is-3)*vec.x);
+						yyn = -Math.abs((is-3)*vec.y);
+						zzn = consr[is+1];
+						var p1 = new THREE.Vector3(wall_info[0]+xx, wall_info[1]+yy,zz);
+						var p2 = new THREE.Vector3(wall_info[2]+xx, wall_info[3]+yy,zz);
+						var p3 = new THREE.Vector3(wall_info[2]+vec.x*3+xx, wall_info[3]+vec.y*3+yy,zz);
+						var p4 = new THREE.Vector3(wall_info[0]+vec.x*3+xx, wall_info[1]+vec.y*3+yy,zz);
+						var p5 = new THREE.Vector3(wall_info[0]+xxn, wall_info[1]+yyn,zzn);
+						var p6 = new THREE.Vector3(wall_info[2]+xxn, wall_info[3]+yyn,zzn);
+						var p7 = new THREE.Vector3(wall_info[2]+vec.x*3+xxn, wall_info[3]+vec.y*3+yyn,zzn);
+						var p8 = new THREE.Vector3(wall_info[0]+vec.x*3+xxn, wall_info[1]+vec.y*3+yyn,zzn);
+						let plist = [p1,p2,p3,p4,p5,p6,p7,p8];
+						let porder = [[0,4,3,0,-1,0],[3,4,7,0,-1,0],[1,5,2,0,1,0],[2,5,6,0,1,0],[0,1,5,-1,0,0],[5,4,0,-1,0,0],[3,2,6,1,0,0],[6,7,3,1,0,0]];
+						if (is==0) {
+							porder.push([0,1,2,0,0,1]);
+							porder.push([2,3,0,0,0,1]);
+						} else if (is==7) {
+						    porder.push([4,5,6,0,0,-1]);
+							porder.push([6,7,4,0,0,-1]);
+						}
+						for (var iss = 0; iss < porder.length; iss++) {
+						    var geo = new THREE.Geometry(); //声明一个空几何体对象
+							geo.vertices.push(plist[porder[iss][0]],plist[porder[iss][1]],plist[porder[iss][2]]); //顶点坐标添加到geometry对象
+							var normal = new THREE.Vector3( porder[iss][3], porder[iss][4], porder[iss][5] ); //三角面法向量
+							var face = new THREE.Face3( 0, 1, 2, normal); //创建三角面
+							geo.faces.push(face); //三角面添加到几何体
+							var tmaterial = new THREE.MeshStandardMaterial({color:0xffffff,transparent:true,opacity:0.8,side:THREE.DoubleSide});
+							var mesh = new THREE.Mesh(geo,tmaterial);//网格模型对象
+							mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+							mesh.position.x = mesh.position.x - center.x;
+							mesh.position.y = mesh.position.y - center.y;
+							mesh.position.z = mesh.position.z - center.z;
+							mesh.castShadow = false;
+							group_anchor.add(mesh);
+						}
+                    }
+					scene.add(group_anchor);
+				}
+				
+				var value_selfload_ind = document.getElementById('selfload_ind').value;
+				var total_length_input = document.getElementById('total_length').value;
+				document.getElementById('value_selfload_min').innerHTML = (parseInt(value_selfload_ind*(-mindef_self)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_selfload_ind*(-mindef_self)/structure_length)).toFixed(0)+"mm)";
+				document.getElementById('value_selfload_max').innerHTML = (parseInt(value_selfload_ind*(-maxdef_self)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_selfload_ind*(-maxdef_self)/structure_length)).toFixed(0)+"mm)";
+				var value_pointload_ind = document.getElementById('pointload_ind').value;
+				var total_length_input = document.getElementById('total_length').value;
+				document.getElementById('value_pointload_min').innerHTML = (parseInt(value_pointload_ind*(-mindef_point)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_pointload_ind*(-mindef_point)/structure_length)).toFixed(0)+"mm)";
+				document.getElementById('value_pointload_max').innerHTML = (parseInt(value_pointload_ind*(-maxdef_point)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_pointload_ind*(-maxdef_point)/structure_length)).toFixed(0)+"mm)";
+			
+				var oldnode = document.getElementById("loading");
+				oldnode.parentNode.removeChild(oldnode);
+				
+				animate();
+				window.onresize = onWindowResize;
+				
+			}
+		}
+		
+	    function draw_update() {
+
+			while(scene.children.length > 0){ 
+				scene.remove(scene.children[0]); 
+			}
+			
+			//辅助工具
+			var helper = new THREE.AxesHelper(20);
+			helper.position.x = -100;
+			helper.position.z = -100;
+			scene.add(helper);
+			
+			function deleteGroup(group) {
+				//console.log(group);
+				if (!group) return;
+				// 删除掉所有的模型组内的mesh
+				group.traverse(function (item) {
+					if (item instanceof THREE.Mesh) {
+						item.geometry.dispose(); // 删除几何体
+						item.material.dispose(); // 删除材质
+					}
+				});
+			}
+			
+			deleteGroup(group);
+			deleteGroup(group_mink);
+			deleteGroup(group_arrow);
+			deleteGroup(group_shadow);
+			deleteGroup(group_anchor);
+			deleteGroup(group_selfload);
+			deleteGroup(group_pointload);
+			
+			geometry = [];
+			group = new THREE.Group();
+			group_mink = new THREE.Group();
+			group_arrow = new THREE.Group();
+			group_shadow = new THREE.Group();
+			group_anchor = new THREE.Group();
+			group_selfload = new THREE.Group();
+			group_pointload = new THREE.Group();
+			minrad = document.getElementById('minumum_radius').value;
+			maxrad = document.getElementById('maximum_radius').value;
+			mink = document.getElementById("minkowski_sum_indicator").value;
+			pointload_ind = document.getElementById('pointload_ind').value;
+			selfload_ind = document.getElementById('selfload_ind').value;
+			mat = new THREE.MeshStandardMaterial({color: 0x000000});
+			
+			initLight();
+			
+			console.log("update",minrad,maxrad);
+			
+			arr_all = content.split('\r\n');
+			arr = arr_all.slice(1,parseInt(arr_all[0])+1);
+			if (display_mode==1) {
+				for (var i = 0; i < arr.length; i++) {
+					arr0 = arr[i].split(',');
+					if (isNaN(arr0[4])==false) {
+						//console.log(arr0);
+						
+						var p1 = new THREE.Vector3(arr0[0]-0, arr0[1]-0);
+						var p2 = new THREE.Vector3(arr0[2]-0, arr0[3]-0);
+						let line = new THREE.LineCurve3(p1,p2);
+						//console.log(arr0);
+						var CurvePath = new THREE.CurvePath();
+						CurvePath.curves.push(line);
+						
+						if (arr0[4]-0==-1) {
+							var dir = new THREE.Vector3(((arr0[2]-0)-(arr0[0]-0))*0.07, 0, -((arr0[3]-0)-(arr0[1]-0))*0.07);
+							var origin = new THREE.Vector3((arr0[0]-0)*0.07, 0, -(arr0[1]-0)*0.07);
+							var length = 6;
+							var colorstr = getColorCode(0,100,0);
+							var arrowHelper = new THREE.ArrowHelper(dir, origin, length, colorstr, 1.0, 1.0);
+							if (external_force_mode==1) {
+								group_arrow.add(arrowHelper);
+								geometry.push(arrowHelper);
+							}
+						} else {
+							radius = arr0[4]*(maxrad-minrad)+minrad*1.0;
+							
+							if (arr0[4]-0<0.333) {
+								var num1 = Math.round((c2[0]-c1[0])*(arr0[4]-0)/0.333+c1[0]);
+								var num2 = Math.round((c2[1]-c1[1])*(arr0[4]-0)/0.333+c1[1]);
+								var num3 = Math.round((c2[2]-c1[2])*(arr0[4]-0)/0.333+c1[2]);
+								var colorstr = getColorCode(num1,num2,num3);
+								var colormat = new THREE.MeshStandardMaterial({color: colorstr});
+							} else if (arr0[4]-0<0.666) {
+								var num1 = Math.round((c3[0]-c2[0])*(arr0[4]-0.333)/0.333+c2[0]);
+								var num2 = Math.round((c3[1]-c2[1])*(arr0[4]-0.333)/0.333+c2[1]);
+								var num3 = Math.round((c3[2]-c2[2])*(arr0[4]-0.333)/0.333+c2[2]);
+								var colorstr = getColorCode(num1,num2,num3);
+								var colormat = new THREE.MeshStandardMaterial({color: colorstr});
+							} else {
+								var num1 = Math.round((c4[0]-c3[0])*(arr0[4]-0.666)/0.333+c3[0]);
+								var num2 = Math.round((c4[1]-c3[1])*(arr0[4]-0.666)/0.333+c3[1]);
+								var num3 = Math.round((c4[2]-c3[2])*(arr0[4]-0.666)/0.333+c3[2]);
+								var colorstr = getColorCode(num1,num2,num3);
+								var colormat = new THREE.MeshStandardMaterial({color: colorstr});
+							};
+							
+							var geometry_temp = new THREE.TubeGeometry(CurvePath, 8, radius, 8, false);
+							var mesh = new THREE.Mesh(geometry_temp, colormat);
+							mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+							mesh.scale.set(0.07, 0.07, 0.07); //缩放
+							mesh.castShadow = true;
+							group.add(mesh);
+							geometry.push(geometry_temp);
+							
+							var geometry_temp = new THREE.SphereGeometry(radius, 8, 8);
+							var mesh = new THREE.Mesh(geometry_temp, colormat);
+							mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+							mesh.scale.set(0.07, 0.07, 0.07); //缩放
+							mesh.position.x = arr0[0]*0.07;
+							mesh.position.y = 0;
+							mesh.position.z = -arr0[1]*0.07;
+							mesh.castShadow = true;
+							group.add(mesh);
+							geometry.push(geometry_temp);
+							
+							var geometry_temp = new THREE.SphereGeometry(radius, 8, 8);
+							var mesh = new THREE.Mesh(geometry_temp, colormat);
+							mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+							mesh.scale.set(0.07, 0.07, 0.07); //缩放
+							mesh.position.x = arr0[2]*0.07;
+							mesh.position.y = 0;
+							mesh.position.z = -arr0[3]*0.07;
+							mesh.castShadow = true;
+							group.add(mesh);
+							geometry.push(geometry_temp);
+							
+							var geo_shadow = new THREE.Geometry();
+							var material_shadow = new THREE.LineBasicMaterial( { color: 0xEAEAEA, linecap: 'round', linejoin:  'round', linewidth: radius*2} );
+							var p1 = new THREE.Vector3(arr0[0]-0, arr0[1]-0, -29/0.07);
+							var p2 = new THREE.Vector3(arr0[2]-0, arr0[3]-0, -29/0.07);
+							geo_shadow.vertices.push(p1);
+							geo_shadow.vertices.push(p2);
+							var line_shadow = new THREE.Line(geo_shadow, material_shadow, THREE.LineSegments);
+							line_shadow.rotation.x = -0.5 * Math.PI; //将模型摆正
+							line_shadow.scale.set(0.07, 0.07, 0.07); //缩放
+							group_shadow.add(line_shadow);
+							geometry.push(line_shadow);
+						}
+					}
+				}
+				
+				var box3 = new THREE.Box3();
+				// 计算层级模型group的包围盒
+				// 模型group是加载一个三维模型返回的对象，包含多个网格模型
+				box3.expandByObject(group);
+				// 计算一个层级模型对应包围盒的几何体中心在世界坐标中的位置
+				box3.getCenter(center);
+				// console.log('查看几何体中心坐标', center);
+				// 重新设置模型的位置，使之居中。
+				group.position.x = group.position.x - center.x;
+				group.position.y = group.position.y - center.y;
+				group.position.z = group.position.z - center.z;
+				group_arrow.position.x = group_arrow.position.x - center.x;
+				group_arrow.position.y = group_arrow.position.y - center.y;
+				group_arrow.position.z = group_arrow.position.z - center.z;
+				group_shadow.position.x = group_shadow.position.x - center.x;
+				group_shadow.position.y = group_shadow.position.y - center.y;
+				group_shadow.position.z = group_shadow.position.z - center.z;
+				scene.add(group);
+				scene.add(group_arrow);
+				scene.add(group_shadow);
+			}
+			
+			if (mink_mode==1) {
+			
+				let form_pois_edges_geos = [];
+				for (var i = 0; i < form_pois_edges.length; i++) {
+					arr0 = [];
+					for (var j = 0; j < form_pois_edges[i].length; j++) {
+						temp = force_edges[form_pois_edges[i][j]];
+						var p1 = new THREE.Vector3(temp.v1.x*mink+form_pois[i].x*(1-mink),temp.v1.y*mink+form_pois[i].y*(1-mink));
+						var p2 = new THREE.Vector3(temp.v2.x*mink+form_pois[i].x*(1-mink),temp.v2.y*mink+form_pois[i].y*(1-mink));
+						temp = new THREE.LineCurve3(p1,p2);
+						arr0.push(temp);
+					}
+					form_pois_edges_geos.push(arr0);
+				}
+				
+				for (var i = 0; i < form_pois_neib_pois.length; i++) {
+					for (var j = 0; j < form_pois_neib_pois[i].length; j++) {
+					
+						var rad_temp = force_edges_magnitude[form_pois_edges[i][j]];
+						if (rad_temp-0==-1) {
+							var colorstr = getColorCode(0,100,0);
+							var colormat = new THREE.MeshStandardMaterial({color: colorstr});
+						}else if (rad_temp-0<0.333) {
+							var num1 = Math.round((c2[0]-c1[0])*(rad_temp-0)/0.333+c1[0]);
+							var num2 = Math.round((c2[1]-c1[1])*(rad_temp-0)/0.333+c1[1]);
+							var num3 = Math.round((c2[2]-c1[2])*(rad_temp-0)/0.333+c1[2]);
+							var colorstr = getColorCode(num1,num2,num3);
+							var colormat = new THREE.MeshStandardMaterial({color: colorstr});
+						} else if (rad_temp-0<0.666) {
+							var num1 = Math.round((c3[0]-c2[0])*(rad_temp-0.333)/0.333+c2[0]);
+							var num2 = Math.round((c3[1]-c2[1])*(rad_temp-0.333)/0.333+c2[1]);
+							var num3 = Math.round((c3[2]-c2[2])*(rad_temp-0.333)/0.333+c2[2]);
+							var colorstr = getColorCode(num1,num2,num3);
+							var colormat = new THREE.MeshStandardMaterial({color: colorstr});
+						} else {
+							var num1 = Math.round((c4[0]-c3[0])*(rad_temp-0.666)/0.333+c3[0]);
+							var num2 = Math.round((c4[1]-c3[1])*(rad_temp-0.666)/0.333+c3[1]);
+							var num3 = Math.round((c4[2]-c3[2])*(rad_temp-0.666)/0.333+c3[2]);
+							var colorstr = getColorCode(num1,num2,num3);
+							var colormat = new THREE.MeshStandardMaterial({color: colorstr});
+						};
+						
+						let line1 = form_pois_edges_geos[i][j];
+						let line2 = form_pois_edges_geos[form_pois_neib_pois[i][j]][form_pois_neib_edges[i][j]];
+						var p1 = line1.v1; //顶点1坐标
+						var p2 = line1.v2; //顶点2坐标
+						var p3 = line2.v2; //顶点3坐标
+						var p4 = line2.v1; //顶点4坐标
+						var geo = new THREE.Geometry(); //声明一个空几何体对象
+						geo.vertices.push(p1,p2,p3); //顶点坐标添加到geometry对象
+						var normal = new THREE.Vector3( 0, 0, 1 ); //三角面法向量
+						var face = new THREE.Face3( 0, 1, 2, normal); //创建三角面
+						geo.faces.push(face); //三角面添加到几何体
+						//var face = new THREE.Face3( 2, 3, 1, normal); //创建三角面
+						var mesh = new THREE.Mesh(geo,colormat);//网格模型对象
+						mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+						mesh.scale.set(0.07, 0.07, 0.07); //缩放
+						mesh.castShadow = true;
+						if (rad_temp-0==-1) {
+							if (external_force_mode==1) {
+								group_mink.add(mesh);
+							}
+						} else {
+						    group_mink.add(mesh);
+						}
+						var geo = new THREE.Geometry(); //声明一个空几何体对象
+						geo.vertices.push(p3,p4,p1); //顶点坐标添加到geometry对象
+						var normal = new THREE.Vector3( 0, 0, 1 ); //三角面法向量
+						var face = new THREE.Face3( 0, 1, 2, normal); //创建三角面
+						geo.faces.push(face); //三角面添加到几何体
+						//var face = new THREE.Face3( 2, 3, 1, normal); //创建三角面
+						var mesh = new THREE.Mesh(geo,colormat);//网格模型对象
+						mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+						mesh.scale.set(0.07, 0.07, 0.07); //缩放
+						mesh.castShadow = true;
+						if (rad_temp-0==-1) {
+							if (external_force_mode==1) {
+								group_mink.add(mesh);
+							}
+						} else {
+						    group_mink.add(mesh);
+						}
+					}
+				}
+				
+				var box3 = new THREE.Box3();
+				// 计算层级模型group的包围盒
+				// 模型group是加载一个三维模型返回的对象，包含多个网格模型
+				box3.expandByObject(group_mink);
+				// 计算一个层级模型对应包围盒的几何体中心在世界坐标中的位置
+				box3.getCenter(center);
+				// console.log('查看几何体中心坐标', center);
+				// 重新设置模型的位置，使之居中。
+				group_mink.position.x = group_mink.position.x - center.x;
+				group_mink.position.y = group_mink.position.y - center.y;
+				group_mink.position.z = group_mink.position.z - center.z;
+				scene.add(group_mink);
+			}
+			
+			if ((display_mode==1) || (display_selfload==1) || (display_pointload==1)) {
+				var vec = new THREE.Vector3(wall_info[3]-wall_info[1], -(wall_info[2]-wall_info[0]));
+				vec = vec.normalize();
+				//var baseShape = new THREE.Shape();
+				//baseShape.moveTo(wall_info[0], wall_info[1]);
+				//baseShape.lineTo(wall_info[2], wall_info[3]);
+				//baseShape.lineTo(wall_info[2]+vec.x*3, wall_info[3]+vec.y*3);
+				//baseShape.lineTo(wall_info[0]+vec.x*3, wall_info[1]+vec.y*3);
+				//baseShape.lineTo(wall_info[0], wall_info[1]);
+				//var extrudedGeometry = new THREE.ExtrudeGeometry(baseShape, {amount: 20, bevelEnabled: false});
+				//var tmaterial = new THREE.MeshStandardMaterial({color:0xffffff,transparent:true,opacity:0.8});
+				////tmaterial.opacity = 0.1;
+				//var extrudedMesh = new THREE.Mesh(extrudedGeometry, tmaterial);
+				//extrudedMesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+				//extrudedMesh.position.x = extrudedMesh.position.x - center.x;
+				//extrudedMesh.position.y = extrudedMesh.position.y - center.y -10;
+				//extrudedMesh.position.z = extrudedMesh.position.z - center.z;
+				//scene.add(extrudedMesh);
+				
+				group_anchor = new THREE.Group();
+				let consr = [-10,-9,-7,-5,0,5,7,9,10];
+				for (var is = 0; is < 8; is++) {
+					xx = -Math.abs((is-4)*vec.x);
+					yy = -Math.abs((is-4)*vec.y);
+					zz = consr[is];
+					xxn = -Math.abs((is-3)*vec.x);
+					yyn = -Math.abs((is-3)*vec.y);
+					zzn = consr[is+1];
+					var p1 = new THREE.Vector3(wall_info[0]+xx, wall_info[1]+yy,zz);
+					var p2 = new THREE.Vector3(wall_info[2]+xx, wall_info[3]+yy,zz);
+					var p3 = new THREE.Vector3(wall_info[2]+vec.x*3+xx, wall_info[3]+vec.y*3+yy,zz);
+					var p4 = new THREE.Vector3(wall_info[0]+vec.x*3+xx, wall_info[1]+vec.y*3+yy,zz);
+					var p5 = new THREE.Vector3(wall_info[0]+xxn, wall_info[1]+yyn,zzn);
+					var p6 = new THREE.Vector3(wall_info[2]+xxn, wall_info[3]+yyn,zzn);
+					var p7 = new THREE.Vector3(wall_info[2]+vec.x*3+xxn, wall_info[3]+vec.y*3+yyn,zzn);
+					var p8 = new THREE.Vector3(wall_info[0]+vec.x*3+xxn, wall_info[1]+vec.y*3+yyn,zzn);
+					let plist = [p1,p2,p3,p4,p5,p6,p7,p8];
+					let porder = [[0,4,3,0,-1,0],[3,4,7,0,-1,0],[1,5,2,0,1,0],[2,5,6,0,1,0],[0,1,5,-1,0,0],[5,4,0,-1,0,0],[3,2,6,1,0,0],[6,7,3,1,0,0]];
+					if (is==0) {
+						porder.push([0,1,2,0,0,1]);
+						porder.push([2,3,0,0,0,1]);
+					} else if (is==7) {
+						porder.push([4,5,6,0,0,-1]);
+						porder.push([6,7,4,0,0,-1]);
+					}
+					for (var iss = 0; iss < porder.length; iss++) {
+						var geo = new THREE.Geometry(); //声明一个空几何体对象
+						geo.vertices.push(plist[porder[iss][0]],plist[porder[iss][1]],plist[porder[iss][2]]); //顶点坐标添加到geometry对象
+						var normal = new THREE.Vector3( porder[iss][3], porder[iss][4], porder[iss][5] ); //三角面法向量
+						var face = new THREE.Face3( 0, 1, 2, normal); //创建三角面
+						geo.faces.push(face); //三角面添加到几何体
+						var tmaterial = new THREE.MeshStandardMaterial({color:0xffffff,transparent:true,opacity:0.8,side:THREE.DoubleSide});
+						var mesh = new THREE.Mesh(geo,tmaterial);//网格模型对象
+						mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+						mesh.position.x = mesh.position.x - center.x;
+						mesh.position.y = mesh.position.y - center.y;
+						mesh.position.z = mesh.position.z - center.z;
+						mesh.castShadow = false;
+						group_anchor.add(mesh);
+					}
+				}
+				scene.add(group_anchor);
+			}
+			
+			if (display_selfload==1) {
+				for (var i = 0; i < info_selfload.length; i++) {
+					var geo_selfload = new THREE.Geometry();
+					var color_selfload = getColorCode(info_selfload[i][6],info_selfload[i][7],info_selfload[i][8]);
+					var material_selfload = new THREE.LineBasicMaterial( { color: color_selfload, linecap: 'round', linejoin:  'round'} );
+					var p1 = new THREE.Vector3(info_selfload[i][0], info_selfload[i][1], info_selfload[i][2]*selfload_ind);
+					var p2 = new THREE.Vector3(info_selfload[i][3], info_selfload[i][4], info_selfload[i][5]*selfload_ind);
+					geo_selfload.vertices.push(p1);
+					geo_selfload.vertices.push(p2);
+					var line_selfload = new THREE.Line(geo_selfload, material_selfload, THREE.LineSegments);
+					line_selfload.rotation.x = -0.5 * Math.PI; //将模型摆正
+					line_selfload.scale.set(0.07, 0.07, 0.07); //缩放
+					line_selfload.position.x = line_selfload.position.x - center.x;
+					line_selfload.position.y = line_selfload.position.y - center.y;
+					line_selfload.position.z = line_selfload.position.z - center.z;
+					group_selfload.add(line_selfload);
+					geometry.push(line_selfload);
+				}
+				scene.add(group_selfload);
+			}
+	
+			if (display_pointload==1) {
+				for (var i = 0; i < info_pointload.length; i++) {
+					var geo_pointload = new THREE.Geometry();
+					var color_pointload = getColorCode(info_pointload[i][6],info_pointload[i][7],info_pointload[i][8]);
+					var material_pointload = new THREE.LineBasicMaterial( { color: color_pointload, linecap: 'round', linejoin:  'round'} );
+					var p1 = new THREE.Vector3(info_pointload[i][0], info_pointload[i][1], info_pointload[i][2]*pointload_ind);
+					var p2 = new THREE.Vector3(info_pointload[i][3], info_pointload[i][4], info_pointload[i][5]*pointload_ind);
+					geo_pointload.vertices.push(p1);
+					geo_pointload.vertices.push(p2);
+					var line_pointload = new THREE.Line(geo_pointload, material_pointload, THREE.LineSegments);
+					line_pointload.rotation.x = -0.5 * Math.PI; //将模型摆正
+					line_pointload.scale.set(0.07, 0.07, 0.07); //缩放
+					line_pointload.position.x = line_pointload.position.x - center.x;
+					line_pointload.position.y = line_pointload.position.y - center.y;
+					line_pointload.position.z = line_pointload.position.z - center.z;
+					group_pointload.add(line_pointload);
+					geometry.push(line_pointload);
+				}
+				scene.add(group_pointload);
+			}
+			
+			var plane = new THREE.PlaneGeometry(100000,100000);
+			var colormat = new THREE.MeshStandardMaterial({color: "0xFCFCFC"});
+			var mesh = new THREE.Mesh(plane, colormat);
+			mesh.rotation.x = -0.5 * Math.PI; //将模型摆正
+			mesh.position.y = -30;
+			mesh.receiveShadow = true;
+			scene.add(mesh);
+			
+			var value_selfload_ind = document.getElementById('selfload_ind').value;
+			var total_length_input = document.getElementById('total_length').value;
+			document.getElementById('value_selfload_min').innerHTML = (parseInt(value_selfload_ind*(-mindef_self)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_selfload_ind*(-mindef_self)/structure_length)).toFixed(0)+"mm)";
+			document.getElementById('value_selfload_max').innerHTML = (parseInt(value_selfload_ind*(-maxdef_self)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_selfload_ind*(-maxdef_self)/structure_length)).toFixed(0)+"mm)";
+			var value_pointload_ind = document.getElementById('pointload_ind').value;
+			var total_length_input = document.getElementById('total_length').value;
+			document.getElementById('value_pointload_min').innerHTML = (parseInt(value_pointload_ind*(-mindef_point)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_pointload_ind*(-mindef_point)/structure_length)).toFixed(0)+"mm)";
+			document.getElementById('value_pointload_max').innerHTML = (parseInt(value_pointload_ind*(-maxdef_point)/structure_length*10000)/100).toFixed(2)+"% ("+(total_length_input*(value_pointload_ind*(-maxdef_point)/structure_length)).toFixed(0)+"mm)";
+		}
+	</script>
+
+</body>
+</html>
