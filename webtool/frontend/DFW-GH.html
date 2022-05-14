@@ -238,29 +238,29 @@
 	
 	
 	<div id="femcpb" style="background-color: #000000; opacity: 0.3; position:absolute; bottom:30px; left:910px; width: 340px; height: 50px;"></div>
-
-	<button id="btn_25mat" type="button" class="btn btn-default" onclick="btn_25mat()" style="position:absolute; bottom:38px; left:920px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
-		<img src="icon/25mat.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Material of the Wing">
-	</button>
 	
-	<button id="btn_27fem" type="button" class="btn btn-default" onclick="getInputs_FEM()" style="position:absolute; bottom:38px; left:970px; float:left; width:70px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
-		<img src="icon/27fem.png" width="70" style="position:absolute; bottom:0px; left:0px;" title="Recompute FEM Results">
-	</button>
-	
-	<button id="btn_20slo" type="button" class="btn btn-default" onclick="btn_20slo()" style="position:absolute; bottom:38px; left:1055px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
+	<button id="btn_20slo" type="button" class="btn btn-default" onclick="btn_20slo()" style="position:absolute; bottom:38px; left:920px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
 		<img src="icon/btn_20slo.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Turn on Self Weight FEM Result">
 	</button>
 	
-	<button id="btn_21slf" type="button" class="btn btn-default" onclick="btn_21slf()" style="position:absolute; bottom:38px; left:1105px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
+	<button id="btn_21slf" type="button" class="btn btn-default" onclick="btn_21slf()" style="position:absolute; bottom:38px; left:970px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
 		<img src="icon/btn_21slf.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Turn off Self Weight FEM Result">
 	</button>
 	
-	<button id="btn_22plo" type="button" class="btn btn-default" onclick="btn_22plo()" style="position:absolute; bottom:38px; left:1155px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
+	<button id="btn_22plo" type="button" class="btn btn-default" onclick="btn_22plo()" style="position:absolute; bottom:38px; left:1020px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
 		<img src="icon/btn_22plo.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Turn on Point Load FEM Result">
 	</button>
 	
-	<button id="btn_23plf" type="button" class="btn btn-default" onclick="btn_23plf()" style="position:absolute; bottom:38px; left:1205px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
+	<button id="btn_23plf" type="button" class="btn btn-default" onclick="btn_23plf()" style="position:absolute; bottom:38px; left:1070px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
 		<img src="icon/btn_23plf.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Turn off Point Load FEM Result">
+	</button>
+	
+	<button id="btn_25mat" type="button" class="btn btn-default" onclick="btn_25mat()" style="position:absolute; bottom:38px; left:1120px; float:left; width:35px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/25mat.png" width="35" style="position:absolute; bottom:0px; left:0px;" title="Material of the Wing">
+	</button>
+	
+	<button id="btn_27fem" type="button" class="btn btn-default" onclick="getInputs_FEM()" style="position:absolute; bottom:38px; left:1170px; float:left; width:70px; height: 35px; background:rgba(0,0,0,0.0); border: none;">
+		<img src="icon/27fem.png" width="70" style="position:absolute; bottom:0px; left:0px;" title="Recompute FEM Results">
 	</button>
 	
 	<div id="container-item-femcp" style="position:absolute; bottom:10px; left:1020px; width: 220px; display:block;">
@@ -275,23 +275,14 @@
 		<span id="btn_show5_spa" style="position:absolute; font-size:13px; top:-1px; left:5px;" title="unfold">▲</span>
 	</button>
 	
-	<div id="container_mat" style="position:absolute; bottom:-45px; left:915px; width:10px; height:240px; display:none;">
-		<select id="material_select" style="background:#FCFCFC; font-size:15px;">
-			<option value ="volvo">Steel</option>
-			<option value ="volvo">Wood</option>
-			<option value ="volvo">Concrete</option>
-			<option value ="volvo">Aluminum</option>
-		</select>
-	</div>
-	
-	<div id="container_selfload" style="position:absolute; bottom:110px; left:1065px; width:10px; height:200px; display:none;">
+	<div id="container_selfload" style="position:absolute; bottom:110px; left:930px; width:10px; height:200px; display:none;">
         <div class="mode1">
 			<input type="range" min="0.01" max="2.00" step="0.01" name="selfload_ind" id="selfload_ind" style="width:10px; height:200px;" oninput="input_selfload_ind()" onchange="change_selfload_ind()"/>
 			<span id="value_selfload_ind" style="position:absolute; bottom:-25px; left:-8px; font-size:15px;">0</span>
 		</div>
 	</div>
 	
-	<div id="container_pointload" style="position:absolute; bottom:110px; left:1165px; width:10px; height:200px; display:none;">
+	<div id="container_pointload" style="position:absolute; bottom:110px; left:1030px; width:10px; height:200px; display:none;">
         <div class="mode1">
 			<input type="range" min="0.01" max="2.00" step="0.01" name="pointload_ind" id="pointload_ind" style="width:10px; height:200px;" oninput="input_pointload_ind()" onchange="change_pointload_ind()"/>
 			<span id="value_pointload_ind" style="position:absolute; bottom:-25px; left:-8px; font-size:15px;">0</span>
@@ -311,6 +302,15 @@
 			<span id="value_selfload_max" style="position:absolute; top:-15px; left:-30px; font-size:15px;">0%</span>
 			<span id="spa_selfload" style="position:absolute; top:380px; right:15px; font-size:15px;">Self Weight Deformation</span>
 		</div>
+	</div>
+	
+	<div id="container_mat" style="position:absolute; bottom:-45px; left:1115px; width:10px; height:240px; display:none;">
+		<select id="material_select" style="background:#FCFCFC; font-size:15px;">
+			<option value ="volvo">Steel</option>
+			<option value ="volvo">Wood</option>
+			<option value ="volvo">Concrete</option>
+			<option value ="volvo">Aluminum</option>
+		</select>
 	</div>
 	
 	
@@ -442,18 +442,18 @@
 			<img src="icon/28saw.png" width="30" style="position:absolute; top:720px; left:0px;" title="Hide Color-coding">
 			<span style="position:absolute; top:730px; left:40px; font-size:10px; color:white;">Hide colors for display (except for FEM analysis).</span>
 			<span style="position:absolute; top:760px; left:0px; font-size:10px; color:white;">--------------------------------------------------------------------------------------------------------------------</span>
-			<img src="icon/25mat.png" width="30" style="position:absolute; top:780px; left:0px;" title="Material of the Wing">
-			<span style="position:absolute; top:790px; left:40px; font-size:10px; color:white;">Material of the Wing defines the material for FEM analysis.</span>
-			<img src="icon/27fem.png" width="60" style="position:absolute; top:820px; left:0px;" title="Recompute FEM Results">
-			<span style="position:absolute; top:830px; left:70px; font-size:10px; color:white;">Recompute the FEM results in the server. It usually takes 10 seconds to compute and show.</span>
-			<img src="icon/btn_20slo.png" width="30" style="position:absolute; top:860px; left:0px;" title="Turn on Self Weight FEM Result">
-			<span style="position:absolute; top:870px; left:40px; font-size:10px; color:white;">Turn on the FEM result under the load of self weight.</span>
-			<img src="icon/btn_21slf.png" width="30" style="position:absolute; top:900px; left:0px;" title="Turn off Self Weight FEM Result">
-			<span style="position:absolute; top:910px; left:40px; font-size:10px; color:white;">Turn off the FEM result under the load of self weight.</span>
-			<img src="icon/btn_22plo.png" width="30" style="position:absolute; top:940px; left:0px;" title="Turn on Point Load FEM Result">
-			<span style="position:absolute; top:950px; left:40px; font-size:10px; color:white;">Turn on the FEM result under the point load on the farthest vertex.</span>
-			<img src="icon/btn_23plf.png" width="30" style="position:absolute; top:980px; left:0px;" title="Turn off Point Load FEM Result">
-			<span style="position:absolute; top:990px; left:40px; font-size:10px; color:white;">Turn off the FEM result under the point load on the farthest vertex.</span>
+			<img src="icon/btn_20slo.png" width="30" style="position:absolute; top:780px; left:0px;" title="Turn on Self Weight FEM Result">
+			<span style="position:absolute; top:790px; left:40px; font-size:10px; color:white;">Turn on the FEM result under the load of self weight.</span>
+			<img src="icon/btn_21slf.png" width="30" style="position:absolute; top:820px; left:0px;" title="Turn off Self Weight FEM Result">
+			<span style="position:absolute; top:830px; left:40px; font-size:10px; color:white;">Turn off the FEM result under the load of self weight.</span>
+			<img src="icon/btn_22plo.png" width="30" style="position:absolute; top:860px; left:0px;" title="Turn on Point Load FEM Result">
+			<span style="position:absolute; top:870px; left:40px; font-size:10px; color:white;">Turn on the FEM result under the point load on the farthest vertex.</span>
+			<img src="icon/btn_23plf.png" width="30" style="position:absolute; top:900px; left:0px;" title="Turn off Point Load FEM Result">
+			<span style="position:absolute; top:910px; left:40px; font-size:10px; color:white;">Turn off the FEM result under the point load on the farthest vertex.</span>
+			<img src="icon/25mat.png" width="30" style="position:absolute; top:940px; left:0px;" title="Material of the Wing">
+			<span style="position:absolute; top:950px; left:40px; font-size:10px; color:white;">Material of the Wing defines the material for FEM analysis.</span>
+			<img src="icon/27fem.png" width="60" style="position:absolute; top:980px; left:0px;" title="Recompute FEM Results">
+			<span style="position:absolute; top:990px; left:70px; font-size:10px; color:white;">Recompute the FEM results in the server. It usually takes 10 seconds to compute and show.</span>
 			<span style="position:absolute; top:1020px; left:0px; font-size:10px; color:white;">--------------------------------------------------------------------------------------------------------------------</span>
 			<img src="icon/14stl.png" width="30" style="position:absolute; top:1040px; left:0px;" title="Save as STL Model">
 			<span style="position:absolute; top:1050px; left:40px; font-size:10px; color:white;">Export the current scene as a STL model.</span>
@@ -1510,7 +1510,7 @@
 		
 		function btn_28saw() {
 			if (all_white == -1) {
-			    all_white = 128;
+			    all_white = 180;
 				draw_update();
 			}
 			var obj = document.getElementById("btn_28saw");
@@ -3271,9 +3271,9 @@
 		}
 		
 		document.getElementById("minumum_radius").defaultValue = 2;
-		document.getElementById('value_minumum_radius').innerHTML = (2).toFixed(0);
+		//document.getElementById('value_minumum_radius').innerHTML = (2).toFixed(0);
 		document.getElementById("maximum_radius").defaultValue = 20;
-		document.getElementById('value_maximum_radius').innerHTML = (20).toFixed(0);
+		//document.getElementById('value_maximum_radius').innerHTML = (20).toFixed(0);
 		document.getElementById('minkowski_sum_indicator').defaultValue = 0.5;
 		document.getElementById('value_minkowski_sum_indicator').innerHTML = (0.5).toFixed(2);
 		document.getElementById('selfload_ind').defaultValue = 1.0;
@@ -3325,9 +3325,9 @@
 				document.getElementById("perp_steps").defaultValue = arr_input[5];
 				document.getElementById('value_perp_steps').innerHTML = arr_input[5];
 				document.getElementById("minumum_radius").defaultValue = 2;
-				document.getElementById('value_minumum_radius').innerHTML = (2).toFixed(0);
+				//document.getElementById('value_minumum_radius').innerHTML = (2).toFixed(0);
 				document.getElementById("maximum_radius").defaultValue = 20;
-				document.getElementById('value_maximum_radius').innerHTML = (20).toFixed(0);
+				//document.getElementById('value_maximum_radius').innerHTML = (20).toFixed(0);
 				document.getElementById('minkowski_sum_indicator').defaultValue = 0.5;
 				document.getElementById('value_minkowski_sum_indicator').innerHTML = (0.5).toFixed(2);
 				document.getElementById("total_length").defaultValue = arr_input[6];
