@@ -7,7 +7,7 @@
 3. Please check requirements.txt about the environment.
 
 4. Please download the pre-trained GAN models and put them in "checkpoints" folder. Download link here:
-https://upenn.box.com/s/dyxl5lfmgk72tbyahda9hlxtp90c8zwp
+https://drive.google.com/file/d/12U97EPqCbLY9REEbs6Gy9UMNiuf0yFwO/view?usp=drive_link
 
 5. Please install the latest "PolyFrame" plugin for Rhino. Download link here:
 https://www.food4rhino.com/en/app/polyframe
