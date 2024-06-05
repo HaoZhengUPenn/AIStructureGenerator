@@ -13,3 +13,5 @@ https://drive.google.com/file/d/1wOfUQ-iWxVjfXEZoBMRvWFShjVnZoNlA/view?usp=drive
 https://www.food4rhino.com/en/app/polyframe
 
 6. Finally, please use the Rhino and Grasshopper file in the project folder as an example to generate customized structures inspired by nature with AI.
+
+7. Web implementation: http://www.ai-gs.com/frontend/DFW-GH.html
